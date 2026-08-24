@@ -1,4 +1,4 @@
-# OpenClaw Agents Collection
+﻿# OpenClaw Agents Collection
 
 > 基于 [RIA-TV++](#ria-tv--方法论) 六阶段流水线蒸馏的 8 个专业 Agent，覆盖数据可视化、工程实践、代码审查、内容创作与知识蒸馏。
 
@@ -20,14 +20,14 @@
 └── skills/           # 原子化 skills（含测试用例）
 ```
 
-> `mattpocock-engineering-agent` 的 skills 内置于上游项目，本仓库不重复存储 skill 文件；`content-distiller` 额外包含 `books/` 蒸馏产出和方法论模板。
+> 所有 agent 的 skills 均以本地文件形式存储在各自的 `skills/` 目录中，每个 skill 包含 `SKILL.md` 和触发测试用例 `test-prompts.json`。
 
 ## Agent 目录
 
 | # | Agent | Skills 数量 | 领域 | 来源项目 | 许可证 |
 |---|-------|------------|------|----------|--------|
 | 1 | [ency-charts-agent](./ency-charts-agent/) | 19 | 数据可视化设计 | ENCY-charts 设计规范 | — |
-| 2 | [mattpocock-engineering-agent](./mattpocock-engineering-agent/) | 25（内建） | 软件工程实践 | [mattpocock/skills](https://github.com/mattpocock/skills) | MIT |
+| 2 | [mattpocock-engineering-agent](./mattpocock-engineering-agent/) | 25 | 软件工程实践 | [mattpocock/skills](https://github.com/mattpocock/skills) | MIT |
 | 3 | [alibaba-ocr-agent](./alibaba-ocr-agent/) | 9 | Open Code Review | [alibaba/open-code-review](https://github.com/alibaba/open-code-review) | Apache-2.0 |
 | 4 | [content-distiller](./content-distiller/) | 1（元 skill） | 知识蒸馏 | Cangjie Skill Sandbox | — |
 | 5 | [superpowers-agent](./superpowers-agent/) | 7 | 编码工作流 | [obra/superpowers](https://github.com/obra/superpowers) | — |
