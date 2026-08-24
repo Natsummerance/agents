@@ -1,0 +1,20 @@
+{
+  "skill": "academic-humanizer",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "帮我修改这段基金申请书让它不像 AI 写的",
+      "expected_skill": "academic-humanizer",
+      "category": "should-trigger",
+      "reason": "学术去痕是核心场景"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我做个 PPT",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "PPT 不属于学术写作"
+    }
+  ]
+}

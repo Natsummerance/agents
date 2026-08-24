@@ -1,0 +1,20 @@
+{
+  "skill": "agentic-html-editor",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "帮我把这段 Markdown 转成漂亮的 HTML 页面",
+      "expected_skill": "agentic-html-editor",
+      "category": "should-trigger",
+      "reason": "MD→HTML 转换"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我修数据库",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "数据库操作不属于文档渲染"
+    }
+  ]
+}

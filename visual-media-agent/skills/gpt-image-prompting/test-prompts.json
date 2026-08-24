@@ -1,0 +1,20 @@
+{
+  "skill": "gpt-image-prompting",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "帮我写一个生成产品照片的 GPT Image 提示词",
+      "expected_skill": "gpt-image-prompting",
+      "category": "should-trigger",
+      "reason": "GPT Image 提示词工程"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我做一份数据报告",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "数据报告不属于图像提示"
+    }
+  ]
+}

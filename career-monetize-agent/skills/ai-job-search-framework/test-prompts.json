@@ -1,0 +1,20 @@
+{
+  "skill": "ai-job-search-framework",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "帮我准备一个产品经理职位的面试",
+      "expected_skill": "ai-job-search-framework",
+      "category": "should-trigger",
+      "reason": "求职面试准备是核心场景"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我做一份数据报告",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "数据报告不属于求职"
+    }
+  ]
+}

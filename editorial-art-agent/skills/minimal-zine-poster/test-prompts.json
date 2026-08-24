@@ -1,0 +1,41 @@
+{
+  "skill": "minimal-zine-poster",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "expected_skill": "minimal-zine-poster",
+      "id": "test-1",
+      "category": "should-trigger",
+      "prompt": "用\"孤独的城市\"这个主题做一张 Zine 海报",
+      "reason": "主题+Zine 海报是该 skill 的默认触发"
+    },
+    {
+      "expected_skill": "minimal-zine-poster",
+      "id": "test-2",
+      "category": "should-trigger",
+      "prompt": "帮我做一张纸质质感的海报",
+      "reason": "\"纸质质感\"\"海报\"匹配极简 Zine 场景"
+    },
+    {
+      "expected_skill": "photo-relic-editorial",
+      "id": "test-3",
+      "category": "cross-skill-confusion",
+      "prompt": "把这张照片做成记忆版画",
+      "reason": "照片+版画应路由到遗存版画"
+    },
+    {
+      "expected_skill": null,
+      "id": "test-4",
+      "category": "should-not-trigger",
+      "prompt": "帮我把这组数据画成图表",
+      "reason": "数据可视化不属于本 Agent"
+    },
+    {
+      "expected_skill": "minimal-zine-poster",
+      "id": "test-5",
+      "category": "should-trigger",
+      "prompt": "分析这张参考图的设计风格",
+      "reason": "参考分析是 minimal-zine-poster 的子模式"
+    }
+  ]
+}

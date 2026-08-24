@@ -1,0 +1,20 @@
+{
+  "skill": "hindsight-retrieval",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "我想从大量文档中语义搜索相关信息",
+      "expected_skill": "hindsight-retrieval",
+      "category": "should-trigger",
+      "reason": "向量检索场景"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我修 Bug",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "Bug 修复不属于检索"
+    }
+  ]
+}

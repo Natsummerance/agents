@@ -1,0 +1,20 @@
+{
+  "skill": "design-system-generator",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "帮我的 SaaS 产品建立设计系统",
+      "expected_skill": "design-system-generator",
+      "category": "should-trigger",
+      "reason": "设计系统生成请求"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我修 bug",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "Bug 修复不属于设计"
+    }
+  ]
+}

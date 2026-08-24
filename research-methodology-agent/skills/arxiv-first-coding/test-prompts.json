@@ -1,0 +1,20 @@
+{
+  "skill": "arxiv-first-coding",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "我想实现一个新的注意力机制，有相关论文吗？",
+      "expected_skill": "arxiv-first-coding",
+      "category": "should-trigger",
+      "reason": "实现前查文献是该 skill 的核心场景"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我修这个 CSS 布局问题",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "CSS 修复不需要查 arXiv"
+    }
+  ]
+}

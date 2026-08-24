@@ -1,0 +1,41 @@
+{
+  "skill": "photo-abstract-editorial",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "category": "should-trigger",
+      "id": "test-1",
+      "expected_skill": "photo-abstract-editorial",
+      "prompt": "把这张照片做成抽象编辑双联画",
+      "reason": "\"抽象编辑\"\"双联画\"是该 skill 的核心触发词"
+    },
+    {
+      "category": "should-trigger",
+      "id": "test-2",
+      "expected_skill": "photo-abstract-editorial",
+      "prompt": "帮我从这张照片提取视觉记忆面板",
+      "reason": "\"视觉记忆面板\"是直接匹配场景"
+    },
+    {
+      "category": "cross-skill-confusion",
+      "id": "test-3",
+      "expected_skill": "photo-relic-editorial",
+      "prompt": "把这张照片做成纸上版画",
+      "reason": "\"版画\"应路由到遗存版画 skill"
+    },
+    {
+      "category": "should-not-trigger",
+      "id": "test-4",
+      "expected_skill": null,
+      "prompt": "帮我写一篇文章",
+      "reason": "文本创作不属于视觉艺术"
+    },
+    {
+      "category": "cross-skill-confusion",
+      "id": "test-5",
+      "expected_skill": "minimal-zine-poster",
+      "prompt": "用这个主题做一张纸质海报",
+      "reason": "主题+海报应路由到 minimal-zine-poster"
+    }
+  ]
+}

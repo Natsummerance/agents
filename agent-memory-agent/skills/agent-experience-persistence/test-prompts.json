@@ -1,0 +1,20 @@
+{
+  "skill": "agent-experience-persistence",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "怎么让我的 Agent 记住之前的对话？",
+      "expected_skill": "agent-experience-persistence",
+      "category": "should-trigger",
+      "reason": "跨会话经验持久化"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我设计 UI",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "UI 设计不属于记忆系统"
+    }
+  ]
+}

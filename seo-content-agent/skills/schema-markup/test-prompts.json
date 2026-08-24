@@ -1,0 +1,20 @@
+{
+  "skill": "schema-markup",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "帮我的产品页面添加 Schema 标记",
+      "expected_skill": "schema-markup",
+      "category": "should-trigger",
+      "reason": "Schema 生成请求"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我设计 Logo",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "Logo 设计不属于 SEO"
+    }
+  ]
+}

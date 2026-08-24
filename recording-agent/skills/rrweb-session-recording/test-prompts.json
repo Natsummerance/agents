@@ -1,0 +1,20 @@
+{
+  "skill": "rrweb-session-recording",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "我想录制用户在网页上的操作并回放",
+      "expected_skill": "rrweb-session-recording",
+      "category": "should-trigger",
+      "reason": "会话录制回放是核心场景"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我写个后端 API",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "API 开发不属于录制"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "skill": "seo-audit",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "帮我审计这个网站的 SEO",
+      "expected_skill": "seo-audit",
+      "category": "should-trigger",
+      "reason": "SEO 审计请求"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我写代码",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "编码不属于 SEO"
+    }
+  ]
+}

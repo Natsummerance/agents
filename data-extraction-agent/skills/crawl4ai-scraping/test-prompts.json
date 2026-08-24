@@ -1,0 +1,20 @@
+{
+  "skill": "crawl4ai-scraping",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "帮我爬取这个网页的内容",
+      "expected_skill": "crawl4ai-scraping",
+      "category": "should-trigger",
+      "reason": "网页爬取请求"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我解析 PDF",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "PDF 解析属于 odl-pdf-extraction"
+    }
+  ]
+}

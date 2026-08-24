@@ -1,0 +1,20 @@
+{
+  "skill": "multi-agent-simulation",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "帮我用群体智能预测这个政策的市场影响",
+      "expected_skill": "multi-agent-simulation",
+      "category": "should-trigger",
+      "reason": "多智能体仿真是核心场景"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我写个博客",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "博客写作不属于预测"
+    }
+  ]
+}

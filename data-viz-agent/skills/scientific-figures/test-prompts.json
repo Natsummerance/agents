@@ -1,0 +1,20 @@
+{
+  "skill": "scientific-figures",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "帮我画一个论文用的比较柱状图",
+      "expected_skill": "scientific-figures",
+      "category": "should-trigger",
+      "reason": "学术论文图表请求"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我做一张海报",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "海报设计不属于学术图表"
+    }
+  ]
+}

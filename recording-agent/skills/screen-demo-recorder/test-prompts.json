@@ -1,0 +1,20 @@
+{
+  "skill": "screen-demo-recorder",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "帮我录一个软件操作演示视频",
+      "expected_skill": "screen-demo-recorder",
+      "category": "should-trigger",
+      "reason": "Demo 录制是该 skill 的核心场景"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我设计海报",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "海报设计不属于屏幕录制"
+    }
+  ]
+}

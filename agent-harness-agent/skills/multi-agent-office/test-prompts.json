@@ -1,0 +1,20 @@
+{
+  "skill": "multi-agent-office",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "我想让多个 AI Agent 协作完成一个项目",
+      "expected_skill": "multi-agent-office",
+      "category": "should-trigger",
+      "reason": "多 Agent 协作是该 skill 核心"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我做个网站",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "网站开发不属于编排"
+    }
+  ]
+}

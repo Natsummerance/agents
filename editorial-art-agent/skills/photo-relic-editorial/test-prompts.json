@@ -1,0 +1,41 @@
+{
+  "skill": "photo-relic-editorial",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "prompt": "帮我把这张建筑照片做成纸上记忆版画",
+      "id": "test-1",
+      "expected_skill": "photo-relic-editorial",
+      "reason": "关键词\"记忆版画\"直接匹配该 skill 的核心场景",
+      "category": "should-trigger"
+    },
+    {
+      "prompt": "把这张照片做成安静的编辑艺术作品",
+      "id": "test-2",
+      "expected_skill": "photo-relic-editorial",
+      "reason": "\"安静\"\"编辑艺术\"是遗存版画的典型触发词",
+      "category": "should-trigger"
+    },
+    {
+      "prompt": "帮我做一份数据分析报告",
+      "id": "test-3",
+      "expected_skill": null,
+      "reason": "数据报告不属于视觉艺术范畴",
+      "category": "should-not-trigger"
+    },
+    {
+      "prompt": "设计一个 App 界面",
+      "id": "test-4",
+      "expected_skill": null,
+      "reason": "UI 设计不属于本 Agent",
+      "category": "should-not-trigger"
+    },
+    {
+      "prompt": "参考这张图的颜色做一张新海报",
+      "id": "test-5",
+      "expected_skill": "minimal-zine-poster",
+      "reason": "参考风格+新建海报应路由到 minimal-zine-poster",
+      "category": "cross-skill-confusion"
+    }
+  ]
+}

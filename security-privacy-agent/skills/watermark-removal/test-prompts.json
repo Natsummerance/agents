@@ -1,0 +1,20 @@
+{
+  "skill": "watermark-removal",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "帮我清除这段文字里的 AI 水印",
+      "expected_skill": "watermark-removal",
+      "category": "should-trigger",
+      "reason": "水印移除是核心场景"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我扫描端口",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "端口扫描属于 platform-scan"
+    }
+  ]
+}

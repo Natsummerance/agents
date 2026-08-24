@@ -1,0 +1,20 @@
+{
+  "skill": "ecc-harness-os",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "我想搭建一个多 Agent 运行时环境",
+      "expected_skill": "ecc-harness-os",
+      "category": "should-trigger",
+      "reason": "Agent harness 是核心场景"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我写篇文章",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "文本创作不属于基础设施"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "skill": "guizang-web-deck",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "帮我做一个 HTML 翻页 PPT",
+      "expected_skill": "guizang-web-deck",
+      "category": "should-trigger",
+      "reason": "HTML PPT 请求"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我写个 Python 脚本",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "编码不属于演示文稿"
+    }
+  ]
+}

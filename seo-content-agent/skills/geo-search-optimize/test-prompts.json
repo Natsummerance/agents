@@ -1,0 +1,20 @@
+{
+  "skill": "geo-search-optimize",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "怎么让我的内容在 ChatGPT 搜索中被引用？",
+      "expected_skill": "geo-search-optimize",
+      "category": "should-trigger",
+      "reason": "AI 搜索优化是该 skill 的核心"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我修服务器",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "服务器运维不属于 SEO"
+    }
+  ]
+}

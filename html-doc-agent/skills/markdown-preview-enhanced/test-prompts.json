@@ -1,0 +1,20 @@
+{
+  "skill": "markdown-preview-enhanced",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "我的 Markdown 预览不支持数学公式怎么办？",
+      "expected_skill": "markdown-preview-enhanced",
+      "category": "should-trigger",
+      "reason": "数学公式渲染是增强预览的核心功能"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我部署服务器",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "部署不属于 Markdown 预览"
+    }
+  ]
+}

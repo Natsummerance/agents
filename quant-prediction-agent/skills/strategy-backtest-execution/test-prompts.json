@@ -1,0 +1,20 @@
+{
+  "skill": "strategy-backtest-execution",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "我想把我的交易策略写成代码回测一下",
+      "expected_skill": "strategy-backtest-execution",
+      "category": "should-trigger",
+      "reason": "策略回测是核心场景"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我做个网站",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "网站开发不属于量化交易"
+    }
+  ]
+}

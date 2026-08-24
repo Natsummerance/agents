@@ -1,0 +1,41 @@
+{
+  "skill": "gathered-scenes-zine",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "expected_skill": "gathered-scenes-zine",
+      "id": "test-1",
+      "category": "should-trigger",
+      "prompt": "把这张风景照做成拾景风格的拼贴海报",
+      "reason": "\"拾景\"\"拼贴海报\"直接匹配该 skill"
+    },
+    {
+      "expected_skill": "gathered-scenes-zine",
+      "id": "test-2",
+      "category": "should-trigger",
+      "prompt": "帮我把这张自然场景的照片做成手撕纸效果的艺术作品",
+      "reason": "\"手撕纸\"是 gathered-scenes-zine 的标志性特征"
+    },
+    {
+      "expected_skill": "photo-relic-editorial",
+      "id": "test-3",
+      "category": "cross-skill-confusion",
+      "prompt": "把这张城市建筑照片做成纸上版画",
+      "reason": "建筑+版画应路由到遗存版画"
+    },
+    {
+      "expected_skill": "minimal-zine-poster",
+      "id": "test-4",
+      "category": "cross-skill-confusion",
+      "prompt": "用这个主题词做一张海报",
+      "reason": "主题+海报无照片输入应路由到 minimal-zine-poster"
+    },
+    {
+      "expected_skill": null,
+      "id": "test-5",
+      "category": "should-not-trigger",
+      "prompt": "帮我做一个 PPT",
+      "reason": "PPT 制作不属于视觉艺术"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "skill": "ai-money-handbook",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "我想用 AI 赚钱有什么建议？",
+      "expected_skill": "ai-money-handbook",
+      "category": "should-trigger",
+      "reason": "AI 变现咨询是该 skill 的核心"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我修电脑",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "硬件维修不属于变现指导"
+    }
+  ]
+}

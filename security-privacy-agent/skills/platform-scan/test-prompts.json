@@ -1,0 +1,20 @@
+{
+  "skill": "platform-scan",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "帮我查一下这个用户名在哪些平台注册过",
+      "expected_skill": "platform-scan",
+      "category": "should-trigger",
+      "reason": "多平台扫描是核心场景"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我清理数据",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "数据清理不属于平台扫描"
+    }
+  ]
+}

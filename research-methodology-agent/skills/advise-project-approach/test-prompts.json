@@ -1,0 +1,20 @@
+{
+  "skill": "advise-project-approach",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "我应该用什么框架来构建这个项目？",
+      "expected_skill": "advise-project-approach",
+      "category": "should-trigger",
+      "reason": "技术选型需要约束分析"
+    },
+    {
+      "id": "test-2",
+      "prompt": "这个函数怎么写？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "具体实现问题不属于项目规划"
+    }
+  ]
+}

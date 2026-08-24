@@ -1,0 +1,20 @@
+{
+  "skill": "project-knowledge-graph",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "帮我把这个项目的代码结构做成知识图谱",
+      "expected_skill": "project-knowledge-graph",
+      "category": "should-trigger",
+      "reason": "项目知识图谱构建"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我做 PPT",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "PPT 不属于知识图谱"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "skill": "scrapling-stealth",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "这个网站有 Cloudflare 保护怎么爬取？",
+      "expected_skill": "scrapling-stealth",
+      "category": "should-trigger",
+      "reason": "反爬绕过是 Scrapling 的核心场景"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我写个 API",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "API 开发不属于网页抓取"
+    }
+  ]
+}

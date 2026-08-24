@@ -1,0 +1,20 @@
+{
+  "skill": "banner-design",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "帮我设计一个 Twitter 封面图",
+      "expected_skill": "banner-design",
+      "category": "should-trigger",
+      "reason": "社交媒体 Banner 设计"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我写代码",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "编码任务不属于设计"
+    }
+  ]
+}

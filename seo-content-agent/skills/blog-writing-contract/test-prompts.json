@@ -1,0 +1,20 @@
+{
+  "skill": "blog-writing-contract",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "帮我写一篇 SEO 友好的博客文章",
+      "expected_skill": "blog-writing-contract",
+      "category": "should-trigger",
+      "reason": "博客写作+SEO 是核心场景"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我做个 App",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "App 开发不属于博客写作"
+    }
+  ]
+}

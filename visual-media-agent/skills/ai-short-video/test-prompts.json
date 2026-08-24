@@ -1,0 +1,20 @@
+{
+  "skill": "ai-short-video",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "帮我做一个关于 AI 的短视频",
+      "expected_skill": "ai-short-video",
+      "category": "should-trigger",
+      "reason": "短视频生成请求"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我写一首诗",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "诗歌创作不属于视频制作"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "skill": "odl-pdf-extraction",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "帮我从这个 PDF 提取表格数据",
+      "expected_skill": "odl-pdf-extraction",
+      "category": "should-trigger",
+      "reason": "PDF 数据提取请求"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我爬取网页",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "网页抓取属于 crawl4ai-scraping"
+    }
+  ]
+}

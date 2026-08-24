@@ -1,0 +1,20 @@
+{
+  "skill": "ppt-master-native",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "帮我把这个文档转成 PowerPoint",
+      "expected_skill": "ppt-master-native",
+      "category": "should-trigger",
+      "reason": "文档转 PPT 场景"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我画一张图",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "图像生成不属于 PPT"
+    }
+  ]
+}

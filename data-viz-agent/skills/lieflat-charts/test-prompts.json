@@ -1,0 +1,27 @@
+{
+  "skill": "lieflat-charts",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "帮我把这季度销售数据画成图表",
+      "expected_skill": "lieflat-charts",
+      "category": "should-trigger",
+      "reason": "数据可视化请求"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我写一篇文章",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "文本创作不属于可视化"
+    },
+    {
+      "id": "test-3",
+      "prompt": "生成一份年报 HTML 报告",
+      "expected_skill": "lieflat-charts",
+      "category": "should-trigger",
+      "reason": "明确要求报告模式"
+    }
+  ]
+}
