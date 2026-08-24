@@ -98,7 +98,7 @@ content-distiller/
 │           ├── GLOSSARY.md.template
 │           ├── DIGEST.md.template
 │           └── test-prompts.json.template
-└── references/              # 参考文档和最佳实践
+└── skills/content-distillation/  # 方法论、提取器和模板
 ```
 
 ---

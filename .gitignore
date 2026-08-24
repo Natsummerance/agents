@@ -1,0 +1,14 @@
+# Runtime state
+openclaw-workspace-state.json
+*.session
+*.log
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*~

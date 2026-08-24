@@ -1,6 +1,0 @@
-[
-  {"prompt": "测试用例 1", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "测试用例 2", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "诱饵测试", "expected_skill": "other-skill", "should_trigger": false, "reason": "不应调用（诱饵）"},
-  {"prompt": "边界模糊", "expected_skill": "uncertain", "should_trigger": null, "reason": "边界模糊场景"}
-]

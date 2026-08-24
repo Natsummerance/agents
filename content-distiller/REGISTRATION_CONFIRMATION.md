@@ -108,8 +108,8 @@ $ openclaw agents list
 ├── VERIFICATION.md
 ├── REGISTRATION_CONFIRMATION.md (本文件)
 ├── SKILL.md
+├── books/
 ├── memory/
-├── references/
 └── skills/
     └── content-distillation/
         ├── SKILL.md

@@ -71,4 +71,4 @@ tags:
 - [TOOLS.md](./TOOLS.md) - 工具清单和使用规范
 - [USER.md](./USER.md) - 用户画像和协作方式
 - [skills/content-distillation/SKILL.md](./skills/content-distillation/SKILL.md) - 核心技能包详细说明
-- [references/](./references/) - 参考文档和最佳实践
+- [skills/content-distillation/](./skills/content-distillation/) - 方法论和提取器模板

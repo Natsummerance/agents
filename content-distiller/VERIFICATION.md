@@ -15,7 +15,6 @@
 | TRIGGERS.md | ✅ | 触发器定义 |
 | MEMORY.md | ✅ | 长期记忆 |
 | memory/ | ✅ | 日常笔记目录 |
-| references/ | ✅ | 参考文档目录 |
 | skills/ | ✅ | 技能包目录 |
 
 **结论**: ✅ 完全符合 OpenClaw agent 范式
@@ -47,7 +46,6 @@
 - 方法论: 8 个 (methodology/00-07)
 - Extractors: 5 个 (framework/principle/case/counter-example/glossary)
 - Templates: 6 个 (BOOK_OVERVIEW/SKILL/INDEX/DIGEST/test-prompts)
-- 资源文件: 7 个 (references/assets/*)
 ```
 
 ### 4. 目录结构
@@ -104,8 +102,6 @@ content-distiller/
 │
 ├── 📁 目录
 │   ├── memory/          # 日常笔记
-│   ├── references/      # 参考文档
-│   │   └── assets/      # 资源文件
 │   └── skills/          # 技能包
 │       └── content-distillation/
 │           ├── SKILL.md
@@ -157,7 +153,6 @@ content-distiller/
 | TRIGGERS.md | ✅ | ✅ | ✅ |
 | MEMORY.md | ✅ | ✅ | ✅ |
 | memory/ | ✅ | ✅ | ✅ |
-| references/ | ✅ | ✅ | ✅ |
 | skills/ | ✅ | ✅ | ✅ |
 | 注册到系统 | ✅ | ✅ | ✅ |
 
