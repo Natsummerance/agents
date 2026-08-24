@@ -1,4 +1,4 @@
-# AGENTS.md - 工作流程和场景定义
+﻿# AGENTS.md - 工作流程和场景定义
 
 ## 🚀 启动流程
 1. 读取 IDENTITY.md — 知道我是谁
@@ -22,7 +22,7 @@
 阶段 6: Agent 组装 ★         → 完整 OpenClaw Agent（AGENT.md + IDENTITY.md + SOUL.md + USER.md + TOOLS.md + 注册）
 ```
 
-**断点续跑**：开始前先检查 `books/<slug>/PIPELINE_STATE.md` 是否存在。存在则读取并从记录的阶段续跑，不要从头重来。每完成一个阶段，更新该文件。
+**断点续跑**：开始前先检查 `../examples/distillation-outputs/<slug>/PIPELINE_STATE.md` 是否存在。存在则读取并从记录的阶段续跑，不要从头重来。每完成一个阶段，更新该文件。
 
 ---
 
@@ -44,7 +44,7 @@
    - **解释**：关键术语和论点是什么？
    - **批判**：作者的盲点、时代局限、逻辑漏洞是什么？
    - **应用**：这本书的方法论可以应用到哪些场景？
-3. 按 `skills/content-distillation/templates/BOOK_OVERVIEW.md.template` 填充，写入 `books/<slug>/BOOK_OVERVIEW.md`
+3. 按 `skills/content-distillation/templates/BOOK_OVERVIEW.md.template` 填充，写入 `../examples/distillation-outputs/<slug>/BOOK_OVERVIEW.md`
 4. **用户确认**："骨架我理解对了吗？有没有你希望重点突出的方向？"得到确认再进入阶段 1
 
 ### 阶段 1 — 5 个 sub-agent 并行提取
@@ -58,7 +58,7 @@
 | 反例提取器 | `extractors/counter-example-extractor.md` | 书中警告的失败模式 |
 | 术语提取器 | `extractors/glossary-extractor.md` | 关键概念词典 |
 
-每个 sub-agent 独立读书、独立提取、独立输出到 `books/<slug>/candidates/<type>.md`。
+每个 sub-agent 独立读书、独立提取、独立输出到 `../examples/distillation-outputs/<slug>/candidates/<type>.md`。
 
 - **长文本**：超出单个 sub-agent 上下文的内容，按 `methodology/02-stage1-parallel-extract.md` 的分块策略处理
 - **降级方案**：当前环境不支持并行 sub-agent 时，用同样 5 个 extractor prompt **串行**执行，产出格式不变
@@ -69,7 +69,7 @@
 - **V2 预测力**：能用它回答一个书里没明说的新问题吗？
 - **V3 独特性**：不是任何聪明人都会说的常识吗？
 
-通过的写入 `books/<slug>/verified.md`。不通过的写入 `books/<slug>/rejected/` 并附原因。
+通过的写入 `../examples/distillation-outputs/<slug>/verified.md`。不通过的写入 `../examples/distillation-outputs/<slug>/rejected/` 并附原因。
 
 **用户轻确认** ★：把"通过的 N 个候选标题 + 淘汰的 M 个"列表展示给用户："这 N 个会做成 skill，有想捞回或砍掉的吗？"得到确认再进入阶段 2。
 
@@ -88,7 +88,7 @@
 1. 找出 skill 之间的引用关系（A 依赖 B / A 对比 B / A 组合 B）
 2. 在每个 SKILL.md 末尾补"相关 skills"段，并回填 A2 的"与相邻 skill 的区分"
 3. 按 `templates/INDEX.md.template` 生成 `INDEX.md`（含引用图 mermaid）
-4. 把 `candidates/glossary.md` 整理成 `books/<slug>/GLOSSARY.md`
+4. 把 `candidates/glossary.md` 整理成 `../examples/distillation-outputs/<slug>/GLOSSARY.md`
 
 ### 阶段 4 — 压力测试
 对每个 skill：
@@ -98,7 +98,7 @@
 4. 每个 skill 的测试结果写入 `<skill-dir>/test-results.md`
 
 ### 阶段 5 — 交付
-1. 生成 `books/<slug>/DIGEST.md` — 面向读者的精华长文（按 `templates/DIGEST.md.template`）
+1. 生成 `../examples/distillation-outputs/<slug>/DIGEST.md` — 面向读者的精华长文（按 `templates/DIGEST.md.template`）
 2. 询问用户安装位置（用户级 `~/.openclaw/skills/` 或项目级），把通过测试的 skill 复制或 symlink 过去
 3. **可选**：询问用户是否需要将 skills 组装成完整 Agent（进入阶段 6）
 
@@ -120,8 +120,8 @@
 
 3. **复制 skills 和文档**：
    ```bash
-   cp -r books/<slug>/<skill-*> workspace/agents/<agent-slug>/skills/
-   cp books/<slug>/{INDEX.md,GLOSSARY.md,DIGEST.md} workspace/agents/<agent-slug>/docs/
+   cp -r ../examples/distillation-outputs/<slug>/<skill-*> workspace/agents/<agent-slug>/skills/
+   cp ../examples/distillation-outputs/<slug>/{INDEX.md,GLOSSARY.md,DIGEST.md} workspace/agents/<agent-slug>/docs/
    ```
 
 4. **创建运行时目录**：
@@ -170,7 +170,7 @@
 
 **输出结构**：
 ```
-books/<book-slug>/
+../examples/distillation-outputs/<book-slug>/
 ├── PIPELINE_STATE.md          # 流水线状态
 ├── BOOK_OVERVIEW.md           # 阶段 0 产出
 ├── verified.md                # 阶段 1.5 产出
@@ -194,7 +194,7 @@ books/<book-slug>/
 **输入**：用户说"继续上次中断的《XXX》蒸馏"
 
 **处理流程**：
-1. 检查 `books/<slug>/PIPELINE_STATE.md` 是否存在
+1. 检查 `../examples/distillation-outputs/<slug>/PIPELINE_STATE.md` 是否存在
 2. 读取当前阶段和各 skill 进度
 3. 从记录的阶段续跑，不要从头重来
 4. 完成后更新 PIPELINE_STATE.md
@@ -209,7 +209,7 @@ books/<book-slug>/
 1. **先试点 1 本** — 除非用户明确说"批量且已验证过流程"
 2. 对每本书独立执行完整流水线
 3. 可以使用 sessions_spawn 并行处理多本书（如果资源允许）
-4. 每本书的输出放在独立的 `books/<slug>/` 目录下
+4. 每本书的输出放在独立的 `../examples/distillation-outputs/<slug>/` 目录下
 
 ---
 

@@ -1,0 +1,20 @@
+{
+  "skill": "resolving-merge-conflicts",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "合并的时候冲突了怎么办？",
+      "expected_skill": "resolving-merge-conflicts",
+      "category": "should-trigger",
+      "reason": "合并冲突场景"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我创建一个新分支",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "分支管理不属于冲突解决"
+    }
+  ]
+}

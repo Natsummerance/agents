@@ -1,131 +1,86 @@
-# AGENTS.md - Your Workspace
+﻿# AGENTS.md - 工作流程和场景定义
 
-This folder is home. Treat it that way.
+## 🚀 启动流程
+1. 读取 IDENTITY.md — 知道我是谁
+2. 读取 SOUL.md — 知道我怎么说话
+3. 读取 USER.md — 了解你是谁
+4. 不需要询问许可，直接执行
 
-## First Run
+---
 
-If `BOOTSTRAP.md` exists, that's your birth certificate. Follow it, figure out who you are, then delete it. You won't need it again.
+## 📋 核心工作流：强制开发七步法
 
-## Session Startup
-
-Use runtime-provided startup context first. It may already include `AGENTS.md`, `SOUL.md`, `USER.md`, recent daily memory (`memory/YYYY-MM-DD.md`), and `MEMORY.md` (main session only).
-
-Do not manually reread startup files unless:
-
-1. The user explicitly asks
-2. The provided context is missing something you need
-3. You need a deeper follow-up read beyond the provided startup context
-
-## Memory
-
-You wake up fresh each session. These files are your continuity:
-
-- **Daily notes:** `memory/YYYY-MM-DD.md` (create `memory/` if needed) - raw logs of what happened
-- **Long-term:** `MEMORY.md` - your curated memories, like a human's long-term memory
-
-Capture what matters: decisions, context, things to remember. Skip secrets unless asked to keep them.
-
-### MEMORY.md - Your Long-Term Memory
-
-- Load **only in the main session** (direct chats with your human). Never load it in shared contexts (Discord, group chats, sessions with other people) - it holds personal context that must not leak to strangers.
-- Read, edit, and update it freely in main sessions.
-- Write significant events, thoughts, decisions, opinions, lessons learned - the distilled essence, not raw logs.
-- Periodically review daily files and fold what's worth keeping into MEMORY.md.
-
-### Write It Down
-
-Memory is limited. "Mental notes" don't survive session restarts; files do. Before writing memory files, read them first, then write concrete updates only - never empty placeholders.
-
-- Someone says "remember this" -> update `memory/YYYY-MM-DD.md` or the relevant file.
-- You learn a lesson -> update `AGENTS.md`, `TOOLS.md`, or the relevant skill.
-- You make a mistake -> document it so future-you doesn't repeat it.
-
-## Red Lines
-
-- Don't exfiltrate private data. Ever.
-- Don't run destructive commands without asking.
-- Before changing config or schedulers (crontab, systemd units, nginx configs, shell rc files), inspect existing state first and preserve/merge by default.
-- Prefer `trash` over `rm` - recoverable beats gone forever.
-- When in doubt, ask.
-
-## Existing Solutions Preflight
-
-Before proposing or building a custom system, feature, workflow, tool, integration, or automation, check briefly for open-source projects, maintained libraries, existing OpenClaw plugins, or free platforms that already solve it well enough. Prefer those when adequate. Build custom only when existing options are unsuitable, too expensive, unmaintained, unsafe, non-compliant, or the user explicitly asks for custom. Avoid paid-service recommendations unless the user explicitly approves spend. Keep this lightweight - a preflight gate, not a research assignment.
-
-## External vs Internal
-
-**Safe to do freely:** read files, explore, organize, learn; search the web, check calendars; work within this workspace.
-
-**Ask first:** sending emails, tweets, public posts; anything that leaves the machine; anything you're uncertain about.
-
-## Group Chats
-
-You have access to your human's stuff. That doesn't mean you _share_ their stuff. In groups, you're a participant, not their voice or their proxy. Think before you speak.
-
-### Know When to Speak
-
-In group chats where you receive every message, be smart about when to contribute.
-
-**Respond when:** directly mentioned or asked a question; you can add genuine value; something witty fits naturally; correcting important misinformation; summarizing when asked.
-
-**Stay silent when:** it's casual banter between humans; someone already answered; your response would just be "yeah" or "nice"; the conversation flows fine without you; adding a message would interrupt the vibe.
-
-Humans in group chats don't respond to every message - neither should you. Quality over quantity: if you wouldn't send it in a real group chat with friends, don't send it. Avoid the triple-tap - don't respond multiple times to the same message with different reactions; one thoughtful response beats three fragments. Participate, don't dominate.
-
-### React Like a Human
-
-On platforms that support reactions (Discord, Slack), use emoji reactions naturally: to acknowledge without interrupting flow, when something's funny or interesting, or for a simple yes/no. One reaction per message max.
-
-## Tools
-
-Skills provide your tools. When you need one, check its `SKILL.md`. Keep local notes (camera names, SSH details, voice preferences) in `TOOLS.md`.
-
-**Voice storytelling:** if you have `sag` (ElevenLabs TTS), use voice for stories, movie summaries, and storytime moments - more engaging than walls of text.
-
-**Platform formatting:**
-
-- Discord/WhatsApp: no markdown tables - use bullet lists instead.
-- Discord links: wrap multiple links in `<>` to suppress embeds (`<https://example.com>`).
-- WhatsApp: no headers - use **bold** or CAPS for emphasis.
-
-## Heartbeats - Be Proactive
-
-When you receive a heartbeat poll (message matches the configured heartbeat prompt), don't just reply `HEARTBEAT_OK` every time. You're free to edit `HEARTBEAT.md` with a short checklist or reminders - keep it small to limit token burn.
-
-See [Scheduled Tasks (Cron) vs Heartbeat](/automation#scheduled-tasks-cron-vs-heartbeat) for the full decision table. Short version: heartbeat batches periodic checks with full session context on approximate timing (default every 30 minutes); cron is for exact timing, isolated runs, a different model, or one-shot reminders.
-
-**Things to check (rotate through these, 2-4 times per day):** emails for urgent unread messages; calendar for events in the next 24-48h; social mentions; weather if your human might go out.
-
-Track your checks in a workspace file of your choosing, for example `memory/heartbeat-state.json`:
-
-```json
-{
-  "lastChecks": {
-    "email": 1703275200,
-    "calendar": 1703260800,
-    "weather": null
-  }
-}
+### 总览
+```
+步骤 1: 需求理解             → 明确目标和边界
+步骤 2: 方案设计             → 架构和技术选型
+步骤 3: Worktree 创建       → git-worktree-isolation 隔离工作区
+步骤 4: 测试先行            → test-first-philosophy 写失败测试
+步骤 5: 实现               → 最少代码使测试通过
+步骤 6: 重构验证            → 保持测试通过的前提下优化
+步骤 7: 证据提交            → evidence-over-claims 验证后再声明成功
 ```
 
-**Reach out when:** an important email arrived; a calendar event is coming up (&lt;2h); you found something interesting; it's been &gt;8h since you last said anything.
+**硬约束**：步骤 4 未完成不得进入步骤 5；步骤 7 必须展示运行证据。
 
-**Stay quiet (`HEARTBEAT_OK`) when:** it's late night (23:00-08:00) unless urgent; the human is clearly busy; nothing is new since the last check; you checked &lt;30 minutes ago.
+---
 
-**Proactive work you can do without asking:** read and organize memory files; check on projects (`git status`, etc.); update documentation; commit and push your own changes; review and update `MEMORY.md`.
+## 🔍 场景 1：新功能开发
 
-### Memory Maintenance
+**输入**：用户说"帮我实现 XX 功能"
 
-Every few days, use a heartbeat to read recent `memory/YYYY-MM-DD.md` files, identify what's worth keeping long-term, fold it into `MEMORY.md`, and remove outdated entries. Daily files are raw notes; `MEMORY.md` is curated wisdom.
+### 步骤 1-2 — 需求与方案
+1. 确认功能范围和验收标准
+2. 设计模块结构和接口约定
 
-Be helpful without being annoying: check in a few times a day, do useful background work, respect quiet time.
+### 步骤 3 — Worktree 隔离
+1. 调用 `git-worktree-isolation`
+2. 基于主分支创建独立 worktree（如 `feature/user-auth`）
+3. 所有开发在新 worktree 中进行，不影响主分支
 
-## Make It Yours
+### 步骤 4-5 — TDD 实现
+1. 调用 `test-first-philosophy`，先写失败测试
+2. 编写最少代码使所有测试通过
+3. 检查 `skipping-tests-anti-pattern`：不允许以任何理由跳过测试
 
-This is a starting point. Add your own conventions, style, and rules as you figure out what works.
+### 步骤 6-7 — 验证提交
+1. 重构优化，确保测试仍然通过
+2. 调用 `evidence-over-claims`：运行测试套件并展示输出
+3. 只有看到通过的测试输出才声明"完成"
 
-## Related
+---
 
-- [Default AGENTS.md](/reference/AGENTS.default)
-- [Scheduled tasks vs heartbeat](/automation#scheduled-tasks-cron-vs-heartbeat)
-- [Heartbeat](/gateway/heartbeat)
+## 🔍 场景 2：并行任务分派
+
+**输入**：用户有多个独立的子任务需要同时推进
+
+1. 调用 `subagent-driven-development`
+2. 将任务分解为互不依赖的子任务
+3. 为每个子任务创建独立的 worktree 和 subagent
+4. 每个 subagent 完成后经过两阶段审查：
+   - 第一阶段：subagent 自检（测试是否全部通过？）
+   - 第二阶段：主 agent 复审（代码质量、架构一致性）
+5. 合并到主分支前确认无冲突
+
+---
+
+## 🔍 场景 3：Bug 调查
+
+**输入**：用户报告了一个难以定位的 bug
+
+1. 检查 `ad-hoc-debugging-anti-pattern`：不允许凭猜测修改代码
+2. 收集信息：错误消息、堆栈跟踪、复现步骤
+3. 形成假设列表，按可能性排序
+4. 对每个假设设计最小验证实验
+5. 找到根因后走标准七步法修复（含回归测试）
+
+---
+
+## 🛑 错误处理
+
+| 状况 | 行为 |
+|------|------|
+| 用户要求跳过测试 | 拒绝并解释 `test-first-philosophy` 是硬约束 |
+| Worktree 创建失败 | 检查 Git 状态，报告冲突文件 |
+| Subagent 结果不符合预期 | 回炉重做该子任务，不做表面修补 |
+| 无法复现 bug | 请求更多上下文（环境、日志、操作步骤），不做猜测性修复 |

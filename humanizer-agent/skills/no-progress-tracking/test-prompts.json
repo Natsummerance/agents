@@ -3,24 +3,39 @@
   "version": "1.0.0",
   "tests": [
     {
+      "id": "test-1",
       "prompt": "完成多个模式练习但仍不知道自己是否真正提升了识别能力",
-      "expected_call": true
+      "expected_skill": "no-progress-tracking",
+      "category": "should-trigger",
+      "reason": "缺少进度追踪的反模式 是 no-progress-tracking 的核心应用场景"
     },
     {
+      "id": "test-2",
       "prompt": "无法量化去痕能力提升",
-      "expected_call": true
+      "expected_skill": "no-progress-tracking",
+      "category": "should-trigger",
+      "reason": "缺少进度追踪的反模式 是 no-progress-tracking 的核心应用场景"
     },
     {
+      "id": "test-3",
       "prompt": "我完成了几个模式练习但仍感到迷茫",
-      "expected_call": false
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "该场景不属于 缺少进度追踪的反模式 的触发条件"
     },
     {
+      "id": "test-4",
       "prompt": "去痕流程是什么？",
-      "expected_call": false
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "该场景不属于 缺少进度追踪的反模式 的触发条件"
     },
     {
+      "id": "test-5",
       "prompt": "这个模式怎么评估？",
-      "expected_call": false
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "该场景不属于 缺少进度追踪的反模式 的触发条件"
     }
   ]
 }

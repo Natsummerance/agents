@@ -1,0 +1,20 @@
+{
+  "skill": "prototype",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "帮我快速搭一个 demo 看看效果",
+      "expected_skill": "prototype",
+      "category": "should-trigger",
+      "reason": "原型验证场景"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我写生产级代码",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "生产级开发不应使用原型模式"
+    }
+  ]
+}

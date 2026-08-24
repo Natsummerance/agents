@@ -3,24 +3,39 @@
   "version": "1.0.0",
   "tests": [
     {
+      "id": "test-1",
       "prompt": "如何识别 AI 痕迹？",
-      "expected_call": true
+      "expected_skill": "pattern-based-detection",
+      "category": "should-trigger",
+      "reason": "基于模式的 AI 痕迹检测 是 pattern-based-detection 的核心应用场景"
     },
     {
+      "id": "test-2",
       "prompt": "有哪些常见的 AI 写作特征？",
-      "expected_call": true
+      "expected_skill": "pattern-based-detection",
+      "category": "should-trigger",
+      "reason": "基于模式的 AI 痕迹检测 是 pattern-based-detection 的核心应用场景"
     },
     {
+      "id": "test-3",
       "prompt": "去痕流程是什么？",
-      "expected_call": false
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "该场景不属于 基于模式的 AI 痕迹检测 的触发条件"
     },
     {
+      "id": "test-4",
       "prompt": "如何让去痕后的文本更像自己写的？",
-      "expected_call": false
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "该场景不属于 基于模式的 AI 痕迹检测 的触发条件"
     },
     {
+      "id": "test-5",
       "prompt": "这个代码怎么改？",
-      "expected_call": false
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "该场景不属于 基于模式的 AI 痕迹检测 的触发条件"
     }
   ]
 }

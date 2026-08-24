@@ -1,6 +1,41 @@
-[
-  {"prompt": "测试用例 1", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "测试用例 2", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "诱饵测试", "expected_skill": "other-skill", "should_trigger": false, "reason": "不应调用（诱饵）"},
-  {"prompt": "边界模糊", "expected_skill": "uncertain", "should_trigger": null, "reason": "边界模糊场景"}
-]
+{
+  "skill": "consistency-principles",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "如何确保多个图表的风格保持一致？",
+      "expected_skill": "consistency-principles",
+      "category": "should-trigger",
+      "reason": "风格一致性是该 skill 的核心"
+    },
+    {
+      "id": "test-2",
+      "prompt": "整个 Dashboard 的色彩系统怎么统一？",
+      "expected_skill": "consistency-principles",
+      "category": "should-trigger",
+      "reason": "色彩系统统一是一致性原则的应用场景"
+    },
+    {
+      "id": "test-3",
+      "prompt": "这个图表看起来很乱怎么办？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "视觉混乱属于 clarity-first-principles 清晰性问题"
+    },
+    {
+      "id": "test-4",
+      "prompt": "帮我推荐一个好看的色板",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "色板推荐属于 palette glossary 系列"
+    },
+    {
+      "id": "test-5",
+      "prompt": "如何让图表更简洁易读？",
+      "expected_skill": "clarity-first-principles",
+      "category": "cross-skill-confusion",
+      "reason": "简洁易读属于清晰性优先而非一致性原则"
+    }
+  ]
+}

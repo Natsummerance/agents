@@ -1,4 +1,4 @@
-# Content Distiller Agent 设置指南
+﻿# Content Distiller Agent 设置指南
 
 ## 📦 项目结构
 
@@ -67,23 +67,23 @@ ls -la templates/*.template
 
 ### 查看流水线状态
 ```bash
-cat books/<book-slug>/PIPELINE_STATE.md
+cat ../examples/distillation-outputs/<book-slug>/PIPELINE_STATE.md
 ```
 
 ### 查看候选池
 ```bash
-ls -la books/<book-slug>/candidates/
+ls -la ../examples/distillation-outputs/<book-slug>/candidates/
 ```
 
 ### 查看验证结果
 ```bash
-cat books/<book-slug>/verified.md
-ls -la books/<book-slug>/rejected/
+cat ../examples/distillation-outputs/<book-slug>/verified.md
+ls -la ../examples/distillation-outputs/<book-slug>/rejected/
 ```
 
 ### 查看测试结果
 ```bash
-cat books/<book-slug>/<skill-slug>/test-results.md
+cat ../examples/distillation-outputs/<book-slug>/<skill-slug>/test-results.md
 ```
 
 ---

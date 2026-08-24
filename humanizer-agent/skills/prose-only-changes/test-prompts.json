@@ -3,24 +3,39 @@
   "version": "1.0.0",
   "tests": [
     {
+      "id": "test-1",
       "prompt": "去痕是否会破坏文件结构？",
-      "expected_call": true
+      "expected_skill": "prose-only-changes",
+      "category": "should-trigger",
+      "reason": "只修改散文的安全约束 是 prose-only-changes 的核心应用场景"
     },
     {
+      "id": "test-2",
       "prompt": "代码和数据是否安全？",
-      "expected_call": true
+      "expected_skill": "prose-only-changes",
+      "category": "should-trigger",
+      "reason": "只修改散文的安全约束 是 prose-only-changes 的核心应用场景"
     },
     {
+      "id": "test-3",
       "prompt": "去痕后是否会改变事实？",
-      "expected_call": false
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "该场景不属于 只修改散文的安全约束 的触发条件"
     },
     {
+      "id": "test-4",
       "prompt": "去痕流程是什么？",
-      "expected_call": false
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "该场景不属于 只修改散文的安全约束 的触发条件"
     },
     {
+      "id": "test-5",
       "prompt": "这个文件怎么改？",
-      "expected_call": false
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "该场景不属于 只修改散文的安全约束 的触发条件"
     }
   ]
 }

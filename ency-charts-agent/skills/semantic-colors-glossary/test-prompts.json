@@ -1,6 +1,41 @@
-[
-  {"prompt": "测试用例 1", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "测试用例 2", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "诱饵测试", "expected_skill": "other-skill", "should_trigger": false, "reason": "不应调用（诱饵）"},
-  {"prompt": "边界模糊", "expected_skill": "uncertain", "should_trigger": null, "reason": "边界模糊场景"}
-]
+{
+  "skill": "semantic-colors-glossary",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "成功、警告、危险状态分别用什么颜色？",
+      "expected_skill": "semantic-colors-glossary",
+      "category": "should-trigger",
+      "reason": "语义色定义是该 glossary 的核心"
+    },
+    {
+      "id": "test-2",
+      "prompt": "信息提示的蓝色应该用什么值？",
+      "expected_skill": "semantic-colors-glossary",
+      "category": "should-trigger",
+      "reason": "信息色属于语义色的四类之一"
+    },
+    {
+      "id": "test-3",
+      "prompt": "品牌主色推荐什么？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "品牌色属于 seed-token-glossary"
+    },
+    {
+      "id": "test-4",
+      "prompt": "分类数据的颜色怎么选？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "分类色属于 categorical-palette-glossary"
+    },
+    {
+      "id": "test-5",
+      "prompt": "图表中正增长和负增长的颜色含义？",
+      "expected_skill": "semantic-coloring-principles",
+      "category": "cross-skill-confusion",
+      "reason": "增长/下降的配色原则属于 semantic-coloring-principles 而非色值定义"
+    }
+  ]
+}

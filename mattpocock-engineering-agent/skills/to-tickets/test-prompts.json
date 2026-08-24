@@ -1,0 +1,20 @@
+{
+  "skill": "to-tickets",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "把这个 spec 拆成 tickets",
+      "expected_skill": "to-tickets",
+      "category": "should-trigger",
+      "reason": "明确要求工单拆分"
+    },
+    {
+      "id": "test-2",
+      "prompt": "什么是 TDD？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "概念查询不是工单拆分"
+    }
+  ]
+}

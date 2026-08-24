@@ -1,4 +1,4 @@
-# Content Distiller Agent 注册确认
+﻿# Content Distiller Agent 注册确认
 
 ## ✅ 注册成功
 
@@ -108,7 +108,7 @@ $ openclaw agents list
 ├── VERIFICATION.md
 ├── REGISTRATION_CONFIRMATION.md (本文件)
 ├── SKILL.md
-├── books/
+├── ../examples/distillation-outputs/
 ├── memory/
 └── skills/
     └── content-distillation/

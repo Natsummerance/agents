@@ -3,28 +3,38 @@
   "version": "1.0.0",
   "tests": [
     {
+      "id": "test-1",
       "prompt": "完成多个技能但仍不知道自己是否真正进步",
-      "expected_call": true,
+      "expected_skill": "no-progress-tracking",
+      "category": "should-trigger",
       "reason": "用户缺乏进度追踪，适合 no-progress-tracking"
     },
     {
+      "id": "test-2",
       "prompt": "无法量化工程能力成长",
-      "expected_call": true,
+      "expected_skill": "no-progress-tracking",
+      "category": "should-trigger",
       "reason": "用户想量化成长，适合 no-progress-tracking"
     },
     {
+      "id": "test-3",
       "prompt": "我完成了几个技能但仍感到迷茫",
-      "expected_call": false,
+      "expected_skill": null,
+      "category": "should-not-trigger",
       "reason": "应触发 no-systematic-methodology，不是 no-progress-tracking"
     },
     {
+      "id": "test-4",
       "prompt": "如何证明代码正确？",
-      "expected_call": false,
+      "expected_skill": null,
+      "category": "should-not-trigger",
       "reason": "应触发 test-driven-development，不是 no-progress-tracking"
     },
     {
+      "id": "test-5",
       "prompt": "这个技能怎么评估？",
-      "expected_call": false,
+      "expected_skill": null,
+      "category": "should-not-trigger",
       "reason": "具体技能评估问题，不应调用"
     }
   ]

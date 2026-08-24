@@ -1,4 +1,4 @@
-# Content Distiller Agent 项目总结
+﻿# Content Distiller Agent 项目总结
 
 ## 📊 项目概览
 
@@ -193,7 +193,7 @@ await Promise.all(agents.map(a => a.waitForCompletion()));
 
 ```javascript
 async function resumePipeline(slug) {
-  const stateFile = `books/${slug}/PIPELINE_STATE.md`;
+  const stateFile = `../examples/distillation-outputs/${slug}/PIPELINE_STATE.md`;
   
   if (exists(stateFile)) {
     const state = parseState(stateFile);
@@ -281,13 +281,13 @@ cp -r templates/* /root/.openclaw/workspace/agents/content-distiller/templates/
 
 ```bash
 # 查看流水线状态
-cat books/<book-slug>/PIPELINE_STATE.md
+cat ../examples/distillation-outputs/<book-slug>/PIPELINE_STATE.md
 
 # 查看候选池
-ls -la books/<book-slug>/candidates/
+ls -la ../examples/distillation-outputs/<book-slug>/candidates/
 
 # 查看验证结果
-cat books/<book-slug>/verified.md
+cat ../examples/distillation-outputs/<book-slug>/verified.md
 ```
 
 ---

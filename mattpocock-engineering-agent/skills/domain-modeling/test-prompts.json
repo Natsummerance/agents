@@ -1,0 +1,20 @@
+{
+  "skill": "domain-modeling",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "我们团队对\"用户\"的定义不一致怎么办？",
+      "expected_skill": "domain-modeling",
+      "category": "should-trigger",
+      "reason": "术语不一致需要领域建模"
+    },
+    {
+      "id": "test-2",
+      "prompt": "这个函数怎么写？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "具体实现问题不属于建模"
+    }
+  ]
+}

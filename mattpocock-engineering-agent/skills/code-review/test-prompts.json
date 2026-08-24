@@ -1,0 +1,20 @@
+{
+  "skill": "code-review",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "帮我看看这个 PR 有没有问题",
+      "expected_skill": "code-review",
+      "category": "should-trigger",
+      "reason": "明确的 PR 审查请求"
+    },
+    {
+      "id": "test-2",
+      "prompt": "这个函数的性能怎么样？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "性能分析属于专项优化"
+    }
+  ]
+}

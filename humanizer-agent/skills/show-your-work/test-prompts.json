@@ -3,24 +3,39 @@
   "version": "1.0.0",
   "tests": [
     {
+      "id": "test-1",
       "prompt": "能否看到中间结果？",
-      "expected_call": true
+      "expected_skill": "show-your-work",
+      "category": "should-trigger",
+      "reason": "显示工作过程的透明化原则 是 show-your-work 的核心应用场景"
     },
     {
+      "id": "test-2",
       "prompt": "去痕过程是否透明？",
-      "expected_call": true
+      "expected_skill": "show-your-work",
+      "category": "should-trigger",
+      "reason": "显示工作过程的透明化原则 是 show-your-work 的核心应用场景"
     },
     {
+      "id": "test-3",
       "prompt": "去痕流程是什么？",
-      "expected_call": false
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "该场景不属于 显示工作过程的透明化原则 的触发条件"
     },
     {
+      "id": "test-4",
       "prompt": "去痕后是否会改变事实？",
-      "expected_call": false
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "该场景不属于 显示工作过程的透明化原则 的触发条件"
     },
     {
+      "id": "test-5",
       "prompt": "这个工具怎么用？",
-      "expected_call": false
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "该场景不属于 显示工作过程的透明化原则 的触发条件"
     }
   ]
 }

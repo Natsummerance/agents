@@ -1,44 +1,41 @@
-[
-  {
-    "prompt": "我有各产品线的销售额数据，应该用什么图表对比？",
-    "expected_skill": "chart-type-selection-framework",
-    "should_trigger": true,
-    "reason": "用户需要为离散类别对比选择图表类型"
-  },
-  {
-    "prompt": "如何展示近 30 天的日活趋势？",
-    "expected_skill": "chart-type-selection-framework",
-    "should_trigger": true,
-    "reason": "用户需要为时间序列数据选择图表类型"
-  },
-  {
-    "prompt": "我想展示市场份额的占比，应该用饼图吗？",
-    "expected_skill": "chart-type-selection-framework",
-    "should_trigger": true,
-    "reason": "用户需要为占比数据选择图表类型"
-  },
-  {
-    "prompt": "我的饼图有 8 个扇区，规范建议怎么处理？",
-    "expected_skill": "chart-type-selection-framework",
-    "should_trigger": true,
-    "reason": "用户询问饼图扇区数量约束"
-  },
-  {
-    "prompt": "如何让所有图表的颜色保持一致？",
-    "expected_skill": "consistency-principles",
-    "should_trigger": false,
-    "reason": "这是配色一致性问题，应触发 consistency-principles"
-  },
-  {
-    "prompt": "如何在手机上优化图表显示？",
-    "expected_skill": "responsive-chart-strategy",
-    "should_trigger": false,
-    "reason": "这是响应式布局问题，应触发 responsive-chart-strategy"
-  },
-  {
-    "prompt": "KPI 指标卡应该包含哪些元素？",
-    "expected_skill": "kpi-card-glossary",
-    "should_trigger": false,
-    "reason": "这是 KPI 卡片定义问题，应触发 kpi-card-glossary"
-  }
-]
+{
+  "skill": "chart-type-selection-framework",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "我各产品线的销售额数据用什么图表对比？",
+      "expected_skill": "chart-type-selection-framework",
+      "category": "should-trigger",
+      "reason": "离散类别对比是柱状图的典型选型场景"
+    },
+    {
+      "id": "test-2",
+      "prompt": "时间序列数据用什么图表展示？",
+      "expected_skill": "chart-type-selection-framework",
+      "category": "should-trigger",
+      "reason": "趋势感知是折线图的选型场景"
+    },
+    {
+      "id": "test-3",
+      "prompt": "帮我调整这个柱状图的颜色",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "颜色调整属于配色相关 skill"
+    },
+    {
+      "id": "test-4",
+      "prompt": "什么是散点图？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "基础概念查询不属于选型决策"
+    },
+    {
+      "id": "test-5",
+      "prompt": "Y 轴不从 0 开始会不会有问题？",
+      "expected_skill": "y-axis-non-zero-trap",
+      "category": "cross-skill-confusion",
+      "reason": "Y 轴起点问题属于具体陷阱而非图表选型"
+    }
+  ]
+}

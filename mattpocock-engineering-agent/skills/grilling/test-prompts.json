@@ -1,0 +1,20 @@
+{
+  "skill": "grilling",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "（由 grill-me 内部调用）追问更多细节",
+      "expected_skill": "grilling",
+      "category": "should-trigger",
+      "reason": "内部调用触发"
+    },
+    {
+      "id": "test-2",
+      "prompt": "用户直接说 grill",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "用户应使用 grill-me 而非内部原语"
+    }
+  ]
+}

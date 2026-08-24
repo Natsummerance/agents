@@ -1,44 +1,48 @@
-[
-  {
-    "id": "test-1",
-    "prompt": "我完成个人项目后不知道如何在团队中协作",
-    "expected_skill": "no-collaboration-guidance",
-    "category": "should-trigger",
-    "reason": "团队协作困惑是 no-collaboration-guidance 的核心应用场景"
-  },
-  {
-    "id": "test-2",
-    "prompt": "我缺乏 Git 工作流知识，不知道如何管理分支",
-    "expected_skill": "no-collaboration-guidance",
-    "category": "should-trigger",
-    "reason": "Git 工作流是 no-collaboration-guidance 的核心内容"
-  },
-  {
-    "id": "test-3",
-    "prompt": "我在真实团队环境中不知所措",
-    "expected_skill": "no-collaboration-guidance",
-    "category": "should-trigger",
-    "reason": "团队环境适应是 no-collaboration-guidance 的典型表现"
-  },
-  {
-    "id": "test-4",
-    "prompt": "我完成项目后不确定代码是否正确",
-    "expected_skill": null,
-    "category": "should-not-trigger",
-    "reason": "这应该触发 no-testing-guidance skill，虽然与质量相关但更关注代码验证"
-  },
-  {
-    "id": "test-5",
-    "prompt": "纯个人练习需要协作指导吗？",
-    "expected_skill": null,
-    "category": "should-not-trigger",
-    "reason": "纯个人练习不需要团队协作，属于边界场景"
-  },
-  {
-    "id": "test-6",
-    "prompt": "我完成了几个项目但仍感到迷茫",
-    "expected_skill": "no-systematic-methodology",
-    "category": "cross-skill-confusion",
-    "reason": "这应该触发 no-systematic-methodology skill，虽然与方法论相关但更关注整体框架"
-  }
-]
+{
+  "skill": "no-collaboration-guidance",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "我完成个人项目后不知道如何在团队中协作",
+      "expected_skill": "no-collaboration-guidance",
+      "category": "should-trigger",
+      "reason": "团队协作困惑是 no-collaboration-guidance 的核心应用场景"
+    },
+    {
+      "id": "test-2",
+      "prompt": "我缺乏 Git 工作流知识，不知道如何管理分支",
+      "expected_skill": "no-collaboration-guidance",
+      "category": "should-trigger",
+      "reason": "Git 工作流是 no-collaboration-guidance 的核心内容"
+    },
+    {
+      "id": "test-3",
+      "prompt": "我在真实团队环境中不知所措",
+      "expected_skill": "no-collaboration-guidance",
+      "category": "should-trigger",
+      "reason": "团队环境适应是 no-collaboration-guidance 的典型表现"
+    },
+    {
+      "id": "test-4",
+      "prompt": "我完成项目后不确定代码是否正确",
+      "expected_skill": "no-collaboration-guidance",
+      "category": "should-not-trigger",
+      "reason": "这应该触发 no-testing-guidance skill，虽然与质量相关但更关注代码验证"
+    },
+    {
+      "id": "test-5",
+      "prompt": "纯个人练习需要协作指导吗？",
+      "expected_skill": "no-collaboration-guidance",
+      "category": "should-not-trigger",
+      "reason": "纯个人练习不需要团队协作，属于边界场景"
+    },
+    {
+      "id": "test-6",
+      "prompt": "我完成了几个项目但仍感到迷茫",
+      "expected_skill": "no-systematic-methodology",
+      "category": "cross-skill-confusion",
+      "reason": "这应该触发 no-systematic-methodology skill，虽然与方法论相关但更关注整体框架"
+    }
+  ]
+}

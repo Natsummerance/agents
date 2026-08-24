@@ -1,44 +1,48 @@
-[
-  {
-    "id": "test-1",
-    "prompt": "审查质量随提示微小变化而波动，怎么解决？",
-    "expected_skill": "unstable-quality-anti-pattern",
-    "category": "should-trigger",
-    "reason": "质量不稳定是通用 Agent 的核心痛点之一"
-  },
-  {
-    "id": "test-2",
-    "prompt": "自然语言驱动的 Skills 难以调试，有什么替代方案？",
-    "expected_skill": "unstable-quality-anti-pattern",
-    "category": "should-trigger",
-    "reason": "难以调试是质量不稳定的典型表现"
-  },
-  {
-    "id": "test-3",
-    "prompt": "如何确保审查质量稳定可预测？",
-    "expected_skill": "unstable-quality-anti-pattern",
-    "category": "should-trigger",
-    "reason": "稳定性是解决质量波动的关键"
-  },
-  {
-    "id": "test-4",
-    "prompt": "报告的问题位置不准确，行号对不上",
-    "expected_skill": null,
-    "category": "should-not-trigger",
-    "reason": "这是位置漂移问题，应由 position-drift-anti-pattern 处理"
-  },
-  {
-    "id": "test-5",
-    "prompt": "这个单一文件的代码有什么问题？",
-    "expected_skill": null,
-    "category": "should-not-trigger",
-    "reason": "小型单一文件修改不涉及质量波动问题"
-  },
-  {
-    "id": "test-6",
-    "prompt": "如何基于模板引擎进行规则匹配？",
-    "expected_skill": "template-engine-over-language-driven",
-    "category": "cross-skill-confusion",
-    "reason": "这应该触发模板引擎 skill，虽然与质量稳定相关但更关注规则匹配"
-  }
-]
+{
+  "skill": "unstable-quality-anti-pattern",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "审查质量随提示微小变化而波动，怎么解决？",
+      "expected_skill": "unstable-quality-anti-pattern",
+      "category": "should-trigger",
+      "reason": "质量不稳定是通用 Agent 的核心痛点之一"
+    },
+    {
+      "id": "test-2",
+      "prompt": "自然语言驱动的 Skills 难以调试，有什么替代方案？",
+      "expected_skill": "unstable-quality-anti-pattern",
+      "category": "should-trigger",
+      "reason": "难以调试是质量不稳定的典型表现"
+    },
+    {
+      "id": "test-3",
+      "prompt": "如何确保审查质量稳定可预测？",
+      "expected_skill": "unstable-quality-anti-pattern",
+      "category": "should-trigger",
+      "reason": "稳定性是解决质量波动的关键"
+    },
+    {
+      "id": "test-4",
+      "prompt": "报告的问题位置不准确，行号对不上",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "这是位置漂移问题，应由 position-drift-anti-pattern 处理"
+    },
+    {
+      "id": "test-5",
+      "prompt": "这个单一文件的代码有什么问题？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "小型单一文件修改不涉及质量波动问题"
+    },
+    {
+      "id": "test-6",
+      "prompt": "如何基于模板引擎进行规则匹配？",
+      "expected_skill": "template-engine-over-language-driven",
+      "category": "cross-skill-confusion",
+      "reason": "这应该触发模板引擎 skill，虽然与质量稳定相关但更关注规则匹配"
+    }
+  ]
+}

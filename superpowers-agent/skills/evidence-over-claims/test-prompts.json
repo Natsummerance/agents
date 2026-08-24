@@ -1,44 +1,48 @@
-[
-  {
-    "id": "test-1",
-    "prompt": "如何验证 Bug 是否真的被修复了？",
-    "expected_skill": "evidence-over-claims",
-    "category": "should-trigger",
-    "reason": "验证 Bug 修复是 evidence-over-claims 的核心应用场景"
-  },
-  {
-    "id": "test-2",
-    "prompt": "如何确认功能是否真正完成？",
-    "expected_skill": "evidence-over-claims",
-    "category": "should-trigger",
-    "reason": "验证功能完成是 evidence-over-claims 的应用场景"
-  },
-  {
-    "id": "test-3",
-    "prompt": "如何验证性能优化是否有效？",
-    "expected_skill": "evidence-over-claims",
-    "category": "should-trigger",
-    "reason": "验证性能优化是 evidence-over-claims 的应用场景"
-  },
-  {
-    "id": "test-4",
-    "prompt": "什么是 RED-GREEN-REFACTOR 循环？",
-    "expected_skill": null,
-    "category": "should-not-trigger",
-    "reason": "这应该触发 test-first-philosophy skill，虽然与验证相关但更关注 TDD"
-  },
-  {
-    "id": "test-5",
-    "prompt": "纯理论讨论需要验证吗？",
-    "expected_skill": null,
-    "category": "should-not-trigger",
-    "reason": "纯理论讨论无法验证，属于边界场景"
-  },
-  {
-    "id": "test-6",
-    "prompt": "我凭猜测调试 Bug，有什么问题？",
-    "expected_skill": "ad-hoc-debugging-anti-pattern",
-    "category": "cross-skill-confusion",
-    "reason": "这应该触发 ad-hoc-debugging-anti-pattern skill，虽然与验证相关但更关注调试方法"
-  }
-]
+{
+  "skill": "evidence-over-claims",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "如何验证 Bug 是否真的被修复了？",
+      "expected_skill": "evidence-over-claims",
+      "category": "should-trigger",
+      "reason": "验证 Bug 修复是 evidence-over-claims 的核心应用场景"
+    },
+    {
+      "id": "test-2",
+      "prompt": "如何确认功能是否真正完成？",
+      "expected_skill": "evidence-over-claims",
+      "category": "should-trigger",
+      "reason": "验证功能完成是 evidence-over-claims 的应用场景"
+    },
+    {
+      "id": "test-3",
+      "prompt": "如何验证性能优化是否有效？",
+      "expected_skill": "evidence-over-claims",
+      "category": "should-trigger",
+      "reason": "验证性能优化是 evidence-over-claims 的应用场景"
+    },
+    {
+      "id": "test-4",
+      "prompt": "什么是 RED-GREEN-REFACTOR 循环？",
+      "expected_skill": "evidence-over-claims",
+      "category": "should-not-trigger",
+      "reason": "这应该触发 test-first-philosophy skill，虽然与验证相关但更关注 TDD"
+    },
+    {
+      "id": "test-5",
+      "prompt": "纯理论讨论需要验证吗？",
+      "expected_skill": "evidence-over-claims",
+      "category": "should-not-trigger",
+      "reason": "纯理论讨论无法验证，属于边界场景"
+    },
+    {
+      "id": "test-6",
+      "prompt": "我凭猜测调试 Bug，有什么问题？",
+      "expected_skill": "ad-hoc-debugging-anti-pattern",
+      "category": "cross-skill-confusion",
+      "reason": "这应该触发 ad-hoc-debugging-anti-pattern skill，虽然与验证相关但更关注调试方法"
+    }
+  ]
+}

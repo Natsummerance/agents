@@ -3,24 +3,39 @@
   "version": "1.0.0",
   "tests": [
     {
+      "id": "test-1",
       "prompt": "如何让去痕后的文本更像自己写的？",
-      "expected_call": true
+      "expected_skill": "voice-matching",
+      "category": "should-trigger",
+      "reason": "声音匹配技术 是 voice-matching 的核心应用场景"
     },
     {
+      "id": "test-2",
       "prompt": "如何保持个人写作特色？",
-      "expected_call": true
+      "expected_skill": "voice-matching",
+      "category": "should-trigger",
+      "reason": "声音匹配技术 是 voice-matching 的核心应用场景"
     },
     {
+      "id": "test-3",
       "prompt": "去痕流程是什么？",
-      "expected_call": false
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "该场景不属于 声音匹配技术 的触发条件"
     },
     {
+      "id": "test-4",
       "prompt": "技术文档如何处理？",
-      "expected_call": false
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "该场景不属于 声音匹配技术 的触发条件"
     },
     {
+      "id": "test-5",
       "prompt": "这个句子怎么写？",
-      "expected_call": false
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "该场景不属于 声音匹配技术 的触发条件"
     }
   ]
 }

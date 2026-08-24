@@ -1,0 +1,20 @@
+{
+  "skill": "handoff",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "我要下班了帮我写个交接文档",
+      "expected_skill": "handoff",
+      "category": "should-trigger",
+      "reason": "工作交接场景"
+    },
+    {
+      "id": "test-2",
+      "prompt": "继续上次的任务",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "继续任务是恢复而非交接"
+    }
+  ]
+}

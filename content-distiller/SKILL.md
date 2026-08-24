@@ -1,4 +1,4 @@
----
+﻿---
 name: content-distillation
 description: |
   Distill a book, long-video transcript, podcast, course, or interview into a coherent set of executable skills. Use when the user asks to "拆书" / "蒸馏一本书" / "把 XX 书做成 skill" / "把这个视频/播客/课程蒸馏成 skill" / "turn a book or video into skills" — i.e. wants the frameworks, principles, and methodologies in long-form content extracted into atomic, reusable agent skills that can be invoked in real-world situations. NOT for simple summarization, book reviews, or role-playing as the author (that is nuwa-skill's job).
@@ -55,7 +55,7 @@ related_skills: []
 ## 输出结构
 
 ```
-books/<book-slug>/
+../examples/distillation-outputs/<book-slug>/
 ├── PIPELINE_STATE.md          # 流水线状态: 当前阶段 + 各 skill 进度 (断点续跑用)
 ├── BOOK_OVERVIEW.md           # 阶段 0 产出: 主旨/骨架/术语/批判
 ├── verified.md                # 阶段 1.5 产出: 通过三重验证的单元 + 判定理由
@@ -74,13 +74,13 @@ books/<book-slug>/
 
 ## 执行流程 (严格按顺序)
 
-**断点续跑**: 开始前先检查 `books/<slug>/PIPELINE_STATE.md` 是否存在。存在则读取并从记录的阶段续跑,不要从头重来。每完成一个阶段,更新该文件 (当前阶段 / 已完成产物 / 各 skill 状态 / 下一步),格式用简单的 checklist markdown 即可。
+**断点续跑**: 开始前先检查 `../examples/distillation-outputs/<slug>/PIPELINE_STATE.md` 是否存在。存在则读取并从记录的阶段续跑,不要从头重来。每完成一个阶段,更新该文件 (当前阶段 / 已完成产物 / 各 skill 状态 / 下一步),格式用简单的 checklist markdown 即可。
 
 ### 阶段 0 — 整书理解
 
 1. 读取用户提供的书本文本。大文件分块阅读。
 2. 执行 `methodology/01-stage0-adler.md` 中的 Adler 四步 (结构 / 解释 / 批判 / 应用)。
-3. 按 `templates/BOOK_OVERVIEW.md.template` 填充,写入 `books/<slug>/BOOK_OVERVIEW.md`。
+3. 按 `templates/BOOK_OVERVIEW.md.template` 填充,写入 `../examples/distillation-outputs/<slug>/BOOK_OVERVIEW.md`。
 4. 把产出展示给用户确认:"骨架我理解对了吗?有没有你希望重点突出的方向?" 得到确认再进入阶段 1。
 
 ### 阶段 1 — 5 个 sub-agent 并行提取
@@ -95,7 +95,7 @@ books/<book-slug>/
 | 反例提取器 | `extractors/counter-example-extractor.md` | 书中警告的失败模式 |
 | 术语提取器 | `extractors/glossary-extractor.md` | 关键概念词典 |
 
-每个 sub-agent 独立读书、独立提取、独立输出到 `books/<slug>/candidates/<type>.md`。
+每个 sub-agent 独立读书、独立提取、独立输出到 `../examples/distillation-outputs/<slug>/candidates/<type>.md`。
 
 - **长文本**: 超出单个 sub-agent 上下文的内容,按 `methodology/02-stage1-parallel-extract.md` 的分块策略处理。
 - **降级方案**: 当前环境不支持并行 sub-agent 时,用同样 5 个 extractor prompt **串行**执行,产出格式不变。
@@ -108,7 +108,7 @@ books/<book-slug>/
 - **V2 预测力**: 能用它回答一个书里没明说的新问题吗?
 - **V3 独特性**: 不是任何聪明人都会说的常识吗?
 
-通过的写入 `books/<slug>/verified.md`。不通过的写入 `books/<slug>/rejected/` 并附原因 — 保留审计轨迹,也允许用户事后捞回。
+通过的写入 `../examples/distillation-outputs/<slug>/verified.md`。不通过的写入 `../examples/distillation-outputs/<slug>/rejected/` 并附原因 — 保留审计轨迹,也允许用户事后捞回。
 
 **用户轻确认** ★: 筛选完成后,把"通过的 N 个候选标题 + 淘汰的 M 个"列表展示给用户:"这 N 个会做成 skill,有想捞回或砍掉的吗?" 得到确认再进入阶段 2 — 阶段 2–4 是最耗时的部分,这一步确认能避免大量返工。
 
@@ -131,7 +131,7 @@ books/<book-slug>/
 1. 找出 skill 之间的引用关系 (A 依赖 B / A 对比 B / A 组合 B)
 2. 在每个 SKILL.md 末尾补"相关 skills"段,并回填 A2 的"与相邻 skill 的区分"
 3. 按 `templates/INDEX.md.template` 生成 `INDEX.md` (含引用图 mermaid)
-4. 把 `candidates/glossary.md` 整理成 `books/<slug>/GLOSSARY.md` — 它是所有 skill 的共享词典,不该埋在审计目录里
+4. 把 `candidates/glossary.md` 整理成 `../examples/distillation-outputs/<slug>/GLOSSARY.md` — 它是所有 skill 的共享词典,不该埋在审计目录里
 
 ### 阶段 4 — 压力测试 (darwin 兼容)
 
@@ -144,7 +144,7 @@ books/<book-slug>/
 ### 阶段 5 — 交付
 
 按 `methodology/07-stage5-deliver.md`:
-1. 生成 `books/<slug>/DIGEST.md` — 面向读者的精华长文 (按 `templates/DIGEST.md.template`),满足"不读全书、只看精华"的需求
+1. 生成 `../examples/distillation-outputs/<slug>/DIGEST.md` — 面向读者的精华长文 (按 `templates/DIGEST.md.template`),满足"不读全书、只看精华"的需求
 2. 询问用户安装位置 (用户级 `~/.openclaw/skills/` 或项目级 `.openclaw/skills/`),把通过测试的 skill 复制或 symlink 过去 — **没有这一步,产出的 skill 无法被真正调用**
 3. 告知用户: "已完成,可一键喂给 darwin-skill 自动进化"
 

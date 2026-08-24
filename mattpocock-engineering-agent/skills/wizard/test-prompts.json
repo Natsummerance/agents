@@ -1,0 +1,20 @@
+{
+  "skill": "wizard",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "帮我在 AWS 上部署这个应用一步步教我",
+      "expected_skill": "wizard",
+      "category": "should-trigger",
+      "reason": "需要人工操作的向导"
+    },
+    {
+      "id": "test-2",
+      "prompt": "自动部署这个应用",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "自动化部署不需要向导"
+    }
+  ]
+}

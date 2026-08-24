@@ -1,6 +1,41 @@
-[
-  {"prompt": "测试用例 1", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "测试用例 2", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "诱饵测试", "expected_skill": "other-skill", "should_trigger": false, "reason": "不应调用（诱饵）"},
-  {"prompt": "边界模糊", "expected_skill": "uncertain", "should_trigger": null, "reason": "边界模糊场景"}
-]
+{
+  "skill": "seed-token-glossary",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "Seed Token 是什么？包含哪些变量？",
+      "expected_skill": "seed-token-glossary",
+      "category": "should-trigger",
+      "reason": "Seed Token 定义是该 glossary 的核心"
+    },
+    {
+      "id": "test-2",
+      "prompt": "品牌主色和灰阶的基础值怎么定义？",
+      "expected_skill": "seed-token-glossary",
+      "category": "should-trigger",
+      "reason": "基础色值定义属于 Seed Token 层"
+    },
+    {
+      "id": "test-3",
+      "prompt": "组件级别的圆角大小怎么设置？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "组件级 Token 属于 design-token-architecture 的 Component 层"
+    },
+    {
+      "id": "test-4",
+      "prompt": "错误状态用什么红色？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "错误状态色属于 semantic-colors-glossary"
+    },
+    {
+      "id": "test-5",
+      "prompt": "三层 Token 架构的整体设计思路？",
+      "expected_skill": "design-token-architecture",
+      "category": "cross-skill-confusion",
+      "reason": "整体架构设计属于 token architecture 而非 seed glossary"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "skill": "teach",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "教我 React 的核心概念",
+      "expected_skill": "teach",
+      "category": "should-trigger",
+      "reason": "系统化教学请求"
+    },
+    {
+      "id": "test-2",
+      "prompt": "这个变量名怎么起？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "命名建议不属于教学场景"
+    }
+  ]
+}

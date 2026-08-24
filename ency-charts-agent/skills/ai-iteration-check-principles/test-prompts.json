@@ -1,6 +1,41 @@
-[
-  {"prompt": "测试用例 1", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "测试用例 2", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "诱饵测试", "expected_skill": "other-skill", "should_trigger": false, "reason": "不应调用（诱饵）"},
-  {"prompt": "边界模糊", "expected_skill": "uncertain", "should_trigger": null, "reason": "边界模糊场景"}
-]
+{
+  "skill": "ai-iteration-check-principles",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "AI 迭代生成的图表代码应该检查哪些项？",
+      "expected_skill": "ai-iteration-check-principles",
+      "category": "should-trigger",
+      "reason": "直接询问 AI 迭代检查的必检项"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我审查这段 ECharts 代码有没有问题",
+      "expected_skill": "ai-iteration-check-principles",
+      "category": "should-trigger",
+      "reason": "代码审查对应迭代检查的 10 条必检项"
+    },
+    {
+      "id": "test-3",
+      "prompt": "帮我从零开始设计一个 Dashboard",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "从零设计不是迭代检查场景"
+    },
+    {
+      "id": "test-4",
+      "prompt": "什么是设计 Token？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "Token 概念解释应使用 design-token-architecture"
+    },
+    {
+      "id": "test-5",
+      "prompt": "如何让 AI 理解我的图表需求？",
+      "expected_skill": "ai-friendly-spec-framework",
+      "category": "cross-skill-confusion",
+      "reason": "需求表达属于 AI 友好规范框架而非迭代检查"
+    }
+  ]
+}

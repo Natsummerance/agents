@@ -1,44 +1,48 @@
-[
-  {
-    "id": "test-1",
-    "prompt": "我需要基于模板引擎进行规则匹配，而不是纯语言驱动",
-    "expected_skill": "template-engine-over-language-driven",
-    "category": "should-trigger",
-    "reason": "模板引擎优于语言驱动规则是核心设计原则"
-  },
-  {
-    "id": "test-2",
-    "prompt": "如何提高规则匹配的稳定性，不随提示变化而波动？",
-    "expected_skill": "template-engine-over-language-driven",
-    "category": "should-trigger",
-    "reason": "模板引擎比纯语言驱动更稳定可预测"
-  },
-  {
-    "id": "test-3",
-    "prompt": "如何根据文件特征匹配审查规则，保持模型注意力集中？",
-    "expected_skill": "template-engine-over-language-driven",
-    "category": "should-trigger",
-    "reason": "细粒度规则匹配是模板引擎的核心应用"
-  },
-  {
-    "id": "test-4",
-    "prompt": "帮我重构这段代码，让它更优雅",
-    "expected_skill": null,
-    "category": "should-not-trigger",
-    "reason": "代码重构需要灵活性和创造力，不属于规则匹配场景"
-  },
-  {
-    "id": "test-5",
-    "prompt": "这个变量名用什么好？",
-    "expected_skill": null,
-    "category": "should-not-trigger",
-    "reason": "日常琐碎选择，不需要模板引擎"
-  },
-  {
-    "id": "test-6",
-    "prompt": "如何确保审查质量稳定，不随提示微小变化而波动？",
-    "expected_skill": "unstable-quality-anti-pattern",
-    "category": "cross-skill-confusion",
-    "reason": "这应该触发质量不稳定反模式 skill，虽然与模板引擎相关但更关注质量波动"
-  }
-]
+{
+  "skill": "template-engine-over-language-driven",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "我需要基于模板引擎进行规则匹配，而不是纯语言驱动",
+      "expected_skill": "template-engine-over-language-driven",
+      "category": "should-trigger",
+      "reason": "模板引擎优于语言驱动规则是核心设计原则"
+    },
+    {
+      "id": "test-2",
+      "prompt": "如何提高规则匹配的稳定性，不随提示变化而波动？",
+      "expected_skill": "template-engine-over-language-driven",
+      "category": "should-trigger",
+      "reason": "模板引擎比纯语言驱动更稳定可预测"
+    },
+    {
+      "id": "test-3",
+      "prompt": "如何根据文件特征匹配审查规则，保持模型注意力集中？",
+      "expected_skill": "template-engine-over-language-driven",
+      "category": "should-trigger",
+      "reason": "细粒度规则匹配是模板引擎的核心应用"
+    },
+    {
+      "id": "test-4",
+      "prompt": "帮我重构这段代码，让它更优雅",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "代码重构需要灵活性和创造力，不属于规则匹配场景"
+    },
+    {
+      "id": "test-5",
+      "prompt": "这个变量名用什么好？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "日常琐碎选择，不需要模板引擎"
+    },
+    {
+      "id": "test-6",
+      "prompt": "如何确保审查质量稳定，不随提示微小变化而波动？",
+      "expected_skill": "unstable-quality-anti-pattern",
+      "category": "cross-skill-confusion",
+      "reason": "这应该触发质量不稳定反模式 skill，虽然与模板引擎相关但更关注质量波动"
+    }
+  ]
+}

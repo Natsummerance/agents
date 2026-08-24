@@ -1,44 +1,48 @@
-[
-  {
-    "id": "test-1",
-    "prompt": "我完成多个项目但仍不知道自己是否真正进步",
-    "expected_skill": "no-progress-tracking",
-    "category": "should-trigger",
-    "reason": "无法量化成长是 no-progress-tracking 的核心症状"
-  },
-  {
-    "id": "test-2",
-    "prompt": "我无法量化自己的技能成长",
-    "expected_skill": "no-progress-tracking",
-    "category": "should-trigger",
-    "reason": "量化成长是 no-progress-tracking 的核心价值"
-  },
-  {
-    "id": "test-3",
-    "prompt": "我缺乏反馈循环导致动力下降",
-    "expected_skill": "no-progress-tracking",
-    "category": "should-trigger",
-    "reason": "反馈循环缺失是 no-progress-tracking 的典型表现"
-  },
-  {
-    "id": "test-4",
-    "prompt": "我完成项目后不确定代码是否正确",
-    "expected_skill": null,
-    "category": "should-not-trigger",
-    "reason": "这应该触发 no-testing-guidance skill，虽然与验证相关但更关注代码质量"
-  },
-  {
-    "id": "test-5",
-    "prompt": "纯兴趣练习需要追踪进度吗？",
-    "expected_skill": null,
-    "category": "should-not-trigger",
-    "reason": "纯兴趣练习不追求系统性提升，属于边界场景"
-  },
-  {
-    "id": "test-6",
-    "prompt": "我随机选择项目，缺乏连贯的学习路径",
-    "expected_skill": "no-systematic-methodology",
-    "category": "cross-skill-confusion",
-    "reason": "这应该触发 no-systematic-methodology skill，虽然与进度相关但更关注整体框架"
-  }
-]
+{
+  "skill": "no-progress-tracking",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "我完成多个项目但仍不知道自己是否真正进步",
+      "expected_skill": "no-progress-tracking",
+      "category": "should-trigger",
+      "reason": "无法量化成长是 no-progress-tracking 的核心症状"
+    },
+    {
+      "id": "test-2",
+      "prompt": "我无法量化自己的技能成长",
+      "expected_skill": "no-progress-tracking",
+      "category": "should-trigger",
+      "reason": "量化成长是 no-progress-tracking 的核心价值"
+    },
+    {
+      "id": "test-3",
+      "prompt": "我缺乏反馈循环导致动力下降",
+      "expected_skill": "no-progress-tracking",
+      "category": "should-trigger",
+      "reason": "反馈循环缺失是 no-progress-tracking 的典型表现"
+    },
+    {
+      "id": "test-4",
+      "prompt": "我完成项目后不确定代码是否正确",
+      "expected_skill": "no-progress-tracking",
+      "category": "should-not-trigger",
+      "reason": "这应该触发 no-testing-guidance skill，虽然与验证相关但更关注代码质量"
+    },
+    {
+      "id": "test-5",
+      "prompt": "纯兴趣练习需要追踪进度吗？",
+      "expected_skill": "no-progress-tracking",
+      "category": "should-not-trigger",
+      "reason": "纯兴趣练习不追求系统性提升，属于边界场景"
+    },
+    {
+      "id": "test-6",
+      "prompt": "我随机选择项目，缺乏连贯的学习路径",
+      "expected_skill": "no-systematic-methodology",
+      "category": "cross-skill-confusion",
+      "reason": "这应该触发 no-systematic-methodology skill，虽然与进度相关但更关注整体框架"
+    }
+  ]
+}

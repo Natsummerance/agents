@@ -3,24 +3,39 @@
   "version": "1.0.0",
   "tests": [
     {
+      "id": "test-1",
       "prompt": "处理非英文文本时去痕效果不佳",
-      "expected_call": true
+      "expected_skill": "english-centric-patterns",
+      "category": "should-trigger",
+      "reason": "以英文为中心的模式局限性 是 english-centric-patterns 的核心应用场景"
     },
     {
+      "id": "test-2",
       "prompt": "模式列表是否适用于其他语言？",
-      "expected_call": true
+      "expected_skill": "english-centric-patterns",
+      "category": "should-trigger",
+      "reason": "以英文为中心的模式局限性 是 english-centric-patterns 的核心应用场景"
     },
     {
+      "id": "test-3",
       "prompt": "如何识别 AI 痕迹？",
-      "expected_call": false
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "该场景不属于 以英文为中心的模式局限性 的触发条件"
     },
     {
+      "id": "test-4",
       "prompt": "去痕流程是什么？",
-      "expected_call": false
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "该场景不属于 以英文为中心的模式局限性 的触发条件"
     },
     {
+      "id": "test-5",
       "prompt": "这个中文文本怎么处理？",
-      "expected_call": false
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "该场景不属于 以英文为中心的模式局限性 的触发条件"
     }
   ]
 }

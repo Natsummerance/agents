@@ -1,4 +1,4 @@
-# Content Distiller Agent
+﻿# Content Distiller Agent
 
 > 🔬 将高价值内容（书籍、长视频、播客、课程）蒸馏成可执行的 Agent Skills
 
@@ -179,7 +179,7 @@ Agent: 请提供以下信息：
 2. 作者：查理·芒格
 3. 出版年：2005
 
-用户: /books/poor-charlie-almanack.pdf
+用户: /../examples/distillation-outputs/poor-charlie-almanack.pdf
 
 Agent: [阶段 0: 整书理解]
 正在读取文本...

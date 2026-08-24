@@ -1,0 +1,20 @@
+{
+  "skill": "wait-what",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "你说的我没太明白换个方式解释一下",
+      "expected_skill": "wait-what",
+      "category": "should-trigger",
+      "reason": "重述需求"
+    },
+    {
+      "id": "test-2",
+      "prompt": "好的我知道了",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "确认理解无需重述"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "skill": "grill-with-docs",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "这个功能的具体需求是什么？我们好像没有对齐过",
+      "expected_skill": "grill-with-docs",
+      "category": "should-trigger",
+      "reason": "需求不明确且有文档可参考"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我看看 CONTEXT.md 里对这个模块的定义",
+      "expected_skill": "grill-with-docs",
+      "category": "should-trigger",
+      "reason": "涉及共享语言和文档"
+    },
+    {
+      "id": "test-3",
+      "prompt": "直接帮我写代码",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "用户已明确要求跳过澄清阶段"
+    }
+  ]
+}

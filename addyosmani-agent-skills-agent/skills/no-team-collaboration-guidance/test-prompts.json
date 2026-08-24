@@ -3,28 +3,38 @@
   "version": "1.0.0",
   "tests": [
     {
+      "id": "test-1",
       "prompt": "完成个人技能后不知道如何在团队中协作",
-      "expected_call": true,
+      "expected_skill": "no-team-collaboration-guidance",
+      "category": "should-trigger",
       "reason": "用户缺乏团队协作指导，适合 no-team-collaboration-guidance"
     },
     {
+      "id": "test-2",
       "prompt": "缺乏 Git 工作流知识",
-      "expected_call": true,
+      "expected_skill": "no-team-collaboration-guidance",
+      "category": "should-trigger",
       "reason": "用户想了解版本控制，适合 no-team-collaboration-guidance"
     },
     {
+      "id": "test-3",
       "prompt": "应该频繁部署还是批量部署？",
-      "expected_call": false,
+      "expected_skill": null,
+      "category": "should-not-trigger",
       "reason": "应触发 faster-is-safer，不是 no-team-collaboration-guidance"
     },
     {
+      "id": "test-4",
       "prompt": "我完成了几个技能但仍感到迷茫",
-      "expected_call": false,
+      "expected_skill": null,
+      "category": "should-not-trigger",
       "reason": "应触发 no-systematic-methodology，不是 no-team-collaboration-guidance"
     },
     {
+      "id": "test-5",
       "prompt": "这个 Git 命令怎么用？",
-      "expected_call": false,
+      "expected_skill": null,
+      "category": "should-not-trigger",
       "reason": "具体命令使用问题，不应调用"
     }
   ]

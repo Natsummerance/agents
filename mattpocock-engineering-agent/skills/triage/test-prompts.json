@@ -1,0 +1,20 @@
+{
+  "skill": "triage",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "GitHub 上积压了 100 个 issue 帮我分类",
+      "expected_skill": "triage",
+      "category": "should-trigger",
+      "reason": "批量 issue 分类"
+    },
+    {
+      "id": "test-2",
+      "prompt": "这个 bug 很紧急帮我马上修",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "紧急修复属于 diagnosing-bugs"
+    }
+  ]
+}

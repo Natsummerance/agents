@@ -1,4 +1,4 @@
-# TOOLS.md - 技术参考
+﻿# TOOLS.md - 技术参考
 
 > **文档说明**: 本文件记录 Content Distiller 的工具清单、使用规范、常见错误模式和最佳实践
 
@@ -10,19 +10,19 @@
 
 - `read_file` — 读取文件内容（上限 512KB）
   - 参数：`path`(string, 必填), `offset`(int, 可选, 起始行), `limit`(int, 可选, 读取行数)
-  - 示例：`read_file(path="books/poor-charlie/book-overview.md", offset=0, limit=100)`
+  - 示例：`read_file(path="../examples/distillation-outputs/poor-charlie/book-overview.md", offset=0, limit=100)`
 
 - `list_dir` — 列出目录内容（上限 200 条）
   - 参数：`path`(string, 必填)
-  - 示例：`list_dir(path="books/poor-charlie/candidates")`
+  - 示例：`list_dir(path="../examples/distillation-outputs/poor-charlie/candidates")`
 
 - `grep` — 文本搜索（上限 100 条命中）
   - 参数：`pattern`(string, 必填), `path`(string, 可选), `file_pattern`(string, 可选)
-  - 示例：`grep(pattern="逆向思维", path="books/poor-charlie/", file_pattern="*.md")`
+  - 示例：`grep(pattern="逆向思维", path="../examples/distillation-outputs/poor-charlie/", file_pattern="*.md")`
 
 - `glob` — 文件模式匹配（上限 200）
   - 参数：`pattern`(string, 必填), `path`(string, 可选)
-  - 示例：`glob(pattern="**/*.test.json", path="books/poor-charlie/")`
+  - 示例：`glob(pattern="**/*.test.json", path="../examples/distillation-outputs/poor-charlie/")`
 
 - `git_status` — 查看 Git 工作区状态
   - 参数：`path`(string, 可选, 仓库路径)
@@ -44,7 +44,7 @@
 
 - `write_file` — 写入文件（UTF-8，自动创建父目录）
   - 参数：`path`(string, 必填), `content`(string, 必填)
-  - 示例：`write_file(path="books/poor-charlie/BOOK_OVERVIEW.md", content="# ...")`
+  - 示例：`write_file(path="../examples/distillation-outputs/poor-charlie/BOOK_OVERVIEW.md", content="# ...")`
 
 - `edit_file` — 编辑文件（多 hunk 替换，原子性）
   - 参数：`path`(string, 必填), `edits`(array, 必填, 每项含 `old` 和 `new`)
@@ -52,15 +52,15 @@
 
 - `mkdir` — 创建目录
   - 参数：`path`(string, 必填)
-  - 示例：`mkdir(path="books/poor-charlie/rejected")`
+  - 示例：`mkdir(path="../examples/distillation-outputs/poor-charlie/rejected")`
 
 - `git_init` — 初始化 Git 仓库
   - 参数：`path`(string, 可选, 默认当前目录)
-  - 示例：`git_init(path="./books/poor-charlie")`
+  - 示例：`git_init(path="../examples/distillation-outputs/poor-charlie")`
 
 - `git_add` — Git 暂存文件
   - 参数：`path`(string, 必填, 文件或目录路径)
-  - 示例：`git_add(path="books/poor-charlie/")`
+  - 示例：`git_add(path="../examples/distillation-outputs/poor-charlie/")`
 
 - `git_commit` — Git 提交
   - 参数：`message`(string, 必填)
@@ -86,7 +86,7 @@
 
 - `run_shell` — 执行 Shell 命令（需人工审批）
   - 参数：`command`(string, 必填), `cwd`(string, 可选, 工作目录)
-  - 示例：`run_shell(command="cp -r books/poor-charlie/skills ~/.openclaw/skills/", cwd=".")`
+  - 示例：`run_shell(command="cp -r ../examples/distillation-outputs/poor-charlie/skills ~/.openclaw/skills/", cwd=".")`
 
 - `run_python` — 执行 Python 代码（需人工审批）
   - 参数：`code`(string, 必填)
@@ -356,7 +356,7 @@ related_skills: []    # 阶段 3 填充
 ### 错误模式8：忽视断点续跑
 **问题**: 中断后从头重来，浪费时间和 token
 **解决方案**:
-- 开始前先检查 `books/<slug>/PIPELINE_STATE.md` 是否存在
+- 开始前先检查 `../examples/distillation-outputs/<slug>/PIPELINE_STATE.md` 是否存在
 - 存在则读取并从记录的阶段续跑
 - 每完成一个阶段，更新该文件
 

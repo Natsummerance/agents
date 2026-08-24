@@ -1,0 +1,20 @@
+{
+  "skill": "to-spec",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "把我们刚才讨论的内容整理成 spec",
+      "expected_skill": "to-spec",
+      "category": "should-trigger",
+      "reason": "明确要求生成规格说明"
+    },
+    {
+      "id": "test-2",
+      "prompt": "这个 bug 怎么修？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "Bug 调查不属于规格说明场景"
+    }
+  ]
+}

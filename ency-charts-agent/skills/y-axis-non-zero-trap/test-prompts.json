@@ -1,6 +1,41 @@
-[
-  {"prompt": "测试用例 1", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "测试用例 2", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "诱饵测试", "expected_skill": "other-skill", "should_trigger": false, "reason": "不应调用（诱饵）"},
-  {"prompt": "边界模糊", "expected_skill": "uncertain", "should_trigger": null, "reason": "边界模糊场景"}
-]
+{
+  "skill": "y-axis-non-zero-trap",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "Y 轴一定要从 0 开始吗？",
+      "expected_skill": "y-axis-non-zero-trap",
+      "category": "should-trigger",
+      "reason": "Y 轴零点问题是该 trap 的核心"
+    },
+    {
+      "id": "test-2",
+      "prompt": "柱状图的 Y 轴不从 0 开始会怎样？",
+      "expected_skill": "y-axis-non-zero-trap",
+      "category": "should-trigger",
+      "reason": "非零起点导致的视觉误导是该 trap 的典型场景"
+    },
+    {
+      "id": "test-3",
+      "prompt": "X 轴的刻度怎么设置？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "X 轴刻度设置不属于 Y 轴陷阱范畴"
+    },
+    {
+      "id": "test-4",
+      "prompt": "怎么隐藏 Y 轴？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "轴显隐控制属于通用配置"
+    },
+    {
+      "id": "test-5",
+      "prompt": "折线图的 Y 轴可以不从 0 开始吗？",
+      "expected_skill": "y-axis-non-zero-trap",
+      "category": "should-trigger",
+      "reason": "折线图 Y 轴非零起点的规则是该 trap 的知识点"
+    }
+  ]
+}

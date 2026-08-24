@@ -1,0 +1,20 @@
+{
+  "skill": "to-questionnaire",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "我需要问用户几个问题来确定方案",
+      "expected_skill": "to-questionnaire",
+      "category": "should-trigger",
+      "reason": "问卷生成需求"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我做个决定",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "直接决策不属于问卷生成"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "skill": "setup-matt-pocock-skills",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "帮我初始化这个项目的工程配置",
+      "expected_skill": "setup-matt-pocock-skills",
+      "category": "should-trigger",
+      "reason": "项目初始化场景"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我提交代码",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "Git 操作不属于配置初始化"
+    }
+  ]
+}

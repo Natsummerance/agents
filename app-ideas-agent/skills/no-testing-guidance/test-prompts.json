@@ -1,44 +1,48 @@
-[
-  {
-    "id": "test-1",
-    "prompt": "我完成项目后不确定代码是否正确",
-    "expected_skill": "no-testing-guidance",
-    "category": "should-trigger",
-    "reason": "验证代码正确性是 no-testing-guidance 的核心应用场景"
-  },
-  {
-    "id": "test-2",
-    "prompt": "我养成'先写代码后测试'的坏习惯",
-    "expected_skill": "no-testing-guidance",
-    "category": "should-trigger",
-    "reason": "跳过测试是 no-testing-guidance 的典型表现"
-  },
-  {
-    "id": "test-3",
-    "prompt": "我遇到回归 bug 频发的问题",
-    "expected_skill": "no-testing-guidance",
-    "category": "should-trigger",
-    "reason": "回归 bug 是缺少测试的直接后果"
-  },
-  {
-    "id": "test-4",
-    "prompt": "我完成了几个项目但仍感到迷茫",
-    "expected_skill": null,
-    "category": "should-not-trigger",
-    "reason": "这应该触发 no-systematic-methodology skill，虽然与方法论相关但更关注整体框架"
-  },
-  {
-    "id": "test-5",
-    "prompt": "快速原型验证需要写测试吗？",
-    "expected_skill": null,
-    "category": "should-not-trigger",
-    "reason": "快速原型不需要长期维护，属于边界场景"
-  },
-  {
-    "id": "test-6",
-    "prompt": "我完成项目后不确定是否真正进步",
-    "expected_skill": "no-progress-tracking",
-    "category": "cross-skill-confusion",
-    "reason": "这应该触发 no-progress-tracking skill，虽然与验证相关但更关注学习进度"
-  }
-]
+{
+  "skill": "no-testing-guidance",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "我完成项目后不确定代码是否正确",
+      "expected_skill": "no-testing-guidance",
+      "category": "should-trigger",
+      "reason": "验证代码正确性是 no-testing-guidance 的核心应用场景"
+    },
+    {
+      "id": "test-2",
+      "prompt": "我养成'先写代码后测试'的坏习惯",
+      "expected_skill": "no-testing-guidance",
+      "category": "should-trigger",
+      "reason": "跳过测试是 no-testing-guidance 的典型表现"
+    },
+    {
+      "id": "test-3",
+      "prompt": "我遇到回归 bug 频发的问题",
+      "expected_skill": "no-testing-guidance",
+      "category": "should-trigger",
+      "reason": "回归 bug 是缺少测试的直接后果"
+    },
+    {
+      "id": "test-4",
+      "prompt": "我完成了几个项目但仍感到迷茫",
+      "expected_skill": "no-testing-guidance",
+      "category": "should-not-trigger",
+      "reason": "这应该触发 no-systematic-methodology skill，虽然与方法论相关但更关注整体框架"
+    },
+    {
+      "id": "test-5",
+      "prompt": "快速原型验证需要写测试吗？",
+      "expected_skill": "no-testing-guidance",
+      "category": "should-not-trigger",
+      "reason": "快速原型不需要长期维护，属于边界场景"
+    },
+    {
+      "id": "test-6",
+      "prompt": "我完成项目后不确定是否真正进步",
+      "expected_skill": "no-progress-tracking",
+      "category": "cross-skill-confusion",
+      "reason": "这应该触发 no-progress-tracking skill，虽然与验证相关但更关注学习进度"
+    }
+  ]
+}

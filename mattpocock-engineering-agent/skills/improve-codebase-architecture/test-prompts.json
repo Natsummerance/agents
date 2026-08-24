@@ -1,0 +1,20 @@
+{
+  "skill": "improve-codebase-architecture",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "我们的代码库越来越乱帮我扫描一下",
+      "expected_skill": "improve-codebase-architecture",
+      "category": "should-trigger",
+      "reason": "架构债务扫描请求"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我修这个编译错误",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "编译修复不属于架构扫描"
+    }
+  ]
+}

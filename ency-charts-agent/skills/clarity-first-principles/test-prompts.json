@@ -1,6 +1,41 @@
-[
-  {"prompt": "测试用例 1", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "测试用例 2", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "诱饵测试", "expected_skill": "other-skill", "should_trigger": false, "reason": "不应调用（诱饵）"},
-  {"prompt": "边界模糊", "expected_skill": "uncertain", "should_trigger": null, "reason": "边界模糊场景"}
-]
+{
+  "skill": "clarity-first-principles",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "图表设计如何做到清晰易读？",
+      "expected_skill": "clarity-first-principles",
+      "category": "should-trigger",
+      "reason": "清晰性优先是该 skill 的核心原则"
+    },
+    {
+      "id": "test-2",
+      "prompt": "这个图表信息太杂了怎么简化？",
+      "expected_skill": "clarity-first-principles",
+      "category": "should-trigger",
+      "reason": "信息简化对应清晰性优先的设计哲学"
+    },
+    {
+      "id": "test-3",
+      "prompt": "帮我统一所有页面的字体大小",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "一致性属于 consistency-principles"
+    },
+    {
+      "id": "test-4",
+      "prompt": "Tooltip 怎么自定义内容？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "Tooltip 配置属于具体陷阱或功能实现"
+    },
+    {
+      "id": "test-5",
+      "prompt": "如何确保多个图表风格一致？",
+      "expected_skill": "consistency-principles",
+      "category": "cross-skill-confusion",
+      "reason": "风格一致属于一致性原则而非清晰性原则"
+    }
+  ]
+}

@@ -1,6 +1,41 @@
-[
-  {"prompt": "测试用例 1", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "测试用例 2", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "诱饵测试", "expected_skill": "other-skill", "should_trigger": false, "reason": "不应调用（诱饵）"},
-  {"prompt": "边界模糊", "expected_skill": "uncertain", "should_trigger": null, "reason": "边界模糊场景"}
-]
+{
+  "skill": "chart-taboo-principles",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "图表设计有哪些常见的禁忌？",
+      "expected_skill": "chart-taboo-principles",
+      "category": "should-trigger",
+      "reason": "直接询问图表禁忌清单"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我检查一下这个 Dashboard 有没有违反设计规范的地方",
+      "expected_skill": "chart-taboo-principles",
+      "category": "should-trigger",
+      "reason": "设计评审对应禁忌清单逐项检查"
+    },
+    {
+      "id": "test-3",
+      "prompt": "帮我选一个适合展示销售趋势的图表",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "图表选型属于 chart-type-selection-framework"
+    },
+    {
+      "id": "test-4",
+      "prompt": "如何设置 ECharts 的动画效果？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "动画配置不属于禁忌清单范围"
+    },
+    {
+      "id": "test-5",
+      "prompt": "饼图超过 6 个扇区怎么办？",
+      "expected_skill": "chart-type-selection-framework",
+      "category": "cross-skill-confusion",
+      "reason": "扇区合并策略属于图表选型决策而非禁忌清单"
+    }
+  ]
+}

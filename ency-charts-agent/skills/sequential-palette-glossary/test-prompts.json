@@ -1,6 +1,41 @@
-[
-  {"prompt": "测试用例 1", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "测试用例 2", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "诱饵测试", "expected_skill": "other-skill", "should_trigger": false, "reason": "不应调用（诱饵）"},
-  {"prompt": "边界模糊", "expected_skill": "uncertain", "should_trigger": null, "reason": "边界模糊场景"}
-]
+{
+  "skill": "sequential-palette-glossary",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "表示数量大小的渐变色板怎么选？",
+      "expected_skill": "sequential-palette-glossary",
+      "category": "should-trigger",
+      "reason": "顺序色板用于表示数值大小梯度"
+    },
+    {
+      "id": "test-2",
+      "prompt": "热力图的颜色梯度有什么规范？",
+      "expected_skill": "sequential-palette-glossary",
+      "category": "should-trigger",
+      "reason": "热力图是顺序色板的典型应用"
+    },
+    {
+      "id": "test-3",
+      "prompt": "不同类别用什么颜色区分？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "类别区分属于 categorical-palette-glossary"
+    },
+    {
+      "id": "test-4",
+      "prompt": "成功/警告/危险的颜色怎么定？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "语义状态色属于 semantic-colors-glossary"
+    },
+    {
+      "id": "test-5",
+      "prompt": "地图上人口密度用什么色系？",
+      "expected_skill": "sequential-palette-glossary",
+      "category": "should-trigger",
+      "reason": "人口密度是连续数据适合顺序色板"
+    }
+  ]
+}

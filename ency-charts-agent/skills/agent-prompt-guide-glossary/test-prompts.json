@@ -1,6 +1,41 @@
-[
-  {"prompt": "测试用例 1", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "测试用例 2", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "诱饵测试", "expected_skill": "other-skill", "should_trigger": false, "reason": "不应调用（诱饵）"},
-  {"prompt": "边界模糊", "expected_skill": "uncertain", "should_trigger": null, "reason": "边界模糊场景"}
-]
+{
+  "skill": "agent-prompt-guide-glossary",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "Agent Prompt Guide 里提到的术语是什么意思？",
+      "expected_skill": "agent-prompt-guide-glossary",
+      "category": "should-trigger",
+      "reason": "直接询问 Agent Prompt Guide 术语定义"
+    },
+    {
+      "id": "test-2",
+      "prompt": "规范文档中的 Quick Reference 是什么概念？",
+      "expected_skill": "agent-prompt-guide-glossary",
+      "category": "should-trigger",
+      "reason": "Quick Reference 是 Agent Prompt Guide 的核心术语"
+    },
+    {
+      "id": "test-3",
+      "prompt": "如何选择柱状图的宽度？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "这是配置问题不是术语查询"
+    },
+    {
+      "id": "test-4",
+      "prompt": "什么是 ECharts？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "ECharts 基础知识不属于本 glossary 范围"
+    },
+    {
+      "id": "test-5",
+      "prompt": "帮我设计一个 KPI 卡片的颜色方案",
+      "expected_skill": "kpi-card-glossary",
+      "category": "cross-skill-confusion",
+      "reason": "KPI 卡片设计应触发 kpi-card-glossary 而非 prompt guide 术语"
+    }
+  ]
+}

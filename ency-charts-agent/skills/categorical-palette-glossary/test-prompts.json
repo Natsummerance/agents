@@ -1,6 +1,41 @@
-[
-  {"prompt": "测试用例 1", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "测试用例 2", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "诱饵测试", "expected_skill": "other-skill", "should_trigger": false, "reason": "不应调用（诱饵）"},
-  {"prompt": "边界模糊", "expected_skill": "uncertain", "should_trigger": null, "reason": "边界模糊场景"}
-]
+{
+  "skill": "categorical-palette-glossary",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "分类数据的色板应该怎么选？",
+      "expected_skill": "categorical-palette-glossary",
+      "category": "should-trigger",
+      "reason": "分类色板是该 glossary 的核心定义"
+    },
+    {
+      "id": "test-2",
+      "prompt": "我有 8 个类别需要用不同颜色区分，用什么色板？",
+      "expected_skill": "categorical-palette-glossary",
+      "category": "should-trigger",
+      "reason": "多类别区分是分类色板的典型场景"
+    },
+    {
+      "id": "test-3",
+      "prompt": "渐变色怎么设置？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "渐变色属于顺序色板 sequential-palette-glossary"
+    },
+    {
+      "id": "test-4",
+      "prompt": "成功和失败的颜色用什么？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "语义色属于 semantic-colors-glossary"
+    },
+    {
+      "id": "test-5",
+      "prompt": "时间序列的趋势线用什么颜色？",
+      "expected_skill": "sequential-palette-glossary",
+      "category": "cross-skill-confusion",
+      "reason": "连续数据趋势应使用顺序色板而非分类色板"
+    }
+  ]
+}

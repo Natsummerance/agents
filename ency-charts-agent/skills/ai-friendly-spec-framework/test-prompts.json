@@ -1,6 +1,41 @@
-[
-  {"prompt": "测试用例 1", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "测试用例 2", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "诱饵测试", "expected_skill": "other-skill", "should_trigger": false, "reason": "不应调用（诱饵）"},
-  {"prompt": "边界模糊", "expected_skill": "uncertain", "should_trigger": null, "reason": "边界模糊场景"}
-]
+{
+  "skill": "ai-friendly-spec-framework",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "如何编写 AI 友好的图表规范文档？",
+      "expected_skill": "ai-friendly-spec-framework",
+      "category": "should-trigger",
+      "reason": "直接询问 AI 友好规范的编写方法"
+    },
+    {
+      "id": "test-2",
+      "prompt": "AI 生成的图表代码怎么保证符合设计规范？",
+      "expected_skill": "ai-friendly-spec-framework",
+      "category": "should-trigger",
+      "reason": "需要建立 AI 友好的规范框架来约束生成质量"
+    },
+    {
+      "id": "test-3",
+      "prompt": "帮我修一个 CSS 布局 bug",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "CSS 布局修复不属于 AI 友好规范框架范围"
+    },
+    {
+      "id": "test-4",
+      "prompt": "什么是响应式设计？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "基础概念查询应使用通用知识而非此框架"
+    },
+    {
+      "id": "test-5",
+      "prompt": "如何检查 AI 生成的代码是否合规？",
+      "expected_skill": "ai-iteration-check-principles",
+      "category": "cross-skill-confusion",
+      "reason": "检查已有代码合规性属于迭代检查原则而非规范编写框架"
+    }
+  ]
+}

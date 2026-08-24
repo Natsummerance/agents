@@ -1,44 +1,48 @@
-[
-  {
-    "id": "test-1",
-    "prompt": "我需要了解 Superpowers 的完整工作流程，从 brainstorming 到 finishing",
-    "expected_skill": "mandatory-workflow",
-    "category": "should-trigger",
-    "reason": "7 步强制工作流是 mandatory-workflow 的核心内容"
-  },
-  {
-    "id": "test-2",
-    "prompt": "Agent 应该在什么时候激活什么 skill？",
-    "expected_skill": "mandatory-workflow",
-    "category": "should-trigger",
-    "reason": "skill 激活时机是 mandatory-workflow 的关键设计"
-  },
-  {
-    "id": "test-3",
-    "prompt": "为什么某个 skill 没有触发？",
-    "expected_skill": "mandatory-workflow",
-    "category": "should-trigger",
-    "reason": "调试 skill 触发问题是 mandatory-workflow 的应用场景"
-  },
-  {
-    "id": "test-4",
-    "prompt": "如何分派子 Agent 处理多个任务？",
-    "expected_skill": null,
-    "category": "should-not-trigger",
-    "reason": "这应该触发 subagent-driven-development skill，虽然与工作流相关但更具体"
-  },
-  {
-    "id": "test-5",
-    "prompt": "这个单一小修改需要走完整流程吗？",
-    "expected_skill": null,
-    "category": "should-not-trigger",
-    "reason": "单一小任务不需要完整 7 步工作流"
-  },
-  {
-    "id": "test-6",
-    "prompt": "如何在不影响主分支的情况下并行开发？",
-    "expected_skill": "git-worktree-isolation",
-    "category": "cross-skill-confusion",
-    "reason": "这应该触发 git-worktree-isolation skill，虽然是第 2 步但更关注 Git 隔离"
-  }
-]
+{
+  "skill": "mandatory-workflow",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "我需要了解 Superpowers 的完整工作流程，从 brainstorming 到 finishing",
+      "expected_skill": "mandatory-workflow",
+      "category": "should-trigger",
+      "reason": "7 步强制工作流是 mandatory-workflow 的核心内容"
+    },
+    {
+      "id": "test-2",
+      "prompt": "Agent 应该在什么时候激活什么 skill？",
+      "expected_skill": "mandatory-workflow",
+      "category": "should-trigger",
+      "reason": "skill 激活时机是 mandatory-workflow 的关键设计"
+    },
+    {
+      "id": "test-3",
+      "prompt": "为什么某个 skill 没有触发？",
+      "expected_skill": "mandatory-workflow",
+      "category": "should-trigger",
+      "reason": "调试 skill 触发问题是 mandatory-workflow 的应用场景"
+    },
+    {
+      "id": "test-4",
+      "prompt": "如何分派子 Agent 处理多个任务？",
+      "expected_skill": "mandatory-workflow",
+      "category": "should-not-trigger",
+      "reason": "这应该触发 subagent-driven-development skill，虽然与工作流相关但更具体"
+    },
+    {
+      "id": "test-5",
+      "prompt": "这个单一小修改需要走完整流程吗？",
+      "expected_skill": "mandatory-workflow",
+      "category": "should-not-trigger",
+      "reason": "单一小任务不需要完整 7 步工作流"
+    },
+    {
+      "id": "test-6",
+      "prompt": "如何在不影响主分支的情况下并行开发？",
+      "expected_skill": "git-worktree-isolation",
+      "category": "cross-skill-confusion",
+      "reason": "这应该触发 git-worktree-isolation skill，虽然是第 2 步但更关注 Git 隔离"
+    }
+  ]
+}

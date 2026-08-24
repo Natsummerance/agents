@@ -1,6 +1,41 @@
-[
-  {"prompt": "测试用例 1", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "测试用例 2", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "诱饵测试", "expected_skill": "other-skill", "should_trigger": false, "reason": "不应调用（诱饵）"},
-  {"prompt": "边界模糊", "expected_skill": "uncertain", "should_trigger": null, "reason": "边界模糊场景"}
-]
+{
+  "skill": "design-token-architecture",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "设计系统的 Token 应该怎么组织？",
+      "expected_skill": "design-token-architecture",
+      "category": "should-trigger",
+      "reason": "Token 架构组织是该 skill 的核心"
+    },
+    {
+      "id": "test-2",
+      "prompt": "Seed Token、Component Token 和 Semantic Token 的关系是什么？",
+      "expected_skill": "design-token-architecture",
+      "category": "should-trigger",
+      "reason": "三层架构的关系是该 skill 的关键知识点"
+    },
+    {
+      "id": "test-3",
+      "prompt": "帮我调一下这个按钮的颜色",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "单元素样式调整不属于 Token 架构咨询"
+    },
+    {
+      "id": "test-4",
+      "prompt": "什么是 CSS 变量？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "CSS 基础知识不在范围内"
+    },
+    {
+      "id": "test-5",
+      "prompt": "品牌主色用什么值比较好？",
+      "expected_skill": "seed-token-glossary",
+      "category": "cross-skill-confusion",
+      "reason": "品牌色的具体值属于 Seed Token 定义层"
+    }
+  ]
+}

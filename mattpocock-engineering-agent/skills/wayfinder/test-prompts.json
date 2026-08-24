@@ -1,0 +1,20 @@
+{
+  "skill": "wayfinder",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "这个项目要做三个月怎么安排？",
+      "expected_skill": "wayfinder",
+      "category": "should-trigger",
+      "reason": "长期规划场景"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我改一行代码",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "小改动不需要规划"
+    }
+  ]
+}

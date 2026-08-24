@@ -1,0 +1,20 @@
+{
+  "skill": "tdd",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "我需要给这个函数添加单元测试",
+      "expected_skill": "tdd",
+      "category": "should-trigger",
+      "reason": "测试相关任务触发 TDD"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我写个 README",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "文档编写不需要 TDD"
+    }
+  ]
+}

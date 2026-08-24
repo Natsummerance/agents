@@ -1,4 +1,4 @@
-# DISTILLATION_PROTOCOL.md - 内容蒸馏严格协议
+﻿# DISTILLATION_PROTOCOL.md - 内容蒸馏严格协议
 
 > **本文件定义了内容蒸馏的严格流程和不可妥协的质量红线。任何蒸馏任务必须严格遵守本协议，不得偷工减料。**
 
@@ -95,7 +95,7 @@
 - **禁止**：删除 candidates/ 或 rejected/ 目录
 
 ### 红线 12：必须断点续跑
-- **规则**：开始前先检查 books/<slug>/PIPELINE_STATE.md 是否存在
+- **规则**：开始前先检查 ../examples/distillation-outputs/<slug>/PIPELINE_STATE.md 是否存在
 - **执行**：存在则读取并从记录的阶段续跑，不要从头重来
 - **禁止**：中断后从头重来，浪费时间和 token
 
@@ -334,8 +334,8 @@ related_skills: []    # 阶段 3 填充
 
 #### 步骤 3：复制 skills 和文档
 ```bash
-cp -r books/<slug>/<skill-*> workspace/agents/<agent-slug>/skills/
-cp books/<slug>/{INDEX.md,GLOSSARY.md,DIGEST.md} workspace/agents/<agent-slug>/docs/
+cp -r ../examples/distillation-outputs/<slug>/<skill-*> workspace/agents/<agent-slug>/skills/
+cp ../examples/distillation-outputs/<slug>/{INDEX.md,GLOSSARY.md,DIGEST.md} workspace/agents/<agent-slug>/docs/
 ```
 
 #### 步骤 4：创建运行时目录
@@ -424,7 +424,7 @@ sessions_spawn(agentId="<AGENT_ID>", task="请自我介绍")
 
 ### 错误模式 8：忽视断点续跑
 **问题**: 中断后从头重来，浪费时间和 token  
-**解决方案**: 开始前先检查 books/<slug>/PIPELINE_STATE.md 是否存在；存在则读取并从记录的阶段续跑
+**解决方案**: 开始前先检查 ../examples/distillation-outputs/<slug>/PIPELINE_STATE.md 是否存在；存在则读取并从记录的阶段续跑
 
 ### 错误模式 9：Agent 名称不是中文
 **问题**: Agent 名称是英文，与其他 agent 不一致  

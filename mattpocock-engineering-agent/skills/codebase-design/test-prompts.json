@@ -1,0 +1,20 @@
+{
+  "skill": "codebase-design",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "这个模块应该怎么划分职责？",
+      "expected_skill": "codebase-design",
+      "category": "should-trigger",
+      "reason": "模块设计问题"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我跑一下测试",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "测试运行不属于设计决策"
+    }
+  ]
+}

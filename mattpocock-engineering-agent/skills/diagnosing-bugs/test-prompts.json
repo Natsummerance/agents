@@ -1,0 +1,20 @@
+{
+  "skill": "diagnosing-bugs",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "这个报错我看不懂帮我查查",
+      "expected_skill": "diagnosing-bugs",
+      "category": "should-trigger",
+      "reason": "Bug 调查场景"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我加个新功能",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "功能开发不属于 Bug 调查"
+    }
+  ]
+}

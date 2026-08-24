@@ -1,44 +1,48 @@
-[
-  {
-    "id": "test-1",
-    "prompt": "我凭猜测调试 Bug，有什么问题？",
-    "expected_skill": "ad-hoc-debugging-anti-pattern",
-    "category": "should-trigger",
-    "reason": "凭猜测调试是 ad-hoc-debugging-anti-pattern 的核心问题"
-  },
-  {
-    "id": "test-2",
-    "prompt": "为什么 Bug 反复出现，修复后问题依旧？",
-    "expected_skill": "ad-hoc-debugging-anti-pattern",
-    "category": "should-trigger",
-    "reason": "Bug 反复出现是凭猜测调试的典型后果"
-  },
-  {
-    "id": "test-3",
-    "prompt": "调试效率低，怎么办？",
-    "expected_skill": "ad-hoc-debugging-anti-pattern",
-    "category": "should-trigger",
-    "reason": "调试效率低是凭猜测调试的直接表现"
-  },
-  {
-    "id": "test-4",
-    "prompt": "如何验证 Bug 是否真的被修复了？",
-    "expected_skill": null,
-    "category": "should-not-trigger",
-    "reason": "这应该触发 evidence-over-claims skill，虽然与调试相关但更关注验证"
-  },
-  {
-    "id": "test-5",
-    "prompt": "简单语法错误需要系统性调试吗？",
-    "expected_skill": null,
-    "category": "should-not-trigger",
-    "reason": "简单语法错误不需要系统性调试，属于边界场景"
-  },
-  {
-    "id": "test-6",
-    "prompt": "如何系统性追踪根因？",
-    "expected_skill": "evidence-over-claims",
-    "category": "cross-skill-confusion",
-    "reason": "这应该触发 evidence-over-claims skill（或 systematic-debugging），虽然与调试相关但更关注正面指导"
-  }
-]
+{
+  "skill": "ad-hoc-debugging-anti-pattern",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "我凭猜测调试 Bug，有什么问题？",
+      "expected_skill": "ad-hoc-debugging-anti-pattern",
+      "category": "should-trigger",
+      "reason": "凭猜测调试是 ad-hoc-debugging-anti-pattern 的核心问题"
+    },
+    {
+      "id": "test-2",
+      "prompt": "为什么 Bug 反复出现，修复后问题依旧？",
+      "expected_skill": "ad-hoc-debugging-anti-pattern",
+      "category": "should-trigger",
+      "reason": "Bug 反复出现是凭猜测调试的典型后果"
+    },
+    {
+      "id": "test-3",
+      "prompt": "调试效率低，怎么办？",
+      "expected_skill": "ad-hoc-debugging-anti-pattern",
+      "category": "should-trigger",
+      "reason": "调试效率低是凭猜测调试的直接表现"
+    },
+    {
+      "id": "test-4",
+      "prompt": "如何验证 Bug 是否真的被修复了？",
+      "expected_skill": "ad-hoc-debugging-anti-pattern",
+      "category": "should-not-trigger",
+      "reason": "这应该触发 evidence-over-claims skill，虽然与调试相关但更关注验证"
+    },
+    {
+      "id": "test-5",
+      "prompt": "简单语法错误需要系统性调试吗？",
+      "expected_skill": "ad-hoc-debugging-anti-pattern",
+      "category": "should-not-trigger",
+      "reason": "简单语法错误不需要系统性调试，属于边界场景"
+    },
+    {
+      "id": "test-6",
+      "prompt": "如何系统性追踪根因？",
+      "expected_skill": "evidence-over-claims",
+      "category": "cross-skill-confusion",
+      "reason": "这应该触发 evidence-over-claims skill（或 systematic-debugging），虽然与调试相关但更关注正面指导"
+    }
+  ]
+}

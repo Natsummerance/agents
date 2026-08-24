@@ -1,6 +1,41 @@
-[
-  {"prompt": "测试用例 1", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "测试用例 2", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "诱饵测试", "expected_skill": "other-skill", "should_trigger": false, "reason": "不应调用（诱饵）"},
-  {"prompt": "边界模糊", "expected_skill": "uncertain", "should_trigger": null, "reason": "边界模糊场景"}
-]
+{
+  "skill": "tooltip-missing-unit-trap",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "Tooltip 里要不要加单位？",
+      "expected_skill": "tooltip-missing-unit-trap",
+      "category": "should-trigger",
+      "reason": "Tooltip 单位缺失是该 trap 的核心"
+    },
+    {
+      "id": "test-2",
+      "prompt": "悬浮提示只显示数字没有单位是不是不好？",
+      "expected_skill": "tooltip-missing-unit-trap",
+      "category": "should-trigger",
+      "reason": "单位缺失导致歧义是该 trap 的典型场景"
+    },
+    {
+      "id": "test-3",
+      "prompt": "Tooltip 的位置怎么调整？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "位置调整属于通用 Tooltip 配置"
+    },
+    {
+      "id": "test-4",
+      "prompt": "Tooltip 样式怎么自定义？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "样式定制不属于单位缺失陷阱范畴"
+    },
+    {
+      "id": "test-5",
+      "prompt": "Y 轴标签要不要加单位？",
+      "expected_skill": "tooltip-missing-unit-trap",
+      "category": "should-trigger",
+      "reason": "轴标签单位缺失与 Tooltip 单位缺失同类"
+    }
+  ]
+}

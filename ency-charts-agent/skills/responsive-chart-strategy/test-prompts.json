@@ -1,6 +1,41 @@
-[
-  {"prompt": "测试用例 1", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "测试用例 2", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "诱饵测试", "expected_skill": "other-skill", "should_trigger": false, "reason": "不应调用（诱饵）"},
-  {"prompt": "边界模糊", "expected_skill": "uncertain", "should_trigger": null, "reason": "边界模糊场景"}
-]
+{
+  "skill": "responsive-chart-strategy",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "图表在手机上显示不全怎么办？",
+      "expected_skill": "responsive-chart-strategy",
+      "category": "should-trigger",
+      "reason": "移动端适配是该 skill 的核心"
+    },
+    {
+      "id": "test-2",
+      "prompt": "如何做响应式图表？",
+      "expected_skill": "responsive-chart-strategy",
+      "category": "should-trigger",
+      "reason": "直接询问响应式策略"
+    },
+    {
+      "id": "test-3",
+      "prompt": "桌面端图表怎么优化？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "桌面端优化不属于移动端响应式策略范围"
+    },
+    {
+      "id": "test-4",
+      "prompt": "ECharts 怎么安装？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "安装问题不属于可视化设计范畴"
+    },
+    {
+      "id": "test-5",
+      "prompt": "Legend 在移动端放哪里合适？",
+      "expected_skill": "responsive-chart-strategy",
+      "category": "should-trigger",
+      "reason": "移动端 Legend 位置是响应式策略的具体规则"
+    }
+  ]
+}

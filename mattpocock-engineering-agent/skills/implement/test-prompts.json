@@ -1,0 +1,20 @@
+{
+  "skill": "implement",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "开始实现 ticket #1",
+      "expected_skill": "implement",
+      "category": "should-trigger",
+      "reason": "明确的工单实现指令"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我审查这段代码",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "代码审查属于 code-review"
+    }
+  ]
+}

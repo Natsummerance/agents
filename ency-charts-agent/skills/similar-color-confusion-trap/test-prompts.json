@@ -1,6 +1,41 @@
-[
-  {"prompt": "测试用例 1", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "测试用例 2", "expected_skill": "PLACEHOLDER", "should_trigger": true, "reason": "应调用场景"},
-  {"prompt": "诱饵测试", "expected_skill": "other-skill", "should_trigger": false, "reason": "不应调用（诱饵）"},
-  {"prompt": "边界模糊", "expected_skill": "uncertain", "should_trigger": null, "reason": "边界模糊场景"}
-]
+{
+  "skill": "similar-color-confusion-trap",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "两个系列的颜色太接近了分不清怎么办？",
+      "expected_skill": "similar-color-confusion-trap",
+      "category": "should-trigger",
+      "reason": "相邻色混淆是该 trap 的核心场景"
+    },
+    {
+      "id": "test-2",
+      "prompt": "怎么确保图表中的颜色足够区分？",
+      "expected_skill": "similar-color-confusion-trap",
+      "category": "should-trigger",
+      "reason": "颜色可区分性是该 trap 的检查要点"
+    },
+    {
+      "id": "test-3",
+      "prompt": "帮我推荐一组分类色板",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "色板推荐属于 categorical-palette-glossary"
+    },
+    {
+      "id": "test-4",
+      "prompt": "深色模式下颜色怎么适配？",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "深色模式适配不属于相似色混淆范畴"
+    },
+    {
+      "id": "test-5",
+      "prompt": "红绿色盲用户怎么看这个图表？",
+      "expected_skill": "similar-color-confusion-trap",
+      "category": "should-trigger",
+      "reason": "色盲友好性是颜色区分度问题的延伸"
+    }
+  ]
+}

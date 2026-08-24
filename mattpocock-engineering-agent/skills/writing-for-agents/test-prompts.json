@@ -1,0 +1,20 @@
+{
+  "skill": "writing-for-agents",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "帮我写一个新的 SKILL.md",
+      "expected_skill": "writing-for-agents",
+      "category": "should-trigger",
+      "reason": "Agent 文档编写"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我写给用户的 README",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "用户文档不同于 Agent 文档"
+    }
+  ]
+}

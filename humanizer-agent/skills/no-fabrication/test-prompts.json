@@ -3,24 +3,39 @@
   "version": "1.0.0",
   "tests": [
     {
+      "id": "test-1",
       "prompt": "去痕后是否会改变事实？",
-      "expected_call": true
+      "expected_skill": "no-fabrication",
+      "category": "should-trigger",
+      "reason": "不编造事实的硬约束 是 no-fabrication 的核心应用场景"
     },
     {
+      "id": "test-2",
       "prompt": "AI 是否会编造内容？",
-      "expected_call": true
+      "expected_skill": "no-fabrication",
+      "category": "should-trigger",
+      "reason": "不编造事实的硬约束 是 no-fabrication 的核心应用场景"
     },
     {
+      "id": "test-3",
       "prompt": "去痕流程是什么？",
-      "expected_call": false
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "该场景不属于 不编造事实的硬约束 的触发条件"
     },
     {
+      "id": "test-4",
       "prompt": "去痕是否会破坏文件结构？",
-      "expected_call": false
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "该场景不属于 不编造事实的硬约束 的触发条件"
     },
     {
+      "id": "test-5",
       "prompt": "这个 API 怎么用？",
-      "expected_call": false
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "该场景不属于 不编造事实的硬约束 的触发条件"
     }
   ]
 }

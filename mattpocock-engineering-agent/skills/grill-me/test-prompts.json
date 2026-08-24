@@ -1,0 +1,20 @@
+{
+  "skill": "grill-me",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "我想做一个产品但不知道从哪开始",
+      "expected_skill": "grill-me",
+      "category": "should-trigger",
+      "reason": "产品思路需要追问澄清"
+    },
+    {
+      "id": "test-2",
+      "prompt": "帮我把这段代码重构一下",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "这是代码任务应使用 implement"
+    }
+  ]
+}

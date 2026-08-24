@@ -1,0 +1,20 @@
+{
+  "skill": "ask-matt",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "test-1",
+      "prompt": "我应该用哪个 skill 来处理这个问题？",
+      "expected_skill": "ask-matt",
+      "category": "should-trigger",
+      "reason": "路由器查询"
+    },
+    {
+      "id": "test-2",
+      "prompt": "直接用 TDD 实现",
+      "expected_skill": null,
+      "category": "should-not-trigger",
+      "reason": "用户已指定 skill 无需路由"
+    }
+  ]
+}

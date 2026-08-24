@@ -3,28 +3,38 @@
   "version": "1.0.0",
   "tests": [
     {
+      "id": "test-1",
       "prompt": "我完成了几个技能但仍感到迷茫",
-      "expected_call": true,
+      "expected_skill": "no-systematic-methodology",
+      "category": "should-trigger",
       "reason": "用户缺乏系统性方法论，适合 no-systematic-methodology"
     },
     {
+      "id": "test-2",
       "prompt": "不知道下一步该做什么",
-      "expected_call": true,
+      "expected_skill": "no-systematic-methodology",
+      "category": "should-trigger",
       "reason": "用户缺乏连贯学习路径，适合 no-systematic-methodology"
     },
     {
+      "id": "test-3",
       "prompt": "我应该先写什么？",
-      "expected_call": false,
+      "expected_skill": null,
+      "category": "should-not-trigger",
       "reason": "应触发 spec-driven-development，不是 no-systematic-methodology"
     },
     {
+      "id": "test-4",
       "prompt": "如何证明代码正确？",
-      "expected_call": false,
+      "expected_skill": null,
+      "category": "should-not-trigger",
       "reason": "应触发 test-driven-development，不是 no-systematic-methodology"
     },
     {
+      "id": "test-5",
       "prompt": "这个技能怎么用？",
-      "expected_call": false,
+      "expected_skill": null,
+      "category": "should-not-trigger",
       "reason": "具体技能使用问题，不应调用"
     }
   ]

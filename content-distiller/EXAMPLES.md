@@ -1,4 +1,4 @@
-# Content Distiller 使用示例
+﻿# Content Distiller 使用示例
 
 ## 示例 1: 蒸馏《穷查理宝典》
 
@@ -21,7 +21,7 @@ Agent: 好的，我来帮你蒸馏《穷查理宝典》。
 
 #### 步骤 2: 用户提供文本
 ```
-用户: /home/user/books/poor-charlies-almanack.txt
+用户: /home/user/../examples/distillation-outputs/poor-charlies-almanack.txt
 ```
 
 #### 步骤 3: 阶段 0 - Adler 整书理解
@@ -54,7 +54,7 @@ Agent: 正在启动 5 个 sub-agents 并行提取...
 ✓ counter-example-extractor: 提取到 8 个反例
 ✓ glossary-extractor: 提取到 30 个术语
 
-候选池已保存到 books/poor-charlies-almanack/candidates/
+候选池已保存到 ../examples/distillation-outputs/poor-charlies-almanack/candidates/
 ```
 
 #### 步骤 6: 阶段 1.5 - 三重验证筛选
@@ -99,7 +99,7 @@ Agent: 正在构造 skills...
 ```
 Agent: 已完成！
 
-输出目录: books/poor-charlies-almanack/
+输出目录: ../examples/distillation-outputs/poor-charlies-almanack/
 
 请问你想把 skills 安装到哪里？
 1. 用户级: ~/.openclaw/skills/poor-charlies-almanack/
