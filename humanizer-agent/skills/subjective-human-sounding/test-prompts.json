@@ -1,0 +1,26 @@
+{
+  "skill": "subjective-human-sounding",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "prompt": "用户对去痕效果不满意，认为仍然太人工",
+      "expected_call": true
+    },
+    {
+      "prompt": "像人写的是否有统一标准？",
+      "expected_call": true
+    },
+    {
+      "prompt": "去痕后是否还会像自己写的？",
+      "expected_call": false
+    },
+    {
+      "prompt": "如何让去痕后的文本更像自己写的？",
+      "expected_call": false
+    },
+    {
+      "prompt": "这个文本怎么处理？",
+      "expected_call": false
+    }
+  ]
+}

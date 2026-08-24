@@ -1,0 +1,44 @@
+[
+  {
+    "id": "test-1",
+    "prompt": "这个项目值得做吗？能帮我找到工作吗？",
+    "expected_skill": "portfolio-ready-output",
+    "category": "should-trigger",
+    "reason": "评估项目职业价值是 portfolio-ready-output 的核心应用场景"
+  },
+  {
+    "id": "test-2",
+    "prompt": "如何构建有吸引力的作品集？",
+    "expected_skill": "portfolio-ready-output",
+    "category": "should-trigger",
+    "reason": "作品集构建是 portfolio-ready-output 的核心价值"
+  },
+  {
+    "id": "test-3",
+    "prompt": "哪些项目能帮我吸引雇主？",
+    "expected_skill": "portfolio-ready-output",
+    "category": "should-trigger",
+    "reason": "职业导向项目选择是 portfolio-ready-output 的应用场景"
+  },
+  {
+    "id": "test-4",
+    "prompt": "我是编程初学者，应该从哪个项目开始？",
+    "expected_skill": null,
+    "category": "should-not-trigger",
+    "reason": "这应该触发 tiered-learning-path skill，虽然与项目选择相关但更关注难度分级"
+  },
+  {
+    "id": "test-5",
+    "prompt": "纯个人练习需要放入作品集吗？",
+    "expected_skill": null,
+    "category": "should-not-trigger",
+    "reason": "纯个人练习不需要职业价值，属于边界场景"
+  },
+  {
+    "id": "test-6",
+    "prompt": "我完成项目后不确定是否真正进步",
+    "expected_skill": "no-progress-tracking",
+    "category": "cross-skill-confusion",
+    "reason": "这应该触发 no-progress-tracking skill，虽然与项目相关但更关注进度追踪"
+  }
+]

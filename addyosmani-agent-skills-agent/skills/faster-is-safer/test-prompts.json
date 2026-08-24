@@ -1,0 +1,31 @@
+{
+  "skill": "faster-is-safer",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "prompt": "应该频繁部署还是批量部署？",
+      "expected_call": true,
+      "reason": "用户想了解部署策略，适合 faster-is-safer"
+    },
+    {
+      "prompt": "如何降低部署风险？",
+      "expected_call": true,
+      "reason": "用户想降低风险，适合 faster-is-safer"
+    },
+    {
+      "prompt": "如何证明代码正确？",
+      "expected_call": false,
+      "reason": "应触发 test-driven-development，不是 faster-is-safer"
+    },
+    {
+      "prompt": "如何在团队中协作？",
+      "expected_call": false,
+      "reason": "应触发 no-team-collaboration-guidance，不是 faster-is-safer"
+    },
+    {
+      "prompt": "这个部署脚本怎么写？",
+      "expected_call": false,
+      "reason": "具体实现问题，不应调用"
+    }
+  ]
+}

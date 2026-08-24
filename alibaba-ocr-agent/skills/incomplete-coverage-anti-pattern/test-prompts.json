@@ -1,0 +1,44 @@
+[
+  {
+    "id": "test-1",
+    "prompt": "我们的代码审查工具经常遗漏重要文件，怎么解决？",
+    "expected_skill": "incomplete-coverage-anti-pattern",
+    "category": "should-trigger",
+    "reason": "不完整覆盖是通用 Agent 的核心痛点之一"
+  },
+  {
+    "id": "test-2",
+    "prompt": "为什么通用 Agent 在大变更集上会偷工减料？",
+    "expected_skill": "incomplete-coverage-anti-pattern",
+    "category": "should-trigger",
+    "reason": "选择性审查是不完整覆盖的典型表现"
+  },
+  {
+    "id": "test-3",
+    "prompt": "如何确保所有重要文件都被审查？",
+    "expected_skill": "incomplete-coverage-anti-pattern",
+    "category": "should-trigger",
+    "reason": "确保全覆盖是解决不完整覆盖的关键"
+  },
+  {
+    "id": "test-4",
+    "prompt": "报告的问题位置不准确，行号对不上",
+    "expected_skill": null,
+    "category": "should-not-trigger",
+    "reason": "这是位置漂移问题，应由 position-drift-anti-pattern 处理"
+  },
+  {
+    "id": "test-5",
+    "prompt": "这个单一文件的代码有什么问题？",
+    "expected_skill": null,
+    "category": "should-not-trigger",
+    "reason": "小型单一文件修改不涉及不完整覆盖问题"
+  },
+  {
+    "id": "test-6",
+    "prompt": "如何处理大型 PR 的审查？",
+    "expected_skill": "divide-and-conquer-strategy",
+    "category": "cross-skill-confusion",
+    "reason": "这应该触发分治策略 skill，虽然与大变更集相关但更关注并发审查"
+  }
+]

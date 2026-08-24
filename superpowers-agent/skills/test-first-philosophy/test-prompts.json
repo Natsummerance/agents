@@ -1,0 +1,44 @@
+[
+  {
+    "id": "test-1",
+    "prompt": "我需要实现新功能但不确定如何开始，应该先写测试吗？",
+    "expected_skill": "test-first-philosophy",
+    "category": "should-trigger",
+    "reason": "TDD 是 test-first-philosophy 的核心内容"
+  },
+  {
+    "id": "test-2",
+    "prompt": "什么是 RED-GREEN-REFACTOR 循环？",
+    "expected_skill": "test-first-philosophy",
+    "category": "should-trigger",
+    "reason": "RED-GREEN-REFACTOR 是 TDD 的核心循环"
+  },
+  {
+    "id": "test-3",
+    "prompt": "为什么 TDD 应该是强制性的而不是可选的？",
+    "expected_skill": "test-first-philosophy",
+    "category": "should-trigger",
+    "reason": "TDD 强制性是 test-first-philosophy 的核心哲学"
+  },
+  {
+    "id": "test-4",
+    "prompt": "如何验证 Bug 是否真的被修复了？",
+    "expected_skill": null,
+    "category": "should-not-trigger",
+    "reason": "这应该触发 evidence-over-claims skill，虽然与测试相关但更关注验证"
+  },
+  {
+    "id": "test-5",
+    "prompt": "探索性编程需要先尝试不同方案，TDD 合适吗？",
+    "expected_skill": null,
+    "category": "should-not-trigger",
+    "reason": "探索性编程不适用 TDD，属于边界场景"
+  },
+  {
+    "id": "test-6",
+    "prompt": "我跳过了测试直接写代码，会有什么问题？",
+    "expected_skill": "skipping-tests-anti-pattern",
+    "category": "cross-skill-confusion",
+    "reason": "这应该触发 skipping-tests-anti-pattern skill，虽然与 TDD 相关但更关注反模式"
+  }
+]

@@ -1,0 +1,26 @@
+{
+  "skill": "no-fabrication",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "prompt": "去痕后是否会改变事实？",
+      "expected_call": true
+    },
+    {
+      "prompt": "AI 是否会编造内容？",
+      "expected_call": true
+    },
+    {
+      "prompt": "去痕流程是什么？",
+      "expected_call": false
+    },
+    {
+      "prompt": "去痕是否会破坏文件结构？",
+      "expected_call": false
+    },
+    {
+      "prompt": "这个 API 怎么用？",
+      "expected_call": false
+    }
+  ]
+}

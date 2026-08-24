@@ -1,0 +1,44 @@
+[
+  {
+    "id": "test-1",
+    "prompt": "我完成了几个项目但仍感到迷茫，不知道下一步该做什么",
+    "expected_skill": "no-systematic-methodology",
+    "category": "should-trigger",
+    "reason": "迷茫和缺乏方向是 no-systematic-methodology 的核心症状"
+  },
+  {
+    "id": "test-2",
+    "prompt": "我随机选择项目，缺乏连贯的学习路径",
+    "expected_skill": "no-systematic-methodology",
+    "category": "should-trigger",
+    "reason": "随机选择是 no-systematic-methodology 的典型表现"
+  },
+  {
+    "id": "test-3",
+    "prompt": "我完成项目但不确定是否真正掌握了技能",
+    "expected_skill": "no-systematic-methodology",
+    "category": "should-trigger",
+    "reason": "不确定掌握程度是 no-systematic-methodology 的症状"
+  },
+  {
+    "id": "test-4",
+    "prompt": "我是编程初学者，应该从哪个项目开始？",
+    "expected_skill": null,
+    "category": "should-not-trigger",
+    "reason": "这应该触发 tiered-learning-path skill（正面指导），虽然与学习路径相关但更关注解决方案而非问题识别"
+  },
+  {
+    "id": "test-5",
+    "prompt": "纯理论讨论需要系统性方法吗？",
+    "expected_skill": null,
+    "category": "should-not-trigger",
+    "reason": "纯理论讨论不涉及项目实践，属于边界场景"
+  },
+  {
+    "id": "test-6",
+    "prompt": "我完成项目后不确定代码是否正确",
+    "expected_skill": "no-testing-guidance",
+    "category": "cross-skill-confusion",
+    "reason": "这应该触发 no-testing-guidance skill，虽然与方法论相关但更关注测试指导"
+  }
+]

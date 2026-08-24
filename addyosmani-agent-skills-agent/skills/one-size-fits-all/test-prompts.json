@@ -1,0 +1,31 @@
+{
+  "skill": "one-size-fits-all",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "prompt": "在原型验证项目上应用完整的生产级流程",
+      "expected_call": true,
+      "reason": "用户过度工程化，适合 one-size-fits-all"
+    },
+    {
+      "prompt": "不知道如何根据项目类型调整技能应用",
+      "expected_call": true,
+      "reason": "用户缺乏灵活性，适合 one-size-fits-all"
+    },
+    {
+      "prompt": "我完成了几个技能但仍感到迷茫",
+      "expected_call": false,
+      "reason": "应触发 no-systematic-methodology，不是 one-size-fits-all"
+    },
+    {
+      "prompt": "如何降低部署风险？",
+      "expected_call": false,
+      "reason": "应触发 faster-is-safer，不是 one-size-fits-all"
+    },
+    {
+      "prompt": "这个项目需要什么技能？",
+      "expected_call": false,
+      "reason": "具体项目建议问题，不应调用"
+    }
+  ]
+}

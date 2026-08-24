@@ -1,0 +1,44 @@
+[
+  {
+    "id": "test-1",
+    "prompt": "我需要优化代码审查的提示模板，让它更高效且减少 token 消耗",
+    "expected_skill": "agent-dynamic-decision-making",
+    "category": "should-trigger",
+    "reason": "场景化提示模板是 Agent 动态决策的核心能力"
+  },
+  {
+    "id": "test-2",
+    "prompt": "如何从生产数据中学习最佳的工具调用策略？",
+    "expected_skill": "agent-dynamic-decision-making",
+    "category": "should-trigger",
+    "reason": "从生产数据分析中提炼专用工具集是 Agent 的优势领域"
+  },
+  {
+    "id": "test-3",
+    "prompt": "我需要动态上下文检索来支持深度代码审查",
+    "expected_skill": "agent-dynamic-decision-making",
+    "category": "should-trigger",
+    "reason": "动态上下文检索是 Agent 的核心优势"
+  },
+  {
+    "id": "test-4",
+    "prompt": "帮我确保文件选择不出错，不能遗漏任何重要文件",
+    "expected_skill": null,
+    "category": "should-not-trigger",
+    "reason": "文件选择是硬约束场景，应由确定性工程处理，而非 Agent 动态决策"
+  },
+  {
+    "id": "test-5",
+    "prompt": "这个变量名用什么好？",
+    "expected_skill": null,
+    "category": "should-not-trigger",
+    "reason": "日常琐碎选择，不需要 Agent 动态决策"
+  },
+  {
+    "id": "test-6",
+    "prompt": "如何选择最适合代码审查的专用工具集？",
+    "expected_skill": "specialized-toolset-over-generic",
+    "category": "cross-skill-confusion",
+    "reason": "这应该触发专用工具集 skill，虽然与 Agent 动态决策相关但更具体"
+  }
+]

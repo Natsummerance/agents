@@ -1,0 +1,51 @@
+[
+  {
+    "id": "test-1",
+    "prompt": "我需要确保代码审查时不会遗漏任何重要文件，特别是那些关键的配置文件。有什么方法可以保证这一点？",
+    "expected_skill": "deterministic-engineering-hard-constraints",
+    "category": "should-trigger",
+    "reason": "用户需要确保文件选择不出错，这是硬约束场景"
+  },
+  {
+    "id": "test-2",
+    "prompt": "我们的代码审查工具经常报告错误的位置，行号对不上，怎么解决？",
+    "expected_skill": "deterministic-engineering-hard-constraints",
+    "category": "should-trigger",
+    "reason": "位置定位是硬约束步骤，需要外部定位模块"
+  },
+  {
+    "id": "test-3",
+    "prompt": "如何设计一个稳定的规则匹配系统，不随提示变化而波动？",
+    "expected_skill": "deterministic-engineering-hard-constraints",
+    "category": "should-trigger",
+    "reason": "规则匹配是需要硬约束的步骤"
+  },
+  {
+    "id": "test-4",
+    "prompt": "帮我重构这段代码，让它更优雅",
+    "expected_skill": null,
+    "category": "should-not-trigger",
+    "reason": "代码重构需要灵活性和创造力，不属于硬约束场景"
+  },
+  {
+    "id": "test-5",
+    "prompt": "这个变量名用什么好？",
+    "expected_skill": null,
+    "category": "should-not-trigger",
+    "reason": "日常琐碎选择，不需要硬约束"
+  },
+  {
+    "id": "test-6",
+    "prompt": "如何处理大型 PR 的审查，确保所有文件都被覆盖？",
+    "expected_skill": "divide-and-conquer-strategy",
+    "category": "cross-skill-confusion",
+    "reason": "这应该触发分治策略 skill，而非确定性工程硬约束"
+  },
+  {
+    "id": "test-7",
+    "prompt": "我需要确保审查规则稳定可预测，不随提示微小变化而波动",
+    "expected_skill": "template-engine-over-language-driven",
+    "category": "cross-skill-confusion",
+    "reason": "这应该触发模板引擎 skill，虽然与硬约束相关但更具体"
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "skill": "spec-driven-development",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "prompt": "我应该先写什么？需求很模糊",
+      "expected_call": true,
+      "reason": "用户需要明确需求，适合 spec-driven-development"
+    },
+    {
+      "prompt": "如何避免盲目编码和需求蔓延？",
+      "expected_call": true,
+      "reason": "用户想避免盲目编码，适合 spec-driven-development"
+    },
+    {
+      "prompt": "这个 API 怎么用？",
+      "expected_call": false,
+      "reason": "纯信息查询，不应调用"
+    },
+    {
+      "prompt": "如何证明代码正确？",
+      "expected_call": false,
+      "reason": "应触发 test-driven-development，不是 spec-driven-development"
+    },
+    {
+      "prompt": "能否一次性实现所有任务？",
+      "expected_call": false,
+      "reason": "应触发 auto-build-mode，不是 spec-driven-development"
+    }
+  ]
+}

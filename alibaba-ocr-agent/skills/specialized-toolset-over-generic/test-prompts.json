@@ -1,0 +1,44 @@
+[
+  {
+    "id": "test-1",
+    "prompt": "我需要从生产数据中学习最佳的工具调用策略",
+    "expected_skill": "specialized-toolset-over-generic",
+    "category": "should-trigger",
+    "reason": "从生产数据分析中提炼专用工具集是核心能力"
+  },
+  {
+    "id": "test-2",
+    "prompt": "如何选择最适合代码审查的专用工具集？",
+    "expected_skill": "specialized-toolset-over-generic",
+    "category": "should-trigger",
+    "reason": "专用工具集优于通用工具集是核心设计原则"
+  },
+  {
+    "id": "test-3",
+    "prompt": "如何分析工具调用轨迹来优化工具集？",
+    "expected_skill": "specialized-toolset-over-generic",
+    "category": "should-trigger",
+    "reason": "生产数据驱动的工具集优化是核心方法"
+  },
+  {
+    "id": "test-4",
+    "prompt": "帮我确保文件选择不出错",
+    "expected_skill": null,
+    "category": "should-not-trigger",
+    "reason": "文件选择是硬约束场景，应由确定性工程处理"
+  },
+  {
+    "id": "test-5",
+    "prompt": "这个变量名用什么好？",
+    "expected_skill": null,
+    "category": "should-not-trigger",
+    "reason": "日常琐碎选择，不需要专用工具集"
+  },
+  {
+    "id": "test-6",
+    "prompt": "如何优化代码审查的提示模板？",
+    "expected_skill": "agent-dynamic-decision-making",
+    "category": "cross-skill-confusion",
+    "reason": "这应该触发 Agent 动态决策 skill，虽然与专用工具集相关但更关注提示优化"
+  }
+]

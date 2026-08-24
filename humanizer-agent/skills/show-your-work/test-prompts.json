@@ -1,0 +1,26 @@
+{
+  "skill": "show-your-work",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "prompt": "能否看到中间结果？",
+      "expected_call": true
+    },
+    {
+      "prompt": "去痕过程是否透明？",
+      "expected_call": true
+    },
+    {
+      "prompt": "去痕流程是什么？",
+      "expected_call": false
+    },
+    {
+      "prompt": "去痕后是否会改变事实？",
+      "expected_call": false
+    },
+    {
+      "prompt": "这个工具怎么用？",
+      "expected_call": false
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "skill": "auto-build-mode",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "prompt": "能否一次性实现所有任务？",
+      "expected_call": true,
+      "reason": "用户想提高效率，适合 auto-build-mode"
+    },
+    {
+      "prompt": "如何平衡自动化与安全性？",
+      "expected_call": true,
+      "reason": "用户想了解自动化模式，适合 auto-build-mode"
+    },
+    {
+      "prompt": "我应该先写什么？",
+      "expected_call": false,
+      "reason": "应触发 spec-driven-development，不是 auto-build-mode"
+    },
+    {
+      "prompt": "如何证明代码正确？",
+      "expected_call": false,
+      "reason": "应触发 test-driven-development，不是 auto-build-mode"
+    },
+    {
+      "prompt": "这个配置怎么改？",
+      "expected_call": false,
+      "reason": "具体实现问题，不应调用"
+    }
+  ]
+}

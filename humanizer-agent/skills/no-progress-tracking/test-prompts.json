@@ -1,0 +1,26 @@
+{
+  "skill": "no-progress-tracking",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "prompt": "完成多个模式练习但仍不知道自己是否真正提升了识别能力",
+      "expected_call": true
+    },
+    {
+      "prompt": "无法量化去痕能力提升",
+      "expected_call": true
+    },
+    {
+      "prompt": "我完成了几个模式练习但仍感到迷茫",
+      "expected_call": false
+    },
+    {
+      "prompt": "去痕流程是什么？",
+      "expected_call": false
+    },
+    {
+      "prompt": "这个模式怎么评估？",
+      "expected_call": false
+    }
+  ]
+}

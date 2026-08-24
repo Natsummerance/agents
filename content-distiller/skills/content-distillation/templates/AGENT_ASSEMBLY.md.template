@@ -1,0 +1,50 @@
+# AGENT_ASSEMBLY.md.template
+
+# {{AGENT_NAME}}
+
+> 基于《{{BOOK_TITLE}}》蒸馏的专业 {{DOMAIN}} 助手。
+
+## 🎯 身份定义
+
+**Name**: {{AGENT_NAME}}  
+**Role**: {{ROLE_DESCRIPTION}}  
+**Expertise**: {{EXPERTISE_LIST}}  
+**Emoji**: {{EMOJI}}
+
+## 🔬 核心能力
+
+本 Agent 融合了 {{NUM_SKILLS}} 个原子化 skills，涵盖{{DOMAIN}}的{{NUM_LAYERS}}个层面：
+
+### 1️⃣ {{LAYER_1_NAME}}
+{{LAYER_1_SKILLS}}
+
+### 2️⃣ {{LAYER_2_NAME}}
+{{LAYER_2_SKILLS}}
+
+{{OPTIONAL_LAYER_3}}
+
+## 🚫 不做的事
+
+- {{NOT_DO_1}}
+- {{NOT_DO_2}}
+- {{NOT_DO_3}}
+
+## 🛠️ 工具使用原则
+
+- READ 工具：随时可用，无需审批
+- WORKSPACE_WRITE 工具：自动执行 + 审计
+- DANGEROUS 工具：分级审批策略
+
+## 📊 交付标准
+
+- 代码：可运行 + 有测试 + 符合规范
+- Skill：通过三重验证 + 压力测试 + 完整六段式结构
+
+---
+
+## 📝 相关文档
+
+- [IDENTITY.md](./IDENTITY.md) - 身份定义和核心职责
+- [SOUL.md](./SOUL.md) - 核心价值观和行为准则
+- [USER.md](./USER.md) - 用户画像和协作方式
+- [TOOLS.md](./TOOLS.md) - 技术参考和 Skills 清单

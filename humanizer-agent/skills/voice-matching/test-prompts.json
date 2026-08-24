@@ -1,0 +1,26 @@
+{
+  "skill": "voice-matching",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "prompt": "如何让去痕后的文本更像自己写的？",
+      "expected_call": true
+    },
+    {
+      "prompt": "如何保持个人写作特色？",
+      "expected_call": true
+    },
+    {
+      "prompt": "去痕流程是什么？",
+      "expected_call": false
+    },
+    {
+      "prompt": "技术文档如何处理？",
+      "expected_call": false
+    },
+    {
+      "prompt": "这个句子怎么写？",
+      "expected_call": false
+    }
+  ]
+}

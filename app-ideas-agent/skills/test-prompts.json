@@ -1,0 +1,44 @@
+[
+  {
+    "id": "test-1",
+    "prompt": "我是编程初学者，应该从哪个项目开始学习？",
+    "expected_skill": "tiered-learning-path",
+    "category": "should-trigger",
+    "reason": "初学者选择项目是 tiered-learning-path 的核心应用场景"
+  },
+  {
+    "id": "test-2",
+    "prompt": "如何系统化提升编码技能，而不是随机选择项目？",
+    "expected_skill": "tiered-learning-path",
+    "category": "should-trigger",
+    "reason": "系统化学习路径是 tiered-learning-path 的核心价值"
+  },
+  {
+    "id": "test-3",
+    "prompt": "我完成了几个简单项目，想知道下一步该做什么",
+    "expected_skill": "tiered-learning-path",
+    "category": "should-trigger",
+    "reason": "确定下一个项目是 tiered-learning-path 的应用场景"
+  },
+  {
+    "id": "test-4",
+    "prompt": "这个项目值得做吗？能帮我找到工作吗？",
+    "expected_skill": null,
+    "category": "should-not-trigger",
+    "reason": "这应该触发 portfolio-ready-output skill，虽然与项目选择相关但更关注职业价值"
+  },
+  {
+    "id": "test-5",
+    "prompt": "纯理论讨论需要分级吗？",
+    "expected_skill": null,
+    "category": "should-not-trigger",
+    "reason": "纯理论讨论不涉及项目选择，属于边界场景"
+  },
+  {
+    "id": "test-6",
+    "prompt": "我完成项目后不确定是否真正进步",
+    "expected_skill": "no-progress-tracking",
+    "category": "cross-skill-confusion",
+    "reason": "这应该触发 no-progress-tracking skill，虽然与学习相关但更关注进度追踪"
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "test-1",
+    "prompt": "我需要在不影响主分支的情况下并行开发多个功能",
+    "expected_skill": "git-worktree-isolation",
+    "category": "should-trigger",
+    "reason": "Git worktree 隔离是核心应用场景"
+  },
+  {
+    "id": "test-2",
+    "prompt": "如何创建隔离工作区并验证干净的测试基线？",
+    "expected_skill": "git-worktree-isolation",
+    "category": "should-trigger",
+    "reason": "验证测试基线是 git-worktree-isolation 的关键步骤"
+  },
+  {
+    "id": "test-3",
+    "prompt": "如何在实验性变更时不污染主分支？",
+    "expected_skill": "git-worktree-isolation",
+    "category": "should-trigger",
+    "reason": "实验性变更是 git-worktree-isolation 的典型应用"
+  },
+  {
+    "id": "test-4",
+    "prompt": "帮我理解 Superpowers 的 7 步强制工作流",
+    "expected_skill": null,
+    "category": "should-not-trigger",
+    "reason": "这应该触发 mandatory-workflow skill，虽然 git-worktree 是第 2 步但用户问的是整体流程"
+  },
+  {
+    "id": "test-5",
+    "prompt": "这个单一小修改需要创建工作区吗？",
+    "expected_skill": null,
+    "category": "should-not-trigger",
+    "reason": "单一小修改不需要隔离工作区"
+  },
+  {
+    "id": "test-6",
+    "prompt": "如何让 Agent 自主处理多个任务？",
+    "expected_skill": "subagent-driven-development",
+    "category": "cross-skill-confusion",
+    "reason": "这应该触发 subagent-driven-development skill，虽然与并行相关但更关注任务分派"
+  }
+]
