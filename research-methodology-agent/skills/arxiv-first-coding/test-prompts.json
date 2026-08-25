@@ -1,20 +1,57 @@
 {
   "skill": "arxiv-first-coding",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "UditAkhourii/neuroarxiv",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "我想实现一个新的注意力机制，有相关论文吗？",
-      "expected_skill": "arxiv-first-coding",
-      "category": "should-trigger",
-      "reason": "实现前查文献是该 skill 的核心场景"
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "我准备实现一个新的注意力机制变体，动手之前帮我查查 arXiv 上有没有人做过类似的东西",
+      "expected_behavior": "激活完整流程：预检三问通过→映射 cs.CL/cs.LG 等类目+机制词→真实抓取 arXiv API→逐篇隔离读→打分聚类→收敛为一条带引用的实现路径（第一步/承重风险/avoid 清单）",
+      "notes": "正面：'实现之前查查有没有人做过'命中预检三问与 A2 情境 1，是核心场景"
     },
     {
-      "id": "test-2",
-      "prompt": "帮我修这个 CSS 布局问题",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "CSS 修复不需要查 arXiv"
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "要设计一个跨节点的缓存失效策略，怕自己重新踩别人已经踩过的坑，有什么现成的论文方案吗？",
+      "expected_behavior": "激活：映射 cs.DC/cs.DB 等类目，检索 'cache invalidation' 类机制词，输出 THE PATH 单一推荐并从所有论文 limitation 汇总避坑清单",
+      "notes": "正面：'怕踩已知的坑'+机制级问题命中 A2 语言信号；猜错代价高（架构级）满足投入判据"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "我这个 SaaS 项目整体该用什么技术栈？Supabase 还是自建后端？预算很紧",
+      "expected_behavior": "不激活本 skill，转交 advise-project-approach（约束分析+可比项目+供应商成本选型属项目级工程判断）",
+      "notes": "兄弟诱饵：advise-project-approach 的 A2 场景；本 skill 只做单机制文献决策不做项目选型"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "帮我审稿人回复信这段的 AI 味去掉一点，别那么像 ChatGPT 写的",
+      "expected_behavior": "不激活本 skill，转交 academic-humanizer（学术文本表达润色）；本 skill 只检索文献不改写作",
+      "notes": "兄弟诱饵：academic-humanizer 的 A2 场景"
+    },
+    {
+      "id": "should-not-trigger-03",
+      "type": "should_not_trigger",
+      "prompt": "就照 React 官方文档把这个受控表单加上就行，quick fix，不用搞复杂的",
+      "expected_behavior": "不激活：预检三问全挂——无待研究技术机制、非真实精力投入、方法已收敛（用户点名方案+closed phrasing），直接实现即可",
+      "notes": "边界：上游 pre-flight 明确对 'just/quick/standard' 类措辞 ABORT，避免为胶水代码支付 N+4 次调用成本"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "用 /arxiv-first-coding 帮我查一下量子退火求解调度问题的先行研究",
+      "expected_behavior": "显式调用跳过预检直接进流程；若各类目抓取结果稀薄或零命中，如实报告'this mechanism may be genuinely novel or search terms were wrong'，不拿边缘论文凑覆盖面",
+      "notes": "边界组合：Step 1 显式 invocation 豁免 + 薄结果集如实报告的反模式条款"
+    },
+    {
+      "id": "edge-02",
+      "type": "edge_case",
+      "prompt": "排序模块我打算直接照搬 XGBoost 排序那篇论文的做法实现，不用再研究了吧？顺便确认下这个思路靠不靠谱",
+      "expected_behavior": "边界处理：方法已收敛不重开文献全流程；仅基于已点名的具体工作做一句事实性核对提示，超出摘要支撑面的细节明确说需回原文核实，不虚构该论文内容",
+      "notes": "半收敛状态：预检第 3 问不过则 ABORT，但反幻觉纪律仍然生效——不得凭记忆背书未抓取的论文"
     }
   ]
 }

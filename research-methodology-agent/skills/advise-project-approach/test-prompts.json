@@ -1,20 +1,57 @@
 {
   "skill": "advise-project-approach",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "AaravKashyap12/advise-project-approach",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "我应该用什么框架来构建这个项目？",
-      "expected_skill": "advise-project-approach",
-      "category": "should-trigger",
-      "reason": "技术选型需要约束分析"
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "我想做一个自托管书签管理器，solo dev，Python 背景，要标签和全文搜索，该怎么起步？用什么栈？",
+      "expected_behavior": "激活 pre-build 模式：约束齐备免 intake→研究 2~3 个可比（linkding/Linkwarden 类）+官方文档→产出含 TL;DR/可比项目/推荐栈/成本现实/Build Plan/Validation Plan 的完整建议，第一步为端到端垂直切片",
+      "notes": "正面：上游 demo 原题；用户/技能/部署/必须功能四类约束齐全，直接进研究"
     },
     {
-      "id": "test-2",
-      "prompt": "这个函数怎么写？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "具体实现问题不属于项目规划"
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "我的 Node/Express API 写到一半感觉越写越乱，路由和数据访问搅在一起，帮我看看方向对不对、该先改什么",
+      "expected_behavior": "激活 mid-build 纠偏：只读检查 repo 结构与关键文件→区分真实问题与时髦修改→输出按 High/Medium/Low 排序的修改清单（High 上限 5 条），附首个修改的验收行为与最窄验证",
+      "notes": "正面：'写到一半+方向对吗'命中 mid-build 语言信号与纠偏核心能力"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "在实现这个向量索引算法之前，先用 arxiv-first-coding 查查学术界有没有现成方案",
+      "expected_behavior": "不激活本 skill，转交 arxiv-first-coding（单算法先行文献检索属文献决策）；本 skill 不做单机制 arXiv 调研",
+      "notes": "兄弟诱饵：显式点名 sibling slug 的 A2 场景，验证三足分工中本 skill 让位"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "把这篇论文摘要改得没那么像 AI 写的，投出去别被编辑一眼看穿",
+      "expected_behavior": "不激活本 skill，转交 academic-humanizer 处理表达润色部分；若涉伪装投稿意图则该 skill 应拒绝并提示披露义务",
+      "notes": "兄弟诱饵：academic-humanizer 的领域；项目选型 skill 与文本润色互不越界"
+    },
+    {
+      "id": "should-not-trigger-03",
+      "type": "should_not_trigger",
+      "prompt": "登录页有个 CSS 错位帮我修一下",
+      "expected_behavior": "不激活：孤立单点修复，无项目级决策诉求；直接修 bug 即可，不触发 intake/研究/报告任何环节",
+      "notes": "边界：上游明示 narrow single-bug debugging 不适用"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "Postgres 和 SQLite 我该选哪个？就回我三句话以内",
+      "expected_behavior": "走窄路线：保持用户要求的形状与长度（≤3 句），每句内嵌动作+验收行为；不浏览、不产全报告骨架；升级条件仅在改变结论时用一句可测阈值表述",
+      "notes": "边界组合：方向已固定的有界提问→窄路线覆盖全流程契约，是 v0.7.1 新增的关键行为"
+    },
+    {
+      "id": "edge-02",
+      "type": "edge_case",
+      "prompt": "review 一下我的项目吧——我还没法给你仓库地址，口头说：是个 Flask 博客加 PostgreSQL，部署在 Vercel 上",
+      "expected_behavior": "降级为 advisory review from description：明确声明未检查任何文件、文件级发现需要 repo；基于描述给出框架性判断并列出假设，绝不假装做过本地检查",
+      "notes": "边界：evidence status 必须如实标注 description only，对应反模式'假装审过没读的文件'"
     }
   ]
 }

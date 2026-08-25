@@ -1,20 +1,57 @@
 {
   "skill": "scientific-figures",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "ChenLiu-1996/figures4papers",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "帮我画一个论文用的比较柱状图",
-      "expected_skill": "scientific-figures",
-      "category": "should-trigger",
-      "reason": "学术论文图表请求"
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "论文定稿要用，帮我用 matplotlib 画一张 publication-quality 的方法对比分组柱状图，导出 PDF 和 PNG",
+      "expected_behavior": "激活：apply_publication_style → make_grouped_bar + annotate_bars 柱顶标值 → finalize_figure 双格式 dpi=300 导出",
+      "notes": "正面：论文+出版质量+矢量导出三信号齐备"
     },
     {
-      "id": "test-2",
-      "prompt": "帮我做一张海报",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "海报设计不属于学术图表"
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "我想让这张训练曲线和 figures4papers 里 VIGIL 项目那几张 line plots 一个风格，蓝的给我提出的方法",
+      "expected_behavior": "激活：make_trend 复现 house style，蓝 #0F4D92 给主方法、红粉给对照基线，线宽 2–3 受控 alpha",
+      "notes": "正面：点名上游仓库与语义配色角色"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "帮我把这份销售周报做成发公众号的扁平风图表页，要好看有设计感",
+      "expected_behavior": "不激活本 skill，转交 lieflat-charts（浏览器阅读的扁平化商业 HTML 图表）",
+      "notes": "兄弟区分诱饵：商业传播图表归 lieflat-charts，本 skill 只管 matplotlib 学术插图"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "快速看看这几列数据有没有相关性，随便画画就行，不用发表",
+      "expected_behavior": "不激活：纯探索性 EDA 无出版目标，pandas/seaborn 默认绘图即可，等出现明确发表目标再引入 house style",
+      "notes": "诱饵：EDA-only 场景在上游 When not to load 清单中"
+    },
+    {
+      "id": "should-not-trigger-03",
+      "type": "should_not_trigger",
+      "prompt": "用 Plotly 做一个可以 hover 看数值的交互式 dashboard",
+      "expected_behavior": "不激活：Plotly/交互式 web 可视化在上游排除清单内，且网页交付应转 lieflat-charts 或其他前端方案",
+      "notes": "域外诱饵：非 matplotlib 工具链"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "公式标签很多，开 use_tex 吧——等等我机器上没装 LaTeX",
+      "expected_behavior": "降级处理：use_tex=True 依赖本机 LaTeX，缺失时退回 mathtext 渲染数学符号并向用户说明差异",
+      "notes": "边界：已知局限中的 LaTeX 环境依赖"
+    },
+    {
+      "id": "edge-02",
+      "type": "edge_case",
+      "prompt": "这张消融图要印成灰度的，颜色分不出来了怎么办",
+      "expected_behavior": "打印安全处理：叠加 hatch 纹理通道做灰度可分辨编码，或改用同色 alpha 梯度表达方法完整度，交付前灰度打印自检",
+      "notes": "边界：hatch/alpha 是 house style 的灰度保险"
     }
   ]
 }

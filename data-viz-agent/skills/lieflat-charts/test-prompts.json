@@ -1,27 +1,57 @@
 {
   "skill": "lieflat-charts",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "larashero3-dotcom/lieflat-charts",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "帮我把这季度销售数据画成图表",
-      "expected_skill": "lieflat-charts",
-      "category": "should-trigger",
-      "reason": "数据可视化请求"
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "把这季度的转化数据画一下，发公众号用，要有编辑排版质感",
+      "expected_behavior": "激活：图表模式 → 判数据形状（占比/比较）→ 先审计 Lupi Editorial 与 Lupi Basics 候选并锁定模板",
+      "notes": "正面：数据+公众号场合双信号，命中 Lupi 细读场景"
     },
     {
-      "id": "test-2",
-      "prompt": "帮我写一篇文章",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "文本创作不属于可视化"
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "这是一份周报 CSV，要求 10 秒内看懂排名、变化和异常，做成 dashboard 风格",
+      "expected_behavior": "激活：用户显式要求 Glance/dashboard/快读，允许直接进入 Glance 候选池（Chunky Bars + Diverging Bar）",
+      "notes": "正面：Glance 显式触发词齐全，无需先证伪主力"
     },
     {
-      "id": "test-3",
-      "prompt": "生成一份年报 HTML 报告",
-      "expected_skill": "lieflat-charts",
-      "category": "should-trigger",
-      "reason": "明确要求报告模式"
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "帮我把这份调研数据生成一份年报白皮书风格的一页纸 HTML 报告，用青瓷蓝配色",
+      "expected_behavior": "激活：报告模式关键词（年报/白皮书/一页纸）→ 读 report-catalog 选 R01–R12 → 全局锁定 porcelain 色系",
+      "notes": "正面：报告模式+彩色预设双触发"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "我要投 NeurIPS，帮我把消融实验结果画成出版质量的分组柱状图，导出 PDF",
+      "expected_behavior": "不激活本 skill，转交 scientific-figures（matplotlib 学术出版级插图管线）",
+      "notes": "兄弟区分诱饵：论文投稿场景归 scientific-figures，本 skill 只管扁平商业 HTML 图表"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "数据里有个国家字段，帮我按国家画张世界地图分布图吧——哦不用了，就画普通柱状图",
+      "expected_behavior": "地图仅在用户明确要求时启用；本例最终诉求是柱状图，走常规比较图选型即可，不得因地区字段自动上 M2",
+      "notes": "诱饵：地区字段≠地图请求，考察 Maps 显式触发规则"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "分析一下这组数据",
+      "expected_behavior": "歧义处理：默认进入图表模式交付最强单图或 2–3 张证据图，文字提示可再切换完整报告；不得因『分析』二字自行升级成报告模式",
+      "notes": "边界：输出模式判定的默认规则"
+    },
+    {
+      "id": "edge-02",
+      "type": "edge_case",
+      "prompt": "这批数据是 OHLC 行情四值，主力里好像没有能画的？顺便问下断轴行不行",
+      "expected_behavior": "OHLC 命中五种直取后备形状之一（F17 Candlestick），无需先证伪主力；断轴请求拒绝并给三个诚实替代（冲天/放大镜/撕柱不撕轴）",
+      "notes": "双重边界：后备直取例外+不断轴红线"
     }
   ]
 }

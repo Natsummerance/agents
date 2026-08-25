@@ -1,20 +1,57 @@
 {
   "skill": "banner-design",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "nextlevelbuilder/ui-ux-pro-max-skill",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "帮我设计一个 Twitter 封面图",
-      "expected_skill": "banner-design",
-      "category": "should-trigger",
-      "reason": "社交媒体 Banner 设计"
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "帮我做一张 Twitter/X 的频道封面 banner，1500×500，走极简风格，放我们的 slogan 和官网链接",
+      "expected_behavior": "激活：锁定 1500×500 画布→极简方向出多稿→三区骨架+安全区排版→按平台尺寸导出 PNG",
+      "notes": "正面：平台+尺寸+风格+内容要素四信号齐全"
     },
     {
-      "id": "test-2",
-      "prompt": "帮我写代码",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "编码任务不属于设计"
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "我们 SaaS 官网 hero 区还是占位图，给我出 3 个不同艺术方向的 hero 图方案对比一下",
+      "expected_behavior": "激活：默认多艺术方向并行产出（Minimalist/Gradient/Geometric 类互补组合），并排呈现供选稿迭代",
+      "notes": "正面：'3 个方案对比'命中多方向比稿核心能力"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "Google 广告投放要一套展示素材，300×250 和 728×90 两种规格，注意别因为文字太多被拒",
+      "expected_behavior": "激活：多规格导出+广告文字占比 <20% 校验+单一 CTA 规则核查",
+      "notes": "正面：投放备料场景触发平台规则校验清单"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "给新产品定一套完整的配色、字体、间距规范，要支持暗色模式换肤",
+      "expected_behavior": "不激活本 skill，转交 design-system-generator（成套设计系统/三层 token 架构）",
+      "notes": "跨技能混淆诱饵：design-system-generator 的 A2 场景"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "把我们项目里散落的硬编码颜色抽成 CSS 变量 design tokens",
+      "expected_behavior": "不激活本 skill，转交 design-system-generator；banner-design 只消费 token 不生产 token",
+      "notes": "跨技能混淆诱饵：token 化重构属体系工程非单张素材"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "banner 底图想用一张网上找的摄影图，直接商用没问题吧？",
+      "expected_behavior": "边界处理：不默认可用——先核查素材许可（CC0/已购授权/自有素材）与生成服务商用条款，含人物肖像或商标元素需额外排查后再进入设计流程",
+      "notes": "版权授权核查边界，对应 B 段局限第一条"
+    },
+    {
+      "id": "edge-02",
+      "type": "edge_case",
+      "prompt": "展会用的易拉宝也按这套 banner 流程做吗？大概 850mm×2000mm",
+      "expected_behavior": "边界处理：仍在本 skill 范围但切换印刷规格分支——300 DPI、CMYK 色彩模式、3-5mm 出血，远观距离对应大字号；不再套数字端字号/占比规则",
+      "notes": "媒介边界：print 规格与 digital 规则不可混用"
     }
   ]
 }

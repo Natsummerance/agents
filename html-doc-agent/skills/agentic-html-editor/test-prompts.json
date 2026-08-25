@@ -1,20 +1,57 @@
 {
   "skill": "agentic-html-editor",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "nexu-io/html-anything",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "帮我把这段 Markdown 转成漂亮的 HTML 页面",
-      "expected_skill": "agentic-html-editor",
-      "category": "should-trigger",
-      "reason": "MD→HTML 转换"
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "把这篇 markdown 行业观察变成能直接发出去的 HTML 长文页面，排版要像杂志",
+      "expected_behavior": "激活：surface=文章 → 选 doc/magazine 类模板 → 流式生成单文件 HTML 成品页",
+      "notes": "正面：md→成品页+发布意图双信号"
     },
     {
-      "id": "test-2",
-      "prompt": "帮我修数据库",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "数据库操作不属于文档渲染"
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "这份 Excel 销售明细帮我做成一页数据报告，最后要贴到微信公众号里不用再排版",
+      "expected_behavior": "激活：surface=数据报告 → 浏览器端解析真实数据渲染 → juice 内联 CSS 走微信导出链路",
+      "notes": "正面：表格输入+零二次排版诉求命中导出管线"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "给我们的新产品做个 SaaS 落地页原型，单文件 HTML，我本地 claude 已经登录好了",
+      "expected_behavior": "激活：surface=web 原型（saas-landing 模板）→ 复用本地已登录 CLI 会话流式生成并实时预览",
+      "notes": "正面：落地页+本地 agent 可用性确认"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "我在 VS Code 里写笔记，数学公式预览不出来怎么办？",
+      "expected_behavior": "不激活本 skill，转交 markdown-preview-enhanced（编辑器内 Markdown 忠实渲染预览）",
+      "notes": "兄弟区分诱饵：阅读增强归 markdown-preview-enhanced，本 skill 只管生成可发布成品页"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "帮我把这个 React 项目重构成 Next.js 并接上数据库",
+      "expected_behavior": "不激活：工程化 Web 开发超出一次性内容页面范畴，属前端工程任务",
+      "notes": "域外诱饵：内容页面≠应用开发"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "我这台机器没装过任何 coding-agent 的命令行，还能用它生成页面吗",
+      "expected_behavior": "边界处理：如实告知强依赖本地已登录的 coding-agent CLI，检测不到则管线不可用；给出先安装并登录任一支持 CLI 的路径",
+      "notes": "红线：零 API key ≠ 零依赖"
+    },
+    {
+      "id": "edge-02",
+      "type": "edge_case",
+      "prompt": "生成的时候我看内容跑偏了，但是不想浪费这一次生成",
+      "expected_behavior": "边界处理：SSE 流式渲染支持随时中断并重新 prompt，不必为整次生成买单；指导用户中断-修正-重生",
+      "notes": "局限转化：流式中断是设计内的迭代方式"
     }
   ]
 }
