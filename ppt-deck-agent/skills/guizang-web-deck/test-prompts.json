@@ -1,20 +1,57 @@
 {
   "skill": "guizang-web-deck",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "op7418/guizang-ppt-skill",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "帮我做一个 HTML 翻页 PPT",
-      "expected_skill": "guizang-web-deck",
-      "category": "should-trigger",
-      "reason": "HTML PPT 请求"
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "帮我做一个网页版的发布演示，要有杂志那种排版质感，浏览器里直接放",
+      "expected_behavior": "激活：风格判定（A 杂志风）→ 七问清单采集",
+      "notes": "正面：网页+杂志感双信号"
     },
     {
-      "id": "test-2",
-      "prompt": "帮我写个 Python 脚本",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "编码不属于演示文稿"
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "demo day 要用的 Swiss Style 横滑 slides，Helvetica 那种感觉，15 分钟",
+      "expected_behavior": "激活：B 方案瑞士网格风，时长映射页数≈10 页",
+      "notes": "正面：Swiss/横滑/时长三信号"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "把这份大纲生成一个 pptx 文件，我要在公司的模板里继续改",
+      "expected_behavior": "不激活本 skill，转交 ppt-master-native（原生可编辑 PPTX 管线）",
+      "notes": "跨技能混淆诱饵：ppt-master-native 场景"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "帮我把这张照片做成一张海报",
+      "expected_behavior": "不激活：静态海报设计不属于幻灯片放映场景，应推荐图像类工具",
+      "notes": "域外诱饵"
+    },
+    {
+      "id": "should-not-trigger-03",
+      "type": "should_not_trigger",
+      "prompt": "这个 HTML 幻灯片第三页的字我想改成蓝色，帮我改下颜色",
+      "expected_behavior": "不作为新蒸馏任务激活；属对已交付文件的微编辑，直接执行修改即可",
+      "notes": "诱饵：把微编辑误判为新生成"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "做个演示，要能打印成讲义发给观众，也要能在投影上放",
+      "expected_behavior": "边界处理：说明单文件 HTML 不利于打印分发，给出取舍——若打印为刚需建议转 ppt-master-native 或另出 PDF 版",
+      "notes": "红线：打印讲义是已知局限"
+    },
+    {
+      "id": "edge-02",
+      "type": "edge_case",
+      "prompt": "我们会议室的电脑特别老，放你的网页幻灯片会卡吗",
+      "expected_behavior": "边界处理：主动降级 WebGL 颗粒为纯 CSS 渐变并验证低端机流畅度",
+      "notes": "局限：WebGL 低端机掉帧"
     }
   ]
 }

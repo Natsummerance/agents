@@ -1,20 +1,50 @@
 {
   "skill": "design-system-generator",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "nextlevelbuilder/ui-ux-pro-max-skill",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "帮我的 SaaS 产品建立设计系统",
-      "expected_skill": "design-system-generator",
-      "category": "should-trigger",
-      "reason": "设计系统生成请求"
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "新项目冷启动，给这个 SaaS 后台建一套设计系统，要支持暗色模式换肤",
+      "expected_behavior": "激活：产品画像→三拨盘→三层 token 构造→状态矩阵",
+      "notes": "正面：设计系统+暗色双信号"
     },
     {
-      "id": "test-2",
-      "prompt": "帮我修 bug",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "Bug 修复不属于设计"
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "我们代码里全是写死的 #2563EB，帮我抽成 design tokens 并生成 CSS 变量",
+      "expected_behavior": "激活：存量重构路径，含硬编码扫描合规检查",
+      "notes": "正面：token 化重构信号"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "帮我做一张 Instagram 的促销 banner，要吸睛",
+      "expected_behavior": "不激活本 skill，转交 banner-design（单张素材视觉设计）",
+      "notes": "跨技能混淆诱饵：banner-design 场景"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "这个按钮的圆角改成 8px",
+      "expected_behavior": "不激活：单点样式微调直接执行；仅当用户要求成体系抽取时才进入本流程",
+      "notes": "粒度诱饵：微编辑≠系统生成"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "我们只用 Tailwind，不用 CSS 变量，还能用这套方法吗",
+      "expected_behavior": "边界处理：说明三层语义照样成立，交付形态改为 tailwind.config 主题映射而非 :root 变量文件",
+      "notes": "技术栈边界"
+    },
+    {
+      "id": "edge-02",
+      "type": "edge_case",
+      "prompt": "老板要求配色同时满足 WCAG AA 和品牌方的大红大紫诉求，冲突了怎么办",
+      "expected_behavior": "边界处理：以可访问性为硬约束给出对比度数据，提供满足 AA 的替代色阶供品牌方选择，不静默牺牲任一方",
+      "notes": "价值冲突边界"
     }
   ]
 }

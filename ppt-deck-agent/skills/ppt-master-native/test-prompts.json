@@ -1,20 +1,57 @@
 {
   "skill": "ppt-master-native",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "hugohe3/ppt-master",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "帮我把这个文档转成 PowerPoint",
-      "expected_skill": "ppt-master-native",
-      "category": "should-trigger",
-      "reason": "文档转 PPT 场景"
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "下周答辩，帮我把我这份 PDF 报告做成 pptx，我之后还要自己改内容",
+      "expected_behavior": "激活：Generate 路由 + Default 运行时（正式场合），素材入池后走规格确认",
+      "notes": "正面：pptx+后续编辑双信号"
     },
     {
-      "id": "test-2",
-      "prompt": "帮我画一张图",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "图像生成不属于 PPT"
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "这是我们公司的旧模板 PPT 和新季度材料，套进去做一份，别改模板样式",
+      "expected_behavior": "激活：Template Fill 路由（旧模板+新材料）",
+      "notes": "正面：填充路由信号"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "做一个网页版的 slides，发布会现场浏览器全屏放，要酷炫动效",
+      "expected_behavior": "不激活本 skill，转交 guizang-web-deck（单 HTML 网页放映件）",
+      "notes": "跨技能混淆诱饵：guizang-web-deck 场景"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "帮我把这段发言整理成大纲就行，还不用做片",
+      "expected_behavior": "不激活：仅大纲梳理未到生成阶段，直接在对话层完成",
+      "notes": "过早介入诱饵"
+    },
+    {
+      "id": "should-not-trigger-03",
+      "type": "should_not_trigger",
+      "prompt": "直接把我们这份成品 PPT 里第 3 页的母版结构改一下",
+      "expected_behavior": "不按用户直觉执行——上游禁止对成品直改母版；应解释需走 create-template 工作区重建或转 Native Enhance 评估",
+      "notes": "红线诱饵：绕开模板工作区的损坏性操作"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "快速给我个草稿版，不用太好看，十分钟内要",
+      "expected_behavior": "边界处理：切换 Quick 运行时并声明取舍（跳过策略确认，质量让位速度）",
+      "notes": "运行时边界：Quick 触发措辞"
+    },
+    {
+      "id": "edge-02",
+      "type": "edge_case",
+      "prompt": "我们环境装不了 Python，还能用你出 PPT 吗",
+      "expected_behavior": "边界处理：如实告知脚本链依赖缺失会中断管线，给出替代建议而非假装可行",
+      "notes": "已知局限：环境依赖"
     }
   ]
 }
