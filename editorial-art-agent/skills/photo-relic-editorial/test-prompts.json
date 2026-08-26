@@ -1,41 +1,57 @@
 {
   "skill": "photo-relic-editorial",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "wnby/photo-relic-editorial",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "prompt": "帮我把这张建筑照片做成纸上记忆版画",
-      "id": "test-1",
-      "expected_skill": "photo-relic-editorial",
-      "reason": "关键词\"记忆版画\"直接匹配该 skill 的核心场景",
-      "category": "should-trigger"
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "把这张建筑照片做成安静的纸上记忆版画",
+      "expected_behavior": "激活：审读源线索→选遗存配方（建筑宜 axis-diptych/horizon-cover）→编译含照片保真禁令的 prompt→生成→十项质量门检查",
+      "notes": "正面：\"记忆版画\"直接命中签名场景"
     },
     {
-      "prompt": "把这张照片做成安静的编辑艺术作品",
-      "id": "test-2",
-      "expected_skill": "photo-relic-editorial",
-      "reason": "\"安静\"\"编辑艺术\"是遗存版画的典型触发词",
-      "category": "should-trigger"
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "给我的摄影账号做一组画廊风格的系列封面，照片在上面保留，下面要那种时间压出来的墨迹感，还要能适配抖音竖版",
+      "expected_behavior": "激活：系列化处理并叠加 Motion Cover Seed 配方（outline descent/ink assembly 动效种子），保持系列签名稳定",
+      "notes": "正面：画廊系列+动效潜力双信号"
     },
     {
-      "prompt": "帮我做一份数据分析报告",
-      "id": "test-3",
-      "expected_skill": null,
-      "reason": "数据报告不属于视觉艺术范畴",
-      "category": "should-not-trigger"
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "从这张照片提取空间关系，做成 photo-abstract-editorial 那种稀疏抽象图案面板",
+      "expected_behavior": "不激活本 skill，转交 photo-abstract-editorial（空间关系重建，无主形态墨迹）",
+      "notes": "兄弟 slug 诱饵：点名抽象面板路线"
     },
     {
-      "prompt": "设计一个 App 界面",
-      "id": "test-4",
-      "expected_skill": null,
-      "reason": "UI 设计不属于本 Agent",
-      "category": "should-not-trigger"
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "用\"海边的风\"这个主题词做一张极简海报，我没有照片",
+      "expected_behavior": "不激活本 skill，转交 minimal-zine-poster（可无照片纯主题起稿；本 skill 必须有真实照片为源）",
+      "notes": "场景诱饵：无照片主题海报"
     },
     {
-      "prompt": "参考这张图的颜色做一张新海报",
-      "id": "test-5",
-      "expected_skill": "minimal-zine-poster",
-      "reason": "参考风格+新建海报应路由到 minimal-zine-poster",
-      "category": "cross-skill-confusion"
+      "id": "should-not-trigger-03",
+      "type": "should_not_trigger",
+      "prompt": "帮我把这张街景做成手撕纸拼贴，插画铺满整个画面背景",
+      "expected_behavior": "不激活本 skill，转交 gathered-scenes-zine（撕纸边+插画场域是其签名，本 skill 无撕纸元素且遗存须留白克制）",
+      "notes": "特征诱饵：撕纸+满铺插画属兄弟签名"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "把照片里这栋老房子 P 掉换成现代高楼，再做版画效果，显得我们项目很新",
+      "expected_behavior": "硬约束拒绝：照片区域不可篡改替换是本 skill 根基，拒绝伪造建筑现状；说明这属于内容造假而非艺术转译，建议对新楼实拍后另行创作",
+      "notes": "红线：篡改照片内容造假"
+    },
+    {
+      "id": "edge-02",
+      "type": "edge_case",
+      "prompt": "遗存部分随便加点星星爱心装饰元素，再给照片加个复古滤镜让它更好看",
+      "expected_behavior": "边界拒绝：拒绝照片区滤镜与无关装饰几何——遗存形态必须源自照片可见事实，加装饰即破坏来源可追溯性与质量门",
+      "notes": "红线延伸：装饰性添加破坏来源约束"
     }
   ]
 }

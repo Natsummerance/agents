@@ -7,44 +7,44 @@
     {
       "id": "should-trigger-01",
       "type": "should_trigger",
-      "prompt": "VS Code 里写算法笔记，LaTeX 公式在预览里全是源码没有渲染",
-      "expected_behavior": "激活：math typesetting 能力——检查 $...$ 定界符与 KaTeX/MathJax 渲染设置，恢复公式显示",
-      "notes": "正面：md 预览+公式渲染核心信号"
+      "prompt": "我在 VSCode 写论文笔记，怎么实时预览 markdown 里的大量数学公式？",
+      "expected_behavior": "激活：ctrl+shift+m 开预览，讲解 $...$ / $$...$$ 定界符与 KaTeX（快）/MathJax（全）引擎选择及设置切换方法",
+      "notes": "正面：VSCode + md 公式预览命中 A2 场景 1 与 I-2 数学双引擎"
     },
     {
       "id": "should-trigger-02",
       "type": "should_trigger",
-      "prompt": "我的架构文档里那段 mermaid 代码块预览不显示图，另外想把它导出成 PDF 发评审",
-      "expected_behavior": "激活：mermaid 围栏块语法核查修复渲染 + Puppeteer 导出 PDF 管线",
-      "notes": "正面：图表渲染+导出双需求同属本 skill"
+      "prompt": "我想让 markdown 文档里的 python 代码块真的跑起来，图表直接显示在文档里",
+      "expected_behavior": "激活：code chunk 语法 ```python {cmd=true matplotlib=true}，提醒 enableScriptExecution 默认关闭需知情开启；逐块 shift-enter 执行",
+      "notes": "正面：notebook 式写作场景对应 I-4，且必须带上安全警告"
     },
     {
       "id": "should-not-trigger-01",
       "type": "should_not_trigger",
-      "prompt": "把这份产品介绍重新设计成一个漂亮的 HTML 发布页面，要有杂志排版感",
-      "expected_behavior": "不激活本 skill，转交 agentic-html-editor（AI 重构生成设计化成品页）",
-      "notes": "兄弟区分诱饵：版面再创作与发布归 agentic-html-editor，本 skill 只做忠实渲染与保真导出"
+      "prompt": "帮我把这份产品介绍做成设计感强的 HTML 落地页，能直接发出去给客户看",
+      "expected_behavior": "不激活本 skill，转交 agentic-html-editor（AI 按模板生成面向读者的成品 HTML 页面）",
+      "notes": "兄弟区分诱饵：读者侧成品生成归兄弟 slug agentic-html-editor，本 skill 只做写作者侧的渲染预览增强"
     },
     {
       "id": "should-not-trigger-02",
       "type": "should_not_trigger",
-      "prompt": "帮我在 Atom 编辑器里装一个 Markdown 预览插件",
-      "expected_behavior": "不激活：上游 Atom 版已停止维护，仅支持 VS Code / vscode.dev，需向用户说明环境限制",
-      "notes": "诱饵：平台边界（Atom EOL）"
+      "prompt": "用 Hugo 把我的 markdown 博客构建成静态网站",
+      "expected_behavior": "不激活：静态站点构建是另一条工具链（Hugo/Hexo 渲染管线），不属于编辑器内预览增强的职责范围",
+      "notes": "考察 B 段不适用第 3 条生态边界"
     },
     {
       "id": "edge-01",
       "type": "edge_case",
-      "prompt": "code chunk 里跑一段 pip install 再画图的 python 代码可以吗",
-      "expected_behavior": "边界处理：可以但需本机 python 运行时与网络，shift+enter 执行当前块；提醒沙箱隔离有限，勿执行不受信代码",
-      "notes": "边界：code chunk 的运行时依赖与安全提示"
+      "prompt": "把这份带 mermaid 流程图和代码块的 md 导出成 PDF，还要转成 ebook",
+      "expected_behavior": "激活但先行声明限制：PDF 推荐走 Chrome(Puppeteer) 管线并核对 mermaid 渲染效果；code chunk 不兼容 ebook 导出、部分图表在导出中表现不佳，需提前告知用户取舍",
+      "notes": "边界：I-3/I-8 的已知限制必须在动手前披露而非事后补救"
     },
     {
       "id": "edge-02",
       "type": "edge_case",
-      "prompt": "我想导出 ePub 电子书，但是机器上好像没装 pandoc",
-      "expected_behavior": "边界处理：说明 eBook/pandoc 导出依赖外部程序已安装，缺失时该管线不可用；给出安装 pandoc 后重试的路径或改走 Puppeteer HTML/PDF",
-      "notes": "边界：外部工具链依赖的已知局限"
+      "prompt": "收到一个别人发来的 md 文件，里面好像有 {cmd} 代码块，我打开预览会怎样？",
+      "expected_behavior": "边界处理：脚本执行默认关闭，代码块不会运行；明确不建议为陌生文件开启 enableScriptExecution 并说明恶意代码风险",
+      "notes": "考察上游 code-chunk.md 安全警告的落地：默认安全姿态优先于功能展示"
     }
   ]
 }

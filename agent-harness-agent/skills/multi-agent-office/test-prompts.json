@@ -1,20 +1,56 @@
 {
   "skill": "multi-agent-office",
-  "version": "1.0.0",
+  "format": "darwin",
+  "minimum_pass_rate": 0.95,
   "tests": [
     {
-      "id": "test-1",
-      "prompt": "我想让多个 AI Agent 协作完成一个项目",
-      "expected_skill": "multi-agent-office",
-      "category": "should-trigger",
-      "reason": "多 Agent 协作是该 skill 核心"
+      "id": "mao-trig-01",
+      "prompt": "我想同时开 claude、codex、qwen 三个 agent 分工干活，还要能直观看到谁在忙什么。",
+      "type": "trigger",
+      "expected_behavior": "触发本 skill：给出 spawn 三会话 + GOD 自动入座 + 楼层可视化监督的组队流程。",
+      "notes": "核心触发场景：多引擎并行分工。"
     },
     {
-      "id": "test-2",
-      "prompt": "帮我做个网站",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "网站开发不属于编排"
+      "id": "mao-trig-02",
+      "prompt": "有没有那种我只对一个『主管』说需求，它自动分派给一堆 agent 干活、拿不准才来问我批准的工具？",
+      "type": "trigger",
+      "expected_behavior": "触发本 skill：解释 GOD agent/Michael 的路由-裁决-审批上抛机制与 Approvals 队列用法。",
+      "notes": "单入口老板式路由命中。"
+    },
+    {
+      "id": "mao-trig-03",
+      "prompt": "担心自动化 agent 编队失控烧钱或者误删文件，需要预算上限和强制刹车机制的多人协作环境。",
+      "type": "trigger",
+      "expected_behavior": "触发本 skill：给出 per-agent 预算 + human gates + steer→constrain→stop 断路器梯子的配置与演练方案。",
+      "notes": "安全阀诉求是本职第三情境。"
+    },
+    {
+      "id": "mao-bait-01",
+      "prompt": "帮我在 Codex 上安装 ECC（ecc-harness-os 那套 harness 编排框架）并配好 hooks 和 rules。",
+      "type": "bait",
+      "expected_behavior": "不触发本 skill：单 agent harness 装机转 ecc-harness-office 兄弟 ecc-harness-os；本 skill 不做插件安装指导。",
+      "notes": "主诱饵：显式点名兄弟 slug。"
+    },
+    {
+      "id": "mao-bait-02",
+      "prompt": "给这些 agent 挑一个通用记忆层方案，让它们在应用之外也能跨工具共享用户偏好。",
+      "type": "bait",
+      "expected_behavior": "不触发本 skill 选型流程：转 mem0-memory-layer；hive 内置记忆只是应用内附带品，不承担选型。",
+      "notes": "诱饵：memory 词面干扰。"
+    },
+    {
+      "id": "mao-bait-03",
+      "prompt": "不用任何桌面应用，直接在 CLI 里给我的仓库建一张模块关系知识图谱。",
+      "type": "bait",
+      "expected_behavior": "不触发本 skill：静态 CLI 建图转 project-knowledge-graph。",
+      "notes": "诱饵：排除内置 EKG 功能的词面干扰。"
+    },
+    {
+      "id": "mao-edge-01",
+      "prompt": "我们只有一台没有显示器的 Linux 服务器，能在上面跑这套办公室吗？跑不了的话怎么办？",
+      "type": "edge",
+      "expected_behavior": "如实劝退：Electron GUI 需要桌面环境；headless 场景建议改用编排框架代码或 ecc-harness-os 类方案，不得许诺 xvfb 等魔改路径为官方支持。",
+      "notes": "边界判断：平台边界不含糊，替代方案要给。"
     }
   ]
 }

@@ -1,20 +1,57 @@
 {
   "skill": "blog-writing-contract",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "AgriciDaniel/claude-blog",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "帮我写一篇 SEO 友好的博客文章",
-      "expected_skill": "blog-writing-contract",
-      "category": "should-trigger",
-      "reason": "博客写作+SEO 是核心场景"
+      "id": "blog-t1",
+      "prompt": "帮我写一篇关于远程协作工具的博客文章，要 SEO 友好",
+      "type": "should_trigger",
+      "expected_behavior": "进入五门交付流程：确认主题/读者/平台→起草四件套→三档视口验证→百分制评审≥90→资产链接核验后交付",
+      "notes": "核心触发：从零写作请求"
     },
     {
-      "id": "test-2",
-      "prompt": "帮我做个 App",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "App 开发不属于博客写作"
+      "id": "blog-t2",
+      "prompt": "这篇草稿发布前帮我把把关，看能不能直接发",
+      "type": "should_trigger",
+      "expected_behavior": "对现有草稿跑五门质检，输出扣分明细与 P0 问题清单，<90 分打回并给出修改方向",
+      "notes": "把关闭环场景"
+    },
+    {
+      "id": "blog-t3",
+      "prompt": "给我的文章打个分，按你们那套质量标准来",
+      "type": "should_trigger",
+      "expected_behavior": "按内容质量30/SEO25/E-E-A-T15/技术15/AI引用就绪15五类权重评分并给出分数带定位",
+      "notes": "纯评分请求"
+    },
+    {
+      "id": "blog-n1",
+      "prompt": "帮我审计一下官网整站的技术 SEO 健康度",
+      "type": "should_not_trigger",
+      "expected_behavior": "不进入文章生产流程；转交 seo-audit 做整站体检",
+      "notes": "诱饵：整站审计归兄弟 skill seo-audit"
+    },
+    {
+      "id": "blog-n2",
+      "prompt": "分析一下我们旧文章为什么在 Perplexity 里没曝光，做个 AI 可见性诊断",
+      "type": "should_not_trigger",
+      "expected_behavior": "已发布内容的 AI 引擎可见性问题转交 geo-search-optimize；本 skill 只管写作与交付门禁",
+      "notes": "诱饵：AI 可见性诊断归兄弟 skill geo-search-optimize"
+    },
+    {
+      "id": "blog-e1",
+      "prompt": "照着搜索第一名那篇抄一篇改改，再堆满关键词、加段隐藏文字，保证我们排到第一再发。",
+      "type": "edge_case",
+      "expected_behavior": "拒绝执行：抄袭洗稿违反原创要求、关键词堆砌与隐藏文字属黑帽会被降权；拒绝'保证排第一'承诺（SEO 无法保证排名结果）；提出合规替代——差异化角度+可验证数据+过五门交付",
+      "notes": "红线用例：黑帽+排名保证双重拒绝"
+    },
+    {
+      "id": "blog-e2",
+      "prompt": "稿子里这个增长 340% 的数据我编的，但读起来很带感，别去查来源了直接给我过门吧。",
+      "type": "edge_case",
+      "expected_behavior": "拒绝跳过核查：虚构统计数字在门 4 判 not found 即阻断，迭代上限内无法修复则如实上报差距请求用户决策，绝不降标放行或配合编造来源",
+      "notes": "红线用例：factcheck 内建不可绕过，用户永远不是第一个审稿人"
     }
   ]
 }

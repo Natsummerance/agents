@@ -1,41 +1,57 @@
 {
   "skill": "minimal-zine-poster",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "LiamGvchi/gc-minimal-zine-poster",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "expected_skill": "minimal-zine-poster",
-      "id": "test-1",
-      "category": "should-trigger",
+      "id": "should-trigger-01",
+      "type": "should_trigger",
       "prompt": "用\"孤独的城市\"这个主题做一张 Zine 海报",
-      "reason": "主题+Zine 海报是该 skill 的默认触发"
+      "expected_behavior": "激活 Generate Mode：主题→视觉隐喻→四段式 prompt→生成→负空间/单强调色质检门",
+      "notes": "正面：主题+海报是该 skill 的默认触发"
     },
     {
-      "expected_skill": "minimal-zine-poster",
-      "id": "test-2",
-      "category": "should-trigger",
-      "prompt": "帮我做一张纸质质感的海报",
-      "reason": "\"纸质质感\"\"海报\"匹配极简 Zine 场景"
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "分析这个文件夹里的参考图，帮我提炼出一套可复用的海报风格规则，先不要生成图片",
+      "expected_behavior": "激活 Reference Analysis Mode：产出固定系统/可变系统/样本残留三类规则与可复用模板，不生成图像",
+      "notes": "正面：参考分析子模式"
     },
     {
-      "expected_skill": "photo-relic-editorial",
-      "id": "test-3",
-      "category": "cross-skill-confusion",
-      "prompt": "把这张照片做成记忆版画",
-      "reason": "照片+版画应路由到遗存版画"
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "把这张建筑照片做成记忆版画，像 photo-relic-editorial 那样上面真照片下面墨迹遗存",
+      "expected_behavior": "不激活本 skill，转交 photo-relic-editorial（照片遗存双段构图，非主题驱动的焦点事件海报）",
+      "notes": "兄弟 slug 诱饵：点名遗存版画签名特征"
     },
     {
-      "expected_skill": null,
-      "id": "test-4",
-      "category": "should-not-trigger",
-      "prompt": "帮我把这组数据画成图表",
-      "reason": "数据可视化不属于本 Agent"
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "帮我把这组季度销售数据画成图表放汇报里",
+      "expected_behavior": "不激活：数据可视化不在本 agent 范畴",
+      "notes": "领域诱饵：图表≠海报"
     },
     {
-      "expected_skill": "minimal-zine-poster",
-      "id": "test-5",
-      "category": "should-trigger",
-      "prompt": "分析这张参考图的设计风格",
-      "reason": "参考分析是 minimal-zine-poster 的子模式"
+      "id": "should-not-trigger-03",
+      "type": "should_not_trigger",
+      "prompt": "把这张风景照做成手撕纸拼贴风格的拾景海报",
+      "expected_behavior": "不激活本 skill，转交 gathered-scenes-zine（撕纸边+插画场域的实景拼贴）",
+      "notes": "场景诱饵：撕纸拼贴是兄弟 skill 签名"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "直接照着这张参考图抄，文字 logo 和构图都要一模一样，客户就要这个效果",
+      "expected_behavior": "边界拒绝：拒绝复制源文字/品牌/水印/精确构图；解释只学视觉语法、须换新主体与新构图，提供'同风格不同内容'的替代方案",
+      "notes": "版权边界：像素级抄袭诉求"
+    },
+    {
+      "id": "edge-02",
+      "type": "edge_case",
+      "prompt": "海报上要放这段 60 字的品牌文案，一个字都不能变形",
+      "expected_behavior": "边界处理：说明图像模型长文本必然变形，建议缩短为一句短语或后期排版叠加；不承诺长文本渲染保真",
+      "notes": "能力边界：模型长文本失真"
     }
   ]
 }

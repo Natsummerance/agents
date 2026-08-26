@@ -7,51 +7,51 @@
     {
       "id": "should-trigger-01",
       "type": "should_trigger",
-      "prompt": "把这篇 markdown 行业观察变成能直接发出去的 HTML 长文页面，排版要像杂志",
-      "expected_behavior": "激活：surface=文章 → 选 doc/magazine 类模板 → 流式生成单文件 HTML 成品页",
-      "notes": "正面：md→成品页+发布意图双信号"
+      "prompt": "把这篇 markdown 项目总结转成能直接粘贴到公众号编辑器的排版，样式别丢",
+      "expected_behavior": "激活：auto 三层匹配锁定 doc 类模板（如 doc-kami-parchment）→ 本地 CLI 按 CJK 字体栈/8px 网格生成单文件 HTML → juice 内联 CSS 导出，粘贴零二次排版",
+      "notes": "正面：md→成品 HTML+微信分发双信号，命中 A2 场景 1 与 E-5 导出管线"
     },
     {
       "id": "should-trigger-02",
       "type": "should_trigger",
-      "prompt": "这份 Excel 销售明细帮我做成一页数据报告，最后要贴到微信公众号里不用再排版",
-      "expected_behavior": "激活：surface=数据报告 → 浏览器端解析真实数据渲染 → juice 内联 CSS 走微信导出链路",
-      "notes": "正面：表格输入+零二次排版诉求命中导出管线"
+      "prompt": "我有个产品想法，帮我生成一个 SaaS 落地页原型看看效果",
+      "expected_behavior": "激活：prototype surface → saas-landing 模板（Hero/features/pricing/CTA 结构）→ SSE 流式生成进沙箱 iframe 预览，可中断重提示迭代",
+      "notes": "正面：web 原型场景对应九类 surface 的 prototype mode"
     },
     {
       "id": "should-trigger-03",
       "type": "should_trigger",
-      "prompt": "给我们的新产品做个 SaaS 落地页原型，单文件 HTML，我本地 claude 已经登录好了",
-      "expected_behavior": "激活：surface=web 原型（saas-landing 模板）→ 复用本地已登录 CLI 会话流式生成并实时预览",
-      "notes": "正面：落地页+本地 agent 可用性确认"
+      "prompt": "这份 CSV 销售数据做成一页可视化报告，导出高清 PNG 我发推文用",
+      "expected_behavior": "激活：格式自动探测（papaparse 浏览器端解析）→ data-report 模板生成 → modern-screenshot 渲染 2× PNG 进剪贴板直接贴进推文编辑器",
+      "notes": "正面：数据报告页+社媒图片导出组合命中 E-5"
     },
     {
       "id": "should-not-trigger-01",
       "type": "should_not_trigger",
-      "prompt": "我在 VS Code 里写笔记，数学公式预览不出来怎么办？",
-      "expected_behavior": "不激活本 skill，转交 markdown-preview-enhanced（编辑器内 Markdown 忠实渲染预览）",
-      "notes": "兄弟区分诱饵：阅读增强归 markdown-preview-enhanced，本 skill 只管生成可发布成品页"
+      "prompt": "我在 VSCode 写笔记，想要实时预览 markdown 里的 mermaid 图和数学公式",
+      "expected_behavior": "不激活本 skill，转交 markdown-preview-enhanced（编辑器内 .md 实时渲染预览）",
+      "notes": "兄弟区分诱饵：写作者侧的预览增强归兄弟 slug markdown-preview-enhanced，本 skill 只管 AI 生成面向读者的成品 HTML"
     },
     {
       "id": "should-not-trigger-02",
       "type": "should_not_trigger",
-      "prompt": "帮我把这个 React 项目重构成 Next.js 并接上数据库",
-      "expected_behavior": "不激活：工程化 Web 开发超出一次性内容页面范畴，属前端工程任务",
-      "notes": "域外诱饵：内容页面≠应用开发"
+      "prompt": "把我们公司的设计系统对接进来，按 Figma 组件规范逐像素还原品牌页",
+      "expected_behavior": "不激活：像素级品牌设计系统管控超出模板化 HTML 的能力边界，应走 Figma 专业设计流程",
+      "notes": "考察 B 段不适用第 2 条：模板化产出是近似不是品牌工程替代"
     },
     {
       "id": "edge-01",
       "type": "edge_case",
-      "prompt": "我这台机器没装过任何 coding-agent 的命令行，还能用它生成页面吗",
-      "expected_behavior": "边界处理：如实告知强依赖本地已登录的 coding-agent CLI，检测不到则管线不可用；给出先安装并登录任一支持 CLI 的路径",
-      "notes": "红线：零 API key ≠ 零依赖"
+      "prompt": "本机没装任何 coding-agent CLI，也没登录过，能直接用在线服务跑吗？",
+      "expected_behavior": "边界处理：明确告知无法生成——工作流依赖本地已登录 CLI 且架构假设单机单操作者；不应建议把 /api/* 暴露公网当在线服务",
+      "notes": "双重边界：B 段已知局限第一条 + 安全收尾（Host 白名单不得放开为 any）"
     },
     {
       "id": "edge-02",
       "type": "edge_case",
-      "prompt": "生成的时候我看内容跑偏了，但是不想浪费这一次生成",
-      "expected_behavior": "边界处理：SSE 流式渲染支持随时中断并重新 prompt，不必为整次生成买单；指导用户中断-修正-重生",
-      "notes": "局限转化：流式中断是设计内的迭代方式"
+      "prompt": "auto 模式匹配到的模板不太对，这篇其实是技术 runbook 不是周报，怎么办",
+      "expected_behavior": "边界处理：改走 convert 显式指定模板（eng-runbook），或用 auto --show-match-only 先核对匹配结果再执行；全败时的 deck-swiss-international 兜底仅作最后手段",
+      "notes": "考察三层匹配漏斗的人工纠偏路径与 --show-match-only 用法"
     }
   ]
 }

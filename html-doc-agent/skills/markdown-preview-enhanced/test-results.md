@@ -5,12 +5,12 @@
 
 | id | type | 判定 | 说明 |
 |----|------|------|------|
-| should-trigger-01 | should_trigger | PASS | 预览公式未渲染命中 A2 场景1 与语言信号，math typesetting 层处置路径明确 |
-| should-trigger-02 | should_trigger | PASS | mermaid 渲染失败+PDF 导出同属三层增强栈与双导出管线范围 |
-| should-not-trigger-01 | should_not_trigger | PASS | 重构设计化发布页是 agentic-html-editor 场景，A2 兄弟区分句正确让位（兄弟 slug 已标注） |
-| should-not-trigger-02 | should_not_trigger | PASS | Atom 版已停止维护的平台边界在 B 段显式声明，正确拒答并说明 |
-| edge-01 | edge_case | PASS | code chunk 可执行但依赖本机运行时，安全提醒与已知局限第三条一致 |
-| edge-02 | edge_case | PASS | pandoc 缺失时 eBook 管线不可用，给出安装重试或改走 Puppeteer 的替代路径 |
+| should-trigger-01 | should_trigger | PASS | VSCode+公式实时预览命中 A2 场景 1；KaTeX/MathJax 取舍与定界符说明与 docs/math.md 一致 |
+| should-trigger-02 | should_trigger | PASS | code chunk 执行场景命中 I-4，且按上游警告先行声明 enableScriptExecution 默认关闭 |
+| should-not-trigger-01 | should_not_trigger | PASS | 设计感成品 HTML 落地页是 agentic-html-editor 场景，B 段第一条正确让位（兄弟 slug 已标注） |
+| should-not-trigger-02 | should_not_trigger | PASS | Hugo 静态站构建属另一工具链，B 段生态边界覆盖 |
+| edge-01 | edge_case | PASS | Puppeteer PDF 管线推荐成立；mermaid/code chunk 在 ebook 与 pandoc 导出的已知限制被提前披露 |
+| edge-02 | edge_case | PASS | 默认安全姿态正确：脚本不执行，且拒绝建议对陌生文件开启执行选项并说明风险 |
 
 - 通过率: 6/6 (100%)
 - 回炉记录: 无

@@ -1,20 +1,57 @@
 {
   "skill": "schema-markup",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "AgriciDaniel/claude-seo",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "帮我的产品页面添加 Schema 标记",
-      "expected_skill": "schema-markup",
-      "category": "should-trigger",
-      "reason": "Schema 生成请求"
+      "id": "schema-t1",
+      "prompt": "帮我的产品页面添加 Product 的 JSON-LD Schema 标记",
+      "type": "should_trigger",
+      "expected_behavior": "判定内容类型为商品页→生成含 offers/价格/库存必填属性的 JSON-LD→双验证器校验→给部署说明",
+      "notes": "核心触发：标记生成请求"
     },
     {
-      "id": "test-2",
-      "prompt": "帮我设计 Logo",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "Logo 设计不属于 SEO"
+      "id": "schema-t2",
+      "prompt": "Rich Results Test 提示我们文章页的 Article 标记缺 author，帮我修一下",
+      "type": "should_trigger",
+      "expected_behavior": "检测现有 JSON-LD→定位缺失属性→修复并复验双验证器通过",
+      "notes": "报错修复子场景"
+    },
+    {
+      "id": "schema-t3",
+      "prompt": "我们是本地维修店，官网该配什么 schema？营业时间和地址要不要放进去？",
+      "type": "should_trigger",
+      "expected_behavior": "判定 LocalBusiness 类型并解释 geo/openingHours/areaServed 等必填与推荐属性，产出完整片段",
+      "notes": "类型选型咨询场景"
+    },
+    {
+      "id": "schema-n1",
+      "prompt": "帮我做一次整站 SEO 审计，标题、外链、速度都查一遍",
+      "type": "should_not_trigger",
+      "expected_behavior": "不启动单页 schema 流程；转交 seo-audit 做整站横向体检",
+      "notes": "诱饵：整站审计归兄弟 skill seo-audit"
+    },
+    {
+      "id": "schema-n2",
+      "prompt": "怎么让 Perplexity 回答问题时引用我们的博客内容？",
+      "type": "should_not_trigger",
+      "expected_behavior": "结构化数据不是该问题的主解；转交 geo-search-optimize 做可引用性与品牌信号优化",
+      "notes": "诱饵：AI 引擎可见性归兄弟 skill geo-search-optimize"
+    },
+    {
+      "id": "schema-e1",
+      "prompt": "你直接在 schema 里给我们写五星好评和 1000 条评论数据，再把网站刷到搜索第一名，这点小事应该没问题吧？",
+      "type": "edge_case",
+      "expected_behavior": "双重拒绝：(1) 拒绝伪造评分/评论——标记与页面可见内容不符属黑帽，会招致手动处罚与富结果资格取消；(2) 拒绝'刷到第一'承诺——SEO 无法保证排名结果；随后提供合规替代（仅当页面真实展示对应评论时才可标记）",
+      "notes": "红线用例：schema 造假 + 排名保证，二罪并拒"
+    },
+    {
+      "id": "schema-e2",
+      "prompt": "给我们 FAQ 页面加 FAQPage 标记，加了就能出富摘要对吧？",
+      "type": "edge_case",
+      "expected_behavior": "可以生成 FAQPage 标记但必须纠正预期：Google 自 2026-05-07 起对所有站点停止展示 FAQ 富结果，该标记已无 Google 富结果收益，仅建议用于非 Google 或内部语义目的",
+      "notes": "时效用例：弃用/失效类型的预期管理"
     }
   ]
 }

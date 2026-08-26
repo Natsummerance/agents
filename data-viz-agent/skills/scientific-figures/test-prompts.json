@@ -7,51 +7,51 @@
     {
       "id": "should-trigger-01",
       "type": "should_trigger",
-      "prompt": "论文定稿要用，帮我用 matplotlib 画一张 publication-quality 的方法对比分组柱状图，导出 PDF 和 PNG",
-      "expected_behavior": "激活：apply_publication_style → make_grouped_bar + annotate_bars 柱顶标值 → finalize_figure 双格式 dpi=300 导出",
-      "notes": "正面：论文+出版质量+矢量导出三信号齐备"
+      "prompt": "我要投 ICML，把三个模型在四个指标上的对比画成出版质量的分组柱状图，png 和 pdf 都要",
+      "expected_behavior": "激活：apply_publication_style(大面板档 font_size=24) → make_grouped_bar + 黑描边 + 柱顶标注 → finalize_figure(formats=['png','pdf'], dpi=300)",
+      "notes": "正面：论文投稿+出版质量+双格式导出三信号齐备，命中 A2 场景 1 与 E-6 导出政策"
     },
     {
       "id": "should-trigger-02",
       "type": "should_trigger",
-      "prompt": "我想让这张训练曲线和 figures4papers 里 VIGIL 项目那几张 line plots 一个风格，蓝的给我提出的方法",
-      "expected_behavior": "激活：make_trend 复现 house style，蓝 #0F4D92 给主方法、红粉给对照基线，线宽 2–3 受控 alpha",
-      "notes": "正面：点名上游仓库与语义配色角色"
+      "prompt": "帮我画一张训练准确率随 epoch 变化的图，两条线带不确定区间，风格要和我仓库里 figure_VIGIL 的图一致",
+      "expected_behavior": "激活：make_trend（2–4 条主线、线宽 2–3、fill_between 不确定带）+ PALETTE 蓝色给本文方法，保持仓库 house style 一致性",
+      "notes": "正面：点名 figures4papers 风格复用，对应 SKILL.md『same style as the repo figures』触发条件"
     },
     {
       "id": "should-not-trigger-01",
       "type": "should_not_trigger",
-      "prompt": "帮我把这份销售周报做成发公众号的扁平风图表页，要好看有设计感",
-      "expected_behavior": "不激活本 skill，转交 lieflat-charts（浏览器阅读的扁平化商业 HTML 图表）",
-      "notes": "兄弟区分诱饵：商业传播图表归 lieflat-charts，本 skill 只管 matplotlib 学术插图"
+      "prompt": "帮我把这份销售数据做成扁平编辑风的 HTML 图表页，发公众号用，青瓷蓝配色",
+      "expected_behavior": "不激活本 skill，转交 lieflat-charts（扁平商业 HTML 图表系统）",
+      "notes": "兄弟区分诱饵：公众号传播场景归兄弟 slug lieflat-charts，本 skill 只管 matplotlib 出版级静态学术插图"
     },
     {
       "id": "should-not-trigger-02",
       "type": "should_not_trigger",
-      "prompt": "快速看看这几列数据有没有相关性，随便画画就行，不用发表",
-      "expected_behavior": "不激活：纯探索性 EDA 无出版目标，pandas/seaborn 默认绘图即可，等出现明确发表目标再引入 house style",
-      "notes": "诱饵：EDA-only 场景在上游 When not to load 清单中"
+      "prompt": "快速看看这批数据的分布就行，不用发表，随便画个直方图",
+      "expected_behavior": "不激活：无 publication target 的探索性绘图，seaborn/pandas 快速出图即可，不必套用出版规范与导出政策",
+      "notes": "上游 SKILL.md 明确排除 EDA-only plots without a publication target"
     },
     {
       "id": "should-not-trigger-03",
       "type": "should_not_trigger",
-      "prompt": "用 Plotly 做一个可以 hover 看数值的交互式 dashboard",
-      "expected_behavior": "不激活：Plotly/交互式 web 可视化在上游排除清单内，且网页交付应转 lieflat-charts 或其他前端方案",
-      "notes": "域外诱饵：非 matplotlib 工具链"
+      "prompt": "用 Plotly 做一个可以悬停查看数值的交互式 dashboard 给运营团队用",
+      "expected_behavior": "不激活：Plotly/交互式 dashboard 属上游明确不适用清单；若需要网页图表可建议 lieflat-charts 的 Interactive 模板路线",
+      "notes": "双重诱饵：非 matplotlib 工具链 + 交互式场景，均在 B 段边界之外"
     },
     {
       "id": "edge-01",
       "type": "edge_case",
-      "prompt": "公式标签很多，开 use_tex 吧——等等我机器上没装 LaTeX",
-      "expected_behavior": "降级处理：use_tex=True 依赖本机 LaTeX，缺失时退回 mathtext 渲染数学符号并向用户说明差异",
-      "notes": "边界：已知局限中的 LaTeX 环境依赖"
+      "prompt": "论文插图里的公式标签要用 LaTeX 排版，但我机器上好像没装 TeX 环境",
+      "expected_behavior": "边界处理：use_tex=True 会失败，回退 matplotlib mathtext 渲染数学符号并明确告知用户差异；不假装 LaTeX 已生效",
+      "notes": "考察 B 段已知局限第一条的诚实降级路径"
     },
     {
       "id": "edge-02",
       "type": "edge_case",
-      "prompt": "这张消融图要印成灰度的，颜色分不出来了怎么办",
-      "expected_behavior": "打印安全处理：叠加 hatch 纹理通道做灰度可分辨编码，或改用同色 alpha 梯度表达方法完整度，交付前灰度打印自检",
-      "notes": "边界：hatch/alpha 是 house style 的灰度保险"
+      "prompt": "这是超密的消融柱状面板，二十多个方法并排，还要打印成黑白也能分清",
+      "expected_behavior": "激活并走特殊规格：dpi 提到 600、黑描边 linewidth 2–3、同主色 alpha 阶梯或 hatch 编码子类，保证灰度打印可辨",
+      "notes": "边界：密集柱面 dpi=600 + 打印安全编码的组合应用（ImmunoStruct bars 先例）"
     }
   ]
 }

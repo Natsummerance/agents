@@ -1,20 +1,56 @@
 {
   "skill": "ecc-harness-os",
-  "version": "1.0.0",
+  "format": "darwin",
+  "minimum_pass_rate": 0.95,
   "tests": [
     {
-      "id": "test-1",
-      "prompt": "我想搭建一个多 Agent 运行时环境",
-      "expected_skill": "ecc-harness-os",
-      "category": "should-trigger",
-      "reason": "Agent harness 是核心场景"
+      "id": "ecc-trig-01",
+      "prompt": "我们团队的 Claude Code 各写各的，想把『先计划、测试先行、写完自查』这套流程一次性装好让大家共用。",
+      "type": "trigger",
+      "expected_behavior": "触发本 skill：给出 ecc@ecc 插件安装 + rules/common 加语言包 + hook profile 选择 + /ecc:plan→tdd-workflow→/code-review 演练的完整路径。",
+      "notes": "核心触发场景：工程纪律装机。"
     },
     {
-      "id": "test-2",
-      "prompt": "帮我写篇文章",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "文本创作不属于基础设施"
+      "id": "ecc-trig-02",
+      "prompt": "公司同时用 Claude Code 和 Codex，能让两边共享同一套技能和会话记忆吗？",
+      "type": "trigger",
+      "expected_behavior": "触发本 skill：说明两 harness 各装一份（各自唯一路径），用 Unified Memory Vault 的 Markdown 格式做上下文交接。",
+      "notes": "跨 harness 共享是本职。"
+    },
+    {
+      "id": "ecc-trig-03",
+      "prompt": "ECC 装完感觉 skills 有重复，hook 也像跑了两遍，帮我体检清理一下。",
+      "type": "trigger",
+      "expected_behavior": "触发本 skill：按 list-installed→doctor→repair（必要时 uninstall --dry-run）顺序处理，并给出叠加安装的四步 reset 清理顺序。",
+      "notes": "体检修复属运维职能。"
+    },
+    {
+      "id": "ecc-bait-01",
+      "prompt": "我想开一间虚拟办公室，五个 agent 头像坐在各自工位上互相发消息协作，我看着大屏指挥（multi-agent-office 那种效果）。",
+      "type": "bait",
+      "expected_behavior": "不触发本 skill：多 agent 可视化协作仿真转 multi-agent-office；本 skill 明确声明面向单 agent 流程强化。",
+      "notes": "主诱饵：显式点名兄弟 slug。"
+    },
+    {
+      "id": "ecc-bait-02",
+      "prompt": "给我们的客服机器人加一个跨会话的用户偏好记忆层，用什么方案好？",
+      "type": "bait",
+      "expected_behavior": "不触发本 skill：记忆层诉求转 mem0-memory-layer；ECC memory vault 不承担该职责。",
+      "notes": "诱饵：memory 词面易误吸到 vault。"
+    },
+    {
+      "id": "ecc-bait-03",
+      "prompt": "帮我把这个仓库的模块关系梳理成知识图谱给新人看结构。",
+      "type": "bait",
+      "expected_behavior": "不触发本 skill：静态建图转 project-knowledge-graph。",
+      "notes": "诱饵：图谱词面干扰。"
+    },
+    {
+      "id": "ecc-edge-01",
+      "prompt": "我能在同一个 Claude Code 里既跑 /plugin install ecc@ecc 又手动 ./install.sh --profile full 吗？双保险嘛。",
+      "type": "edge",
+      "expected_behavior": "明确禁止：解释叠加会导致 skills/hooks/config 重复冲突，要求二选一；若已叠加，给出 remove plugin→uninstall→清 rules→单路重装的顺序。",
+      "notes": "边界判断：纠正『双保险』误解，不许含糊。"
     }
   ]
 }

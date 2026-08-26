@@ -1,20 +1,56 @@
 {
   "skill": "agent-experience-persistence",
-  "version": "1.0.0",
+  "format": "darwin",
+  "minimum_pass_rate": 0.95,
   "tests": [
     {
-      "id": "test-1",
-      "prompt": "怎么让我的 Agent 记住之前的对话？",
-      "expected_skill": "agent-experience-persistence",
-      "category": "should-trigger",
-      "reason": "跨会话经验持久化"
+      "id": "aep-trig-01",
+      "prompt": "我们 agent 连续跑几十个任务的会话，上下文全被工具日志吃满。有没有既能压缩掉这些日志、又能随时查回原文的办法？",
+      "type": "trigger",
+      "expected_behavior": "触发本 skill：给出 offload 三层方案（refs/*.md → jsonl → Mermaid 画布）与 node_id 回溯机制，附 OpenClaw 开启步骤。",
+      "notes": "核心触发场景：短期符号卸载。"
     },
     {
-      "id": "test-2",
-      "prompt": "帮我设计 UI",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "UI 设计不属于记忆系统"
+      "id": "aep-trig-02",
+      "prompt": "希望 agent 把我这个用户的长期习惯沉淀成 persona 和场景块，下次会话直接复用，而且中间产物我能打开人工检查，不要黑盒向量库。",
+      "type": "trigger",
+      "expected_behavior": "触发本 skill：介绍 L0-L3 语义金字塔与白盒 Markdown 产物（~/.openclaw/memory-tdai/），演示 Persona→Atom 钻取。",
+      "notes": "白盒审计诉求是强判别信号。"
+    },
+    {
+      "id": "aep-trig-03",
+      "prompt": "Hermes 上怎么给现有 agent 挂上 memory_tencentdb 这个记忆提供方？目录名和配置老报错。",
+      "type": "trigger",
+      "expected_behavior": "触发本 skill：指出 provider 目录必须下划线命名 memory_tencentdb、config.yaml 声明、env 三件套与健康检查命令。",
+      "notes": "宿主集成细节属本职。"
+    },
+    {
+      "id": "aep-bait-01",
+      "prompt": "帮我在新项目里接入 Mem0（mem0-memory-layer 那个库）做一套通用记忆层，用户偏好跨应用共享那种。",
+      "type": "bait",
+      "expected_behavior": "不触发本 skill 接入流程：转 mem0-memory-layer；本 skill 只声明绑定 OpenClaw/Hermes 场景。",
+      "notes": "诱饵含兄弟 slug：通用层 vs 宿主深度集成。"
+    },
+    {
+      "id": "aep-bait-02",
+      "prompt": "我们记忆召回的排序不准，想上 reciprocal rank fusion 和 cross-encoder 重排，选哪个方案？",
+      "type": "bait",
+      "expected_behavior": "不触发本 skill：排序算法调优转 hindsight-retrieval；本 skill 的 RRF 只是附带能力不是卖点。",
+      "notes": "诱饵：把附带能力误当核心诉求。"
+    },
+    {
+      "id": "aep-bait-03",
+      "prompt": "把我们仓库的模块调用关系做成一张静态知识图谱，给新人 onboarding 用。",
+      "type": "bait",
+      "expected_behavior": "不触发本 skill：静态建图转 project-knowledge-graph。",
+      "notes": "诱饵：『图谱』词面干扰。"
+    },
+    {
+      "id": "aep-edge-01",
+      "prompt": "我们生产环境规定不许用 SQLite，能把 storeBackend 直接换成 Postgres 吗？",
+      "type": "edge",
+      "expected_behavior": "如实说明：当前本地后端为 SQLite+sqlite-vec，无 Postgres 支持，不得虚构；给出过渡方案（容器卷隔离/定期导出）或评估 TCVDB 云后端，并建议关注上游 roadmap。",
+      "notes": "边界判断：防幻觉式承诺。"
     }
   ]
 }

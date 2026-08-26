@@ -1,20 +1,56 @@
 {
   "skill": "mem0-memory-layer",
-  "version": "1.0.0",
+  "format": "darwin",
+  "minimum_pass_rate": 0.95,
   "tests": [
     {
-      "id": "test-1",
-      "prompt": "我想给我的聊天机器人添加记忆功能",
-      "expected_skill": "mem0-memory-layer",
-      "category": "should-trigger",
-      "reason": "Agent 记忆层是核心场景"
+      "id": "mem0-trig-01",
+      "prompt": "我要给我的客服聊天机器人加上长期记忆，让它记住每个用户的偏好和历史工单，该从哪里入手？",
+      "type": "trigger",
+      "expected_behavior": "触发本 skill：先确认隔离粒度（user_id 级），给出 Mem0 部署形态三选一（托管/OSS/OpenMemory MCP），再给 add/search 接入点示例。",
+      "notes": "核心触发场景：通用记忆层选型+接入。"
     },
     {
-      "id": "test-2",
-      "prompt": "帮我写个网页",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "网页开发不属于记忆系统"
+      "id": "mem0-trig-02",
+      "prompt": "Mem0 和自己搭一个 RAG 向量库存对话历史相比，哪个更适合做用户个性化记忆？给个对比。",
+      "type": "trigger",
+      "expected_behavior": "触发本 skill：输出选型对比表（写入模型 ADD-only vs 手工切片、多信号检索 vs 纯向量、治理合规），落到可执行的推荐结论。",
+      "notes": "选型咨询是本职，不允许只答『都行』。"
+    },
+    {
+      "id": "mem0-trig-03",
+      "prompt": "我想让 Cursor 和 Claude Desktop 共享同一份本地记忆，不想在每个工具里重复交代项目约定。",
+      "type": "trigger",
+      "expected_behavior": "触发本 skill：指向 OpenMemory MCP Server 本地方案，说明 add/search/list/delete 四工具与 dashboard 用法及各客户端接线方式。",
+      "notes": "跨工具共享记忆归口本 skill。"
+    },
+    {
+      "id": "mem0-bait-01",
+      "prompt": "我们已经决定用 Hindsight 了（hindsight-retrieval 那套），帮我调一下 recall 的 rerank 参数提升召回精度。",
+      "type": "bait",
+      "expected_behavior": "不触发本 skill：明确转交 hindsight-retrieval，本 skill 只回答一句边界声明，不展开 rerank 调参细节。",
+      "notes": "诱饵：已锁定竞品的调优需求必须让位给兄弟 skill。"
+    },
+    {
+      "id": "mem0-bait-02",
+      "prompt": "帮我把 src/ 这个代码库画成知识图谱（project-knowledge-graph 干的那种），看看模块之间谁依赖谁。",
+      "type": "bait",
+      "expected_behavior": "不触发本 skill：静态代码库建图转 project-knowledge-graph；本 skill 不提供图谱构建流程。",
+      "notes": "诱饵含兄弟 slug，检验边界不越界。"
+    },
+    {
+      "id": "mem0-bait-03",
+      "prompt": "我们 agent 跑长任务时上下文全是工具日志，怎么把日志卸载掉还能随时查回原文？是不是也用 Mem0？",
+      "type": "bait",
+      "expected_behavior": "不触发本 skill 的接入流程：指出这是短期上下文压缩问题，转 agent-experience-persistence 的符号卸载路线；可补一句 Mem0 是长期交互记忆、不解决该场景。",
+      "notes": "诱饵故意混入『是不是也用 Mem0』，考验不抢活。"
+    },
+    {
+      "id": "mem0-edge-01",
+      "prompt": "就存一条记忆：用户喜欢蓝色。有必要为此引入整套 Mem0 记忆层吗？",
+      "type": "edge",
+      "expected_behavior": "不强行全套接入：如实评估成本不匹配，建议轻量替代（配置文件/单条 KV），并说明何时才值得升级到完整记忆层。",
+      "notes": "边界判断：防止为微小需求过度工程化。"
     }
   ]
 }

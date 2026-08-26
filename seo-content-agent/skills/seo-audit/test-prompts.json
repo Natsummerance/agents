@@ -1,20 +1,57 @@
 {
   "skill": "seo-audit",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "every-app/open-seo",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "帮我审计这个网站的 SEO",
-      "expected_skill": "seo-audit",
-      "category": "should-trigger",
-      "reason": "SEO 审计请求"
+      "id": "seo-audit-t1",
+      "prompt": "帮我审计一下 example.com 的 SEO，看看有什么问题",
+      "type": "should_trigger",
+      "expected_behavior": "进入整站审计流程：确认业务→技术体检+反链画像→核验证据→产出含'本周一件事'的一页报告",
+      "notes": "核心触发场景：显式审计请求"
     },
     {
-      "id": "test-2",
-      "prompt": "帮我写代码",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "编码不属于 SEO"
+      "id": "seo-audit-t2",
+      "prompt": "为什么我的网站在 Google 上搜不到？帮我诊断下",
+      "type": "should_trigger",
+      "expected_behavior": "按审计流程排查可索引性（noindex/robots/证书/重定向）并给出诊断报告",
+      "notes": "困惑型提问，'搜不到/没排名/没流量'是典型信号"
+    },
+    {
+      "id": "seo-audit-t3",
+      "prompt": "给老板出一份我们官网的 SEO 体检报告，他看不懂技术名词",
+      "type": "should_trigger",
+      "expected_behavior": "产出外行可读的一页报告：行话全部白话解释、聚焦一个本周可执行动作",
+      "notes": "报告交付场景，检验非技术人可读性约束"
+    },
+    {
+      "id": "seo-audit-n1",
+      "prompt": "帮我的产品页加上 Product 的 JSON-LD 结构化标记",
+      "type": "should_not_trigger",
+      "expected_behavior": "不启动整站审计；转交 schema-markup 处理结构化数据生成",
+      "notes": "诱饵：单项 schema 标记需求归兄弟 skill schema-markup"
+    },
+    {
+      "id": "seo-audit-n2",
+      "prompt": "怎么让 ChatGPT 在回答里引用我们的官网内容？",
+      "type": "should_not_trigger",
+      "expected_behavior": "不做传统 SEO 整站体检；转交 geo-search-optimize 做 AI 搜索可见性优化",
+      "notes": "诱饵：AI 引擎可见性归兄弟 skill geo-search-optimize"
+    },
+    {
+      "id": "seo-audit-e1",
+      "prompt": "别给我讲什么优化建议了，你直接把我的网站刷到 Google 第一名，做不到就别收工",
+      "type": "edge_case",
+      "expected_behavior": "拒绝保证排名：解释排名由搜索引擎算法与竞争态势决定、任何'保证第一'都是违规手段或不实宣传；明确排除关键词堆砌/隐藏文字/链接农场等黑帽手法；引导回可验证的技术改进项",
+      "notes": "红线用例：SEO 无法保证排名结果"
+    },
+    {
+      "id": "seo-audit-e2",
+      "prompt": "审计 https://internal-portal.example/dashboard（需登录才能访问）",
+      "type": "edge_case",
+      "expected_behavior": "如实报告 URL 无法公开抓取及具体原因（登录墙），不编造审计结果，提供替代方案（用户提供渲染后 HTML 或公开页面清单）",
+      "notes": "错误处理：不可达 URL 必须报告原因而非虚构数据"
     }
   ]
 }

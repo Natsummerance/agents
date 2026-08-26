@@ -1,20 +1,56 @@
 {
   "skill": "hindsight-retrieval",
-  "version": "1.0.0",
+  "format": "darwin",
+  "minimum_pass_rate": 0.95,
   "tests": [
     {
-      "id": "test-1",
-      "prompt": "我想从大量文档中语义搜索相关信息",
-      "expected_skill": "hindsight-retrieval",
-      "category": "should-trigger",
-      "reason": "向量检索场景"
+      "id": "hind-trig-01",
+      "prompt": "我们的客服 bot 总记不住三周前的承诺，召回结果也不准时序，有没有更准的记忆检索方案？",
+      "type": "trigger",
+      "expected_behavior": "触发本 skill：定位为时序+融合检索问题，给出 Hindsight 四路召回（semantic/BM25/graph/temporal）+RRF+重排方案与 retain 带 timestamp 的写入建议。",
+      "notes": "核心触发场景：召回精度与时序。"
     },
     {
-      "id": "test-2",
-      "prompt": "帮我修 Bug",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "Bug 修复不属于检索"
+      "id": "hind-trig-02",
+      "prompt": "Hindsight 的 retain 和 recall 我想在代码里显式控制调用时机，而不是自动注入，怎么接？",
+      "type": "trigger",
+      "expected_behavior": "触发本 skill：给 SDK 显式调用示例（python/node/go/CLI 任一），并说明何时该放弃 LLM wrapper 改用显式 API。",
+      "notes": "显式存取控制是本职。"
+    },
+    {
+      "id": "hind-trig-03",
+      "prompt": "给 opencode 装一个按仓库隔离的长期项目记忆，冷启动就带上架构约定。",
+      "type": "trigger",
+      "expected_behavior": "触发本 skill：指向 npx @vectorize-io/hindsight-coding-agents install 路径，说明 per-repo bank 自动摄取与知识页注入机制。",
+      "notes": "编码 agent 集成属本 skill 收尾步骤。"
+    },
+    {
+      "id": "hind-bait-01",
+      "prompt": "我还没想好用哪家，先给我对比下 Mem0 这类通用记忆层的选型和接入成本（就是 mem0-memory-layer 管的事）。",
+      "type": "bait",
+      "expected_behavior": "不触发本 skill 实施流程：转 mem0-memory-layer 做选型对比；本 skill 只声明『进入实施后再回来』。",
+      "notes": "诱饵：选型期需求归兄弟，防止抢跑实施。"
+    },
+    {
+      "id": "hind-bait-02",
+      "prompt": "我想把 agent 每次的操作经验压成分层画像和 SOP，下次会话直接复用，中间产物还要能人工检查。",
+      "type": "bait",
+      "expected_behavior": "不触发本 skill：分层经验沉淀+白盒审计转 agent-experience-persistence；本 skill 不提供 Mermaid 画布/L0-L3 方案。",
+      "notes": "诱饵：经验沉淀诉求与信念精炼形近质异。"
+    },
+    {
+      "id": "hind-bait-03",
+      "prompt": "帮我把这个 monorepo 的模块依赖关系建成一张静态知识图谱，给新同事看结构。",
+      "type": "bait",
+      "expected_behavior": "不触发本 skill：静态代码库建图转 project-knowledge-graph。",
+      "notes": "诱饵：『图谱』一词易误吸，须按动静分野让位。"
+    },
+    {
+      "id": "hind-edge-01",
+      "prompt": "能不能把 Hindsight 当纯向量库存 embedding 用，跳过它的 fact 抽取流程？",
+      "type": "edge",
+      "expected_behavior": "如实劝退：说明 retain 必经 LLM 抽取与规范化，绕开即失去四路召回与观察精炼的全部收益；若只要裸向量检索应直接用 pgvector 等，不建议如此滥用。",
+      "notes": "边界判断：防架构性误用，不许含糊答应。"
     }
   ]
 }

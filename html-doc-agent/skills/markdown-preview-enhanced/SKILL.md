@@ -1,99 +1,105 @@
 ---
 name: markdown-preview-enhanced
 description: |
-  VS Code 内 Markdown 增强预览方法论：双栏实时预览与自动滚动同步，KaTeX/MathJax 数学公式、Mermaid/
-  PlantUML/流程图时序图、可执行 code chunk（含 LaTeX/TikZ）、外部文件导入、TOC 目录、front-matter，
-  并经 Puppeteer/pandoc 导出 PDF/PNG/JPEG/HTML/ePub。当用户说「Markdown 预览不出公式」「mermaid 图
-  渲染失败」「md 里嵌代码块运行」「把笔记导出 PDF」，且工作对象是既有 Markdown 文件的书写与导出时使用。
-  不适用于：让 AI 把内容重构成设计化 HTML 发布页（改用 agentic-html-editor）。
+  Markdown 渲染预览增强（VSCode 扩展 Markdown Preview Enhanced 的使用知识）：编辑器内实时预览 .md，
+  滚动同步、KaTeX/MathJax 数学排版、mermaid/PlantUML/GraphViz/Vega 等图表渲染、代码块执行（code chunk）、
+  reveal.js 演示模式、pandoc/PDF 多格式导出、@import 文件嵌入与自定义 CSS。
+  当用户写带公式/图表/可执行代码块的 Markdown 笔记或文档、问「怎么在 VSCode 预览 md」「md 怎么导出 PDF/
+  做幻灯片」时使用。
+  不适用于：把内容交给 AI 生成设计感成品 HTML 页面（转 agentic-html-editor）。
 source_project: shd101wyy/markdown-preview-enhanced
-tags: [markdown-preview-enhanced, markdown, vscode, 预览渲染, 蒸馏技能]
+tags: [markdown-preview-enhanced, markdown, vscode, mathjax, mermaid, pandoc, 蒸馏技能]
 ---
 
 # Markdown Preview Enhanced · Markdown 渲染预览增强
 
 ## R (Reading) — 上游原文
 
-> "**Markdown Preview Enhanced** is an extension that provides you with many useful functionalities such as automatic scroll sync, math typesetting, mermaid, PlantUML, pandoc, PDF export, code chunk, presentation writer, etc."
+> "Markdown Preview Enhanced is an extension that provides you with many useful functionalities such as automatic scroll sync, math typesetting, mermaid, PlantUML, pandoc, PDF export, code chunk, presentation writer, etc."
 >
-> — 上游 README.md（shd101wyy/markdown-preview-enhanced）
+> — 上游 README.md（shd101wyy__markdown-preview-enhanced）
 
-上游 docs/README.md 补全能力面："Import external files… Export PDF, PNG, and JPEG by Puppeteer; Export beautiful HTML (mobile device supported); Compile to GitHub Flavored Markdown; Customize Preview CSS; TOC generation; Flowchart / Sequence diagram and many other kinds of graphs; Embed LaTeX, render TikZ, Chemfig etc."
+上游 docs/code-chunk.md 对可执行代码块给出格式与警告：「You can configure code chunk options in format of ```lang {cmd=your_cmd opt1=value1 …}」以及「⚠️ Script execution is off by default and needs to be explicitly enabled… Your machine can get hacked if someone makes you open a markdown with malicious code while script execution is enabled.」
+
+docs/presentation.md 说明演示模式：「Markdown Preview Enhanced uses reveal.js to render beautiful presentations.」通过 front-matter 的 `presentation:` 节配置尺寸与主题，用 `<!-- slide -->` 注释分页。
 
 ## I (Interpretation) — 方法论骨架
 
-1. **定位是书写伴侣而非出版引擎**：左源码右预览的双栏结构，核心价值是「所见即所得地确认我的 md 写对了没有」——渲染忠实于内容本身，不重设计版面。
-2. **滚动同步是一切的前提**：ctrl+shift+m 开预览后源码与预览双向自动定位，长文档里公式/图表错误能秒级回溯到对应行；ctrl+shift+s 手动强制同步兜底。
-3. **三层增强栈各司其职**：①数学层 KaTeX/MathJax 渲染 $...$/$$...$$；②图表层 mermaid/plantuml/flowchart/sequence 用代码块声明图型；③执行层 code chunk 让 python/bash 等代码块真的跑起来并把输出/图表嵌进预览（shift+enter 运行当前块、ctrl+shift+enter 跑全部），另支持 LaTeX/TikZ/Chemfig 内嵌编译。
-4. **文档可以组装**：@import 语法导入外部 md/csv/图片文件拆分管理长文；front-matter 声明元信息；footnote/task list/GFM 兼容保证跨平台粘贴不碎。
-5. **导出走两条管线**：轻量导出经 Puppeteer 出 PDF/PNG/JPEG 与移动端友好的 HTML；重量转换交给外部 pandoc/prince/eBook 工具链出 LaTeX/ePub——先想清楚读者拿什么介质，再选管线。
-6. **可定制是逃生舱**：自定义预览 CSS（style.less）调整观感，parser 可扩展新语法；默认样式不够用时先定制再换工具。
+1. **预览即工作台**：ctrl+shift+m 开关预览，默认 live update 边写边渲染；ctrl+shift+s 双向滚动同步让长文档源码与预览位置互跳；esc 呼出侧边 TOC。写作侧的「所见即所得」由它承担，不改变 .md 本身。
+2. **数学双引擎**：KaTeX 快但功能子集少，MathJax 全但慢；行内 `$...$`/`\(...\)`、块级 `$$...$$`/`\[...\]` 或 ```math 围栏；引擎与定界符都可在扩展设置里切换，MathJax 配置可用命令面板打开调整。
+3. **图表即代码块**：mermaid（三套主题 + 可编辑 init config 与 icon packs）、PlantUML、WaveDrom、GraphViz、Vega/Vega-lite、Ditaa 直接用围栏语法声明渲染；注意部分图表在 PDF/pandoc 导出时表现不佳。
+4. **Code Chunk 是可编程文档**：```bash {cmd} / ```python {cmd=true matplotlib=true} 等写法让代码块真正执行并把输出（html/markdown/text/png/none）回填预览；支持 args、stdin、hide、continue=id 跨块续接、$input_file 宏、run_on_save；shift-enter 跑当前块、ctrl-shift-enter 全跑。
+5. **演示模式复用同一份 md**：front-matter 的 presentation: 节配置宽高/主题，`<!-- slide -->` 注释分页，底层是 reveal.js——一份笔记同时是讲稿。
+6. **导出走三条路**：推荐 Chrome(Puppeteer) 打印 PDF（或浏览器打开手动打印、Prince）；pandoc 导出 docx/beamer/rtf 及参考文献；微信导出适配公众号。导出前可用 Customize Css 的 style.less 定制打印样式。
+7. **文件引用与图片流**：@import "file"（兼容 ![]() 与 ![[wikilink]] 语法）把外部文件并入渲染并带缓存刷新按钮；Image Helper 支持粘贴/快速插入/上传图床（imgur、sm.ms），上传记录存 image_history.md。
+8. **安全默认关闭执行**：enableScriptExecution 默认 false，打开恶意 md 即执行任意命令是真实风险面；教用户开此选项时必须同时说明风险。
 
 ## A1 (Past Application) — 源项目典型应用
 
-### 案例: 算法笔记的数学公式渲染
-- **输入**: 含大量 $O(n\log n)$ 行内公式与推导块的学习笔记
-- **做法**: ctrl+shift+m 打开预览启用 math typesetting，滚动同步逐段核对公式语法
-- **结果**: 公式实时正确渲染，笔误的 LaTeX 语法在预览中立刻暴露并修正
+### 案例: 数学讲义边写边校
+- **输入**: 含大量公式的课程讲义 Markdown
+- **做法**: ctrl+shift+m 开预览，行内/块级定界符写公式，KaTeX 引擎即时渲染，滚动同步对照源码修改
+- **结果**: 写作与校对同屏完成，无需反复编译 LaTeX 才能看效果
 
-### 案例: 架构文档图文混排并导出分享
-- **输入**: 一份含系统架构说明的 Markdown 文档，需要嵌入流程图和一段数据统计脚本
-- **做法**: mermaid 代码块画架构图，python code chunk 计算统计量输出表格（shift+enter 执行），最后 Puppeteer 导出 PDF
-- **结果**: 单份 PDF 内图文数齐全，直接发团队评审，无需截图拼贴
+### 案例: 带可执行实验的实验记录
+- **输入**: 数据分析笔记，内嵌 python 绘图与 shell 统计命令
+- **做法**: 代码块加 {cmd=true}（matplotlib=true 内联图像），shift-enter 逐块执行，hide 隐藏代码只留输出，continue=id 让清洗与绘图共享状态
+- **结果**: 文档本身成为可重跑的 notebook 式报告，输出随代码更新
 
-### 案例: 长篇教程的组装与放映
-- **输入**: 分散在多个文件里的课程章节 md
-- **做法**: @import 组装外部文件 + front-matter 声明元信息 → presentation writer 转成可放映页面，esc 呼出侧栏 TOC 导航
-- **结果**: 一份既能在编辑器里维护、又能直接放映分享的课程材料
+### 案例: 同一份 md 出幻灯与 PDF
+- **输入**: 组会汇报提纲
+- **做法**: 加 presentation front-matter 与 `<!-- slide -->` 分页走 reveal.js 演示；同一文件再经 Puppeteer 导出 PDF 存档
+- **结果**: 一份源文件两种交付形态，维护成本减半
 
 ## A2 (Future Trigger) ★ 触发场景
 
 ### 用户会在什么情境下需要
-1. 在 VS Code 写 Markdown 时数学公式、mermaid 图、脚注等元素渲染不出来或显示错乱
-2. 想在笔记里嵌入可执行代码块跑出结果，或把大文档拆成多个外部文件组装
-3. 要把手头 md 笔记导出成 PDF/图片/HTML/ePub 分发给不用编辑器的人
+1. 在 VSCode 里写含数学公式/图表/表格的技术笔记或论文草稿，要求实时预览
+2. 想让 Markdown 里的代码块真的能跑并把结果留在文档里（notebook 式写作）
+3. 要把手头 md 导出成 PDF/Word/Beamer 幻灯或直接变 reveal.js 演示
 
 ### 语言信号
-- "我的 Markdown 预览不支持数学公式怎么办"
-- "VS Code 里怎么让 mermaid 图渲染出来"
-- "把这份 md 笔记导出成 PDF / 带 scroll sync 的实时预览"
-- "笔记里的代码块想直接运行看到结果 / 长文档怎么拆文件组装"
+- "VSCode 里怎么实时预览 markdown 的数学公式"
+- "我想让 md 里的 python 代码块运行并显示图"
+- "这份 markdown 怎么导出 PDF / 转成幻灯片"
+- "mermaid 流程图在 markdown 里怎么画出来"
+- "笔记里的 @import 引用别的 md 文件没生效"
 
 ### 与同 agent 兄弟 skill 的区分
-- 与 `agentic-html-editor` 的区别：本 skill **忠实渲染既有 Markdown 内容**（写作时的预览校对与格式保真导出）；agentic-html-editor 让 AI 把输入**重构为设计化成品 HTML 页面**用于发布。用户要的是「读得舒服」→ 本 skill；要的是「看起来像设计师做的」→ 转 agentic-html-editor。
+- 与 `agentic-html-editor` 的区别一句话：本 skill 是**写作者侧的渲染预览增强**（忠实呈现你写的 md，附公式/图表/代码执行/导出），agentic-html-editor 是**读者侧的 AI 成品生成**（按设计模板产出可直接分发的 HTML 页面）。
 
 ## E (Execution) — 可执行步骤
 
-1. **环境就绪** — 完成标准: VS Code 已安装 MPE 扩展，打开 .md 文件按 ctrl+shift+m 右侧出现预览窗格
-2. **增强语法落笔** — 完成标准: 数学公式用 $...$/$$...$$、图表用 mermaid/plantuml 围栏块、可执行块用 code chunk 语法，各自在预览中正确渲染
-3. **滚动同步校验** — 完成标准: 在长文档两端各跳转一次，源码与预览定位保持一致（必要时 ctrl+shift+s 强制同步）
-4. **外部资源接入** — 完成标准: @import 引用的子文档/CSV/图片路径全部解析成功并在预览可见，无破图
-5. **导出执行** — 完成标准: 经 Puppeteer/pandoc 按目标格式（PDF/HTML/PNG/ePub）落盘，打开抽查排版与公式无损
-6. **样式定制（可选）** — 完成标准: style.less 修改生效且不破坏默认元素的渲染语义
+1. **确认写作场景** — 完成标准: 明确文档类型（笔记/讲义/实验记录/汇报）与其依赖能力（数学/图表/code chunk/导出目标）
+2. **开启预览与同步** — 完成标准: ctrl+shift+m 预览已打开，live update 或保存触发模式已按用户习惯设定，长文档启用滚动同步
+3. **装配所需渲染器** — 完成标准: 数学引擎已选定（KaTeX/MathJax）；mermaid/PlantUML 等围栏渲染正常出图；外部依赖（如 PlantUML 需本地服务、LaTeX 编译需 pdf2svg+引擎）已检查
+4. **编写与验证 code chunk** — 完成标准: 用户明确知情后 enableScriptExecution 才开启；chunk 参数（cmd/output/hide/continue）符合 docs 语法且试运行通过
+5. **组织结构化元素** — 完成标准: TOC 已生成、@import 引用的外部文件路径有效、图片经 Image Helper 就位且 image_history.md 记录一致
+6. **按需导出** — 完成标准: 目标格式管线跑通（Puppeteer PDF/pandoc docx/reveal.js 演示），已知限制核对过（部分图表与 code chunk 不兼容 ebook/pandoc 导出），产物打开验收
 
 ## B (Boundary) — 边界
 
 ### 不适用场景
-- 要生成全新设计的 HTML 页面/公众号排版/落地页原型 → `agentic-html-editor`
-- 非 VS Code 环境（Atom 版已停止维护）；纯浏览器端的协作式 md 编辑不在本项目范围
-- 需要 PowerPoint/PPTX 演示文件的正式交付（presentation writer 输出的是 HTML 放映件）
-- 团队协作文档平台（Notion/语雀等）内的渲染定制——本项目作用于本地编辑器中的 md 文件
+- 让 AI 按设计模板生成面向读者的成品 HTML（公众号排版、落地页、海报）→ 转 `agentic-html-editor`
+- 需要 WYSIWYG 富文本编辑器或 Notion 类块编辑体验的场景——本 skill 只做源码模式的预览增强
+- 非 VSCode/Atom 生态的纯静态站点构建（Hugo/Hexo 渲染管线另有工具链）
+- 团队协作文档平台（语雀/Notion/飞书文档）内的公式图表渲染——那些平台有各自的内置方案
 
 ### 已知局限 / 失败模式
-- 主仓库只承载文档，扩展本体在 shd101wyy/vscode-markdown-preview-enhanced，报 issue 需去那边
-- pandoc/prince/eBook 导出依赖对应外部程序已安装，缺失时该管线静默不可用
-- code chunk 执行依赖本机相应语言运行时与网络（如需拉包），沙箱隔离有限，勿跑不受信代码
-- mermaid/plantuml 等图表渲染随扩展内置版本更新，个别新语法可能滞后于官方上游
+- 上游仓库仅承载文档，VSCode 扩展源码已迁至 shd101wyy/vscode-markdown-preview-enhanced，issue 与版本查询应去新仓库
+- code chunk 不兼容 ebook 导出，且在 pandoc 导出中可能有 bug；部分图表（mermaid/PlantUML 等）在 PDF/pandoc 导出时渲染不佳
+- LaTeX/TikZ、gnuplot、erd 等 chunk 依赖本机安装对应程序，缺依赖时报错而非自动降级
+- KaTeX 与 MathJax 能力面不同：切换引擎后个别公式宏可能从可渲染变为不支持，长文档换引擎前应全文预览核对
 
 ## 相关 skills
 
-- contrasts-with: agentic-html-editor（忠实渲染预览 vs AI 重构生成成品页）
-- composes-with: agentic-html-editor（MPE 校对内容正确性 → html-anything 包装发布外观的两段式管线）
+- contrasts-with: agentic-html-editor（写作者侧 md 实时预览 vs 读者侧 AI 成品 HTML 生成）
+- composes-with: agentic-html-editor（MPE 里校对完稿子 → 兄弟 skill 接手出分发版式）
 
 ---
 
 ## 审计信息
 
-- **验证**: V1 ✓（README.md 与 docs/README.md 的功能清单相互印证）/ V2 ✓（可回答「公式/图表/导出分别走哪层能力」的问题）/ V3 ✓（三层增强栈+双导出管线的分工是非常识性结构）
+- **验证**: V1 ✓（README.md 与 docs/usages.md、code-chunk.md、diagrams.md、math.md、presentation.md 在功能清单与快捷键上互证）/ V2 ✓（可回答「KaTeX 和 MathJax 怎么选」「code chunk 如何跨块续接」「为什么脚本执行默认关闭」等新问题）/ V3 ✓（code chunk 参数协议、presentation front-matter、三条导出路线是非常识性工作流）
 - **蒸馏时间**: 2026-08-25
-- **来源文件清单**: upstream/shd101wyy__markdown-preview-enhanced/{README.md, docs/README.md}；操作快捷键与工作流细节基于仓库描述蒸馏（docs 子页未逐一展开）
+- **来源文件清单**: upstream/shd101wyy__markdown-preview-enhanced/{README.md, docs/usages.md, docs/code-chunk.md, docs/diagrams.md, docs/math.md, docs/presentation.md, docs/file-imports.md, docs/pdf.md}

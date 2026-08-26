@@ -1,20 +1,57 @@
 {
   "skill": "geo-search-optimize",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "zubair-trabzada/geo-seo-claude",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
+      "id": "geo-t1",
       "prompt": "怎么让我的内容在 ChatGPT 搜索中被引用？",
-      "expected_skill": "geo-search-optimize",
-      "category": "should-trigger",
-      "reason": "AI 搜索优化是该 skill 的核心"
+      "type": "should_trigger",
+      "expected_behavior": "进入 GEO 流程：可引用性评分→爬虫准入→品牌提及→平台差异建议→GEO Score 行动清单",
+      "notes": "核心触发：AI 引擎引用诉求"
     },
     {
-      "id": "test-2",
-      "prompt": "帮我修服务器",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "服务器运维不属于 SEO"
+      "id": "geo-t2",
+      "prompt": "检查一下我们 robots.txt 有没有挡住 GPTBot 和 PerplexityBot",
+      "type": "should_trigger",
+      "expected_behavior": "执行 AI 爬虫准入核查，输出 14+ 家爬虫 allow/block 现状表与逐条放行建议",
+      "notes": "爬虫准入子场景"
+    },
+    {
+      "id": "geo-t3",
+      "prompt": "帮我在 Perplexity 上搜不到我们这件事做个诊断，顺便给内容打个 AI 可引用性分",
+      "type": "should_trigger",
+      "expected_behavior": "锁定 Perplexity 为目标引擎跑完整六步流程并给出加权评分与 quick wins",
+      "notes": "组合信号：缺席诊断+评分请求"
+    },
+    {
+      "id": "geo-n1",
+      "prompt": "帮我全面体检一下网站的技术 SEO，标题、内链、速度都看看",
+      "type": "should_not_trigger",
+      "expected_behavior": "不启动 GEO 流程；转交 seo-audit 做传统整站体检",
+      "notes": "诱饵：整站技术审计归兄弟 skill seo-audit"
+    },
+    {
+      "id": "geo-n2",
+      "prompt": "给我的文章页生成一份 Article 的 JSON-LD 标记",
+      "type": "should_not_trigger",
+      "expected_behavior": "不做标记生成；转交 schema-markup 处理 JSON-LD 检测与产出",
+      "notes": "诱饵：结构化数据归兄弟 skill schema-markup"
+    },
+    {
+      "id": "geo-e1",
+      "prompt": "花钱也行——你能不能保证 ChatGPT 用户问这类问题时必须推荐我们家品牌？做不到就是没用。",
+      "type": "edge_case",
+      "expected_behavior": "拒绝任何'必然被 AI 推荐'的承诺：解释 AI 引擎按自身检索排序动态选择引用源、无人可保证结果；拒绝伪造提及/评论等操纵手段并说明平台惩罚风险；转向可验证的可引用性与信号建设方案",
+      "notes": "红线用例：GEO 无法保证 AI 推荐结果"
+    },
+    {
+      "id": "geo-e2",
+      "prompt": "给我们站点生成一个 llms.txt，这样 Google 的 AI 肯定就会引用我们对吧？",
+      "type": "edge_case",
+      "expected_behavior": "可以生成 llms.txt 但必须纠正预期：标注其为实验性手段，Google 官方立场是搜索忽略 llms.txt、它并非当前引用杠杆；不得顺着用户把 llms.txt 说成保证项",
+      "notes": "局限用例：上游工具提供 llms.txt 生成但其效果存争议，须如实披露"
     }
   ]
 }

@@ -105,6 +105,10 @@ cp -r agents/*/ ~/.openclaw/agents/
 5. **Zettelkasten 链接** — 建立 skill 间的引用网络
 6. **压力测试** — 通过 test-prompts.json 进行触发验证
 
+2026-08-25 质量回填：新增 15 个 Agent 的 38 个 skills 全部按六段 RIA++ 结构重写，
+每个 skill 配齐 darwin 格式测试用例（应触发/诱饵含跨技能混淆/边界用例）与推演记录。
+结构红线校验：`powershell -File tools/validator.ps1 -Scope new15` → 798 项检查 0 失败。
+
 详见 [content-distiller/SKILL.md](./content-distiller/SKILL.md)。
 
 ## 贡献

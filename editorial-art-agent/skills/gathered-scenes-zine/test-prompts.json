@@ -1,41 +1,57 @@
 {
   "skill": "gathered-scenes-zine",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "Zeejay0/gathered-scenes-zine-skill",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "expected_skill": "gathered-scenes-zine",
-      "id": "test-1",
-      "category": "should-trigger",
-      "prompt": "把这张风景照做成拾景风格的拼贴海报",
-      "reason": "\"拾景\"\"拼贴海报\"直接匹配该 skill"
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "把这张风景照做成拾景风格的拼贴海报，照片周围用插画把氛围延展开",
+      "expected_behavior": "激活：Scene Card 建卡→布局选型（photo anchor+expansive field 方向）→抽象地图→色彩结构过移除测试→撕纸边构建→生成质检",
+      "notes": "正面：拾景拼贴+插画场域延展双信号"
     },
     {
-      "expected_skill": "gathered-scenes-zine",
-      "id": "test-2",
-      "category": "should-trigger",
-      "prompt": "帮我把这张自然场景的照片做成手撕纸效果的艺术作品",
-      "reason": "\"手撕纸\"是 gathered-scenes-zine 的标志性特征"
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "我要那种手撕纸边缘的手作 zine 质感，把这张街景照做出来",
+      "expected_behavior": "激活：主交接带构建不规则手撕轮廓+1-4% 纤维带，覆盖 35-70% 摄影边界，禁止数字抠图白边",
+      "notes": "正面：撕纸质感是该 skill 签名特征"
     },
     {
-      "expected_skill": "photo-relic-editorial",
-      "id": "test-3",
-      "category": "cross-skill-confusion",
-      "prompt": "把这张城市建筑照片做成纸上版画",
-      "reason": "建筑+版画应路由到遗存版画"
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "像 photo-relic-editorial 那样，上面保留真照片下面只放几笔墨迹遗存，大量留白",
+      "expected_behavior": "不激活本 skill，转交 photo-relic-editorial（小面积遗存+留白克制，无大场域插画与撕纸）",
+      "notes": "兄弟 slug 诱饵：点名遗存版画签名"
     },
     {
-      "expected_skill": "minimal-zine-poster",
-      "id": "test-4",
-      "category": "cross-skill-confusion",
-      "prompt": "用这个主题词做一张海报",
-      "reason": "主题+海报无照片输入应路由到 minimal-zine-poster"
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "用\"城市孤独感\"这个主题做一张海报，不用照片",
+      "expected_behavior": "不激活本 skill，转交 minimal-zine-poster（纯主题起稿的焦点事件海报；本 skill 必须有实景照片锚定）",
+      "notes": "场景诱饵：无照片主题海报"
     },
     {
-      "expected_skill": null,
-      "id": "test-5",
-      "category": "should-not-trigger",
-      "prompt": "帮我做一个 PPT",
-      "reason": "PPT 制作不属于视觉艺术"
+      "id": "should-not-trigger-03",
+      "type": "should_not_trigger",
+      "prompt": "从这张照片提取空间关系做一块均匀象牙底板上的稀疏抽象面板",
+      "expected_behavior": "不激活本 skill，转交 photo-abstract-editorial（关系重建无插画语法无撕纸边）",
+      "notes": "特征诱饵：关系抽象面板属兄弟路线"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "插画细节越多越好，这棵树的每一片叶子每一根松针都要画清楚，越密越显功力",
+      "expected_behavior": "边界纠偏：拒绝逐叶渲染——叶dominant 场景须省略 85-95% 单片细节并合并为大块面与枝势手势；解释'复杂度是加深简化的理由而非印刷更多细节的理由'",
+      "notes": "签名公式反向施压：密度诉求对抗压缩铁律"
+    },
+    {
+      "id": "edge-02",
+      "type": "edge_case",
+      "prompt": "把照片里的游客都换成另一个人群素材，天也换成晚霞，其他保持原样就行",
+      "expected_behavior": "硬约束拒绝：替换人群与换天属篡改摄影锚区，违反保真优先级第 2 条；提供仅对插画区做演绎、照片区原样保留的替代方案",
+      "notes": "红线：摄影锚区内容替换"
     }
   ]
 }

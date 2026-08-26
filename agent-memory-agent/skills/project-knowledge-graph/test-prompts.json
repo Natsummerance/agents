@@ -1,20 +1,56 @@
 {
   "skill": "project-knowledge-graph",
-  "version": "1.0.0",
+  "format": "darwin",
+  "minimum_pass_rate": 0.95,
   "tests": [
     {
-      "id": "test-1",
-      "prompt": "帮我把这个项目的代码结构做成知识图谱",
-      "expected_skill": "project-knowledge-graph",
-      "category": "should-trigger",
-      "reason": "项目知识图谱构建"
+      "id": "pkg-trig-01",
+      "prompt": "我刚接手一个二十万行的 monorepo，完全陌生，帮我快速搞清楚核心模块和它们之间的关系。",
+      "type": "trigger",
+      "expected_behavior": "触发本 skill：走 E 流程——圈语料、安装、首跑 /graphify、读 GRAPH_REPORT.md 的 god nodes 给出结构解读。",
+      "notes": "核心触发场景：大仓库 onboarding。"
     },
     {
-      "id": "test-2",
-      "prompt": "帮我做 PPT",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "PPT 不属于知识图谱"
+      "id": "pkg-trig-02",
+      "prompt": "把这批材料整合一下：几个仓库的代码、三篇 PDF 论文、几张架构白板照片，我想看到跨材料的概念联系。",
+      "type": "trigger",
+      "expected_behavior": "触发本 skill：强调多模态抽取矩阵（AST/Claude/vision）与 surprising connections 排序能力，给出 --mode deep 建议。",
+      "notes": "异构语料统一建图是独占场景。"
+    },
+    {
+      "id": "pkg-trig-03",
+      "prompt": "给项目生成一个 agent 能自己爬的知识库，之后每个新会话不用重读源码就能接着干活。",
+      "type": "trigger",
+      "expected_behavior": "触发本 skill：--wiki 生成 index.md + 社区文章作为 agent 导航层，配 --update/--watch 保持新鲜。",
+      "notes": "持久导航层诉求命中。"
+    },
+    {
+      "id": "pkg-bait-01",
+      "prompt": "记住我喜欢用 pnpm 和 tab 缩进，以后每个项目都按这个偏好来配置。",
+      "type": "bait",
+      "expected_behavior": "不触发本 skill：这是跨会话用户偏好记忆，转 mem0-memory-layer；静态语料建图不适用。",
+      "notes": "诱饵：『记住』一词的字面干扰。"
+    },
+    {
+      "id": "pkg-bait-02",
+      "prompt": "上次我们聊到的那个供应商报价是多少？从你记的东西里帮我召回一下。",
+      "type": "bait",
+      "expected_behavior": "不触发本 skill：对话事实回忆转 hindsight-retrieval（或既有会话上下文），知识图谱管不了动态聊天记录。",
+      "notes": "诱饵：检索词面干扰。"
+    },
+    {
+      "id": "pkg-bait-03",
+      "prompt": "把这次线上事故的处理过程沉淀成 SOP 文档存下来，下次出事直接照着做（就是 agent-experience-persistence 管的那种经验沉淀）。",
+      "type": "bait",
+      "expected_behavior": "不触发本 skill：经验/SOP 沉淀转 agent-experience-persistence；本 skill 不处理过程性经验。",
+      "notes": "诱饵显式点名兄弟 slug，检验不抢活。"
+    },
+    {
+      "id": "pkg-edge-01",
+      "prompt": "我项目里就 4 个源文件，也帮我建个知识图谱吧，听说能省 token。",
+      "type": "edge",
+      "expected_behavior": "如实告知：README 实测小语料（httpx 案例 6 文件）压缩比约 1x，省 token 不成立；若只为看结构可以跑，但不得夸大收益。",
+      "notes": "边界判断：拒绝夸大宣传。"
     }
   ]
 }

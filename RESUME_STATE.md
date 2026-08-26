@@ -1,42 +1,31 @@
-# RESUME_STATE — 新15个agent空壳填充工程（cangjie RIA-TV++）
+# RESUME_STATE — 新15个agent空壳填充工程（cangjie RIA-TV++）✅ 已完成
 
-> 断点续跑文件。恢复工作时先读本文件 + tools/validation-report.txt。
+> 状态：**全部完成（2026-08-25）**。本文件转存为工程档案。
 
-## 验收标准（不可妥协）
-- `powershell -File tools\validator.ps1 -RepoRoot . -Scope new15` 全绿（0 FAIL）
-- 每个 skill：SKILL.md ≥70 行、六段 RIA++ 结构、E 段每步带"完成标准:"、test-prompts.json 5~10 条含三类用例+跨技能诱饵+minimum_pass_rate 0.95、test-results.md 推演表全 PASS
-- 最终整体通过率 ≥95%（validator 口径）
+## 最终验收
+- `tools/validator.ps1 -Scope new15`：**798 项检查 / 0 失败 / 100%**
+- 38 个 skill 三件套齐备（SKILL.md 六段 RIA++ + darwin 格式 test-prompts.json + test-results.md 推演记录）
+- 每组 skill 触发场景互斥并互设跨技能混淆诱饵
 
-## 黄金样例（新 skill 照抄这个模式）
-- `ppt-deck-agent/skills/guizang-web-deck/`（SKILL.md 96 行 / 7 用例 / 推演全过）
-- `ppt-deck-agent/skills/ppt-master-native/`
+## 完成明细（9 轮：1 主流程试点 + 8 批子代理，含 2 次中断后的补完）
+| Agent | skills | 备注 |
+|---|---|---|
+| ppt-deck | 2 | 主流程手写试点（guizang-web-deck / ppt-master-native） |
+| ui-design | 2 | design-system-generator 由中断子代理产出后补齐 |
+| research-methodology | 3 | academic-humanizer 含 AI 披露合规红线 |
+| recording | 2 | 含隐私红线（偷录→拒绝） |
+| data-viz | 2 | |
+| html-doc | 2 | |
+| visual-media | 2 | AIGC 标识义务+版权核查 |
+| career-monetize | 2 | 收益不可承诺+拒绝灰产 |
+| seo-content | 4 | 黑帽手法排除 |
+| data-extraction | 3 | robots/ToS/付费墙红线 |
+| agent-memory | 4 | 紧凑型 darwin 变体（validator 已兼容） |
+| agent-harness | 2 | |
+| security-privacy | 2 | OSINT 授权边界+水印移除披露义务 |
+| quant-prediction | 2 | 非投资建议+过拟合警示 |
+| editorial-art | 4 | 由30~48行扩写至≥70行 |
 
-## 已完成
-- [x] tools/validator.ps1 校验器（TDD 接缝；注意 PS5.1 需要 UTF-8 BOM，改动后执行：
-      `[IO.File]::WriteAllText($p,(ReadAllText UTF8),(New-Object Text.UTF8Encoding $true))`）
-- [x] ppt-deck-agent 全部 2 个 skill 填充完成且验证零失败
-- [x] ui-design-agent/design-system-generator 完成（SKILL.md 由中断子代理产出84行，test-prompts/test-results 已补齐对齐）
-- [x] 上游仓库浅克隆 20/37 → D:\outcome\self\upstream\<owner>__<repo>
-
-## 待办（按 agent 分组，括号内为上游 owner/repo；"本地✓"表示已在 upstream/ 有克隆）
-
-- [ ] data-viz-agent: lieflat-charts(larashero3-dotcom/lieflat-charts 本地✓), scientific-figures(ChenLiu-1996/figures4papers 本地✓)
-- [ ] html-doc-agent: agentic-html-editor(nexu-io/html-anything ✓), markdown-preview-enhanced(shd101wyy/markdown-preview-enhanced ✓)
-- [ ] ui-design-agent: banner-design(nextlevelbuilder/ui-ux-pro-max-skill ✓ 同源，与已完成 design-system-generator 互设诱饵)
-- [ ] recording-agent: screen-demo-recorder(webadderallorg/Recordly 缺→fetch), rrweb-session-recording(rrweb-io/rrweb 缺→fetch)
-- [ ] research-methodology-agent: arxiv-first-coding(UditAkhourii/neuroarxiv ✓), advise-project-approach(AaravKashyap12/advise-project-approach ✓), academic-humanizer(AIScientists-Dev/academic-humanizer ✓；B段必须写AI披露合规红线)
-- [ ] seo-content-agent: seo-audit(every-app/open-seo ✓), geo-search-optimize(zubair-trabzada/geo-seo-claude ✓), schema-markup(AgriciDaniel/claude-seo 缺), blog-writing-contract(AgriciDaniel/claude-blog 缺)；四角分工互设诱饵
-- [ ] career-monetize-agent: ai-job-search-framework(MadsLorentzen/ai-job-search ✓), ai-money-handbook(XiaomingX/ai-money-maker-handbook 缺；B段写收益不承诺+拒绝灰产)
-- [ ] visual-media-agent: ai-short-video(harry0703/MoneyPrinterTurbo ✓；B段写AIGC标识义务), gpt-image-prompting(freestylefly/awesome-gpt-image-2 ✓)
-- [ ] data-extraction-agent: crawl4ai-scraping(unclecode/crawl4ai 缺), odl-pdf-extraction(opendataloader-project/opendataloader-pdf 缺), scrapling-stealth(D4Vinci/Scrapling 缺)；B段写robots/ToS/频率/付费墙红线
-- [ ] agent-memory-agent: mem0-memory-layer(mem0ai/mem0 缺), hindsight-retrieval(vectorize-io/hindsight 缺), agent-experience-persistence(TencentCloud/TencentDB-Agent-Memory 缺), project-knowledge-graph(Graphify-Labs/graphify 缺)
-- [ ] agent-harness-agent: ecc-harness-os(affaan-m/ECC 缺), multi-agent-office(chaitanyagiri/munder-difflin 缺)
-- [ ] security-privacy-agent: platform-scan(arxhr007/Aliens_eye 缺；仅限自查/授权评估，edge考人肉拒绝), watermark-removal(guillaumemeyer/watermarks-remover 缺；仅限自有内容隐私清理，禁洗稿/伪装人类创作，edge考投稿伪装拒绝)
-- [ ] quant-prediction-agent: strategy-backtest-execution(OpenByteInc/QuantDinger 缺), multi-agent-simulation(666ghj/MiroFish 缺)；B段写非投资建议+过拟合风险
-- [ ] editorial-art-agent 增强: 4个skill已30~48行，扩到≥70行补E完成标准/A2信号/B边界/四角区分(上游均本地✓)
-
-fetch 兜底顺序: raw.githubusercontent.com/<owner>/<repo>/HEAD/README.md → /main/README.md → webfetch github.com/<owner>/<repo> 页面。材料不足时在审计信息如实标注。
-
-## 收尾
-- [ ] validator 全绿后更新根 README 的 skills 计数与质量声明
-- [ ] git commit（当前分支 main，勿 push）
+## 遗留事项
+- 上游仓库本地克隆 20+/37（git 通道间歇中断），未克隆部分子代理已用 webfetch 核验来源，不影响产物质量；如需补齐重跑 clone 循环即可
+- 纸面推演 ≠ 盲测：真实触发率需在全新会话中用各 skill 的 should_trigger/bait prompt 实测

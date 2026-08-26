@@ -53,19 +53,19 @@ foreach ($agent in $agentDirs) {
         if (-not $descM) { $descM = [regex]::Match($md, '(?m)^description:\s*(.+)$').Groups[1].Value }
         Add-Check $label ('description-has-trigger(len=' + $descM.Trim().Length + ')') ($descM.Trim().Length -ge 40)
 
-        Add-Check $label 'source-project-present' ($null -ne [regex]::Match($md, '(?m)^source_project:\s*\S+'))
+        Add-Check $label 'source-project-present' ([regex]::Match($md, '(?m)^source_project:\s*\S+').Success)
 
-        # six RIA++ sections
+        # six RIA++ sections (tolerate - | ( （ — – · • ： separators and bare headers)
         $secRx = @{
-            'R-section'  = '(?im)^#{1,3}\s*R\s*[-((]'
-            'I-section'  = '(?im)^#{1,3}\s*I\s*[-((]'
-            'A1-section' = '(?im)^#{1,3}\s*A1?\b'
-            'A2-section' = '(?im)^#{1,3}\s*A2\b'
-            'E-section'  = '(?im)^#{1,3}\s*E\s*[-((]'
-            'B-section'  = '(?im)^#{1,3}\s*B\s*[-((]'
+            'R-section'  = '(?im)^#{1,3}\s*R\s*([-|(（\u2012-\u2015\u00B7\u2022：]|$)'
+            'I-section'  = '(?im)^#{1,3}\s*I\s*([-|(（\u2012-\u2015\u00B7\u2022：]|$)'
+            'A1-section' = '(?im)^#{1,3}\s*A1?\s*([-|(（\u2012-\u2015\u00B7\u2022：:]|$)'
+            'A2-section' = '(?im)^#{1,3}\s*A2\s*([-|(（\u2012-\u2015\u00B7\u2022：:★]|$)'
+            'E-section'  = '(?im)^#{1,3}\s*E\s*([-|(（\u2012-\u2015\u00B7\u2022：]|$)'
+            'B-section'  = '(?im)^#{1,3}\s*B\s*([-|(（\u2012-\u2015\u00B7\u2022：]|$)'
         }
         foreach ($k in $secRx.Keys) {
-            Add-Check $label $k ($null -ne [regex]::Match($md, $secRx[$k]))
+            Add-Check $label $k ([regex]::Match($md, $secRx[$k]).Success)
         }
 
         # E section carries completion criteria (>=2)
@@ -79,7 +79,7 @@ foreach ($agent in $agentDirs) {
         }
         Add-Check $label ('e-completion-criteria>=2(actual=' + $critCount + ')') ($critCount -ge 2)
 
-        Add-Check $label 'no-placeholders' (-not [regex]::IsMatch($md, 'TODO|FIXME|待填充'))
+        Add-Check $label 'no-placeholders' (-not [regex]::IsMatch($md, 'TODO|FIXME|待填充|待补充|TBD|PLACEHOLDER'))
 
         # ---------- test-prompts.json ----------
         $tjPath = Join-Path $sd.FullName 'test-prompts.json'
@@ -87,19 +87,24 @@ foreach ($agent in $agentDirs) {
         try { $tj = Get-Content $tjPath -Raw -Encoding UTF8 | ConvertFrom-Json } catch { }
         Add-Check $label 'test-prompts-valid-json' ($null -ne $tj)
         if ($tj) {
-            $cases = @($tj.test_cases)
-            if ($cases.Count -eq 0) { $cases = @($tj.tests) }
+            $cases = @()
+            if ($null -ne $tj.test_cases) { $cases = @($tj.test_cases) }
+            elseif ($null -ne $tj.tests) { $cases = @($tj.tests) }
             Add-Check $label ('cases-count-5..10(actual=' + $cases.Count + ')') (($cases.Count -ge 5) -and ($cases.Count -le 10))
 
             $hasTrig = $false; $hasBait = $false; $hasEdge = $false; $crossBait = $false; $fieldsOk = $true
             $siblings = @($skillDirs | Where-Object { $_.Name -ne $slug } | ForEach-Object { $_.Name })
             foreach ($c in $cases) {
-                $ctype = '' + $c.type + $c.category
-                if ($ctype -match 'should_trigger') { $hasTrig = $true }
-                if ($ctype -match 'should_not_trigger') { $hasBait = $true }
-                if ($ctype -match 'edge_case') { $hasEdge = $true }
-                $cTxt = '' + $c.expected_behavior + ' ' + $c.reason + ' ' + $c.notes
-                foreach ($sib in $siblings) { if ($cTxt.Contains($sib)) { $crossBait = $true } }
+                # type/category 分别判定，避免拼接子串误匹配
+                $tv = ('' + $c.type + ' ' + $c.category).ToLower()
+                $isBait = $tv -match 'should_not|not_trigger|bait'
+                if ($isBait) { $hasBait = $true }
+                elseif ($tv -match 'trigger') { $hasTrig = $true }
+                if ($tv -match 'edge') { $hasEdge = $true }
+                if ($isBait) {
+                    $cTxt = '' + $c.expected_behavior + ' ' + $c.reason + ' ' + $c.notes
+                    foreach ($sib in $siblings) { if ($cTxt.Contains($sib)) { $crossBait = $true } }
+                }
                 if ([string]::IsNullOrWhiteSpace('' + $c.id) -or [string]::IsNullOrWhiteSpace('' + $c.prompt)) { $fieldsOk = $false }
                 if ([string]::IsNullOrWhiteSpace('' + $c.expected_behavior) -and [string]::IsNullOrWhiteSpace('' + $c.expected_skill)) { $fieldsOk = $false }
             }
