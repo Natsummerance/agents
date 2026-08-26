@@ -1,4 +1,4 @@
-﻿---
+---
 name: gathered-scenes-zine
 description: |
   将用户提供的实景照片转化为竖向 3:5 拾景拼贴海报：真实摄影锚定在宽敞的源衍生插画场域内，密集细节（树叶/枝条/人群）压缩为少数大型安静块面（省略 85-95% 微观细节），以一个高饱和色相作为构图结构而非装饰，保留可见的手撕纤维纸边作为摄影与纸面的过渡。触发场景：用户要求实景拼贴、拾景风格、手撕纸质感艺术海报或自然场景的插画化再创作。边界：不篡改照片、不做满铺描摹式插画、单一添加色相必须通过"移除测试"。
@@ -13,7 +13,7 @@ related_skills: ["photo-relic-editorial", "photo-abstract-editorial", "minimal-z
 
 > 签名公式："**真景为锚、插画成场、色彩成结构、撕纸成界、纸面会呼吸**。" 复杂度法则："Complexity in the photograph is a reason to simplify more, not a reason to print more." 密度标尺：插画场域占海报 45-70%，其中 55-75% 保持安静；叶dominant 场景省略约 85-95% 的单片叶片。
 
-（来源：upstream/Zeejay0__gathered-scenes-zine-skill/skills/scenes-gathered-zine-v1-3/SKILL.md）
+（来源：vendor/Zeejay0__gathered-scenes-zine-skill/skills/scenes-gathered-zine-v1-3/SKILL.md）
 
 ## I (Interpretation) — 方法论骨架
 
@@ -77,4 +77,4 @@ related_skills: ["photo-relic-editorial", "photo-abstract-editorial", "minimal-z
 
 ## 审计信息
 - **验证**: V1 ✓（本地 upstream 已核） / V2 ✓（RIA++ 六段齐备） / V3 ✓（darwin 用例 7 条推演全过）
-- **蒸馏时间**: 2026-08-25；**来源**: upstream `D:\outcome\self\upstream\Zeejay0__gathered-scenes-zine-skill\skills\scenes-gathered-zine-v1-3\SKILL.md`，在既有 39 行半成品上扩写，保留签名公式、决策优先级与 Scene Card 骨架等原有正确内容
+- **蒸馏时间**: 2026-08-25；**来源**: upstream `D:\outcome\self\vendor/Zeejay0__gathered-scenes-zine-skill\skills\scenes-gathered-zine-v1-3\SKILL.md`，在既有 39 行半成品上扩写，保留签名公式、决策优先级与 Scene Card 骨架等原有正确内容

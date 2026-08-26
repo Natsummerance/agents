@@ -82,4 +82,4 @@ tags: [banner, social-media, hero-image, art-direction, creative-assets]
 
 ## 审计信息
 - **验证**: V1 ✓ / V2 ✓ / V3 ✓
-- **蒸馏时间**: 2026-08-25；**来源**: local `upstream/nextlevelbuilder__ui-ux-pro-max-skill/` 下 `cli/assets/skills/banner-design/SKILL.md`、`cli/assets/skills/banner-design/references/banner-sizes-and-styles.md`、根 `README.md`
+- **蒸馏时间**: 2026-08-25；**来源**: local `vendor/nextlevelbuilder__ui-ux-pro-max-skill/` 下 `cli/assets/skills/banner-design/SKILL.md`、`cli/assets/skills/banner-design/references/banner-sizes-and-styles.md`、根 `README.md`

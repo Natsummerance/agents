@@ -105,4 +105,4 @@ tags: [lieflat-charts, data-viz, html-charts, 编辑设计, mono-grayscale, 蒸�
 
 - **验证**: V1 ✓（README.md 与 SKILL.md 在三风格定义、Lupi→Basics→Glance 选型链、图数规则、色彩锁定上多处互证）/ V2 ✓（可回答「这份数据该选哪张图」「为什么不用 Glance」「能否断轴」等新问题）/ V3 ✓（主力-后备直取例外-Glance 降级链、单位分解、custom 色板角色制是非常识性工作流）
 - **蒸馏时间**: 2026-08-25
-- **来源文件清单**: upstream/larashero3-dotcom__lieflat-charts/{README.md, SKILL.md}
+- **来源文件清单**: vendor/larashero3-dotcom__lieflat-charts/{README.md, SKILL.md}

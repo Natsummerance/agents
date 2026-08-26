@@ -87,4 +87,4 @@ tags: [academic-writing, ai-tells, claim-evidence, grant-proposal, voice-matchin
 
 ## 审计信息
 - **验证**: V1 ✓ / V2 ✓ / V3 ✓
-- **蒸馏时间**: 2026-08-25；**来源**: local `upstream/AIScientists-Dev__academic-humanizer/` 下 `README.md`、`SKILL.md`
+- **蒸馏时间**: 2026-08-25；**来源**: local `vendor/AIScientists-Dev__academic-humanizer/` 下 `README.md`、`SKILL.md`

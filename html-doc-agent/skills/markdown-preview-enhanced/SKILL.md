@@ -102,4 +102,4 @@ docs/presentation.md 说明演示模式：「Markdown Preview Enhanced uses reve
 
 - **验证**: V1 ✓（README.md 与 docs/usages.md、code-chunk.md、diagrams.md、math.md、presentation.md 在功能清单与快捷键上互证）/ V2 ✓（可回答「KaTeX 和 MathJax 怎么选」「code chunk 如何跨块续接」「为什么脚本执行默认关闭」等新问题）/ V3 ✓（code chunk 参数协议、presentation front-matter、三条导出路线是非常识性工作流）
 - **蒸馏时间**: 2026-08-25
-- **来源文件清单**: upstream/shd101wyy__markdown-preview-enhanced/{README.md, docs/usages.md, docs/code-chunk.md, docs/diagrams.md, docs/math.md, docs/presentation.md, docs/file-imports.md, docs/pdf.md}
+- **来源文件清单**: vendor/shd101wyy__markdown-preview-enhanced/{README.md, docs/usages.md, docs/code-chunk.md, docs/diagrams.md, docs/math.md, docs/presentation.md, docs/file-imports.md, docs/pdf.md}

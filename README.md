@@ -111,6 +111,10 @@ cp -r agents/*/ ~/.openclaw/agents/
 
 详见 [content-distiller/SKILL.md](./content-distiller/SKILL.md)。
 
+## vendor/ · 上游资产库
+
+skills 引用的一手上游资产（HTML 模板、prompt 编译器、工具链脚本、风格规范等）统一存放于 [`vendor/`](./vendor/MANIFEST.md)，命名 `<owner>__<repo>`。库类上游（mem0/crawl4ai/rrweb 等可安装包）不入库，其用法已蒸馏进对应 skill。
+
 ## 贡献
 
 欢迎通过 PR 提交新 agent 或改进现有内容。提交前请确认：

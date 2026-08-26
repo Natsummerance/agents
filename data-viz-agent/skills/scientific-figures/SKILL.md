@@ -107,4 +107,4 @@ api.md 补充工程约定：「In batch or headless runs, set a non-interactive 
 
 - **验证**: V1 ✓（README.md、SKILL.md 与 references/design-theory.md、api.md 在字体层级、色板角色、导出 dpi 上多处互证）/ V2 ✓（可回答「这组对比该用什么布局」「为什么 y 轴不从 0 开始」「hatch 何时必要」等新问题）/ V3 ✓（语义色板角色制、独立 legend 面板、alpha 编码消融完整度是非常识性工作流）
 - **蒸馏时间**: 2026-08-25
-- **来源文件清单**: upstream/ChenLiu-1996__figures4papers/{README.md, scientific-figure-making/SKILL.md, scientific-figure-making/references/design-theory.md, scientific-figure-making/references/api.md, scientific-figure-making/references/common-patterns.md}
+- **来源文件清单**: vendor/ChenLiu-1996__figures4papers/{README.md, scientific-figure-making/SKILL.md, scientific-figure-making/references/design-theory.md, scientific-figure-making/references/api.md, scientific-figure-making/references/common-patterns.md}

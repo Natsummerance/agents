@@ -101,4 +101,4 @@ tags: [ai-short-video, text-to-video, tts, ffmpeg-synthesis, 蒸馏技能]
 
 - **验证**: V1 ✓（README 功能特性/docs/skill/SKILL.md 运行纪律/cli.py 参数优先级多处互证） / V2 ✓（可回答「字幕不准怎么换模式」「抽象主题素材错配怎么办」等新问题） / V3 ✓（AIGC 标识义务、exit-code 语义、凭据一次性索取纪律是非常识工程约束）
 - **蒸馏时间**: 2026-08-25
-- **来源**: upstream/harry0703__MoneyPrinterTurbo/{README.md, docs/skill/SKILL.md}（local）
+- **来源**: vendor/harry0703__MoneyPrinterTurbo/{README.md, docs/skill/SKILL.md}（local）

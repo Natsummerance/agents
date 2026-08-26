@@ -97,4 +97,4 @@ tags: [gpt-image-prompting, prompt-as-code, structured-prompt, 生图模板, 蒸
 
 - **验证**: V1 ✓（README.zh-CN 项目愿景/docs/templates.md 模板与避坑指南/agents/skills/gpt-image-2-style-library 选择规则多处互证） / V2 ✓（可回答「JSON 模板怎么给程序调用」「跨模型为何失效」新问题） / V3 ✓（四级匹配序、六段构造块、防坑五锁是非常识工程约束）
 - **蒸馏时间**: 2026-08-25
-- **来源**: upstream/freestylefly__awesome-gpt-image-2/{README.zh-CN.md, docs/templates.md, agents/skills/gpt-image-2-style-library/{SKILL.md, references/style-library.md}}（local）
+- **来源**: vendor/freestylefly__awesome-gpt-image-2/{README.zh-CN.md, docs/templates.md, agents/skills/gpt-image-2-style-library/{SKILL.md, references/style-library.md}}（local）

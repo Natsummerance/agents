@@ -87,4 +87,4 @@ tags: [ppt-master-native, pptx, native-powerpoint, 演示设计, 蒸馏技能]
 
 - **验证**: V1 ✓（README/AGENTS.md/workflows 多处互证） / V2 ✓（可回答「该走哪条路由」新问题） / V3 ✓（路由互斥+SVG中间态纪律是非常识工程约束）
 - **蒸馏时间**: 2026-08-25
-- **来源**: upstream/hugohe3__ppt-master/{README.md, AGENTS.md, skills/ppt-master/workflows/routing.md 结构}
+- **来源**: vendor/hugohe3__ppt-master/{README.md, AGENTS.md, skills/ppt-master/workflows/routing.md 结构}

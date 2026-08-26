@@ -1,4 +1,4 @@
-﻿---
+---
 name: photo-abstract-editorial
 description: |
   从用户照片中提取 3-6 个决定性空间事实（主体关系/尺度/轴线/方向/间隔/重叠/深度/节奏/光线/色彩角色/负空间），在无纹理均匀象牙底板上重建为稀疏抽象图案，配 2-5 词原创英文标题构成竖向编辑双联画。触发场景：用户要求把照片转为抽象编辑双联画、视觉记忆面板或极简档案海报。边界：照片只许等比缩放或轻微裁切、禁止重绘与风格转移；每个抽象标记必须可追溯到照片可见事实；人物仅以不规则短竖线呈现。
@@ -13,7 +13,7 @@ related_skills: ["photo-relic-editorial", "minimal-zine-poster", "gathered-scene
 
 > "Keep the photograph faithful; derive the lower abstract panel **only from the photograph's observed spatial, tonal, and color relationships**." 且 "Prefer relationships over silhouettes and preserve only the minimum recognition cues needed for distinctive subjects." 底板纪律："flat, continuous, and neutral ivory; exclude gradients, paper texture, grain, glow, shadows, vignettes."
 
-（来源：upstream/ZzzLc0405__photo-abstract-editorial/SKILL.md）
+（来源：vendor/ZzzLc0405__photo-abstract-editorial/SKILL.md）
 
 ## I (Interpretation) — 方法论骨架
 
@@ -82,4 +82,4 @@ related_skills: ["photo-relic-editorial", "minimal-zine-poster", "gathered-scene
 
 ## 审计信息
 - **验证**: V1 ✓（本地 upstream 已核） / V2 ✓（RIA++ 六段齐备） / V3 ✓（darwin 用例 7 条推演全过）
-- **蒸馏时间**: 2026-08-25；**来源**: upstream `D:\outcome\self\upstream\ZzzLc0405__photo-abstract-editorial`（SKILL.md + references/photo-abstract-editorial-prompt.zh-CN.md），在既有 41 行半成品上扩写，保留七步工作流、四角对比表等原有正确内容
+- **蒸馏时间**: 2026-08-25；**来源**: upstream `D:\outcome\self\vendor/ZzzLc0405__photo-abstract-editorial`（SKILL.md + references/photo-abstract-editorial-prompt.zh-CN.md），在既有 41 行半成品上扩写，保留七步工作流、四角对比表等原有正确内容

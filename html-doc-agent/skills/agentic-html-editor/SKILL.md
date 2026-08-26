@@ -103,4 +103,4 @@ cli/README.md 描述 auto 命令的三层匹配：「第一层：强信号关键
 
 - **验证**: V1 ✓（README.md 与 cli/README.md 在九类 surface、75 模板、三层匹配漏斗、导出管线上互证）/ V2 ✓（可回答「为什么不需要 API key」「微信粘贴为何不掉样式」「如何防 DNS rebinding」等新问题）/ V3 ✓（读者优先格式观、模板即文件夹协议、反 AI 味五条硬约束是非常识性工作流）
 - **蒸馏时间**: 2026-08-25
-- **来源文件清单**: upstream/nexu-io__html-anything/{README.md, cli/README.md}
+- **来源文件清单**: vendor/nexu-io__html-anything/{README.md, cli/README.md}

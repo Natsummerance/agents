@@ -14,7 +14,7 @@ tags: [seo, audit, technical-seo, site-review]
 > "The whole report exists to support ONE action the owner can take this week; everything else is supporting detail."
 > "Verify every finding you plan to report against the live page HTML by fetching pages yourself. Report nothing you have not seen evidence for."
 
-来源：every-app/open-seo 仓库 `.agents/skills/seo-audit/SKILL.md`（本地路径 `D:\outcome\self\upstream\every-app__open-seo\.agents\skills\seo-audit\SKILL.md`）
+来源：every-app/open-seo 仓库 `.agents/skills/seo-audit/SKILL.md`（本地路径 `D:\outcome\self\vendor/every-app__open-seo\.agents\skills\seo-audit\SKILL.md`）
 
 ## I · 方法论骨架
 
@@ -86,4 +86,4 @@ tags: [seo, audit, technical-seo, site-review]
 - V2✓ 四角分工：整站审计角，A2 与 schema-markup / geo-search-optimize / blog-writing-contract 互设诱饵并写明区分
 - V3✓ 红线齐备：不承诺排名 + 黑帽排除 + "保第一"拒绝话术入 B 段与 edge_case
 - 蒸馏时间：2026-08-25（2026-08-26 复核：R 段三条引文与本地上游逐字比对通过）
-- 来源：local — D:\outcome\self\upstream\every-app__open-seo（`.agents/skills/seo-audit/SKILL.md`，另含 template.html 报告模板）
+- 来源：local — D:\outcome\self\vendor/every-app__open-seo（`.agents/skills/seo-audit/SKILL.md`，另含 template.html 报告模板）

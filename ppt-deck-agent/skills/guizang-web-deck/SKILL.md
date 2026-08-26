@@ -87,4 +87,4 @@ tags: [guizang-web-deck, html-slides, web-ppt, 演示设计, 蒸馏技能]
 
 - **验证**: V1 ✓（SKILL.md/README 多处互证） / V2 ✓（可回答「该选哪套模板」新问题） / V3 ✓（风格即架构+七问前置是非常识工作流）
 - **蒸馏时间**: 2026-08-25
-- **来源**: upstream/op7418__guizang-ppt-skill/{SKILL.md, README.md, assets/, references/}
+- **来源**: vendor/op7418__guizang-ppt-skill/{SKILL.md, README.md, assets/, references/}

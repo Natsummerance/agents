@@ -81,4 +81,4 @@ tags: [design-tokens, css-variables, design-system, theming, ui-architecture]
 
 ## 审计信息
 - **验证**: V1 ✓ / V2 ✓ / V3 ✓
-- **蒸馏时间**: 2026-08-25；**来源**: local `upstream/nextlevelbuilder__ui-ux-pro-max-skill/` 下 `cli/assets/skills/design-system/SKILL.md`、`cli/assets/skills/design-system/references/token-architecture.md`、`src/ui-ux-pro-max/scripts/design_system.py`（前 80 行）、根 `CLAUDE.md`
+- **蒸馏时间**: 2026-08-25；**来源**: local `vendor/nextlevelbuilder__ui-ux-pro-max-skill/` 下 `cli/assets/skills/design-system/SKILL.md`、`cli/assets/skills/design-system/references/token-architecture.md`、`src/ui-ux-pro-max/scripts/design_system.py`（前 80 行）、根 `CLAUDE.md`

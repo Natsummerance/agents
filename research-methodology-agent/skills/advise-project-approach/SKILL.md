@@ -82,4 +82,4 @@ tags: [project-planning, tech-stack, architecture-review, vendor-cost, course-co
 
 ## 审计信息
 - **验证**: V1 ✓ / V2 ✓ / V3 ✓
-- **蒸馏时间**: 2026-08-25；**来源**: local `upstream/AaravKashyap12__advise-project-approach/` 下 `README.md`、`AGENTS.md`、`skills/advise-project-approach/SKILL.md`
+- **蒸馏时间**: 2026-08-25；**来源**: local `vendor/AaravKashyap12__advise-project-approach/` 下 `README.md`、`AGENTS.md`、`skills/advise-project-approach/SKILL.md`

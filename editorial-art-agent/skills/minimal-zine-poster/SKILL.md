@@ -1,4 +1,4 @@
-﻿---
+---
 name: minimal-zine-poster
 description: |
   将主题、短文、文章、物品、氛围或照片转化为纸质质感的极简 Zine 海报：大面积负空间（70-90%）+ 单一小焦点元素 + 实验性排版 + 一个明确的高饱和色彩强调。支持生成模式、照片输入模式、参考分析模式、仅 prompt 模式与分析+生成五种路由。触发场景：用户给出主题词/一句话/文章/情绪物件要求"做一张海报"，或要求分析参考图提炼可复用风格系统。边界：不做数据可视化、UI 设计与无源摄影虚构；参考图只学视觉语法，不复制源文字/品牌/精确构图。
@@ -13,7 +13,7 @@ related_skills: ["photo-relic-editorial", "gathered-scenes-zine", "photo-abstrac
 
 > "Turn content or visual references into a coherent paper-poster system… A successful generation must remain a sparse vertical paper poster with **one clear visual event**, not a commercial ad or a generic collage template. A successful analysis must explain what stays fixed and what can change." 质检锚点：约 70%-90% 开放纸面，主视觉事件占画布 8%-25%，主色占画布 0.8%-2.5%。
 
-（来源：upstream/LiamGvchi__gc-minimal-zine-poster/SKILL.md 及 references/prompt-compiler.md）
+（来源：vendor/LiamGvchi__gc-minimal-zine-poster/SKILL.md 及 references/prompt-compiler.md）
 
 ## I (Interpretation) — 方法论骨架
 
@@ -87,4 +87,4 @@ related_skills: ["photo-relic-editorial", "gathered-scenes-zine", "photo-abstrac
 
 ## 审计信息
 - **验证**: V1 ✓（本地 upstream 已核） / V2 ✓（RIA++ 六段齐备） / V3 ✓（darwin 用例 7 条推演全过）
-- **蒸馏时间**: 2026-08-25；**来源**: upstream `D:\outcome\self\upstream\LiamGvchi__gc-minimal-zine-poster`（SKILL.md + references/prompt-compiler.md + quality-gate.md），在既有 43 行半成品上扩写，保留五模式/角色表/保留级别等原有正确内容
+- **蒸馏时间**: 2026-08-25；**来源**: upstream `D:\outcome\self\vendor/LiamGvchi__gc-minimal-zine-poster`（SKILL.md + references/prompt-compiler.md + quality-gate.md），在既有 43 行半成品上扩写，保留五模式/角色表/保留级别等原有正确内容

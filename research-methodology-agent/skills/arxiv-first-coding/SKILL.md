@@ -82,4 +82,4 @@ tags: [arxiv, prior-art, literature-review, architecture-decision, research-befo
 
 ## 审计信息
 - **验证**: V1 ✓ / V2 ✓ / V3 ✓
-- **蒸馏时间**: 2026-08-25；**来源**: local `upstream/UditAkhourii__neuroarxiv/` 下 `README.md`、`skills/neuroarxiv/SKILL.md`（评测结论引自 README 对 `EVALS.md` 的汇总）
+- **蒸馏时间**: 2026-08-25；**来源**: local `vendor/UditAkhourii__neuroarxiv/` 下 `README.md`、`skills/neuroarxiv/SKILL.md`（评测结论引自 README 对 `EVALS.md` 的汇总）

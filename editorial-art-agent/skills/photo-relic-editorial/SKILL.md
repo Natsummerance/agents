@@ -1,4 +1,4 @@
-﻿---
+---
 name: photo-relic-editorial
 description: |
   将用户提供的照片转化为竖向编辑艺术作品：上半部分保留真实照片，下半部分创建"照片遗存"——从照片压缩出的几笔精确墨迹记忆（暖象牙底板+深蓝墨黑灰绿+一个暖色信号）。触发场景：用户要求把照片转为极简艺术、摄影遗存海报、纸上记忆版画、抽象编辑摄影或画廊风格系列封面。边界：照片区域不可重绘/美化/加滤镜；不做数据可视化与凭空虚构摄影；输出须通过缩略图可辨认性与来源色板质检门。
@@ -13,7 +13,7 @@ related_skills: ["photo-abstract-editorial", "gathered-scenes-zine", "minimal-zi
 
 > "Real photograph above. Memory print below. The lower relic should look as if **time pressed the photo into a few ink marks on warm paper**." 且明令："Preserve the photograph's content and truth. Do not redraw, beautify, repaint, expand, hallucinate, or stylize the original photographic area." 遗存必须 thumbnail 可辨认但不沦为普通插画。
 
-（来源：upstream/wnby__photo-relic-editorial/SKILL.md）
+（来源：vendor/wnby__photo-relic-editorial/SKILL.md）
 
 ## I (Interpretation) — 方法论骨架
 
@@ -82,4 +82,4 @@ related_skills: ["photo-abstract-editorial", "gathered-scenes-zine", "minimal-zi
 
 ## 审计信息
 - **验证**: V1 ✓（本地 upstream 已核） / V2 ✓（RIA++ 六段齐备） / V3 ✓（darwin 用例 7 条推演全过）
-- **蒸馏时间**: 2026-08-25；**来源**: upstream `D:\outcome\self\upstream\wnby__photo-relic-editorial`（SKILL.md + references/afterimage-editorial-prompt.md），在既有 48 行半成品上扩写，保留五构图模式表与质量红线等原有正确内容
+- **蒸馏时间**: 2026-08-25；**来源**: upstream `D:\outcome\self\vendor/wnby__photo-relic-editorial`（SKILL.md + references/afterimage-editorial-prompt.md），在既有 48 行半成品上扩写，保留五构图模式表与质量红线等原有正确内容
