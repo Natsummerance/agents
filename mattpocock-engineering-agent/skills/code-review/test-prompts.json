@@ -1,20 +1,57 @@
 {
   "skill": "code-review",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "mattpocock/skills",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "帮我看看这个 PR 有没有问题",
-      "expected_skill": "code-review",
-      "category": "should-trigger",
-      "reason": "明确的 PR 审查请求"
+      "id": "code-review-01",
+      "prompt": "Review this PR for code quality issues.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes code-review skill to run two-axis review (Standards + Spec) with parallel sub-agents.",
+      "notes": "PR review request is a key trigger."
     },
     {
-      "id": "test-2",
-      "prompt": "这个函数的性能怎么样？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "性能分析属于专项优化"
+      "id": "code-review-02",
+      "prompt": "Check my branch against main before merging.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes code-review skill to compare branch diff against main using three-dot merge-base.",
+      "notes": "Branch review is a valid trigger."
+    },
+    {
+      "id": "code-review-03",
+      "prompt": "Verify this code implements the issue requirements.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes code-review skill with focus on Spec axis to trace diff against originating issue.",
+      "notes": "Spec traceability audit is a valid trigger."
+    },
+    {
+      "id": "code-review-04",
+      "prompt": "Build the payment integration feature.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes implement skill instead. Implement builds code; code-review evaluates existing diffs.",
+      "notes": "implement is the sibling skill for building code."
+    },
+    {
+      "id": "code-review-05",
+      "prompt": "This test is failing. Help me debug it.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes diagnosing-bugs skill instead. Diagnosing-bugs finds root cause; code-review assumes code exists.",
+      "notes": "diagnosing-bugs is the sibling skill for debugging."
+    },
+    {
+      "id": "code-review-06",
+      "prompt": "Design a new module interface.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes codebase-design skill instead. Codebase-design shapes future modules; code-review evaluates existing diffs.",
+      "notes": "codebase-design is the sibling skill for module design."
+    },
+    {
+      "id": "code-review-07",
+      "prompt": "Review since the v1.0.0 tag.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes code-review skill with tag as fixed point for historical diff review.",
+      "notes": "Tag-based review is a valid trigger."
     }
   ]
 }

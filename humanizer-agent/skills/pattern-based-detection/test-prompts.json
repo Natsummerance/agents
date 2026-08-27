@@ -1,41 +1,50 @@
 {
   "skill": "pattern-based-detection",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "blader/humanizer",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "如何识别 AI 痕迹？",
-      "expected_skill": "pattern-based-detection",
-      "category": "should-trigger",
-      "reason": "基于模式的 AI 痕迹检测 是 pattern-based-detection 的核心应用场景"
+      "id": "pbd-t1",
+      "prompt": "如何判断一段文字是不是 AI 写的？",
+      "type": "should_trigger",
+      "expected_behavior": "触发本技能：介绍 35 个 Wikipedia 模式及 6 大类别的系统化检测方法。",
+      "notes": "核心触发：AI 痕迹识别诉求。"
     },
     {
-      "id": "test-2",
-      "prompt": "有哪些常见的 AI 写作特征？",
-      "expected_skill": "pattern-based-detection",
-      "category": "should-trigger",
-      "reason": "基于模式的 AI 痕迹检测 是 pattern-based-detection 的核心应用场景"
+      "id": "pbd-t2",
+      "prompt": "Wikipedia 的 Signs of AI writing 里都有哪些常见模式？",
+      "type": "should_trigger",
+      "expected_behavior": "触发本技能：按类别讲解代表性模式（如夸大重要性、AI 词汇、破折号滥用）。",
+      "notes": "直接询问模式列表内容。"
     },
     {
-      "id": "test-3",
-      "prompt": "去痕流程是什么？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "该场景不属于 基于模式的 AI 痕迹检测 的触发条件"
+      "id": "pbd-nt1",
+      "prompt": "检测完之后，怎么重写才能把这些痕迹去掉？",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本技能；重写执行流程归 two-pass-rewriting。",
+      "notes": "互设诱饵（A）：点名兄弟 skill two-pass-rewriting，检测阶段与重写阶段分工。"
     },
     {
-      "id": "test-4",
-      "prompt": "如何让去痕后的文本更像自己写的？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "该场景不属于 基于模式的 AI 痕迹检测 的触发条件"
+      "id": "pbd-nt2",
+      "prompt": "怎么让改出来的文字匹配我自己的声音？",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本技能；个性化风格匹配归 voice-matching。",
+      "notes": "互设诱饵（B）：点名兄弟 skill voice-matching，标准化检测与个性化调整分工。"
     },
     {
-      "id": "test-5",
-      "prompt": "这个代码怎么改？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "该场景不属于 基于模式的 AI 痕迹检测 的触发条件"
+      "id": "pbd-e1",
+      "prompt": "这段只有一句话——'In today's fast-paced world, efficiency is paramount.'，能检测吗？",
+      "type": "edge_case",
+      "expected_behavior": "指出文本过短导致检测可靠性受限，仍可做单模式比对但建议提供完整段落复核。",
+      "notes": "对应 AGENTS.md 错误处理：文本太短无法有效检测。"
+    },
+    {
+      "id": "pbd-e2",
+      "prompt": "这段代码提交信息算不算 AI 痕迹文本？帮我扫一下。",
+      "type": "edge_case",
+      "expected_behavior": "判定非散文类内容不在 35 模式适用范围，说明边界后视情况仅分析其中的自然语言部分。",
+      "notes": "非文本类/混合内容的适用性边界。"
     }
   ]
 }

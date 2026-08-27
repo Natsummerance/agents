@@ -1,48 +1,57 @@
 {
   "skill": "no-systematic-methodology",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "florinpop17/app-ideas",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "我完成了几个项目但仍感到迷茫，不知道下一步该做什么",
-      "expected_skill": "no-systematic-methodology",
-      "category": "should-trigger",
-      "reason": "迷茫和缺乏方向是 no-systematic-methodology 的核心症状"
+      "id": "no-systematic-methodology-t1",
+      "prompt": "我跟着教程做了好几个项目，还是不知道下一个该做什么，越学越迷茫",
+      "type": "should_trigger",
+      "expected_behavior": "执行反模式症状识别三问，确认随机选项目+无学习目标后引入系统性方法论",
+      "notes": "核心触发：完成项目但不知道下一步"
     },
     {
-      "id": "test-2",
-      "prompt": "我随机选择项目，缺乏连贯的学习路径",
-      "expected_skill": "no-systematic-methodology",
-      "category": "should-trigger",
-      "reason": "随机选择是 no-systematic-methodology 的典型表现"
+      "id": "no-systematic-methodology-t2",
+      "prompt": "我一直凭兴趣随机挑项目练手，这样到底行不行？有没有更系统的学法？",
+      "type": "should_trigger",
+      "expected_behavior": "判定随机选择反模式成立，应用 tiered-learning-path 建立带依赖关系的分级学习路径",
+      "notes": "关键信号：随机选择、系统性"
     },
     {
-      "id": "test-3",
-      "prompt": "我完成项目但不确定是否真正掌握了技能",
-      "expected_skill": "no-systematic-methodology",
-      "category": "should-trigger",
-      "reason": "不确定掌握程度是 no-systematic-methodology 的症状"
+      "id": "no-systematic-methodology-t3",
+      "prompt": "怎么把我零散做过的小项目串成一条连贯的成长路径？",
+      "type": "should_trigger",
+      "expected_behavior": "将既有项目映射到分级路径上，补齐层级技能目标与项目间前置关系，并约定回顾周期",
+      "notes": "核心诉求：从孤立练习到连贯路径"
     },
     {
-      "id": "test-4",
-      "prompt": "我是编程初学者，应该从哪个项目开始？",
-      "expected_skill": "no-systematic-methodology",
-      "category": "should-not-trigger",
-      "reason": "这应该触发 tiered-learning-path skill（正面指导），虽然与学习路径相关但更关注解决方案而非问题识别"
+      "id": "no-systematic-methodology-n1",
+      "prompt": "我想给自己建一张技能矩阵表，定期看看各项技术的掌握程度有没有变化",
+      "type": "should_not_trigger",
+      "expected_behavior": "具体进度追踪机制的搭建转交 no-progress-tracking；本 skill 只负责整体方法论层面的诊断",
+      "notes": "跨技能诱饵：具体反馈机制归兄弟 skill no-progress-tracking"
     },
     {
-      "id": "test-5",
-      "prompt": "纯理论讨论需要系统性方法吗？",
-      "expected_skill": "no-systematic-methodology",
-      "category": "should-not-trigger",
-      "reason": "纯理论讨论不涉及项目实践，属于边界场景"
+      "id": "no-systematic-methodology-n2",
+      "prompt": "别分析了，直接给我按难度从易到难排一份项目清单就行",
+      "type": "should_not_trigger",
+      "expected_behavior": "纯分级清单诉求转交 tiered-learning-path 输出正面方案；本 skill 是反模式警示而非清单生成器",
+      "notes": "跨技能诱饵：正面分级方案归兄弟 skill tiered-learning-path"
     },
     {
-      "id": "test-6",
-      "prompt": "我完成项目后不确定代码是否正确",
-      "expected_skill": "no-testing-guidance",
-      "category": "cross-skill-confusion",
-      "reason": "这应该触发 no-testing-guidance skill，虽然与方法论相关但更关注测试指导"
+      "id": "no-systematic-methodology-e1",
+      "prompt": "我有完整的大学课程大纲，照着学期走就行了，还需要什么系统方法？",
+      "type": "edge_case",
+      "expected_behavior": "命中 B 段边界：已有明确学习计划则不启动方法论重构，确认用户无额外困惑后收尾",
+      "notes": "边界用例：既有课程大纲已构成系统路径"
+    },
+    {
+      "id": "no-systematic-methodology-e2",
+      "prompt": "别跟我讲什么方法论大道理，我就想知道今天做哪个项目好",
+      "type": "edge_case",
+      "expected_behavior": "尊重单次推荐诉求快速给一个建议，同时用一句话点明其局限，不强行展开整套框架说教",
+      "notes": "边界用例：避免方法论说教压倒即时需求"
     }
   ]
 }

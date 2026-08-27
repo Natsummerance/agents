@@ -1,55 +1,50 @@
 {
   "skill": "deterministic-engineering-hard-constraints",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "alibaba/open-code-review",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "我需要确保代码审查时不会遗漏任何重要文件，特别是那些关键的配置文件。有什么方法可以保证这一点？",
-      "expected_skill": "deterministic-engineering-hard-constraints",
-      "category": "should-trigger",
-      "reason": "用户需要确保文件选择不出错，这是硬约束场景"
+      "id": "tc-01",
+      "prompt": "文件选择绝对不能遗漏重要变更，必须精确到每个文件",
+      "type": "should_trigger",
+      "expected_behavior": "触发本 skill，按 E 段识别硬约束步骤并设计 Precise file selection 等确定性方案",
+      "notes": "\"不能遗漏/必须精确\"是本 skill 关键 trigger 词"
     },
     {
-      "id": "test-2",
-      "prompt": "我们的代码审查工具经常报告错误的位置，行号对不上，怎么解决？",
-      "expected_skill": "deterministic-engineering-hard-constraints",
-      "category": "should-trigger",
-      "reason": "位置定位是硬约束步骤，需要外部定位模块"
+      "id": "tc-02",
+      "prompt": "报告的问题行号总是对不上代码，我需要位置定位这一步不能出错",
+      "type": "should_trigger",
+      "expected_behavior": "触发本 skill，给出外部定位模块等确定性工程设计",
+      "notes": "位置定位不准且\"不能出错\"，属硬约束场景"
     },
     {
-      "id": "test-3",
-      "prompt": "如何设计一个稳定的规则匹配系统，不随提示变化而波动？",
-      "expected_skill": "deterministic-engineering-hard-constraints",
-      "category": "should-trigger",
-      "reason": "规则匹配是需要硬约束的步骤"
+      "id": "tc-03",
+      "prompt": "审查时想让 Agent 自己决定检索哪些上下文，交给 agent-dynamic-decision-making 处理就行",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，路由到 agent-dynamic-decision-making",
+      "notes": "跨技能诱饵：点名兄弟 skill，动态上下文检索属灵活性场景"
     },
     {
-      "id": "test-4",
-      "prompt": "帮我重构这段代码，让它更优雅",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "代码重构需要灵活性和创造力，不属于硬约束场景"
+      "id": "tc-04",
+      "prompt": "帮我重构这段代码，让结构更优雅一些",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，重构属需要灵活性和创造力的场景",
+      "notes": "创造性任务不在硬约束职责范围内"
     },
     {
-      "id": "test-5",
-      "prompt": "这个变量名用什么好？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "日常琐碎选择，不需要硬约束"
+      "id": "tc-05",
+      "prompt": "500 个文件的大 PR 请按 divide-and-conquer-strategy 做智能捆绑后再并发审查",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，路由到 divide-and-conquer-strategy",
+      "notes": "跨技能诱饵：点名兄弟 skill，分治捆绑是其具体实现"
     },
     {
-      "id": "test-6",
-      "prompt": "如何处理大型 PR 的审查，确保所有文件都被覆盖？",
-      "expected_skill": "divide-and-conquer-strategy",
-      "category": "cross-skill-confusion",
-      "reason": "这应该触发分治策略 skill，而非确定性工程硬约束"
-    },
-    {
-      "id": "test-7",
-      "prompt": "我需要确保审查规则稳定可预测，不随提示微小变化而波动",
-      "expected_skill": "template-engine-over-language-driven",
-      "category": "cross-skill-confusion",
-      "reason": "这应该触发模板引擎 skill，虽然与硬约束相关但更具体"
+      "id": "tc-06",
+      "prompt": "规则匹配既要稳定可复现，又想允许少量人工主观微调，这还算硬约束步骤吗？",
+      "type": "edge_case",
+      "expected_behavior": "触发本 skill 进行判定分析：可复现部分纳入硬约束、主观部分显式排除，结论须落到清单条目上",
+      "notes": "边界题：考察稳定与灵活的归类判据"
     }
   ]
 }

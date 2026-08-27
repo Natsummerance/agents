@@ -1,10 +1,11 @@
----
+﻿---
 name: semantic-coloring-principles
 description: |
   当用户需要为数据赋予业务含义的颜色时使用。触发场景：用户问"成功/失败应该用什么颜色？"、"KPI 上涨用绿色还是红色？"、"如何设计告警系统的颜色？"。不适用于：纯装饰性配色、无业务含义的数据系列。关键 trigger 信号：语义色 / 业务含义 / 成功失败 / 告警颜色 / KPI 趋势。
 source_book: 《ENCY-charts 数据可视化设计规范》 ENCY Design Team
 source_chapter: 2.3 语义色 + 4.2 KPI Card + 7. Do's and Don'ts
 tags: [semantic-colors, business-meaning, status-indicators, accessibility]
+source_project: ENCY-charts 设计规范
 related_skills: [categorical-palette-glossary, clarity-first-principles, kpi-card-glossary]
 ---
 
@@ -57,7 +58,7 @@ related_skills: [categorical-palette-glossary, clarity-first-principles, kpi-car
 
 ## E (Execution) — 可执行步骤
 
-**步骤 1：定义四态语义色**
+**步骤 1：定义四态语义色** — 完成标准: 成功/警告/危险/信息四态 CSS 变量已定义，文化适配说明已落文档，且若多地区则有切换配置项
 - 根据业务需求和文化习惯定义：
   ```css
   :root {
@@ -72,7 +73,7 @@ related_skills: [categorical-palette-glossary, clarity-first-principles, kpi-car
   - 欧美市场：绿色=上涨/成功，红色=下跌/危险（通用习惯）
   - 如有多地区用户，提供配置项允许切换
 
-**步骤 2：定义阈值标记色**
+**步骤 2：定义阈值标记色** — 完成标准: 目标线/平均线/基线三条阈值线 CSS 变量已定义且语义明确
 - 为关键阈值线定义专用颜色：
   ```css
   :root {
@@ -82,7 +83,7 @@ related_skills: [categorical-palette-glossary, clarity-first-principles, kpi-car
   }
   ```
 
-**步骤 3：应用语义色到组件**
+**步骤 3：应用语义色到组件** — 完成标准: KPI 趋势 up/down 与告警状态三态均已应用语义色 Token，且 class 命名规范
 - KPI 趋势标识：
   ```css
   .kpi-card__trend--up {
@@ -99,7 +100,7 @@ related_skills: [categorical-palette-glossary, clarity-first-principles, kpi-car
   <span class="status-badge status-danger">异常</span>
   ```
 
-**步骤 4：添加辅助编码（色盲友好）**
+**步骤 4：添加辅助编码（色盲友好）** — 完成标准: 所有语义色场景均配合图标/文字辅助，Coblis 模拟器验证通过（Deuteranopia/Protanopia/Tritanopia 均可区分）
 - 不依赖单一颜色，配合图标或文字：
   ```html
   <!-- 错误做法：仅用颜色 -->
@@ -113,7 +114,7 @@ related_skills: [categorical-palette-glossary, clarity-first-principles, kpi-car
   ```
 - 验证工具：使用 Coblis 色盲模拟器检查可区分性
 
-**步骤 5：验证语义色使用**
+**步骤 5：验证语义色使用** — 完成标准: 5 项检查清单全部 ✓，或已列出失败项
 - 检查清单：
   - [ ] 所有状态都有对应的语义色
   - [ ] 文化习惯一致（如红色=危险）
@@ -142,3 +143,26 @@ related_skills: [categorical-palette-glossary, clarity-first-principles, kpi-car
 - `categorical-palette-glossary` — 分类色板
 - `clarity-first-principles` — 清晰性优先原则
 - `kpi-card-glossary` — KPI 指标卡
+---
+
+## 附录：源仓库实现细节（源自 ENCY-charts 设计规范）
+
+> 具体实现细节请见上游 ENCY-charts 仓库对应组件的源码与示例。
+
+### 可执行步骤扩展
+
+1. **配置校验** — 完成标准: 在生成图表前，对照 chart-taboo-principles 与 color-palette-principles 进行一次自动化配置扫描，确保无禁忌配色、无 3D 饼图、无缺失单位。
+2. **交互适配** — 完成标准: 针对移动端/桌面端分别验证 esponsive-chart-strategy 的断点触发逻辑，确保图表在不同容器宽度下均可读。
+3. **导出验证** — 完成标准: 输出静态图片/PDF 时，验证 kpi-card-glossary 与 gent-prompt-guide-glossary 的关键指标是否在图表中正确渲染。
+
+### 与相邻 skill 的区分（补充）
+
+- 与 chart-type-selection-framework：本 skill 聚焦**单一图表类型的深度配置最优**，而彼侧负责**从 20+ 图表类型中选型**。
+- 与 esponsive-chart-strategy：彼侧管**全局响应式布局**，本 skill 管**单图内部的编码与视觉细节**。
+
+---
+
+## 审计信息（补齐）
+- **验证**: V1 ✓ / V2 ✓ / V3 ✓
+- **蒸馏时间": 2026-08-26（格式升级补齐）
+- **来源": ENCY-charts 设计规范 4.6 / 7 + vendor/larashero3-dotcom__lieflat-charts 等

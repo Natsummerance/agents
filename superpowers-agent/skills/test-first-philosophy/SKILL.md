@@ -3,6 +3,7 @@ name: test-first-philosophy
 description: |
   当用户需要了解或执行 TDD（测试驱动开发）原则、RED-GREEN-REFACTOR 循环、或为什么测试应该是强制性的而不是可选的时候调用此 skill。适用于所有功能实现、Bug 修复、重构任务。不适用于：探索性编程、原型开发、一次性脚本。关键 trigger 信号："TDD"、"test-driven"、"RED-GREEN-REFACTOR"、"write tests first"、"delete code before tests"、"mandatory testing"。
 source_book: 《Superpowers》 obra
+source_project: obra/superpowers
 source_chapter: How it works / The Basic Workflow / What's Inside / Philosophy
 tags: [principle, tdd, testing, mandatory]
 related_skills: ["mandatory-workflow", "evidence-over-claims", "skipping-tests-anti-pattern"]
@@ -57,13 +58,28 @@ Test-First Philosophy 是 Superpowers 的核心设计原则之一，强调 TDD �
 ## E (Execution) - 可执行步骤
 
 1. **理解需求**：明确要实现的功能或要修复的 Bug
+   - 完成标准：需求已被改写为一条可观察的行为描述（输入→期望输出），无歧义词汇残留
+
 2. **写失败测试**：编写一个描述期望行为的测试，确认它失败（RED）
+   - 完成标准：新测试存在于测试套件中且运行结果为失败，失败原因是断言而非语法错误
+
 3. **运行测试**：确认测试确实失败，排除假阳性
+   - 完成标准：测试运行日志显示该测试 RED 且其余存量测试仍 GREEN
+
 4. **写最少代码**：编写刚好能让测试通过的代码，不做多余工作（GREEN）
+   - 完成标准：实现仅包含使断言通过所需的最小逻辑，无当前测试未要求的额外功能
+
 5. **运行测试**：确认测试通过
+   - 完成标准：全套测试一次运行全部 GREEN，日志留存
+
 6. **重构**：优化代码结构，保持测试通过（REFACTOR）
+   - 完成标准：重构后重复运行测试仍全部 GREEN，且消除了本轮标记的坏味道
+
 7. **提交**：将测试和代码一起提交
+   - 完成标准：单个提交同时包含测试与实现的变更，提交信息说明对应的功能点
+
 8. **重复**：回到步骤 2，处理下一个功能点
+   - 完成标准：下一个功能点已有新的失败测试在运行中，或全部功能点已完成并经最终全量验证
 
 **判停条件**：所有功能点完成且测试全部通过，或用户明确要求停止。
 

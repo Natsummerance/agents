@@ -3,6 +3,7 @@ name: subjective-human-sounding
 description: |
   当用户对去痕效果不满意、认为仍然"太人工"，或想了解"像人写的"是否有统一标准时调用此 skill。不适用于：对去痕效果满意的用户、不需要讨论主观性的场景。关键 trigger 信号：像人写的、主观性、去痕效果不满意、太人工、统一标准、读者偏好。
 source_book: Humanizer Blader
+source_project: blader/humanizer
 source_chapter: Introduction
 tags: [anti-pattern, subjectivity, human-sounding, reader-preference]
 related_skills: ["preserve-style", "voice-matching"]
@@ -53,21 +54,25 @@ README 中定义了 Humanizer 的目标是"rewrites AI-sounding text so it reads
    - 询问用户对去痕效果的具体不满
    - 检查用户是否有特定的读者群体
    - 评估用户是否了解不同读者的偏好差异
+   - 完成标准: 已获得用户对"太人工/不够自然"的具体不满点描述
 
 2. **定义目标读者**
    - 明确去痕后的文本主要给谁看
    - 了解目标读者的阅读习惯和偏好
    - 根据目标读者调整去痕策略
+   - 完成标准: 目标读者画像已成文，去痕策略与其阅读偏好一一对应
 
 3. **寻求多方反馈**
    - 请多个读者评估去痕效果
    - 收集不同意见并分析共同点
    - 根据反馈调整去痕参数
+   - 完成标准: 已收集至少两位读者的意见，并归纳出共同点与分歧点
 
 4. **建立客观评估指标**
    - 虽然"像人写的"是主观的，但可以建立一些客观指标
    - 如句子长度变化、词汇多样性、标点使用频率等
    - 用这些指标辅助主观判断
+   - 完成标准: 选定至少两项可测指标并完成对当前文本的基线测量
 
 ## B (Boundary) - 什么时候不适用
 

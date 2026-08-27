@@ -1,41 +1,57 @@
 {
   "skill": "consistency-principles",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "ENCY-charts 设计规范",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
+      "id": "tc-01",
       "prompt": "如何确保多个图表的风格保持一致？",
-      "expected_skill": "consistency-principles",
-      "category": "should-trigger",
-      "reason": "风格一致性是该 skill 的核心"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，输出三维度一致性原则与五步执行流程",
+      "notes": "风格一致性是该 skill 的核心"
     },
     {
-      "id": "test-2",
+      "id": "tc-02",
       "prompt": "整个 Dashboard 的色彩系统怎么统一？",
-      "expected_skill": "consistency-principles",
-      "category": "should-trigger",
-      "reason": "色彩系统统一是一致性原则的应用场景"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，执行 E 段步骤 1 统一色彩系统、步骤 3 统一间距系统、步骤 4 统一组件样式",
+      "notes": "色彩系统统一是一致性原则的应用场景"
     },
     {
-      "id": "test-3",
+      "id": "tc-03",
       "prompt": "这个图表看起来很乱怎么办？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "视觉混乱属于 clarity-first-principles 清晰性问题"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；视觉混乱属于 clarity-first-principles 清晰性问题",
+      "notes": "视觉混乱非一致性问题"
     },
     {
-      "id": "test-4",
+      "id": "tc-04",
       "prompt": "帮我推荐一个好看的色板",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "色板推荐属于 palette glossary 系列"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；色板推荐属于 palette glossary 系列",
+      "notes": "色板推荐非一致性原则范围"
     },
     {
-      "id": "test-5",
+      "id": "tc-05",
       "prompt": "如何让图表更简洁易读？",
-      "expected_skill": "clarity-first-principles",
-      "category": "cross-skill-confusion",
-      "reason": "简洁易读属于清晰性优先而非一致性原则"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；简洁易读属于 clarity-first-principles",
+      "notes": "诱饵兄弟 skill：clarity-first-principles。清晰性非一致性"
+    },
+    {
+      "id": "tc-06",
+      "prompt": "多品牌产品需要不同视觉语言，一致性原则还适用吗？",
+      "type": "edge_case",
+      "expected_behavior": "命中 B 段不适用：多品牌产品需不同视觉语言，应说明边界并建议各品牌内部保持一致",
+      "notes": "检验多品牌场景的边界判断"
+    },
+    {
+      "id": "tc-07",
+      "prompt": "历史遗留的不一致样式怎么重构？",
+      "type": "edge_case",
+      "expected_behavior": "触发该 skill 走 B 段作者盲点：未说明重构策略，应给出渐进式 Token 替换建议（优先高频组件）",
+      "notes": "对应 B 段盲点'未说明如何处理历史遗留'"
     }
   ]
 }

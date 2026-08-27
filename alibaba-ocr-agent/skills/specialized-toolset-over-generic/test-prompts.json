@@ -1,48 +1,50 @@
 {
   "skill": "specialized-toolset-over-generic",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "alibaba/open-code-review",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "我需要从生产数据中学习最佳的工具调用策略",
-      "expected_skill": "specialized-toolset-over-generic",
-      "category": "should-trigger",
-      "reason": "从生产数据分析中提炼专用工具集是核心能力"
+      "id": "tc-01",
+      "prompt": "通用工具集在代码审查任务上不稳定，想定制一套专用的审查工具集",
+      "type": "should_trigger",
+      "expected_behavior": "触发本 skill，按 E 段给出生产数据收集、统计分析与工具集提炼步骤",
+      "notes": "\"专用工具集优于通用工具集\"正是本 skill 核心主张"
     },
     {
-      "id": "test-2",
-      "prompt": "如何选择最适合代码审查的专用工具集？",
-      "expected_skill": "specialized-toolset-over-generic",
-      "category": "should-trigger",
-      "reason": "专用工具集优于通用工具集是核心设计原则"
+      "id": "tc-02",
+      "prompt": "分析一下生产环境的工具调用轨迹，看看该保留哪些工具、砍掉哪些",
+      "type": "should_trigger",
+      "expected_behavior": "触发本 skill，围绕调用频率分布、重复率、影响因子给出取舍依据",
+      "notes": "生产数据驱动的工具优化是标志性场景"
     },
     {
-      "id": "test-3",
-      "prompt": "如何分析工具调用轨迹来优化工具集？",
-      "expected_skill": "specialized-toolset-over-generic",
-      "category": "should-trigger",
-      "reason": "生产数据驱动的工具集优化是核心方法"
+      "id": "tc-03",
+      "prompt": "审查规则要按文件特征精确匹配，这是 template-engine-over-language-driven 负责的吧",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，路由到 template-engine-over-language-driven",
+      "notes": "跨技能诱饵：点名兄弟 skill，规则匹配与其工具集职责互斥"
     },
     {
-      "id": "test-4",
-      "prompt": "帮我确保文件选择不出错",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "文件选择是硬约束场景，应由确定性工程处理"
+      "id": "tc-04",
+      "prompt": "帮我写一个通用的 CSV 数据处理脚本",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，通用编程任务明确列为不适用场景",
+      "notes": "非审查场景的通用任务不涉及专用工具集"
     },
     {
-      "id": "test-5",
-      "prompt": "这个变量名用什么好？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "日常琐碎选择，不需要专用工具集"
+      "id": "tc-05",
+      "prompt": "Agent 动态决策和上下文检索的策略问题交给 agent-dynamic-decision-making 来梳理",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，路由到 agent-dynamic-decision-making",
+      "notes": "跨技能诱饵：点名兄弟 skill，Scenario-tuned toolset 是其下位实现"
     },
     {
-      "id": "test-6",
-      "prompt": "如何优化代码审查的提示模板？",
-      "expected_skill": "agent-dynamic-decision-making",
-      "category": "cross-skill-confusion",
-      "reason": "这应该触发 Agent 动态决策 skill，虽然与专用工具集相关但更关注提示优化"
+      "id": "tc-06",
+      "prompt": "新引入的工具可能影响整条调用链，怎么评估要不要加进专用工具集？",
+      "type": "edge_case",
+      "expected_behavior": "触发本 skill 给出影响因子评估方法（对调用链的波及范围与频次），输出加/不加的可判定结论",
+      "notes": "边界题：考察新工具影响的量化判据"
     }
   ]
 }

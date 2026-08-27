@@ -1,41 +1,64 @@
 {
   "skill": "show-your-work",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "blader/humanizer",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "能否看到中间结果？",
-      "expected_skill": "show-your-work",
-      "category": "should-trigger",
-      "reason": "显示工作过程的透明化原则 是 show-your-work 的核心应用场景"
+      "id": "syw-t1",
+      "prompt": "能否看到中间结果？我想看第一版改稿。",
+      "type": "should_trigger",
+      "expected_behavior": "触发本技能：确认默认流程会自动展示 First Rewrite 与 Critique，并说明用户可据此给出句子级反馈。",
+      "notes": "核心触发：要求看中间稿。"
     },
     {
-      "id": "test-2",
-      "prompt": "去痕过程是否透明？",
-      "expected_skill": "show-your-work",
-      "category": "should-trigger",
-      "reason": "显示工作过程的透明化原则 是 show-your-work 的核心应用场景"
+      "id": "syw-t2",
+      "prompt": "去痕过程透明吗？我要理解为什么要改那些地方。",
+      "type": "should_trigger",
+      "expected_behavior": "触发本技能：说明透明化原则——先展示第一遍重写与批评，用户确认后再定稿，且每条修改可追溯模式与原因。",
+      "notes": "透明化诉求 + 可解释性。"
     },
     {
-      "id": "test-3",
-      "prompt": "去痕流程是什么？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "该场景不属于 显示工作过程的透明化原则 的触发条件"
+      "id": "syw-t3",
+      "prompt": "我想在看到批评意见后提反馈，再让你改最终版。",
+      "type": "should_trigger",
+      "expected_behavior": "触发本技能：确认流程包含用户反馈环节，引导按步骤 4 给出句子级反馈并标注期望保留项。",
+      "notes": "完整透明化闭环诉求。"
     },
     {
-      "id": "test-4",
-      "prompt": "去痕后是否会改变事实？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "该场景不属于 显示工作过程的透明化原则 的触发条件"
+      "id": "syw-nt1",
+      "prompt": "两遍重写的具体步骤是啥？",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本技能；流程机制细节归 two-pass-rewriting。",
+      "notes": "互设诱饵（A）：点名兄弟 skill two-pass-rewriting，原则 vs 机制分工。"
     },
     {
-      "id": "test-5",
-      "prompt": "这个工具怎么用？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "该场景不属于 显示工作过程的透明化原则 的触发条件"
+      "id": "syw-nt2",
+      "prompt": "改写会不会把我的日期、引用改错？",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本技能；事实准确性归 no-fabrication。",
+      "notes": "诱饵：过程透明 vs 内容保障。"
+    },
+    {
+      "id": "syw-nt3",
+      "prompt": "怎么让改完的文本匹配我自己的写作风格？",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本技能；风格匹配归 voice-matching / preserve-style。",
+      "notes": "诱饵：透明化流程 vs 个性化定制。"
+    },
+    {
+      "id": "syw-e1",
+      "prompt": "我只要最终版，中间稿和批评全跳过，能不能加个开关？",
+      "type": "edge_case",
+      "expected_behavior": "承认 B 段排除场景，说明当前无开关但可约定'仅内部自检 Critique 不外显'的降级模式，并记录用户偏好供后续迭代参考。",
+      "notes": "作者盲点：缺少跳过显示选项，给出可执行降级方案。"
+    },
+    {
+      "id": "syw-e2",
+      "prompt": "批评意见太简略，能不能每条都标上模式编号和原文位置？",
+      "type": "edge_case",
+      "expected_behavior": "支持增强：在步骤 3 生成批评时要求结构化输出（模式编号、原文引用、位置、严重度），作为步骤 4 反馈与步骤 5 定稿的共同依据。",
+      "notes": "作者盲点：批评详细程度无配置，考察扩展而非拒绝。"
     }
   ]
 }

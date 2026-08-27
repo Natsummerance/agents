@@ -5,6 +5,7 @@ description: |
 source_book: 《ENCY-charts 数据可视化设计规范》 ENCY Design Team
 source_chapter: 7. Do's and Don'ts (Don'ts section)
 tags: [design-taboos, common-mistakes, negative-checklist, design-review]
+source_project: ENCY-charts 设计规范
 related_skills: [clarity-first-principles, consistency-principles, 3d-pie-chart-trap, y-axis-non-zero-trap]
 ---
 
@@ -54,7 +55,7 @@ related_skills: [clarity-first-principles, consistency-principles, 3d-pie-chart-
 
 ## E (Execution) — 可执行步骤
 
-**步骤 1：检查字重使用（#1）**
+**步骤 1：检查字重使用（#1）** — 完成标准: 已输出"字重种类数 ≤2/超标"的判定结论，且扫描脚本已跑通
 - 扫描 CSS/JS 代码，统计使用的字重数量：
   ```javascript
   const fontWeights = new Set();
@@ -70,7 +71,7 @@ related_skills: [clarity-first-principles, consistency-principles, 3d-pie-chart-
   ```
 - 修复：仅保留 600（主数据）和 400（辅助信息）
 
-**步骤 2：检查颜色相似度（#2）**
+**步骤 2：检查颜色相似度（#2）** — 完成标准: 已输出所有相邻色对相似度 ≤0.8/ >0.8 的判定结论，且计算日志可查
 - 计算相邻颜色的相似度（使用 CIEDE2000 色差公式）：
   ```javascript
   function colorSimilarity(color1, color2) {
@@ -92,7 +93,7 @@ related_skills: [clarity-first-principles, consistency-principles, 3d-pie-chart-
   ```
 - 修复：替换为差异更大的颜色
 
-**步骤 3：检查轴刻度标签（#3）**
+**步骤 3：检查轴刻度标签（#3）** — 完成标准: 已输出"Y 轴刻度数 ≥3/ <3"的判定结论，且统计脚本已跑通
 - 统计轴刻度数量：
   ```javascript
   const yAxisTicks = document.querySelectorAll('.y-axis .tick');
@@ -102,7 +103,7 @@ related_skills: [clarity-first-principles, consistency-principles, 3d-pie-chart-
   ```
 - 修复：调整 `splitNumber` 或 `interval` 确保至少 3-5 个刻度
 
-**步骤 4：检查 3D 效果（#4）**
+**步骤 4：检查 3D 效果（#4）** — 完成标准: 已输出"存在/不存在 3D 属性"的判定结论，且扫描脚本已跑通
 - 扫描 ECharts 配置，查找 3D 相关属性：
   ```javascript
   if (option.series.some(s => s.shading === 'lambert' || s.dimension === 3)) {
@@ -111,7 +112,7 @@ related_skills: [clarity-first-principles, consistency-principles, 3d-pie-chart-
   ```
 - 修复：移除 `shading`、`light` 等 3D 属性
 
-**步骤 5：检查 Tooltip 单位（#5）**
+**步骤 5：检查 Tooltip 单位（#5）** — 完成标准: 已输出"Tooltip 含单位/缺单位"的判定结论，且正则检查已跑通
 - 验证 Tooltip 内容是否包含单位：
   ```javascript
   const tooltipText = getTooltipContent();
@@ -121,13 +122,13 @@ related_skills: [clarity-first-principles, consistency-principles, 3d-pie-chart-
   ```
 - 修复：在 formatter 中添加单位
 
-**步骤 6：检查装饰性图表（#6）**
+**步骤 6：检查装饰性图表（#6）** — 完成标准: 已输出"微型图表有趋势意义/纯装饰"的判定结论，并给出处理意见
 - 审查 KPI 卡片中的微型图表：
   - 是否有明确的趋势意义？
   - 还是仅为装饰？
 - 修复：移除无意义的微型图表，或替换为有意义的趋势数据
 
-**步骤 7：检查装饰性网格线（#7）**
+**步骤 7：检查装饰性网格线（#7）** — 完成标准: 已输出"X 轴分割线显示/隐藏"的判定结论，且配置检查已跑通
 - 扫描 ECharts 配置，查找不必要的网格线：
   ```javascript
   if (option.xAxis.splitLine?.show) {
@@ -136,7 +137,7 @@ related_skills: [clarity-first-principles, consistency-principles, 3d-pie-chart-
   ```
 - 修复：设置 `xAxis.splitLine.show: false`
 
-**步骤 8：检查移动端列数（#8）**
+**步骤 8：检查移动端列数（#8）** — 完成标准: 已输出"<728px 下列数 ≤2/ >2"的判定结论，且 CSS 媒体查询生效验证通过
 - 在 <728px 宽度下检查图表格列数：
   ```css
   @media (max-width: 727px) {
@@ -147,7 +148,7 @@ related_skills: [clarity-first-principles, consistency-principles, 3d-pie-chart-
   ```
 - 修复：确保移动端不超过 2 列
 
-**步骤 9：生成检查报告**
+**步骤 9：生成检查报告** — 完成标准: 已生成含 8 项检查结果与通过率的报告，若通过率<100%则明确列出失败项并标注优先级
 - 汇总所有检查结果：
   ```
   ❌ 使用了 3 种字重（超过限制的 2 种）

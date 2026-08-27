@@ -3,6 +3,7 @@ name: subagent-driven-development
 description: |
   当用户需要让编码 Agent 自主处理多个工程任务、并行工作数小时而不偏离计划时调用此 skill。适用于大型功能开发、多任务并行、需要长时间自主工作的场景。不适用于：单一小任务、一次性脚本、紧急 hotfix。关键 trigger 信号："subagent"、"parallel agents"、"autonomous work"、"two-stage review"、"spec compliance"、"code quality review"。
 source_book: 《Superpowers》 obra
+source_project: obra/superpowers
 source_chapter: How it works / The Basic Workflow / What's Inside
 tags: [framework, subagent, parallel, review]
 related_skills: ["mandatory-workflow"]
@@ -51,11 +52,22 @@ Subagent-driven-Development (SDD) 是一种让编码 Agent 自主处理多个工
 ## E (Execution) - 可执行步骤
 
 1. **确认计划已批准**：确保 writing-plans 已完成，每个任务有明确的目标、文件路径、验收标准
+   - 完成标准：计划文档中每个任务均含目标/文件路径/验收标准三要素，且有用户批准记录；任一任务缺项则退回补齐
+
 2. **分派子 Agent**：为每个任务创建一个新鲜的子 Agent，传入任务描述和计划
+   - 完成标准：每个任务对应一个独立子 Agent 会话，其输入包含完整任务描述且互不共享上下文
+
 3. **第一阶段审查（规范合规性）**：子 Agent 完成后，检查实现是否严格按计划执行，是否有遗漏或偏离
+   - 完成标准：对照验收标准逐条核对并形成"符合/偏离"清单，偏离项为零才进入第二阶段
+
 4. **第二阶段审查（代码质量）**：检查代码是否符合最佳实践（命名、结构、测试覆盖、性能等）
+   - 完成标准：按严重性分级的问题列表已产出，阻断级问题清零，非阻断项有处理决定
+
 5. **汇总结果**：合并所有子 Agent 的输出，生成统一报告
+   - 完成标准：报告中每个任务都有独立结论，无任务处于"未审/未知"状态
+
 6. **用户确认**：向用户展示审查结果，询问是否需要调整
+   - 完成标准：用户已对统一报告给出接受/调整的明确答复，调整项已登记为新任务
 
 **判停条件**：所有子 Agent 完成且两阶段审查通过，或用户明确要求停止。
 

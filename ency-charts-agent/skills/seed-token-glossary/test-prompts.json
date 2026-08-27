@@ -1,41 +1,57 @@
 {
   "skill": "seed-token-glossary",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "ENCY-charts 设计规范",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
+      "id": "tc-01",
       "prompt": "Seed Token 是什么？包含哪些变量？",
-      "expected_skill": "seed-token-glossary",
-      "category": "should-trigger",
-      "reason": "Seed Token 定义是该 glossary 的核心"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，解析 Seed Token 定义、核心特征与典型示例",
+      "notes": "Seed Token 定义是该 glossary 的核心"
     },
     {
-      "id": "test-2",
+      "id": "tc-02",
       "prompt": "品牌主色和灰阶的基础值怎么定义？",
-      "expected_skill": "seed-token-glossary",
-      "category": "should-trigger",
-      "reason": "基础色值定义属于 Seed Token 层"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，执行 E 段三步骤：识别原子值、定义 CSS 变量、验证使用",
+      "notes": "基础色值定义属于 Seed Token 范围"
     },
     {
-      "id": "test-3",
+      "id": "tc-03",
       "prompt": "组件级别的圆角大小怎么设置？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "组件级 Token 属于 design-token-architecture 的 Component 层"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；组件级 Token 属于 design-token-architecture 的 Component Token",
+      "notes": "组件 Token 非 Seed Token 范围"
     },
     {
-      "id": "test-4",
+      "id": "tc-04",
       "prompt": "错误状态用什么红色？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "错误状态色属于 semantic-colors-glossary"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；错误状态色属于 semantic-colors-glossary",
+      "notes": "语义色非 Seed Token 范围"
     },
     {
-      "id": "test-5",
+      "id": "tc-05",
       "prompt": "三层 Token 架构的整体设计思路？",
-      "expected_skill": "design-token-architecture",
-      "category": "cross-skill-confusion",
-      "reason": "整体架构设计属于 token architecture 而非 seed glossary"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；整体架构设计属于 design-token-architecture",
+      "notes": "诱饵兄弟 skill：design-token-architecture。架构设计非 Seed glossary"
+    },
+    {
+      "id": "tc-06",
+      "prompt": "Seed Token 定义后发现漏了字体行高，怎么补？",
+      "type": "edge_case",
+      "expected_behavior": "触发该 skill 走 E 段步骤 1 补识别原子值、步骤 2 追加定义、步骤 3 验证使用，并提示架构层面建议同步更新 design-token-architecture",
+      "notes": "原子值遗漏补全场景"
+    },
+    {
+      "id": "tc-07",
+      "prompt": "快速原型开发需要定义 Seed Token 吗？",
+      "type": "edge_case",
+      "expected_behavior": "命中 B 段不适用：单一页面快速原型无需定义 Seed Token，直接写样式更快",
+      "notes": "检验快速原型场景的边界判断"
     }
   ]
 }

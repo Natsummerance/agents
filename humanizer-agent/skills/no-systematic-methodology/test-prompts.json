@@ -1,41 +1,50 @@
 {
   "skill": "no-systematic-methodology",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "blader/humanizer",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "我完成了几个模式练习但仍感到迷茫",
-      "expected_skill": "no-systematic-methodology",
-      "category": "should-trigger",
-      "reason": "缺乏系统性方法论的反模式 是 no-systematic-methodology 的核心应用场景"
+      "id": "nsm-t1",
+      "prompt": "装了 humanizer 之后我还是迷茫，不知道下一步该练哪个模式。",
+      "type": "should_trigger",
+      "expected_behavior": "触发本技能：识别'模式列表≠学习方法论'的缺口，基于 6 个类别建立学习路径。",
+      "notes": "核心症状：有内容无框架导致的迷茫。"
     },
     {
-      "id": "test-2",
-      "prompt": "不知道下一步该做什么",
-      "expected_skill": "no-systematic-methodology",
-      "category": "should-trigger",
-      "reason": "缺乏系统性方法论的反模式 是 no-systematic-methodology 的核心应用场景"
+      "id": "nsm-t2",
+      "prompt": "我总是随手挑一个模式练，感觉东一榔头西一棒子，不成体系怎么办？",
+      "type": "should_trigger",
+      "expected_behavior": "触发本技能：诊断随机选择反模式，将已练模式串联为连贯路径并设定类别目标。",
+      "notes": "随机应用模式、缺乏连贯策略。"
     },
     {
-      "id": "test-3",
-      "prompt": "如何识别 AI 痕迹？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "该场景不属于 缺乏系统性方法论的反模式 的触发条件"
+      "id": "nsm-nt1",
+      "prompt": "帮我建一张表记录每个模式的练习次数和自评得分。",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本技能；具体进度追踪工具设计归 no-progress-tracking。",
+      "notes": "诱饵：点名兄弟 skill no-progress-tracking，整体框架缺失与具体反馈机制缺失需区分。"
     },
     {
-      "id": "test-4",
-      "prompt": "去痕流程是什么？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "该场景不属于 缺乏系统性方法论的反模式 的触发条件"
+      "id": "nsm-nt2",
+      "prompt": "35 个模式里'破折号滥用'那条具体指什么？",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本技能；单模式含义解释归 pattern-based-detection。",
+      "notes": "诱饵：点名兄弟 skill pattern-based-detection，单点咨询不是方法论问题。"
     },
     {
-      "id": "test-5",
-      "prompt": "这个技能怎么用？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "该场景不属于 缺乏系统性方法论的反模式 的触发条件"
+      "id": "nsm-e1",
+      "prompt": "我已经有一套自己的学习计划了，你帮我看看要不要补充就行。",
+      "type": "edge_case",
+      "expected_behavior": "不整套替换用户既有计划，仅按 6 类别依赖关系查漏补缺并给出增量建议。",
+      "notes": "已有明确计划的用户属 B 段排除场景，只做查漏不做重建。"
+    },
+    {
+      "id": "nsm-e2",
+      "prompt": "我把 6 个类别的顺序打乱学会有问题吗？比如先学填充词再学夸大重要性。",
+      "type": "edge_case",
+      "expected_behavior": "评估该顺序与建议路径的依赖冲突，说明哪些类别可互换、哪些存在前置关系。",
+      "notes": "考察对'建立模式之间的依赖关系'这一步骤的实际运用。"
     }
   ]
 }

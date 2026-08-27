@@ -1,48 +1,57 @@
 {
   "skill": "no-progress-tracking",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "florinpop17/app-ideas",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "我完成多个项目但仍不知道自己是否真正进步",
-      "expected_skill": "no-progress-tracking",
-      "category": "should-trigger",
-      "reason": "无法量化成长是 no-progress-tracking 的核心症状"
+      "id": "no-progress-tracking-t1",
+      "prompt": "我完成了五六个小项目，但完全说不清自己有没有进步，也不知道现在什么水平",
+      "type": "should_trigger",
+      "expected_behavior": "识别为反馈循环缺失，执行症状识别三问并引导建立进度追踪机制（项目/学习目标/掌握自评记录表）",
+      "notes": "核心触发：完成多个项目但无法判断进步"
     },
     {
-      "id": "test-2",
-      "prompt": "我无法量化自己的技能成长",
-      "expected_skill": "no-progress-tracking",
-      "category": "should-trigger",
-      "reason": "量化成长是 no-progress-tracking 的核心价值"
+      "id": "no-progress-tracking-t2",
+      "prompt": "有没有办法把我的技能成长量化出来？我想看到自己的进步曲线",
+      "type": "should_trigger",
+      "expected_behavior": "进入量化成长步骤：搭建技能矩阵、跟踪项目复杂度层级与解题效率变化",
+      "notes": "关键信号：量化成长"
     },
     {
-      "id": "test-3",
-      "prompt": "我缺乏反馈循环导致动力下降",
-      "expected_skill": "no-progress-tracking",
-      "category": "should-trigger",
-      "reason": "反馈循环缺失是 no-progress-tracking 的典型表现"
+      "id": "no-progress-tracking-t3",
+      "prompt": "每做完一个项目就没了下文，感觉在原地打转，越来越没动力了",
+      "type": "should_trigger",
+      "expected_behavior": "判定为缺乏反馈循环导致动力下降，建立做完即评的复盘机制与外部反馈渠道",
+      "notes": "关键信号：动力下降、原地打转"
     },
     {
-      "id": "test-4",
-      "prompt": "我完成项目后不确定代码是否正确",
-      "expected_skill": "no-progress-tracking",
-      "category": "should-not-trigger",
-      "reason": "这应该触发 no-testing-guidance skill，虽然与验证相关但更关注代码质量"
+      "id": "no-progress-tracking-n1",
+      "prompt": "我刚写完一个功能，不确定代码对不对，要不要补个测试验证一下？",
+      "type": "should_not_trigger",
+      "expected_behavior": "不处理学习进度议题；代码正确性验证转交 no-testing-guidance",
+      "notes": "跨技能诱饵：代码质量验证归兄弟 skill no-testing-guidance，本 skill 只管学习进度的量化"
     },
     {
-      "id": "test-5",
-      "prompt": "纯兴趣练习需要追踪进度吗？",
-      "expected_skill": "no-progress-tracking",
-      "category": "should-not-trigger",
-      "reason": "纯兴趣练习不追求系统性提升，属于边界场景"
+      "id": "no-progress-tracking-n2",
+      "prompt": "我做项目全凭兴趣随便挑，学了很久还是很迷茫，不知道整体该怎么规划",
+      "type": "should_not_trigger",
+      "expected_behavior": "整体学习框架缺失优先于进度追踪，先转交 no-systematic-methodology 做方法论诊断，再回头建追踪机制",
+      "notes": "跨技能诱饵：宏观框架缺失归兄弟 skill no-systematic-methodology"
     },
     {
-      "id": "test-6",
-      "prompt": "我随机选择项目，缺乏连贯的学习路径",
-      "expected_skill": "no-systematic-methodology",
-      "category": "cross-skill-confusion",
-      "reason": "这应该触发 no-systematic-methodology skill，虽然与进度相关但更关注整体框架"
+      "id": "no-progress-tracking-e1",
+      "prompt": "我在跟学校的课程，老师已经给了评分标准，还需要自己再做一套进度追踪吗？",
+      "type": "edge_case",
+      "expected_behavior": "命中 B 段边界：已有明确外部评估标准时不强行另起一套，仅说明可做轻量补充记录，由用户自行决定",
+      "notes": "边界用例：外部评估体系已存在时本 skill 不适用"
+    },
+    {
+      "id": "no-progress-tracking-e2",
+      "prompt": "帮我记录一下进度：这周我大概学会了 React",
+      "type": "edge_case",
+      "expected_behavior": "拒绝记录不可判定的模糊表述，要求先把'大概学会'改写为可验证目标（如能独立完成某类组件）后再入表",
+      "notes": "红线用例：进度记录必须可判定，不接受模糊自评"
     }
   ]
 }

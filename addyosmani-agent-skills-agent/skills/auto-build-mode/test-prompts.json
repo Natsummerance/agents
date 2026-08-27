@@ -1,41 +1,50 @@
 {
   "skill": "auto-build-mode",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "addyosmani/agent-skills",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "能否一次性实现所有任务？",
-      "expected_skill": "auto-build-mode",
-      "category": "should-trigger",
-      "reason": "用户想提高效率，适合 auto-build-mode"
+      "id": "tc-01",
+      "prompt": "能不能批准一次计划之后，让它自己把所有任务都做完？",
+      "type": "should_trigger",
+      "expected_behavior": "触发本 skill，介绍 /build auto 的 single approved pass 模式与暂停机制",
+      "notes": "\"一次性自主实现\"是本 skill 的标志性诉求"
     },
     {
-      "id": "test-2",
-      "prompt": "如何平衡自动化与安全性？",
-      "expected_skill": "auto-build-mode",
-      "category": "should-trigger",
-      "reason": "用户想了解自动化模式，适合 auto-build-mode"
+      "id": "tc-02",
+      "prompt": "怎么减少任务之间的人工干预，又保住测试驱动和单独提交的质量底线？",
+      "type": "should_trigger",
+      "expected_behavior": "触发本 skill，强调移除的是任务间人工干预而非验证环节",
+      "notes": "自动化与安全的平衡正是 auto-build-mode 的核心议题"
     },
     {
-      "id": "test-3",
-      "prompt": "我应该先写什么？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "应触发 spec-driven-development，不是 auto-build-mode"
+      "id": "tc-03",
+      "prompt": "需求还没想清楚，先用 spec-driven-development 把规格定下来再谈自动化吧",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，路由到 spec-driven-development",
+      "notes": "跨技能诱饵：点名兄弟 skill，需求定义先于自动构建"
     },
     {
-      "id": "test-4",
-      "prompt": "如何证明代码正确？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "应触发 test-driven-development，不是 auto-build-mode"
+      "id": "tc-04",
+      "prompt": "这是高风险生产项目，每个任务我都要亲自审批，不要自主运行",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，需要频繁人工干预的高风险场景列为不适用",
+      "notes": "用户明确拒绝授权自主执行"
     },
     {
-      "id": "test-5",
-      "prompt": "这个配置怎么改？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "具体实现问题，不应调用"
+      "id": "tc-05",
+      "prompt": "我想手动练习先写失败测试再写实现的过程，按 test-driven-development 来就行",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，路由到 test-driven-development",
+      "notes": "跨技能诱饵：点名兄弟 skill，手动 TDD 练习无需自动构建模式"
+    },
+    {
+      "id": "tc-06",
+      "prompt": "/build auto 执行到一半需求变了，该继续跑还是停下来？",
+      "type": "edge_case",
+      "expected_behavior": "触发本 skill 给出判定：按暂停条件停下、报告差异并由用户决策继续/修改/放弃，输出可执行的处置步骤",
+      "notes": "边界题：考察中途需求变更时的暂停决策"
     }
   ]
 }

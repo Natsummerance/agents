@@ -1,48 +1,57 @@
 {
   "skill": "git-worktree-isolation",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "obra/superpowers",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "我需要在不影响主分支的情况下并行开发多个功能",
-      "expected_skill": "git-worktree-isolation",
-      "category": "should-trigger",
-      "reason": "Git worktree 隔离是核心应用场景"
+      "id": "git-worktree-isolation-t1",
+      "prompt": "我要同时开发两个互不干扰的功能，怎么用 git worktree 搞隔离工作区？",
+      "type": "should_trigger",
+      "expected_behavior": "按 E 段流程创建独立分支与 worktree，运行项目设置并汇报 git worktree list 结果",
+      "notes": "核心触发：parallel branches 场景"
     },
     {
-      "id": "test-2",
-      "prompt": "如何创建隔离工作区并验证干净的测试基线？",
-      "expected_skill": "git-worktree-isolation",
-      "category": "should-trigger",
-      "reason": "验证测试基线是 git-worktree-isolation 的关键步骤"
+      "id": "git-worktree-isolation-t2",
+      "prompt": "想在完全不动 main 分支的情况下做一个高风险实验，失败就直接扔掉",
+      "type": "should_trigger",
+      "expected_behavior": "为新分支创建隔离 worktree 承载实验性变更，主工作区保持不受影响",
+      "notes": "对应 A2 实验性变更场景"
     },
     {
-      "id": "test-3",
-      "prompt": "如何在实验性变更时不污染主分支？",
-      "expected_skill": "git-worktree-isolation",
-      "category": "should-trigger",
-      "reason": "实验性变更是 git-worktree-isolation 的典型应用"
+      "id": "git-worktree-isolation-t3",
+      "prompt": "新环境里测试莫名挂掉，我先验证一下干净基线排除环境因素",
+      "type": "should_trigger",
+      "expected_behavior": "在新建的隔离工作区运行完整测试套件验证 clean test baseline，区分代码问题与环境问题",
+      "notes": "关键信号：clean test baseline"
     },
     {
-      "id": "test-4",
-      "prompt": "帮我理解 Superpowers 的 7 步强制工作流",
-      "expected_skill": "git-worktree-isolation",
-      "category": "should-not-trigger",
-      "reason": "这应该触发 mandatory-workflow skill，虽然 git-worktree 是第 2 步但用户问的是整体流程"
+      "id": "git-worktree-isolation-n1",
+      "prompt": "给我完整讲讲 Superpowers 那 7 步强制工作流分别是什么、什么时候激活",
+      "type": "should_not_trigger",
+      "expected_behavior": "整体流程框架的解释转交 mandatory-workflow；本 skill 只是其中第 2 步的具体实现",
+      "notes": "跨技能诱饵：流程总览归兄弟 skill mandatory-workflow"
     },
     {
-      "id": "test-5",
-      "prompt": "这个单一小修改需要创建工作区吗？",
-      "expected_skill": "git-worktree-isolation",
-      "category": "should-not-trigger",
-      "reason": "单一小修改不需要隔离工作区"
+      "id": "git-worktree-isolation-n2",
+      "prompt": "我想让多个 subagent 各自认领不同任务并行开工，任务之间怎么分派和审查？",
+      "type": "should_not_trigger",
+      "expected_behavior": "任务分派与两阶段审查转交 subagent-driven-development；本 skill 管工作区隔离，不管任务编排",
+      "notes": "跨技能诱饵：任务分派审查归兄弟 skill subagent-driven-development"
     },
     {
-      "id": "test-6",
-      "prompt": "如何让 Agent 自主处理多个任务？",
-      "expected_skill": "subagent-driven-development",
-      "category": "cross-skill-confusion",
-      "reason": "这应该触发 subagent-driven-development skill，虽然与并行相关但更关注任务分派"
+      "id": "git-worktree-isolation-e1",
+      "prompt": "就改一行 typo，也给我整个 worktree 流程吗？",
+      "type": "edge_case",
+      "expected_behavior": "命中 B 段边界：单一小修改直接在当前分支修改，不创建隔离工作区",
+      "notes": "边界用例：改动粒度过小时流程成本大于收益"
+    },
+    {
+      "id": "git-worktree-isolation-e2",
+      "prompt": "线上炸了，十分钟内必须修复上线，还来得及开 worktree 吗？",
+      "type": "edge_case",
+      "expected_behavior": "判定为紧急 hotfix 不适用本流程：允许直接修复，但要求事后补记录与复盘，明确说明取舍",
+      "notes": "边界用例：紧急响应优先于流程完备性"
     }
   ]
 }

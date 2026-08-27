@@ -1,20 +1,57 @@
 {
   "skill": "writing-for-agents",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "mattpocock/skills",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "帮我写一个新的 SKILL.md",
-      "expected_skill": "writing-for-agents",
-      "category": "should-trigger",
-      "reason": "Agent 文档编写"
+      "id": "writing-01",
+      "prompt": "Write a skill for handling database migrations.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes writing-for-agents skill to design the SKILL.md structure with context pointers, information hierarchy, completion criteria.",
+      "notes": "Skill authoring is a key trigger."
     },
     {
-      "id": "test-2",
-      "prompt": "帮我写给用户的 README",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "用户文档不同于 Agent 文档"
+      "id": "writing-02",
+      "prompt": "Design an AGENTS.md file for this project.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes writing-for-agents skill to design project-level agent instructions with context pointers and completion criteria.",
+      "notes": "AGENTS.md design is a valid trigger."
+    },
+    {
+      "id": "writing-03",
+      "prompt": "This document is too long. Optimize it for agent consumption.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes writing-for-agents skill to reduce context load, disclose reference behind pointers, prune no-ops.",
+      "notes": "Document optimization is a valid trigger."
+    },
+    {
+      "id": "writing-04",
+      "prompt": "Implement the authentication feature.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes implement skill instead. Implement builds code; writing-for-agents designs documents agents consume.",
+      "notes": "implement is the sibling skill for building code."
+    },
+    {
+      "id": "writing-05",
+      "prompt": "Teach me about React hooks.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes teach skill instead. Teach writes for human learners; writing-for-agents writes for agent consumption.",
+      "notes": "teach is the sibling skill for human learning."
+    },
+    {
+      "id": "writing-06",
+      "prompt": "Fix my last message — I used too much jargon.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes wait-what skill instead. Wait-what re-pitches messages; writing-for-agents redesigns document structure.",
+      "notes": "wait-what is the sibling skill for re-pitching messages."
+    },
+    {
+      "id": "writing-07",
+      "prompt": "How should I structure this skill's SKILL.md file?",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes writing-for-agents skill to provide best practices for skill document structure.",
+      "notes": "Skill structure question is a valid trigger."
     }
   ]
 }

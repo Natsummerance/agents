@@ -1,20 +1,57 @@
 {
   "skill": "to-tickets",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "mattpocock/skills",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "把这个 spec 拆成 tickets",
-      "expected_skill": "to-tickets",
-      "category": "should-trigger",
-      "reason": "明确要求工单拆分"
+      "id": "to-tickets-01",
+      "prompt": "Break this spec into individual tickets for implementation.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes to-tickets skill to create tracer-bullet vertical slices with blocking edges from the spec.",
+      "notes": "Spec breakdown request is a key trigger."
     },
     {
-      "id": "test-2",
-      "prompt": "什么是 TDD？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "概念查询不是工单拆分"
+      "id": "to-tickets-02",
+      "prompt": "Create tickets from this design discussion.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes to-tickets skill to decompose the discussion into executable work items.",
+      "notes": "Discussion decomposition is a valid trigger."
+    },
+    {
+      "id": "to-tickets-03",
+      "prompt": "Plan the implementation sequence for this feature.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes to-tickets skill to sequence work with blocking edges and dependency order.",
+      "notes": "Execution planning is a valid trigger."
+    },
+    {
+      "id": "to-tickets-04",
+      "prompt": "Implement the first ticket from this list.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes implement skill instead. Implement executes tickets; to-tickets creates tickets.",
+      "notes": "implement is the sibling skill for executing tickets."
+    },
+    {
+      "id": "to-tickets-05",
+      "prompt": "Design the interface for this new module.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes codebase-design skill instead. Codebase-design shapes interfaces; to-tickets creates work items.",
+      "notes": "codebase-design is the sibling skill for module design."
+    },
+    {
+      "id": "to-tickets-06",
+      "prompt": "Map out the decisions we need to make for this project.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes wayfinder skill instead. Wayfinder maps decisions; to-tickets creates executable work items from resolved decisions.",
+      "notes": "wayfinder is the sibling skill for mapping decisions."
+    },
+    {
+      "id": "to-tickets-07",
+      "prompt": "This refactoring needs to be done in expand-contract pattern. Break it down.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes to-tickets skill to create expand-contract sequence for wide refactoring.",
+      "notes": "Expand-contract pattern breakdown is a valid trigger."
     }
   ]
 }

@@ -1,48 +1,57 @@
 {
   "skill": "agent-dynamic-decision-making",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "alibaba/open-code-review",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "我需要优化代码审查的提示模板，让它更高效且减少 token 消耗",
-      "expected_skill": "agent-dynamic-decision-making",
-      "category": "should-trigger",
-      "reason": "场景化提示模板是 Agent 动态决策的核心能力"
+      "id": "tc-01",
+      "prompt": "我需要优化代码审查的提示模板，让它更高效并减少 token 消耗",
+      "type": "should_trigger",
+      "expected_behavior": "触发本 skill，按 E 段流程给出 Scenario-tuned prompts 的设计与验证方案",
+      "notes": "场景化提示模板优化是 Agent 动态决策的核心能力之一"
     },
     {
-      "id": "test-2",
-      "prompt": "如何从生产数据中学习最佳的工具调用策略？",
-      "expected_skill": "agent-dynamic-decision-making",
-      "category": "should-trigger",
-      "reason": "从生产数据分析中提炼专用工具集是 Agent 的优势领域"
+      "id": "tc-02",
+      "prompt": "如何从大规模生产数据的工具调用轨迹中提炼专用工具集？",
+      "type": "should_trigger",
+      "expected_behavior": "触发本 skill，给出调用频率/重复率/影响因子分析与工具集提炼步骤",
+      "notes": "从生产数据提炼 Scenario-tuned toolset 是本 skill 的标志性场景"
     },
     {
-      "id": "test-3",
-      "prompt": "我需要动态上下文检索来支持深度代码审查",
-      "expected_skill": "agent-dynamic-decision-making",
-      "category": "should-trigger",
-      "reason": "动态上下文检索是 Agent 的核心优势"
+      "id": "tc-03",
+      "prompt": "我想让 Agent 在审查时自动检索相关上下文来支持深度审查",
+      "type": "should_trigger",
+      "expected_behavior": "触发本 skill，围绕动态上下文检索给出能力配置建议",
+      "notes": "动态上下文检索是 Agent 优势领域，属本 skill 职责"
     },
     {
-      "id": "test-4",
-      "prompt": "帮我确保文件选择不出错，不能遗漏任何重要文件",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "文件选择是硬约束场景，应由确定性工程处理，而非 Agent 动态决策"
+      "id": "tc-04",
+      "prompt": "帮我确保文件选择不出错，不能遗漏任何重要文件，请用 deterministic-engineering-hard-constraints 来处理",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，路由到同名兄弟 skill deterministic-engineering-hard-constraints",
+      "notes": "跨技能诱饵：点名兄弟 skill，文件选择属硬约束而非动态决策"
     },
     {
-      "id": "test-5",
+      "id": "tc-05",
+      "prompt": "500 个文件的大 PR 怎么审查？直接按 divide-and-conquer-strategy 做智能捆绑拆分吧",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，路由到 divide-and-conquer-strategy",
+      "notes": "跨技能诱饵：大变更集分治属兄弟 skill 职责"
+    },
+    {
+      "id": "tc-06",
       "prompt": "这个变量名用什么好？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "日常琐碎选择，不需要 Agent 动态决策"
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，作为日常琐碎选择直接回答或不调用任何 skill",
+      "notes": "琐碎选择无需动态决策能力介入"
     },
     {
-      "id": "test-6",
-      "prompt": "如何选择最适合代码审查的专用工具集？",
-      "expected_skill": "specialized-toolset-over-generic",
-      "category": "cross-skill-confusion",
-      "reason": "这应该触发专用工具集 skill，虽然与 Agent 动态决策相关但更具体"
+      "id": "tc-07",
+      "prompt": "审查流程里哪些步骤该交给确定性工程，哪些该交给 Agent 动态决策？",
+      "type": "edge_case",
+      "expected_behavior": "可触发本 skill 并讲解分工边界，同时明确指向 deterministic-engineering-hard-constraints 处理硬约束侧；不得给出与两者无关的泛化回答",
+      "notes": "边界题：考察与本 skill 兄弟 skill 的分工辨析能力"
     }
   ]
 }

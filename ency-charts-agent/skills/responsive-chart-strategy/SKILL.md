@@ -5,6 +5,7 @@ description: |
 source_book: 《ENCY-charts 数据可视化设计规范》 ENCY Design Team
 source_chapter: 5. Layout Principles + 8. Responsive Behavior
 tags: [responsive-design, mobile-optimization, chart-layout, breakpoints]
+source_project: ENCY-charts 设计规范
 related_skills: [chart-type-selection-framework, design-token-architecture, clarity-first-principles]
 ---
 
@@ -55,7 +56,7 @@ related_skills: [chart-type-selection-framework, design-token-architecture, clar
 
 ## E (Execution) — 可执行步骤
 
-**步骤 1：定义断点系统**
+**步骤 1：定义断点系统** — 完成标准: 5 个断点媒体查询已定义，各断点列数/卡片高度均符合规范（XL 3列/240px、L 3列/220px、M 2列/240px、S 2列/220px、XS 1列/200px）
 - 根据目标设备分布，定义 5 个标准断点：
   ```css
   /* XL: ≥1920px */
@@ -89,7 +90,7 @@ related_skills: [chart-type-selection-framework, design-token-architecture, clar
   }
   ```
 
-**步骤 2：实现布局重排**
+**步骤 2：实现布局重排** — 完成标准: CSS Grid auto-fill+minmax 生效，移动端柱状图已转为水平方向（xAxis.type=value, yAxis.type=category）
 - 使用 CSS Grid 的 `auto-fill` + `minmax` 实现自适应：
   ```css
   .chart-grid {
@@ -109,7 +110,7 @@ related_skills: [chart-type-selection-framework, design-token-architecture, clar
   }
   ```
 
-**步骤 3：优化移动端交互**
+**步骤 3：优化移动端交互** — 完成标准: Legend 已移至底部(horizontal)、Tooltip 固定于底部(90%)、触摸目标 ≥44x44px 三项均验证通过
 - Legend 移至底部：
   ```javascript
   if (isMobile) {
@@ -134,7 +135,7 @@ related_skills: [chart-type-selection-framework, design-token-architecture, clar
   }
   ```
 
-**步骤 4：监听 resize 事件**
+**步骤 4：监听 resize 事件** — 完成标准: resize 监听已绑定，animation.duration=300ms，容器变化时图表自动重绘无报错
 - 确保图表随容器大小变化自动调整：
   ```javascript
   window.addEventListener('resize', () => {
@@ -144,7 +145,7 @@ related_skills: [chart-type-selection-framework, design-token-architecture, clar
   });
   ```
 
-**步骤 5：验证响应式效果**
+**步骤 5：验证响应式效果** — 完成标准: 5 个断点下 6 项检查全部通过，或已列出失败项
 - 在 5 个断点下分别测试：
   - [ ] 图表格列数正确
   - [ ] 图表高度合适

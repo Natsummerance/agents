@@ -1,41 +1,57 @@
 {
   "skill": "semantic-coloring-principles",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "ENCY-charts 设计规范",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
+      "id": "tc-01",
       "prompt": "图表中颜色的语义化怎么处理？",
-      "expected_skill": "semantic-coloring-principles",
-      "category": "should-trigger",
-      "reason": "语义化配色是该 skill 的核心"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，输出四条子原则与五步执行流程",
+      "notes": "语义化配色是该 skill 的核心"
     },
     {
-      "id": "test-2",
+      "id": "tc-02",
       "prompt": "正增长用绿色负增长用红色合理吗？",
-      "expected_skill": "semantic-coloring-principles",
-      "category": "should-trigger",
-      "reason": "增长/下降的语义色映射是该 skill 的应用场景"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，走步骤 1 定义四态语义色（含文化适配）、步骤 3 应用到 KPI 趋势、步骤 4 添加辅助编码",
+      "notes": "增长/下降语义色映射是该 skill 的应用场景"
     },
     {
-      "id": "test-3",
+      "id": "tc-03",
       "prompt": "分类色板有哪些推荐？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "色板推荐属于 categorical-palette-glossary"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；色板推荐属于 categorical-palette-glossary",
+      "notes": "分类色板非语义化配色范围"
     },
     {
-      "id": "test-4",
+      "id": "tc-04",
       "prompt": "背景色怎么设置？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "背景色设置属于通用样式配置"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；背景色设置属于通用样式配置",
+      "notes": "背景色非语义色范围"
     },
     {
-      "id": "test-5",
+      "id": "tc-05",
       "prompt": "成功的绿色和警告的橙色分别用什么值？",
-      "expected_skill": "semantic-colors-glossary",
-      "category": "cross-skill-confusion",
-      "reason": "具体色值属于 semantic colors glossary 而非配色原则"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；具体色值属于 semantic-colors-glossary 而非配色原则",
+      "notes": "诱饵兄弟 skill：semantic-colors-glossary。具体色值非原则层面"
+    },
+    {
+      "id": "tc-06",
+      "prompt": "多地区用户（中美欧）语义色冲突怎么解决？",
+      "type": "edge_case",
+      "expected_behavior": "触发该 skill 走步骤 1 文化适配分支：提供配置项允许切换红绿含义，并走 B 段盲点给出多文化冲突解决建议",
+      "notes": "对应步骤 1 文化适配与 B 段盲点'未讨论多文化环境下的颜色冲突解决方案'"
+    },
+    {
+      "id": "tc-07",
+      "prompt": "暗色模式下语义色要不要调饱和度？",
+      "type": "edge_case",
+      "expected_behavior": "触发该 skill 走 B 段作者盲点：未提及动态主题下的语义色适配，应建议暗色模式下降低饱和度避免刺眼并验证对比度",
+      "notes": "对应 B 段盲点'未提及动态主题下的语义色适配'"
     }
   ]
 }

@@ -1,48 +1,50 @@
 {
   "skill": "hard-constraints-over-soft-prompts",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "alibaba/open-code-review",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "我需要用工程逻辑而非语言模型来保证审查步骤的正确性",
-      "expected_skill": "hard-constraints-over-soft-prompts",
-      "category": "should-trigger",
-      "reason": "硬约束优于软提示是核心设计哲学"
+      "id": "tc-01",
+      "prompt": "我不想靠调提示词碰运气，关键审查步骤要用工程逻辑保证正确",
+      "type": "should_trigger",
+      "expected_behavior": "触发本 skill，阐述硬约束优于软提示的设计哲学并给出落地步骤",
+      "notes": "\"用工程逻辑而非提示词保证正确\"是本 skill 核心主张"
     },
     {
-      "id": "test-2",
-      "prompt": "如何确保审查过程中关键步骤不能出错？",
-      "expected_skill": "hard-constraints-over-soft-prompts",
-      "category": "should-trigger",
-      "reason": "不能出错的步骤需要硬约束"
+      "id": "tc-02",
+      "prompt": "审查质量随提示变化而波动，想建立一套硬约束机制而不是继续加软提示",
+      "type": "should_trigger",
+      "expected_behavior": "触发本 skill，给出识别硬约束步骤、确定性算法与测试验证的方案",
+      "notes": "软提示失灵、寻求硬约束机制是典型触发语境"
     },
     {
-      "id": "test-3",
-      "prompt": "纯语言驱动架构为什么缺乏稳定性？",
-      "expected_skill": "hard-constraints-over-soft-prompts",
-      "category": "should-trigger",
-      "reason": "这是硬约束设计哲学的核心问题"
+      "id": "tc-03",
+      "prompt": "动态上下文检索这种需要灵活性的任务更适合 agent-dynamic-decision-making 吧",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，路由到 agent-dynamic-decision-making",
+      "notes": "跨技能诱饵：点名兄弟 skill，灵活性任务明确排除在本 skill 外"
     },
     {
-      "id": "test-4",
-      "prompt": "帮我重构这段代码，让它更优雅",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "代码重构需要灵活性和创造力，不属于硬约束场景"
+      "id": "tc-04",
+      "prompt": "代码风格偏好这种主观判断需要上硬约束吗？",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill 作为执行方案；主观判断被列为不适用场景，仅可作边界澄清说明",
+      "notes": "主观判断不属于\"不能出错\"的关键步骤"
     },
     {
-      "id": "test-5",
-      "prompt": "这个变量名用什么好？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "日常琐碎选择，不需要硬约束"
+      "id": "tc-05",
+      "prompt": "规则匹配的稳定性问题请具体参考 template-engine-over-language-driven 的实现方式",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，路由到 template-engine-over-language-driven",
+      "notes": "跨技能诱饵：点名兄弟 skill，其是硬约束的具体实现方式之一"
     },
     {
-      "id": "test-6",
-      "prompt": "如何确保文件选择不出错？",
-      "expected_skill": "deterministic-engineering-hard-constraints",
-      "category": "cross-skill-confusion",
-      "reason": "这应该触发确定性工程硬约束 skill，虽然与硬约束原则相关但更具体"
+      "id": "tc-06",
+      "prompt": "有一个步骤既需要模型灵活性又绝对不能出错，该怎么取舍？",
+      "type": "edge_case",
+      "expected_behavior": "触发本 skill 给出取舍判据：将\"不能出错\"部分抽为硬约束模块、灵活部分保留给模型，输出拆分结论",
+      "notes": "边界题：考察硬约束与灵活性的切分方法"
     }
   ]
 }

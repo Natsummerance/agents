@@ -3,6 +3,7 @@ name: two-pass-rewriting
 description: |
   当用户询问"如何确保去痕质量"、"去痕流程是什么"或"如何看到中间结果"时调用此 skill。不适用于：一次性快速去痕、不需要透明化的场景。关键 trigger 信号：去痕流程、两遍重写、first rewrite、critique、显示工作过程、透明化。
 source_book: Humanizer Blader
+source_project: blader/humanizer
 source_chapter: Introduction / workflow description
 tags: [rewriting-process, two-pass, transparency, quality-assurance]
 related_skills: ["pattern-based-detection", "show-your-work"]
@@ -55,21 +56,25 @@ Humanizer 的工作流程就是典型的两遍重写：
    - 不将原始结构视为固定
    - 应用 35 个模式进行初步去痕
    - 生成第一次重写结果
+   - 完成标准: 已产出不拘泥于原结构的第一遍重写全文
 
 2. **对照检查**
    - 对照 35 个模式检查草稿
    - 对照原始声明检查事实准确性
    - 识别仍需改进的部分
+   - 完成标准: 草稿已对照 35 个模式与原始声明完成核查，问题清单成文
 
 3. **生成批评**
    - 对仍听起来人工的内容进行简短批评
    - 指出具体的问题和改进建议
    - 展示给用户等待反馈
+   - 完成标准: 批评覆盖全部仍显人工的段落，并已完成向用户的展示
 
 4. **最终重写**
    - 根据批评和用户反馈进行最终重写
    - 确保所有 AI 痕迹已移除
    - 保持事实准确性和作者风格
+   - 完成标准: 终稿通过模式复查、事实零篡改核对与风格一致性三项确认
 
 ## B (Boundary) - 什么时候不适用
 

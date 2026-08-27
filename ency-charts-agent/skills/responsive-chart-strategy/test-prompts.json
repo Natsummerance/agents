@@ -1,41 +1,57 @@
 {
   "skill": "responsive-chart-strategy",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "ENCY-charts 设计规范",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
+      "id": "tc-01",
       "prompt": "图表在手机上显示不全怎么办？",
-      "expected_skill": "responsive-chart-strategy",
-      "category": "should-trigger",
-      "reason": "移动端适配是该 skill 的核心"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，输出 5 断点定义与移动端优化策略",
+      "notes": "移动端适配是该 skill 的核心"
     },
     {
-      "id": "test-2",
+      "id": "tc-02",
       "prompt": "如何做响应式图表？",
-      "expected_skill": "responsive-chart-strategy",
-      "category": "should-trigger",
-      "reason": "直接询问响应式策略"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，执行 E 段五步骤：定义断点、实现布局重排、优化交互、监听 resize、验证效果",
+      "notes": "直接询问响应式策略"
     },
     {
-      "id": "test-3",
+      "id": "tc-03",
       "prompt": "桌面端图表怎么优化？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "桌面端优化不属于移动端响应式策略范围"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；桌面端优化不属于移动端响应式策略范围",
+      "notes": "桌面端优化非响应式策略核心范围"
     },
     {
-      "id": "test-4",
+      "id": "tc-04",
       "prompt": "ECharts 怎么安装？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "安装问题不属于可视化设计范畴"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；安装问题不属于可视化设计范畴",
+      "notes": "安装问题非设计范围"
     },
     {
-      "id": "test-5",
+      "id": "tc-05",
       "prompt": "Legend 在移动端放哪里合适？",
-      "expected_skill": "responsive-chart-strategy",
-      "category": "should-trigger",
-      "reason": "移动端 Legend 位置是响应式策略的具体规则"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，走 E 段步骤 3：Legend 移至底部 horizontal 方向",
+      "notes": "移动端 Legend 位置是响应式策略的具体规范"
+    },
+    {
+      "id": "tc-06",
+      "prompt": "折叠屏手机怎么适配？",
+      "type": "edge_case",
+      "expected_behavior": "触发该 skill 走 B 段作者盲点：未提及折叠屏适配，应说明边界并建议按视口宽度动态判断断点",
+      "notes": "对应 B 段盲点'未提及折叠屏等特殊设备的适配'"
+    },
+    {
+      "id": "tc-07",
+      "prompt": "超大屏 4K 显示器怎么处理？",
+      "type": "edge_case",
+      "expected_behavior": "触发该 skill 走 B 段作者盲点：未讨论 ≥3840px 适配，应建议扩展 XL 断点或新增 XXL 断点",
+      "notes": "对应 B 段盲点'未讨论超大屏幕（≥3840px 4K）的适配策略'"
     }
   ]
 }

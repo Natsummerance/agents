@@ -1,41 +1,57 @@
 {
   "skill": "categorical-palette-glossary",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "ENCY-charts 设计规范",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
+      "id": "tc-01",
       "prompt": "分类数据的色板应该怎么选？",
-      "expected_skill": "categorical-palette-glossary",
-      "category": "should-trigger",
-      "reason": "分类色板是该 glossary 的核心定义"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，解析分类色板定义、核心特征与适用场景",
+      "notes": "分类色板是该 glossary 的核心定义"
     },
     {
-      "id": "test-2",
+      "id": "tc-02",
       "prompt": "我有 8 个类别需要用不同颜色区分，用什么色板？",
-      "expected_skill": "categorical-palette-glossary",
-      "category": "should-trigger",
-      "reason": "多类别区分是分类色板的典型场景"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，指引使用 --chart-c-1 到 --chart-c-8 按序分配",
+      "notes": "多类别区分是分类色板的典型场景"
     },
     {
-      "id": "test-3",
+      "id": "tc-03",
       "prompt": "渐变色怎么设置？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "渐变色属于顺序色板 sequential-palette-glossary"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；渐变色属于顺序色板 sequential-palette-glossary",
+      "notes": "渐变色不属于分类色板范围"
     },
     {
-      "id": "test-4",
+      "id": "tc-04",
       "prompt": "成功和失败的颜色用什么？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "语义色属于 semantic-colors-glossary"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；语义色属于 semantic-colors-glossary",
+      "notes": "语义色不属于分类色板范围"
     },
     {
-      "id": "test-5",
+      "id": "tc-05",
       "prompt": "时间序列的趋势线用什么颜色？",
-      "expected_skill": "sequential-palette-glossary",
-      "category": "cross-skill-confusion",
-      "reason": "连续数据趋势应使用顺序色板而非分类色板"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；连续数据趋势应使用顺序色板 sequential-palette-glossary",
+      "notes": "连续数据非分类色板适用场景"
+    },
+    {
+      "id": "tc-06",
+      "prompt": "饼图有 10 个扇区，颜色怎么分配？",
+      "type": "edge_case",
+      "expected_behavior": "触发该 skill 但结合 chart-type-selection-framework：饼图扇区 >6 需合并为'其他'，仅前 6 个用色板，其余归入其他",
+      "notes": "联动 chart-type-selection-framework 的扇区合并规则"
+    },
+    {
+      "id": "tc-07",
+      "prompt": "相邻两个系列颜色太像了（#4B7AFA vs #5C8BFB），有问题吗？",
+      "type": "edge_case",
+      "expected_behavior": "触发该 skill 并联动 similar-color-confusion-trap：相似度计算>0.8 需替换，或配合图案/标签辅助区分",
+      "notes": "诱饵兄弟 skill：similar-color-confusion-trap。相似色问题属于具体陷阱"
     }
   ]
 }

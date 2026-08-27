@@ -1,48 +1,57 @@
 {
   "skill": "mandatory-workflow",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "obra/superpowers",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "我需要了解 Superpowers 的完整工作流程，从 brainstorming 到 finishing",
-      "expected_skill": "mandatory-workflow",
-      "category": "should-trigger",
-      "reason": "7 步强制工作流是 mandatory-workflow 的核心内容"
+      "id": "mandatory-workflow-t1",
+      "prompt": "Superpowers 号称有 7 步 mandatory workflow，具体是哪七步、每步什么时候激活？",
+      "type": "should_trigger",
+      "expected_behavior": "按 R/I 段内容讲解 brainstorming 到 finishing-a-development-branch 的七步及其激活时机与强制性",
+      "notes": "核心触发：整体流程询问"
     },
     {
-      "id": "test-2",
-      "prompt": "Agent 应该在什么时候激活什么 skill？",
-      "expected_skill": "mandatory-workflow",
-      "category": "should-trigger",
-      "reason": "skill 激活时机是 mandatory-workflow 的关键设计"
+      "id": "mandatory-workflow-t2",
+      "prompt": "为什么我的 brainstorming 还没做完就有人开始写代码了？流程是不是可以跳步？",
+      "type": "should_trigger",
+      "expected_behavior": "指出步骤依赖不可跳过，按 E 段检查前置条件并回退到未完成的步骤补齐",
+      "notes": "对应 A2 流程中断/跳步场景"
     },
     {
-      "id": "test-3",
-      "prompt": "为什么某个 skill 没有触发？",
-      "expected_skill": "mandatory-workflow",
-      "category": "should-trigger",
-      "reason": "调试 skill 触发问题是 mandatory-workflow 的应用场景"
+      "id": "mandatory-workflow-t3",
+      "prompt": "test-driven-development 这个环节一直没自动触发，帮我排查是哪个 skill 没挂上",
+      "type": "should_trigger",
+      "expected_behavior": "定位当前所处步骤，核对激活条件与状态记录，找出未触发的环节并修复衔接",
+      "notes": "对应 A2 调试 skill 未触发场景"
     },
     {
-      "id": "test-4",
-      "prompt": "如何分派子 Agent 处理多个任务？",
-      "expected_skill": "mandatory-workflow",
-      "category": "should-not-trigger",
-      "reason": "这应该触发 subagent-driven-development skill，虽然与工作流相关但更具体"
+      "id": "mandatory-workflow-n1",
+      "prompt": "设计已经批了，现在就动手帮我建隔离 worktree 并验证干净测试基线",
+      "type": "should_not_trigger",
+      "expected_behavior": "第 2 步的具体执行转交 git-worktree-isolation；本 skill 负责流程编排而非单步操作",
+      "notes": "跨技能诱饵：第 2 步实现归兄弟 skill git-worktree-isolation"
     },
     {
-      "id": "test-5",
-      "prompt": "这个单一小修改需要走完整流程吗？",
-      "expected_skill": "mandatory-workflow",
-      "category": "should-not-trigger",
-      "reason": "单一小任务不需要完整 7 步工作流"
+      "id": "mandatory-workflow-n2",
+      "prompt": "计划批准了，接下来把任务拆给各个 subagent 并行执行，还要做两阶段审查",
+      "type": "should_not_trigger",
+      "expected_behavior": "第 4 步的分派与审查转交 subagent-driven-development；本 skill 只确认该步骤在流程中的位置与前置满足",
+      "notes": "跨技能诱饵：第 4 步实现归兄弟 skill subagent-driven-development"
     },
     {
-      "id": "test-6",
-      "prompt": "如何在不影响主分支的情况下并行开发？",
-      "expected_skill": "git-worktree-isolation",
-      "category": "cross-skill-confusion",
-      "reason": "这应该触发 git-worktree-isolation skill，虽然是第 2 步但更关注 Git 隔离"
+      "id": "mandatory-workflow-e1",
+      "prompt": "就改个按钮颜色而已，也要走完 7 步再说？",
+      "type": "edge_case",
+      "expected_behavior": "命中 B 段边界：单一小任务豁免完整流程，直接执行并在必要时留一条变更记录",
+      "notes": "边界用例：改动规模远低于流程成本"
+    },
+    {
+      "id": "mandatory-workflow-e2",
+      "prompt": "线上事故正在扩大，brainstorming 和写计划就都免了吧？",
+      "type": "edge_case",
+      "expected_behavior": "判定紧急 hotfix 豁免前置步骤，但要求事后补充复盘记录，明确豁免范围而非默认全程跳过",
+      "notes": "边界用例：紧急场景的有界豁免"
     }
   ]
 }

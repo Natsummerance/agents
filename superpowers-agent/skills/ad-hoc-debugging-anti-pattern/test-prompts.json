@@ -1,48 +1,57 @@
 {
   "skill": "ad-hoc-debugging-anti-pattern",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "obra/superpowers",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "我凭猜测调试 Bug，有什么问题？",
-      "expected_skill": "ad-hoc-debugging-anti-pattern",
-      "category": "should-trigger",
-      "reason": "凭猜测调试是 ad-hoc-debugging-anti-pattern 的核心问题"
+      "id": "ad-hoc-debugging-anti-pattern-t1",
+      "prompt": "这个 bug 我修了好几次都复发，之前都是瞎猜乱改的，现在彻底没头绪了",
+      "type": "should_trigger",
+      "expected_behavior": "识别凭猜测调试反模式成立，启动 4 阶段根因追踪（Root Cause Tracing 起步），禁止继续试错式修改",
+      "notes": "关键信号：bug keeps coming back、fix didn't work"
     },
     {
-      "id": "test-2",
-      "prompt": "为什么 Bug 反复出现，修复后问题依旧？",
-      "expected_skill": "ad-hoc-debugging-anti-pattern",
-      "category": "should-trigger",
-      "reason": "Bug 反复出现是凭猜测调试的典型后果"
+      "id": "ad-hoc-debugging-anti-pattern-t2",
+      "prompt": "我不想再凭感觉试来试去了，有没有系统化的 root cause 排查方法？",
+      "type": "should_trigger",
+      "expected_behavior": "给出 systematic over ad-hoc 的方法论：四阶段流程逐阶段推进并留产出物",
+      "notes": "关键信号：root cause、systematic debugging"
     },
     {
-      "id": "test-3",
-      "prompt": "调试效率低，怎么办？",
-      "expected_skill": "ad-hoc-debugging-anti-pattern",
-      "category": "should-trigger",
-      "reason": "调试效率低是凭猜测调试的直接表现"
+      "id": "ad-hoc-debugging-anti-pattern-t3",
+      "prompt": "线上问题很诡异，日志时有时无，怀疑是并发场景下的竞态条件导致的偶发",
+      "type": "should_trigger",
+      "expected_behavior": "进入 Phase 3 Condition-Based Waiting：用基于条件的等待技术稳定复现后再定位根因",
+      "notes": "对应 E 段 Phase 3 的并发/异步子场景"
     },
     {
-      "id": "test-4",
-      "prompt": "如何验证 Bug 是否真的被修复了？",
-      "expected_skill": "ad-hoc-debugging-anti-pattern",
-      "category": "should-not-trigger",
-      "reason": "这应该触发 evidence-over-claims skill，虽然与调试相关但更关注验证"
+      "id": "ad-hoc-debugging-anti-pattern-n1",
+      "prompt": "改动我已经提交了，你帮我验证一下这个问题是不是真修好了",
+      "type": "should_not_trigger",
+      "expected_behavior": "修复结果的验证转交 evidence-over-claims；本 skill 管根因追踪过程，不管成功声明的核验",
+      "notes": "跨技能诱饵：完成验证归兄弟 skill evidence-over-claims"
     },
     {
-      "id": "test-5",
-      "prompt": "简单语法错误需要系统性调试吗？",
-      "expected_skill": "ad-hoc-debugging-anti-pattern",
-      "category": "should-not-trigger",
-      "reason": "简单语法错误不需要系统性调试，属于边界场景"
+      "id": "ad-hoc-debugging-anti-pattern-n2",
+      "prompt": "我发现我们团队根本不写测试，全靠上线后用户报 bug 才知道出问题了",
+      "type": "should_not_trigger",
+      "expected_behavior": "测试缺失问题转交 skipping-tests-anti-pattern；调试方法不当与测试缺失是两个不同反模式",
+      "notes": "跨技能诱饵：测试缺失归兄弟 skill skipping-tests-anti-pattern"
     },
     {
-      "id": "test-6",
-      "prompt": "如何系统性追踪根因？",
-      "expected_skill": "evidence-over-claims",
-      "category": "cross-skill-confusion",
-      "reason": "这应该触发 evidence-over-claims skill（或 systematic-debugging），虽然与调试相关但更关注正面指导"
+      "id": "ad-hoc-debugging-anti-pattern-e1",
+      "prompt": "就是少了个分号的语法错误，编译器都把行列号指出来了，也要走四阶段流程吗？",
+      "type": "edge_case",
+      "expected_behavior": "命中 B 段排除项：编译器已明确定位的简单语法错误直接修复，不启动系统性调试",
+      "notes": "边界用例：错误信息已给出明确根因的场景豁免"
+    },
+    {
+      "id": "ad-hoc-debugging-anti-pattern-e2",
+      "prompt": "客户催得急，没时间分析根因了，你直接猜一个最快的修法先糊上去",
+      "type": "edge_case",
+      "expected_behavior": "拒绝纯猜测修补：说明临时修补的复发风险，提供折中方案（最小根因调查 + 显式标记临时方案与技术债），由用户决策",
+      "notes": "红线用例：紧急压力不得退回 guessing 模式"
     }
   ]
 }

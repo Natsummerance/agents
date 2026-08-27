@@ -1,48 +1,57 @@
 {
   "skill": "skipping-tests-anti-pattern",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "obra/superpowers",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "我跳过了测试直接写代码，会有什么问题？",
-      "expected_skill": "skipping-tests-anti-pattern",
-      "category": "should-trigger",
-      "reason": "跳过测试是 skipping-tests-anti-pattern 的核心问题"
+      "id": "skipping-tests-anti-pattern-t1",
+      "prompt": "我们赶工期把测试全 skip 了，上线之后 regression 一个接一个冒出来",
+      "type": "should_trigger",
+      "expected_behavior": "确认跳过测试反模式成立，评估影响（覆盖率/回归数据），并制定补救与预防门禁方案",
+      "notes": "关键信号：skip tests、regression"
     },
     {
-      "id": "test-2",
-      "prompt": "为什么代码质量下降，回归 bug 频发？",
-      "expected_skill": "skipping-tests-anti-pattern",
-      "category": "should-trigger",
-      "reason": "回归 bug 频发是跳过测试的典型后果"
+      "id": "skipping-tests-anti-pattern-t2",
+      "prompt": "功能代码早就全写完了，现在回头补测试总觉得是在凑覆盖率",
+      "type": "should_trigger",
+      "expected_behavior": "判定 code before tests 反模式，说明事后补测为何失效，按 RED-GREEN-REFACTOR 重走受影响部分",
+      "notes": "关键信号：code before tests"
     },
     {
-      "id": "test-3",
-      "prompt": "测试覆盖率低怎么办？",
-      "expected_skill": "skipping-tests-anti-pattern",
-      "category": "should-trigger",
-      "reason": "测试覆盖率低是跳过测试的直接表现"
+      "id": "skipping-tests-anti-pattern-t3",
+      "prompt": "CI 里测试覆盖率掉到 30% 了，deploy 之后线上 bug 也越来越多，怎么办？",
+      "type": "should_trigger",
+      "expected_behavior": "用覆盖率与线上 bug 数据佐证反模式后果，建立自动化检查机制阻止继续恶化",
+      "notes": "关键信号：test coverage low、bugs after deploy"
     },
     {
-      "id": "test-4",
-      "prompt": "什么是 RED-GREEN-REFACTOR 循环？",
-      "expected_skill": "skipping-tests-anti-pattern",
-      "category": "should-not-trigger",
-      "reason": "这应该触发 test-first-philosophy skill，虽然与测试相关但更关注正面指导"
+      "id": "skipping-tests-anti-pattern-n1",
+      "prompt": "别光说这是反模式，正面告诉我 TDD 应该一步一步怎么做",
+      "type": "should_not_trigger",
+      "expected_behavior": "TDD 正面操作指导转交 test-first-philosophy；本 skill 是反面警示与纠偏，不承担方法教学",
+      "notes": "跨技能诱饵：正面指导归兄弟 skill test-first-philosophy"
     },
     {
-      "id": "test-5",
-      "prompt": "探索性编程需要写测试吗？",
-      "expected_skill": "skipping-tests-anti-pattern",
-      "category": "should-not-trigger",
-      "reason": "探索性编程不适用 TDD，属于边界场景"
+      "id": "skipping-tests-anti-pattern-n2",
+      "prompt": "测试补完了，帮我确认这次修复是真的生效了，要有证据",
+      "type": "should_not_trigger",
+      "expected_behavior": "修复成功的验证与举证转交 evidence-over-claims；本 skill 止于测试恢复绿色",
+      "notes": "跨技能诱饵：完成验证归兄弟 skill evidence-over-claims"
     },
     {
-      "id": "test-6",
-      "prompt": "如何实现新功能？",
-      "expected_skill": "test-first-philosophy",
-      "category": "cross-skill-confusion",
-      "reason": "这应该触发 test-first-philosophy skill，虽然与测试相关但更关注正面指导"
+      "id": "skipping-tests-anti-pattern-e1",
+      "prompt": "探索期我在试三种 UI 方案比效果，每种都要先写测试吗？",
+      "type": "edge_case",
+      "expected_behavior": "命中 B 段边界：探索性编程豁免 TDD 强制，说明定型后需补测试的时点",
+      "notes": "边界用例：探索阶段不适用强制流程"
+    },
+    {
+      "id": "skipping-tests-anti-pattern-e2",
+      "prompt": "几千行没有测试的遗留代码，难道都要删掉重写成 TDD 吗？成本根本受不了",
+      "type": "edge_case",
+      "expected_behavior": "不做一刀切删除：给出分层策略（新变更严格 TDD、存量代码随触碰渐进补测），并说明与原教旨做法的差异",
+      "notes": "红线场景：极端规则需务实裁剪并显式说明"
     }
   ]
 }

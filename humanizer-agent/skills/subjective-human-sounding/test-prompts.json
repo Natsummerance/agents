@@ -1,41 +1,64 @@
 {
   "skill": "subjective-human-sounding",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "blader/humanizer",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "用户对去痕效果不满意，认为仍然太人工",
-      "expected_skill": "subjective-human-sounding",
-      "category": "should-trigger",
-      "reason": "\"像人写的\"的主观性反模式 是 subjective-human-sounding 的核心应用场景"
+      "id": "shs-t1",
+      "prompt": "改完后我读着还是觉得太人工，哪里不对劲？",
+      "type": "should_trigger",
+      "expected_behavior": "触发本技能：诊断主观性缺口，引导用户给出具体不满点、定义目标读者、寻求多方反馈、建立可测指标。",
+      "notes": "核心触发：去痕效果主观不满。"
     },
     {
-      "id": "test-2",
-      "prompt": "像人写的是否有统一标准？",
-      "expected_skill": "subjective-human-sounding",
-      "category": "should-trigger",
-      "reason": "\"像人写的\"的主观性反模式 是 subjective-human-sounding 的核心应用场景"
+      "id": "shs-t2",
+      "prompt": "到底有没有统一标准判断'像人写的'？",
+      "type": "should_trigger",
+      "expected_behavior": "触发本技能：明确指出不存在统一标准，不同读者/文化背景偏好不同，需按目标读者调整策略并辅以客观指标。",
+      "notes": "直接询问标准存在性。"
     },
     {
-      "id": "test-3",
-      "prompt": "去痕后是否还会像自己写的？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "该场景不属于 \"像人写的\"的主观性反模式 的触发条件"
+      "id": "shs-t3",
+      "prompt": "这篇面向高校教师的科普文，怎么让去痕后符合他们的阅读偏好？",
+      "type": "should_trigger",
+      "expected_behavior": "触发本技能：识别目标读者（高校教师），引导按步骤 2 定义画像、步骤 3 找同类读者试读、步骤 4 设定句长/词汇多样性基线。",
+      "notes": "明确目标读者的具体化场景。"
     },
     {
-      "id": "test-4",
-      "prompt": "如何让去痕后的文本更像自己写的？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "该场景不属于 \"像人写的\"的主观性反模式 的触发条件"
+      "id": "shs-nt1",
+      "prompt": "去痕后还会像我自己写的吗？",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本技能；个人风格保持归 preserve-style / voice-matching。",
+      "notes": "诱饵：点名兄弟 skill preserve-style，多读者评估视角 vs 单作者风格视角。"
     },
     {
-      "id": "test-5",
-      "prompt": "这个文本怎么处理？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "该场景不属于 \"像人写的\"的主观性反模式 的触发条件"
+      "id": "shs-nt2",
+      "prompt": "帮我检测这段里有哪些 AI 痕迹模式？",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本技能；模式检测归 pattern-based-detection。",
+      "notes": "诱饵：评估主观性 vs 标准化检测。"
+    },
+    {
+      "id": "shs-nt3",
+      "prompt": "改写的时候别动我的数据和引用。",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本技能；事实保护归 no-fabrication。",
+      "notes": "诱饵：评估层面 vs 内容保障层面。"
+    },
+    {
+      "id": "shs-e1",
+      "prompt": "我就自己看，不需要别人评价，主观性问题对我不存在。",
+      "type": "edge_case",
+      "expected_behavior": "判定用户为单一读者场景（B 段排除），告知可跳过多方反馈步骤，但仍建议设定 1-2 项客观指标自检，避免自我感动式过度去痕。",
+      "notes": "单一读者边界，简化流程但保留核心机制。"
+    },
+    {
+      "id": "shs-e2",
+      "prompt": "读者群体很广（大众号），没法定具体画像，咋办？",
+      "type": "edge_case",
+      "expected_behavior": "建议采用'最小公约数'策略：以通用可读性指标（Flesch-Kincaid、句长方差、连接词密度）为基线，去痕后回归区间内即视为通过，不追求单一画像。",
+      "notes": "宽泛读者群的降级处理方案。"
     }
   ]
 }

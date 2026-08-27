@@ -3,6 +3,7 @@ name: one-size-fits-all
 description: |
   当用户在不需要生产级标准的项目上过度工程化、缺乏灵活性，或不知道如何根据项目类型调整技能应用时调用此 skill。不适用于：纯生产环境项目、已有明确工程标准的场景。关键 trigger 信号：过度工程化、原型验证、内部工具、实验性项目、差异化需求、一刀切。
 source_book: Agent Skills Addy Osmani
+source_project: addyosmani/agent-skills
 source_chapter: Introduction / problem statement
 tags: [anti-pattern, flexibility-gap, project-type, over-engineering]
 related_skills: ["no-systematic-methodology", "faster-is-safer", "spec-driven-development"]
@@ -53,22 +54,27 @@ Agent Skills 的标题就是"Production-grade engineering skills for AI coding a
    - 询问用户的项目类型（生产环境、原型验证、内部工具、实验性项目等）
    - 评估项目的生命周期和重要性
    - 确定合适的工程标准级别
+   - 完成标准: 项目类型判定结论成文，附生命周期与重要性依据
 
 2. **调整技能应用**
    - 生产环境项目：应用完整的生产级流程
    - 原型验证：简化流程，重点关注核心功能验证
    - 内部工具：适度简化，保留必要的质量保障
    - 实验性项目：最小化流程，快速迭代
+   - 完成标准: 各项目类型对应的标准级别已明确成文并与用户确认
+   - 完成标准: 调整技能应用的执行产物已产出并可验证，无遗漏项
 
 3. **定义可跳过的环节**
    - 明确哪些质量门禁可以简化或跳过
    - 确定测试覆盖率的合理目标
    - 平衡速度与质量的取舍
+   - 完成标准: 可简化项与必须保留项清单获批，覆盖率目标量化
 
 4. **避免过度工程化**
    - 不要为一次性脚本编写完整测试套件
    - 不要为原型验证配置复杂的 CI/CD 流程
    - 根据项目价值决定投入的工程资源
+   - 完成标准: 工程投入与项目价值匹配的检查记录通过复查
 
 ## B (Boundary) - 什么时候不适用
 

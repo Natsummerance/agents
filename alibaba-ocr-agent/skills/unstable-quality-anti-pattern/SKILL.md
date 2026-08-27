@@ -3,6 +3,7 @@ name: unstable-quality-anti-pattern
 description: |
   当需要识别和避免质量不稳定反模式时使用此 skill。适用于：代码审查质量波动、提示微调导致结果变化等场景。不适用于：质量稳定的场景。关键 trigger 信号：用户提到"质量波动"、"提示微调"、"难以调试"等问题。
 source_book: alibaba/open-code-review
+source_project: alibaba/open-code-review
 source_chapter: The Problem with General-Purpose Agents — Unstable Quality
 tags: [anti-pattern, unstable-quality, debugging]
 related_skills: [deterministic-engineering-hard-constraints, template-engine-over-language-driven]
@@ -59,10 +60,15 @@ related_skills: [deterministic-engineering-hard-constraints, template-engine-ove
 ## E (Execution) — 可执行步骤
 
 1. **识别风险**: 检查是否存在质量波动问题
+   - 完成标准: 用同一提示多次运行并留存结果差异记录，给出有/无波动的结论
 2. **分析原因**: 确认是否是纯语言驱动架构导致的质量不稳定
+   - 完成标准: 归因结论成文，指明波动是否源于缺乏硬约束与稳定机制
 3. **应用细粒度规则匹配**: 引入 Fine-grained rule matching，基于模板引擎提高稳定性
+   - 完成标准: 规则匹配模块接入审查流程，关键步骤不再依赖自由文本判断
 4. **优化提示模板**: 使用 Scenario-tuned prompts，深度优化场景化提示
+   - 完成标准: 各审查场景提示模板定稿并通过试运行
 5. **验证效果**: 测试审查质量是否稳定，不再随提示微小变化而波动
+   - 完成标准: 提示微扰实验显示多次运行结果保持一致，波动消除
 
 **完成标准**: 审查质量稳定，连续多次审查结果一致，不再随提示微小变化而波动
 

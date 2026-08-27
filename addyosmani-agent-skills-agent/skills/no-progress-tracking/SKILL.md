@@ -3,6 +3,7 @@ name: no-progress-tracking
 description: |
   当用户完成多个技能但仍不知道自己是否真正进步、无法量化工程能力成长，或缺乏反馈循环导致动力下降时调用此 skill。不适用于：已有明确评估标准的用户、只需要单个技能建议的场景。关键 trigger 信号：进步、技能成长、反馈循环、量化成长、完成技能但不确定。
 source_book: Agent Skills Addy Osmani
+source_project: addyosmani/agent-skills
 source_chapter: N/A (absence of content)
 tags: [anti-pattern, progress-gap, feedback-loop, skill-assessment]
 related_skills: ["no-systematic-methodology", "test-driven-development", "spec-driven-development"]
@@ -54,21 +55,25 @@ Agent Skills 的 24+ 个技能都没有提供任何进度追踪机制：
    - 询问用户是否能清晰描述自己的技能成长
    - 检查用户是否有记录学习历程的习惯
    - 评估用户是否有明确的进步指标
+   - 完成标准: 症状核对清单填写完毕，至少一项症状被确认或排除全部
 
 2. **建立进度追踪机制**
    - 为每个技能设定明确的学习目标（如"完成后应能独立编写规格说明"）
    - 记录已完成的技能和学到的能力
    - 定期回顾并评估是否真正掌握了该阶段的技能
+   - 完成标准: 每个技能都有学习目标和完成记录，回顾按固定周期留档
 
 3. **建立反馈循环**
    - 完成每个技能后自我评估：能否独立复现？能否解释核心逻辑？
    - 寻求外部反馈：代码审查、同行评审、在线社区
    - 根据反馈调整学习计划
+   - 完成标准: 每个技能完成后均有自评结论和至少一条外部反馈
 
 4. **量化成长**
    - 使用技能矩阵记录掌握的技术栈
    - 跟踪项目复杂度的提升（从简单功能到全栈应用）
    - 记录解决问题的时间和效率提升
+   - 完成标准: 技能矩阵和项目复杂度记录可查询且随学习持续更新
 
 ## B (Boundary) - 什么时候不适用
 

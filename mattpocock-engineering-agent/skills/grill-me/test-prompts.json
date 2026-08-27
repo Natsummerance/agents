@@ -1,20 +1,57 @@
 {
   "skill": "grill-me",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "mattpocock/skills",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "我想做一个产品但不知道从哪开始",
-      "expected_skill": "grill-me",
-      "category": "should-trigger",
-      "reason": "产品思路需要追问澄清"
+      "id": "grill-me-01",
+      "prompt": "Grill me on my talk outline.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes grill-me skill (stateless) to stress-test the talk outline through grilling rounds.",
+      "notes": "Conference talk prep is a key trigger for stateless grilling."
     },
     {
-      "id": "test-2",
-      "prompt": "帮我把这段代码重构一下",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "这是代码任务应使用 implement"
+      "id": "grill-me-02",
+      "prompt": "Stress-test my plan for the migration.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes grill-me skill to run grilling primitive on migration plan without creating artifacts.",
+      "notes": "Plan sharpening is a valid trigger."
+    },
+    {
+      "id": "grill-me-03",
+      "prompt": "Interview me about this job offer.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes grill-me skill to run rounds on growth, culture, compensation, location decisions.",
+      "notes": "Career decision is a valid trigger."
+    },
+    {
+      "id": "grill-me-04",
+      "prompt": "Grill me on this design, but save the decisions to CONTEXT.md.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes grill-with-docs skill instead. Grill-with-docs is stateful and creates CONTEXT.md/ADRs; grill-me is stateless.",
+      "notes": "grill-with-docs is the sibling skill for stateful grilling."
+    },
+    {
+      "id": "grill-me-05",
+      "prompt": "Help me decide on the architecture for this module.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Could be grill-me (stateless) or grill-with-docs (stateful). Depends on whether user is in a working directory.",
+      "notes": "Edge case: architecture decision could use either skill."
+    },
+    {
+      "id": "grill-me-06",
+      "prompt": "This test is failing. Help me debug it.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes diagnosing-bugs skill instead. Diagnosing-bugs finds root cause; grill-me sharpens thinking.",
+      "notes": "diagnosing-bugs is the sibling skill for debugging."
+    },
+    {
+      "id": "grill-me-07",
+      "prompt": "I'm not in a repo. Help me think through this business strategy.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes grill-me skill for stateless thinking when no working directory exists.",
+      "notes": "No-repo scenario is a valid trigger for stateless grilling."
     }
   ]
 }

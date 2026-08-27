@@ -1,20 +1,57 @@
 {
   "skill": "prototype",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "mattpocock/skills",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "帮我快速搭一个 demo 看看效果",
-      "expected_skill": "prototype",
-      "category": "should-trigger",
-      "reason": "原型验证场景"
+      "id": "prototype-01",
+      "prompt": "Does this state model feel right? Let's validate it before coding.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes prototype skill with LOGIC branch to build interactive HTML for state machine validation.",
+      "notes": "State model validation is a key trigger for LOGIC branch."
     },
     {
-      "id": "test-2",
-      "prompt": "帮我写生产级代码",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "生产级开发不应使用原型模式"
+      "id": "prototype-02",
+      "prompt": "What should this dashboard look like? Explore some UI options.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes prototype skill with UI branch to generate multiple radically different UI variations.",
+      "notes": "UI exploration is a key trigger for UI branch."
+    },
+    {
+      "id": "prototype-03",
+      "prompt": "Before we implement this, let's sanity check the design with a quick prototype.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes prototype skill for pre-implementation validation. Branch selected based on question type.",
+      "notes": "Pre-implementation sanity check is a valid trigger."
+    },
+    {
+      "id": "prototype-04",
+      "prompt": "Implement the user authentication feature.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes implement skill instead. Implement builds production code; prototype builds throwaway validation.",
+      "notes": "implement is the sibling skill for building production code."
+    },
+    {
+      "id": "prototype-05",
+      "prompt": "Design the interface for this new module.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes codebase-design skill instead. Codebase-design shapes module interfaces; prototype explores visual/behavioral variations.",
+      "notes": "codebase-design is the sibling skill for module interface design."
+    },
+    {
+      "id": "prototype-06",
+      "prompt": "Sharpen my design ideas through an interview.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes grill-with-docs or grill-me skill instead. Grilling sharpens ideas through interview; prototype validates through running code.",
+      "notes": "grill-with-docs is the sibling skill for idea sharpening."
+    },
+    {
+      "id": "prototype-07",
+      "prompt": "Should we use events or direct calls for this communication?",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes prototype skill with LOGIC branch to simulate both approaches for comparison.",
+      "notes": "API contract testing is a valid prototype scenario."
     }
   ]
 }

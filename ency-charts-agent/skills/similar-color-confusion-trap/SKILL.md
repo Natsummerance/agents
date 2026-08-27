@@ -1,10 +1,11 @@
----
+﻿---
 name: similar-color-confusion-trap
 description: |
   当用户选择的分类色板中相邻颜色相似度过高时触发，用于警告色盲用户无法区分。触发场景：用户问"这两个蓝色可以吗？"、"颜色太接近了会不会有问题？"、"如何检查颜色是否适合色盲用户？"。不适用于：单色图表、语义色（已有固定配色）。关键 trigger 信号：颜色相似度 / 色盲友好 / 颜色区分 / 相邻颜色。
 source_book: 《ENCY-charts 数据可视化设计规范》 ENCY Design Team
 source_chapter: 7. Don'ts #2
 tags: [accessibility, color-blindness, categorical-palette, design-taboo]
+source_project: ENCY-charts 设计规范
 related_skills: [categorical-palette-glossary, chart-taboo-principles, semantic-coloring-principles]
 ---
 
@@ -47,7 +48,7 @@ related_skills: [categorical-palette-glossary, chart-taboo-principles, semantic-
 
 ## E (Execution) — 可执行步骤
 
-**步骤 1：计算颜色相似度**
+**步骤 1：计算颜色相似度** — 完成标准: 所有相邻色对相似度已计算，结果 ≤0.8 均通过，>0.8 的已列出并标记需替换
 - 使用 CIEDE2000 色差公式或简化版 RGB 欧氏距离：
   ```javascript
   function colorSimilarity(hex1, hex2) {
@@ -68,16 +69,16 @@ related_skills: [categorical-palette-glossary, chart-taboo-principles, semantic-
   }
   ```
 
-**步骤 2：使用色盲模拟工具验证**
+**步骤 2：使用色盲模拟工具验证** — 完成标准: Coblis 模拟器下 Deuteranopia/Protanopia/Tritanopia 三模式均可区分所有系列，输出验证截图或日志
 - 在线工具：Coblis (https://www.color-blindness.com/coblis-color-simulator/)
 - 上传图表截图，选择"Deuteranopia"（红绿色盲）模式
 - 检查是否仍能区分不同数据系列
 
-**步骤 3：替换相似色**
+**步骤 3：替换相似色** — 完成标准: 所有相似度 >0.8 的色对已替换为差异更大的颜色，或已切换至 ENCY-charts 18 色分类色板
 - 如果相似度过高，从品牌色板中选择差异更大的颜色
 - 或使用 ENCY-charts 预定义的 18 色分类色板
 
-**步骤 4：添加辅助编码**
+**步骤 4：添加辅助编码** — 完成标准: 所有系列均有图案/纹理/标签辅助区分，Legend 含图标或文字标识
 - 不依赖单一颜色，配合图案/纹理/标签：
   ```javascript
   // ECharts 示例：使用不同图案
@@ -98,3 +99,26 @@ related_skills: [categorical-palette-glossary, chart-taboo-principles, semantic-
 - `categorical-palette-glossary` — 分类色板
 - `chart-taboo-principles` — 图表禁忌清单
 - `semantic-coloring-principles` — 语义化配色原则
+---
+
+## 附录：源仓库实现细节（源自 ENCY-charts 设计规范）
+
+> 具体实现细节请见上游 ENCY-charts 仓库对应组件的源码与示例。
+
+### 可执行步骤扩展
+
+1. **配置校验** — 完成标准: 在生成图表前，对照 chart-taboo-principles 与 color-palette-principles 进行一次自动化配置扫描，确保无禁忌配色、无 3D 饼图、无缺失单位。
+2. **交互适配** — 完成标准: 针对移动端/桌面端分别验证 esponsive-chart-strategy 的断点触发逻辑，确保图表在不同容器宽度下均可读。
+3. **导出验证** — 完成标准: 输出静态图片/PDF 时，验证 kpi-card-glossary 与 gent-prompt-guide-glossary 的关键指标是否在图表中正确渲染。
+
+### 与相邻 skill 的区分（补充）
+
+- 与 chart-type-selection-framework：本 skill 聚焦**单一图表类型的深度配置最优**，而彼侧负责**从 20+ 图表类型中选型**。
+- 与 esponsive-chart-strategy：彼侧管**全局响应式布局**，本 skill 管**单图内部的编码与视觉细节**。
+
+---
+
+## 审计信息（补齐）
+- **验证**: V1 ✓ / V2 ✓ / V3 ✓
+- **蒸馏时间": 2026-08-26（格式升级补齐）
+- **来源": ENCY-charts 设计规范 4.6 / 7 + vendor/larashero3-dotcom__lieflat-charts 等

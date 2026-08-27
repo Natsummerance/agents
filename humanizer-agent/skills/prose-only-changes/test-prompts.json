@@ -1,41 +1,64 @@
 {
   "skill": "prose-only-changes",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "blader/humanizer",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "去痕是否会破坏文件结构？",
-      "expected_skill": "prose-only-changes",
-      "category": "should-trigger",
-      "reason": "只修改散文的安全约束 是 prose-only-changes 的核心应用场景"
+      "id": "poc-t1",
+      "prompt": "去痕会不会破坏我的 Markdown 文件结构？里面有代码块和 frontmatter。",
+      "type": "should_trigger",
+      "expected_behavior": "触发本技能：说明只改散文、代码/数据/frontmatter/链接目标全保留，并给出四步骤执行与验证清单。",
+      "notes": "核心触发：混合内容文件的结构安全担忧。"
     },
     {
-      "id": "test-2",
-      "prompt": "代码和数据是否安全？",
-      "expected_skill": "prose-only-changes",
-      "category": "should-trigger",
-      "reason": "只修改散文的安全约束 是 prose-only-changes 的核心应用场景"
+      "id": "poc-t2",
+      "prompt": "代码块里的注释算散文吗？会被改吗？",
+      "type": "should_trigger",
+      "expected_behavior": "触发本技能：指出作者盲点——代码注释边界模糊，建议显式登记代码块范围，默认整块保留，如需改注释需用户单独标注。",
+      "notes": "边界模糊场景，直接点名作者盲点。"
     },
     {
-      "id": "test-3",
-      "prompt": "去痕后是否会改变事实？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "该场景不属于 只修改散文的安全约束 的触发条件"
+      "id": "poc-t3",
+      "prompt": "Jupyter Notebook 里的 markdown 单元格会被去痕，代码单元格安全吗？",
+      "type": "should_trigger",
+      "expected_behavior": "触发本技能：确认 markdown 单元格按散文处理、代码单元格整块保留，输出区块清单并逐类验证零变更。",
+      "notes": "常见混合文件类型的具体化场景。"
     },
     {
-      "id": "test-4",
-      "prompt": "去痕流程是什么？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "该场景不属于 只修改散文的安全约束 的触发条件"
+      "id": "poc-nt1",
+      "prompt": "改写会不会把我的引用日期改错？",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本技能；事实细节保护归 no-fabrication。",
+      "notes": "诱饵：点名兄弟 skill no-fabrication，结构安全 vs 内容真实分工。"
     },
     {
-      "id": "test-5",
-      "prompt": "这个文件怎么改？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "该场景不属于 只修改散文的安全约束 的触发条件"
+      "id": "poc-nt2",
+      "prompt": "技术文档去痕要保持中立平淡吧？",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本技能；风格策略归 preserve-style。",
+      "notes": "诱饵：范围限制 vs 风格调整分工。"
+    },
+    {
+      "id": "poc-nt3",
+      "prompt": "怎么识别这段里的 AI 痕迹模式？",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本技能；模式检测归 pattern-based-detection。",
+      "notes": "诱饵：安全约束 vs 检测执行分工。"
+    },
+    {
+      "id": "poc-e1",
+      "prompt": "HTML 文件里内嵌的 <script> 标签里也有自然语言字符串，这算散文吗？",
+      "type": "edge_case",
+      "expected_behavior": "判定 script 标签内容属嵌入式代码非散文，整块保留；若用户坚持要改字符串，需显式标注并单独处理，记录为例外。",
+      "notes": "作者盲点：嵌入式内容边界，考察是否盲目套用散文定义。"
+    },
+    {
+      "id": "poc-e2",
+      "prompt": "我要把 README 里的代码示例也一起润色得更自然，能不能改代码注释？",
+      "type": "edge_case",
+      "expected_behavior": "超出只修改散文范围（B 段排除：用户明确要求改非散文），告知边界后若用户坚持，可单独拎出注释文本按散文处理但不改代码逻辑。",
+      "notes": "用户主动要求破例，边界管理与灵活处理并存。"
     }
   ]
 }

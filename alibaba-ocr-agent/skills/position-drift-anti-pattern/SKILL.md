@@ -3,6 +3,7 @@ name: position-drift-anti-pattern
 description: |
   当需要识别和避免位置漂移反模式时使用此 skill。适用于：代码审查报告生成、问题定位等场景。不适用于：不需要精确定位的场景。关键 trigger 信号：用户提到"位置不准"、"行号漂移"、"文件引用错误"等问题。
 source_book: alibaba/open-code-review
+source_project: alibaba/open-code-review
 source_chapter: The Problem with General-Purpose Agents — Position Drift
 tags: [anti-pattern, position-drift, accuracy]
 related_skills: [deterministic-engineering-hard-constraints]
@@ -59,10 +60,15 @@ related_skills: [deterministic-engineering-hard-constraints]
 ## E (Execution) — 可执行步骤
 
 1. **识别风险**: 检查是否存在位置漂移问题
+   - 完成标准: 给出是否存在漂移的结论，并附至少一条问题位置与实际代码不符的实例证据（或证明无漂移）
 2. **分析原因**: 确认是否是纯语言驱动架构导致的位置漂移
+   - 完成标准: 归因结论成文，指明是否缺乏独立定位模块
 3. **应用外部定位**: 引入 External positioning module，基于 AST 解析和行号计算
+   - 完成标准: 定位模块上线，报告中的文件路径与行号均来自 AST 计算结果而非模型生成
 4. **二次验证**: 使用 Comment reflection 模块二次验证位置准确性
+   - 完成标准: 抽样复核报告中每条问题的位置，命中实际代码位置的比率达到约定阈值
 5. **验证效果**: 检查报告的位置是否与实际代码位置一致
+   - 完成标准: 连续抽样比对显示报告位置与实际代码位置一致率 100%
 
 **完成标准**: 所有报告的问题位置与实际代码位置一致，无漂移
 

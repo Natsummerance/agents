@@ -1,48 +1,50 @@
 {
   "skill": "position-drift-anti-pattern",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "alibaba/open-code-review",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "报告的问题位置不准确，行号对不上",
-      "expected_skill": "position-drift-anti-pattern",
-      "category": "should-trigger",
-      "reason": "位置漂移是通用 Agent 的核心痛点之一"
+      "id": "tc-01",
+      "prompt": "审查报告里的行号和实际代码位置对不上，开发者要自己去翻代码",
+      "type": "should_trigger",
+      "expected_behavior": "触发本 skill，确认位置漂移症状并引入 External positioning module 对策",
+      "notes": "\"行号漂移/位置不准\"是本 skill 关键 trigger 词"
     },
     {
-      "id": "test-2",
-      "prompt": "审查报告的文件引用错误，指向了错误的文件",
-      "expected_skill": "position-drift-anti-pattern",
-      "category": "should-trigger",
-      "reason": "文件引用错误是位置漂移的典型表现"
+      "id": "tc-02",
+      "prompt": "报告引用了错误的文件路径，审查意见指向了另一个文件里的类似代码",
+      "type": "should_trigger",
+      "expected_behavior": "触发本 skill，按 E 段完成归因、外部定位接入与二次验证流程",
+      "notes": "文件引用错误是位置漂移的典型表现"
     },
     {
-      "id": "test-3",
-      "prompt": "如何确保审查报告的位置精确？",
-      "expected_skill": "position-drift-anti-pattern",
-      "category": "should-trigger",
-      "reason": "精确定位是解决位置漂移的关键"
+      "id": "tc-03",
+      "prompt": "这次审查遗漏了几个重要文件，是 incomplete-coverage-anti-pattern 那个覆盖问题吧",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，路由到 incomplete-coverage-anti-pattern",
+      "notes": "跨技能诱饵：点名兄弟 skill，覆盖缺失与位置漂移互为区分项"
     },
     {
-      "id": "test-4",
-      "prompt": "我们的代码审查工具经常遗漏重要文件",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "这是不完整覆盖问题，应由 incomplete-coverage-anti-pattern 处理"
+      "id": "tc-04",
+      "prompt": "整体架构层面的改进建议不需要精确到具体行号",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，不需要精确定位的场景列为不适用",
+      "notes": "无精确定位诉求的场景无需本 skill"
     },
     {
-      "id": "test-5",
-      "prompt": "这个单一文件的代码有什么问题？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "小型单一文件修改不涉及位置漂移问题"
+      "id": "tc-05",
+      "prompt": "审查质量随提示词变化而波动的问题请按 unstable-quality-anti-pattern 处理",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，路由到 unstable-quality-anti-pattern",
+      "notes": "跨技能诱饵：点名兄弟 skill，质量波动与位置精度互为区分项"
     },
     {
-      "id": "test-6",
-      "prompt": "如何确保文件选择不出错？",
-      "expected_skill": "deterministic-engineering-hard-constraints",
-      "category": "cross-skill-confusion",
-      "reason": "这应该触发确定性工程硬约束 skill，虽然与位置定位相关但更关注整体硬约束"
+      "id": "tc-06",
+      "prompt": "宏展开导致的行号偏移算不算位置漂移？",
+      "type": "edge_case",
+      "expected_behavior": "触发本 skill 给出判定：属复杂语法下的已知定位难点，应记录为定位模块局限而非架构性漂移，处理方式可执行",
+      "notes": "边界题：考察漂移定义在复杂代码上的适用边界"
     }
   ]
 }

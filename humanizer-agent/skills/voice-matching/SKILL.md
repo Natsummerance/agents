@@ -3,6 +3,7 @@ name: voice-matching
 description: |
   当用户询问"如何让去痕后的文本更像自己写的"、"如何匹配作者风格"或"如何保持个人写作特色"时调用此 skill。不适用于：技术文档、中立参考文本、不需要个性化风格的场景。关键 trigger 信号：声音匹配、作者风格、写作样本、rhythm、word choice、personal style。
 source_book: Humanizer Blader
+source_project: blader/humanizer
 source_chapter: Usage section / voice matching example
 tags: [voice-matching, style-preservation, personal-writing, writing-sample]
 related_skills: ["preserve-style", "two-pass-rewriting"]
@@ -60,21 +61,25 @@ Humanizer 会分析样本的节奏、用词、标点和刻意怪癖，然后在�
    - 选择 2-3 段自己的写作作为样本
    - 确保样本代表自己的真实风格
    - 样本应包含不同的句子结构和用词
+   - 完成标准: 样本不少于 2 段，句式与用词有多样性，能代表真实风格
 
 2. **提供样本给 Humanizer**
    - 在 `/humanizer` 命令后粘贴样本
    - 明确说明这是用于声音匹配的样本
    - 然后粘贴需要去痕的 AI 文本
+   - 完成标准: 样本用途已明确标注为声音匹配，待去痕的 AI 原文已就位
 
 3. **验证匹配效果**
    - 检查第一次重写结果是否匹配自己的风格
    - 如果不满意，提供更详细的样本或反馈
    - 确认最终版本符合自己的期望
+   - 完成标准: 终稿对照样本四要素（节奏/用词/标点/怪癖）逐项核验通过
 
 4. **迭代优化**
    - 根据反馈调整样本选择
    - 尝试不同的样本组合
    - 找到最佳的声音匹配效果
+   - 完成标准: 至少完成一轮样本调整，并给出前后两版匹配效果的对比结论
 
 ## B (Boundary) - 什么时候不适用
 

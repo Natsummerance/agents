@@ -1,20 +1,57 @@
 {
   "skill": "triage",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "mattpocock/skills",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "GitHub 上积压了 100 个 issue 帮我分类",
-      "expected_skill": "triage",
-      "category": "should-trigger",
-      "reason": "批量 issue 分类"
+      "id": "triage-01",
+      "prompt": "Triage the incoming issues in the backlog.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes triage skill to process issues through state machine: needs-triage → needs-info → ready-for-agent/human/wontfix.",
+      "notes": "Issue queue management is a key trigger."
     },
     {
-      "id": "test-2",
-      "prompt": "这个 bug 很紧急帮我马上修",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "紧急修复属于 diagnosing-bugs"
+      "id": "triage-02",
+      "prompt": "Show me what needs my attention in the issue tracker.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes triage skill to present three buckets: unlabeled, needs-triage, needs-info with reporter activity.",
+      "notes": "Attention triage is a valid trigger."
+    },
+    {
+      "id": "triage-03",
+      "prompt": "Move issue #42 to ready-for-agent.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes triage skill with quick state override — trust maintainer and apply directly.",
+      "notes": "Quick state override is a valid trigger."
+    },
+    {
+      "id": "triage-04",
+      "prompt": "Review this code diff for quality issues.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes code-review skill instead. Code-review audits code diffs; triage audits issue/PR lifecycle.",
+      "notes": "code-review is the sibling skill for diff auditing."
+    },
+    {
+      "id": "triage-05",
+      "prompt": "This bug is hard to reproduce. Help me diagnose it.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes diagnosing-bugs skill instead. Diagnosing-bugs finds root cause; triage processes external issues.",
+      "notes": "diagnosing-bugs is the sibling skill for bug diagnosis."
+    },
+    {
+      "id": "triage-06",
+      "prompt": "Break this feature into tickets.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes to-tickets skill instead. To-tickets creates tickets from specs; triage processes external issues.",
+      "notes": "to-tickets is the sibling skill for creating tickets."
+    },
+    {
+      "id": "triage-07",
+      "prompt": "This issue is already implemented. Close it as wontfix.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes triage skill to close as wontfix with reason (already implemented) and pointer to implementation.",
+      "notes": "Wontfix decision is a valid triage outcome."
     }
   ]
 }

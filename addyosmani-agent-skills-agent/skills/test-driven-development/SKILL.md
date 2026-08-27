@@ -3,6 +3,7 @@ name: test-driven-development
 description: |
   当用户询问"如何证明代码正确"、"测试应该什么时候写"或"如何确保代码质量"时调用此 skill。不适用于：纯理论讨论、不需要验证的场景、探索性编程。关键 trigger 信号：测试、TDD、证明、验证、RED-GREEN-REFACTOR、tests are proof。
 source_book: Agent Skills Addy Osmani
+source_project: addyosmani/agent-skills
 source_chapter: Commands table / VERIFY phase + auto-build description
 tags: [tdd, testing, verification, red-green-refactor]
 related_skills: ["spec-driven-development", "auto-build-mode", "faster-is-safer"]
@@ -49,21 +50,25 @@ Agent Skills 的 `/test` 命令对应 VERIFY 阶段，强调"Tests are proof"。
    - 根据规格说明编写测试用例
    - 运行测试确认它失败
    - 确保测试覆盖核心功能和边缘情况
+   - 完成标准: 测试运行结果为失败（RED），且用例同时覆盖核心功能与边缘情况
 
 2. **写最少代码让它通过（GREEN）**
    - 只写能让测试通过的最少代码
    - 不要过度设计或添加额外功能
    - 运行测试确认它通过
+   - 完成标准: 目标测试全部转为通过且代码中无超出测试要求的功能
 
 3. **重构（REFACTOR）**
    - 在测试保护下优化代码结构
    - 确保重构后测试仍然通过
    - 提高代码可读性和可维护性
+   - 完成标准: 重构提交后测试套件保持全绿
 
 4. **单独提交**
    - 每个任务完成后单独提交
    - 提交信息清晰描述变更内容
    - 便于追溯和回滚
+   - 完成标准: 一个任务对应一次提交，提交信息能定位到对应任务
 
 ## B (Boundary) - 什么时候不适用
 

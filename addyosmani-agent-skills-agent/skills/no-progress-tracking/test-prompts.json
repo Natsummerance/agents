@@ -1,41 +1,50 @@
 {
   "skill": "no-progress-tracking",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "addyosmani/agent-skills",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "完成多个技能但仍不知道自己是否真正进步",
-      "expected_skill": "no-progress-tracking",
-      "category": "should-trigger",
-      "reason": "用户缺乏进度追踪，适合 no-progress-tracking"
+      "id": "tc-01",
+      "prompt": "完成了好几个技能，但不知道自己是不是真的进步了",
+      "type": "should_trigger",
+      "expected_behavior": "触发本 skill，识别\"完成但不确定掌握\"症状并建立进度追踪机制",
+      "notes": "\"完成多个技能仍不确定进步\"是本反模式的标志性症状"
     },
     {
-      "id": "test-2",
-      "prompt": "无法量化工程能力成长",
-      "expected_skill": "no-progress-tracking",
-      "category": "should-trigger",
-      "reason": "用户想量化成长，适合 no-progress-tracking"
+      "id": "tc-02",
+      "prompt": "想要一套量化工程能力成长的反馈循环和进度记录方法",
+      "type": "should_trigger",
+      "expected_behavior": "触发本 skill，按 E 段建立追踪机制、反馈循环与量化成长记录",
+      "notes": "\"量化成长/反馈循环\"命中关键 trigger 信号"
     },
     {
-      "id": "test-3",
-      "prompt": "我完成了几个技能但仍感到迷茫",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "应触发 no-systematic-methodology，不是 no-progress-tracking"
+      "id": "tc-03",
+      "prompt": "学习路径本身没头绪、不知道下一个学什么，先用 no-systematic-methodology 梳理整体框架吧",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，路由到 no-systematic-methodology",
+      "notes": "跨技能诱饵：点名兄弟 skill，整体框架缺失比反馈机制缺失更宏观"
     },
     {
-      "id": "test-4",
-      "prompt": "如何证明代码正确？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "应触发 test-driven-development，不是 no-progress-tracking"
+      "id": "tc-04",
+      "prompt": "我上的课程本身就有作业评分和考核标准，不需要另建评估体系",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，已有明确评估标准的用户列为不适用",
+      "notes": "外部评估已覆盖反馈职能"
     },
     {
-      "id": "test-5",
-      "prompt": "这个技能怎么评估？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "具体技能评估问题，不应调用"
+      "id": "tc-05",
+      "prompt": "这段代码写得对不对要用 test-driven-development 写测试来验证，和学习进度没关系",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，路由到 test-driven-development",
+      "notes": "跨技能诱饵：点名兄弟 skill，代码验证与学习进度量化互为区分项"
+    },
+    {
+      "id": "tc-06",
+      "prompt": "已有课程大纲但完全没有实践反馈环节的自学者，还需要这套进度追踪吗？",
+      "type": "edge_case",
+      "expected_behavior": "触发本 skill 给出判定：大纲提供内容基准但缺掌握度反馈，仍需轻量自评+外部反馈补充，结论落到具体机制",
+      "notes": "边界题：考察部分覆盖评估职能时的取舍"
     }
   ]
 }

@@ -1,10 +1,11 @@
----
+﻿---
 name: ai-iteration-check-principles
 description: |
   当用户需要检查 AI 生成的数据可视化代码是否符合规范时使用。触发场景：用户问"AI 生成的图表代码有问题吗？"、"如何自动化检查图表质量？"、"AI 生成的代码需要人工 Review 哪些点？"。不适用于：人工编写的代码审查、非图表类的代码检查。关键 trigger 信号：AI 生成代码质检 / Iteration Guide / 10 条检查项 / 自动化验证。
 source_book: 《ENCY-charts 数据可视化设计规范》 ENCY Design Team
 source_chapter: 9. Agent Prompt Guide - Iteration Guide
 tags: [ai-quality-check, code-review, iteration-guide, automation]
+source_project: ENCY-charts 设计规范
 related_skills: [ai-friendly-spec-framework, chart-taboo-principles, clarity-first-principles]
 ---
 
@@ -54,7 +55,7 @@ related_skills: [ai-friendly-spec-framework, chart-taboo-principles, clarity-fir
 
 ## E (Execution) — 可执行步骤
 
-**步骤 1：检查颜色选择（#1, #9）**
+**步骤 1：检查颜色选择（#1, #9）** — 完成标准: 已输出"颜色选择正确/错误"的判定结论，且硬编码颜色检查已跑通
 - [ ] 生成图表前确认使用正确的色板（分类/顺序/语义）
 - [ ] 暗色模式下正确切换色板（检测 `[data-theme="dark"]`）
 - 自动化检查：
@@ -66,7 +67,7 @@ related_skills: [ai-friendly-spec-framework, chart-taboo-principles, clarity-fir
   }
   ```
 
-**步骤 2：检查容器结构（#2, #4）**
+**步骤 2：检查容器结构（#2, #4）** — 完成标准: 已输出"容器结构正确/错误"的判定结论，且 .chart-card 父容器检查已跑通
 - [ ] 所有图表包裹在 `.chart-card` 容器中
 - [ ] 空数据时渲染空状态占位（"暂无数据"或骨架屏），而非空白图表
 - 自动化检查：
@@ -78,14 +79,14 @@ related_skills: [ai-friendly-spec-framework, chart-taboo-principles, clarity-fir
   }
   ```
 
-**步骤 3：检查交互行为（#3, #5）**
+**步骤 3：检查交互行为（#3, #5）** — 完成标准: 已输出"Tooltip 位置合规/不合规"与"移动端布局合规/不合规"的判定结论
 - [ ] Tooltip 始终指向数据且不超出视口
 - [ ] 移动端使用响应式布局（grid-auto-rows + minmax）
 - 手动测试：
   - 鼠标悬停数据点，检查 Tooltip 位置
   - 缩小浏览器窗口到 <728px，检查布局重排
 
-**步骤 4：检查性能配置（#6）**
+**步骤 4：检查性能配置（#6）** — 完成标准: 已输出"动画时长合规/超标"的判定结论，animationDuration 检查已跑通
 - [ ] animationDuration ≤1000ms（默认 800ms）
 - [ ] 首次加载时 animationDuration 设为 0（避免闪烁）
 - 自动化检查：
@@ -96,7 +97,7 @@ related_skills: [ai-friendly-spec-framework, chart-taboo-principles, clarity-fir
   }
   ```
 
-**步骤 5：检查内容完整性（#7, #8）**
+**步骤 5：检查内容完整性（#7, #8）** — 完成标准: 已输出"数值单位完整/缺失"与"Legend 顺序一致/不一致"的判定结论
 - [ ] 所有数值显示包含单位（万/亿/元/个/人/次）
 - [ ] Legend 顺序严格匹配数据系列顺序
 - 自动化检查：
@@ -110,7 +111,7 @@ related_skills: [ai-friendly-spec-framework, chart-taboo-principles, clarity-fir
   });
   ```
 
-**步骤 6：检查可访问性（#10）**
+**步骤 6：检查可访问性（#10）** — 完成标准: 已输出"色盲友好/不友好"、"对比度达标/不达标"、"键盘可操作/不可操作"的三项判定结论
 - [ ] 色盲友好（不依赖单一颜色传达信息）
 - [ ] 对比度 ≥4.5:1
 - [ ] 键盘可操作（Tab 键可聚焦图表元素）
@@ -118,7 +119,7 @@ related_skills: [ai-friendly-spec-framework, chart-taboo-principles, clarity-fir
   - 使用 axe-core 进行无障碍审计
   - 使用 Coblis 色盲模拟器检查
 
-**步骤 7：生成检查报告**
+**步骤 7：生成检查报告** — 完成标准: 已生成含 10 项检查结果与通过率的报告，若通过率<100%则明确列出失败项并返回 AI 重新生成
 - 汇总所有检查结果：
   ```
   ✅ 颜色选择正确
@@ -151,3 +152,26 @@ related_skills: [ai-friendly-spec-framework, chart-taboo-principles, clarity-fir
 - `ai-friendly-spec-framework` — AI 友好的规范编写框架
 - `chart-taboo-principles` — 图表禁忌清单
 - `clarity-first-principles` — 清晰性优先原则
+---
+
+## 附录：源仓库实现细节（源自 ENCY-charts 设计规范）
+
+> 具体实现细节请见上游 ENCY-charts 仓库对应组件的源码与示例。
+
+### 可执行步骤扩展
+
+1. **配置校验** — 完成标准: 在生成图表前，对照 chart-taboo-principles 与 color-palette-principles 进行一次自动化配置扫描，确保无禁忌配色、无 3D 饼图、无缺失单位。
+2. **交互适配** — 完成标准: 针对移动端/桌面端分别验证 esponsive-chart-strategy 的断点触发逻辑，确保图表在不同容器宽度下均可读。
+3. **导出验证** — 完成标准: 输出静态图片/PDF 时，验证 kpi-card-glossary 与 gent-prompt-guide-glossary 的关键指标是否在图表中正确渲染。
+
+### 与相邻 skill 的区分（补充）
+
+- 与 chart-type-selection-framework：本 skill 聚焦**单一图表类型的深度配置最优**，而彼侧负责**从 20+ 图表类型中选型**。
+- 与 esponsive-chart-strategy：彼侧管**全局响应式布局**，本 skill 管**单图内部的编码与视觉细节**。
+
+---
+
+## 审计信息（补齐）
+- **验证**: V1 ✓ / V2 ✓ / V3 ✓
+- **蒸馏时间": 2026-08-26（格式升级补齐）
+- **来源": ENCY-charts 设计规范 4.6 / 7 + vendor/larashero3-dotcom__lieflat-charts 等

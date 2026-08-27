@@ -3,6 +3,7 @@ name: english-centric-patterns
 description: |
   当用户处理非英文文本、想了解模式列表是否适用于其他语言，或发现去痕效果在非英文文本上不佳时调用此 skill。不适用于：纯英文文本、不需要多语言支持的用户。关键 trigger 信号：非英文、多语言、中文文本、日文文本、模式适用性、语言局限。
 source_book: Humanizer Blader
+source_project: blader/humanizer
 source_chapter: Introduction / pattern list section
 tags: [anti-pattern, language-limitation, multilingual, english-centric]
 related_skills: ["pattern-based-detection", "preserve-style"]
@@ -53,21 +54,25 @@ README 中提到的 35 个模式都来自 Wikipedia 的英文页面，示例也�
    - 确认文本的语言类型（英文、中文、日文等）
    - 评估当前模式列表是否适用于该语言
    - 检查是否有针对该语言的特定 AI 写作特征
+   - 完成标准: 已输出文本语言判定，并给出"当前模式列表适用/部分适用/不适用"的明确结论
 
 2. **评估去痕效果**
    - 对非英文文本应用去痕后，检查效果是否满意
    - 如果不满意，分析哪些模式不适用
    - 记录不适用的模式和原因
+   - 完成标准: 产出不适用的模式清单，每条模式均附具体原因
 
 3. **寻找替代方案**
    - 查找针对该语言的 AI 写作特征研究
    - 寻找其他工具或方法处理非英文文本
    - 考虑手动调整去痕策略
+   - 完成标准: 至少列出一条可立即执行的替代方案或手动调整策略
 
 4. **反馈和改进**
    - 向 humanizer 开发者反馈多语言支持需求
    - 参与 WikiProject AI Cleanup 的多语言扩展工作
    - 分享自己的经验和发现
+   - 完成标准: 已形成可提交的反馈或经验记录（issue/社区帖子/笔记）
 
 ## B (Boundary) - 什么时候不适用
 

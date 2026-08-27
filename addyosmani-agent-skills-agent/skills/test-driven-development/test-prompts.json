@@ -1,41 +1,50 @@
 {
   "skill": "test-driven-development",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "addyosmani/agent-skills",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
+      "id": "tc-01",
       "prompt": "如何证明代码正确？",
-      "expected_skill": "test-driven-development",
-      "category": "should-trigger",
-      "reason": "用户想知道如何验证代码正确性，适合 test-driven-development"
+      "type": "should_trigger",
+      "expected_behavior": "用户想知道如何验证代码正确性，适合 test-driven-development",
+      "notes": "用户想知道如何验证代码正确性，适合 test-driven-development"
     },
     {
-      "id": "test-2",
+      "id": "tc-02",
       "prompt": "测试应该什么时候写？",
-      "expected_skill": "test-driven-development",
-      "category": "should-trigger",
-      "reason": "用户想了解 TDD 流程，适合 test-driven-development"
+      "type": "should_trigger",
+      "expected_behavior": "用户想了解 TDD 流程，适合 test-driven-development",
+      "notes": "用户想了解 TDD 流程，适合 test-driven-development"
     },
     {
-      "id": "test-3",
+      "id": "tc-03",
       "prompt": "我应该先写什么？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "应触发 spec-driven-development，不是 test-driven-development"
+      "type": "should_not_trigger",
+      "expected_behavior": "应触发 spec-driven-development，不是 test-driven-development",
+      "notes": "应触发 spec-driven-development，不是 test-driven-development"
     },
     {
-      "id": "test-4",
+      "id": "tc-04",
       "prompt": "如何快速部署到生产环境？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "应触发 faster-is-safer，不是 test-driven-development"
+      "type": "should_not_trigger",
+      "expected_behavior": "应触发 faster-is-safer，不是 test-driven-development",
+      "notes": "应触发 faster-is-safer，不是 test-driven-development"
     },
     {
-      "id": "test-5",
+      "id": "tc-05",
       "prompt": "这个函数怎么写？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "具体实现问题，不应调用"
+      "type": "should_not_trigger",
+      "expected_behavior": "具体实现问题，不应调用",
+      "notes": "具体实现问题，不应调用"
+    },
+    {
+      "id": "tc-06",
+      "prompt": "UI 调整类任务（如改颜色、调间距）也要写失败测试再改代码吗？",
+      "type": "edge_case",
+      "expected_behavior": "触发本 skill 给出判定：视觉回归测试可替代单测，但仍需有可验证的验收标准，结论落到具体替代方案",
+      "notes": "边界题：考察 TDD 在非逻辑类任务上的适用边界"
     }
   ]
 }

@@ -3,6 +3,7 @@ name: no-collaboration-guidance
 description: |
   当用户完成个人项目后不知道如何在团队中协作、缺乏 Git 工作流知识，或在真实团队环境中不知所措时调用此 skill。不适用于：纯个人练习、不需要团队协作的场景。关键 trigger 信号：团队协作、Git worktree、版本控制、协作开发、团队环境、多人项目。
 source_book: App Ideas Collection Florin Pop
+source_project: florinpop17/app-ideas
 source_chapter: N/A (absence of content)
 tags: [anti-pattern, collaboration-gap, git-workflow, team-environment]
 related_skills: ["no-systematic-methodology", "no-testing-guidance"]
@@ -54,21 +55,25 @@ App Ideas Collection 的 89 个项目都设计为个人独立完成：
    - 询问用户是否有团队协作经验
    - 检查用户是否了解 Git 工作流（分支策略、合并请求等）
    - 评估用户是否能清晰描述自己在团队中的角色
+   - 完成标准：三项检查均已获得用户的明确回答，并形成"具备/缺失"二值结论的症状清单
 
 2. **引入协作思维**
    - 解释现代软件开发是团队协作的过程，不是个人英雄主义
    - 强调 Git 工作流的重要性（如 Git Flow、GitHub Flow）
    - 介绍代码审查的价值和质量保障作用
+   - 完成标准：用户能用自己的话复述一种工作流（Git Flow 或 GitHub Flow）的核心分支规则与代码审查的作用
 
 3. **建立协作习惯**
    - 学习使用 Git worktrees 进行隔离开发
    - 实践分支策略（feature branches、develop branch、main branch）
    - 参与开源项目或团队项目获取实际经验
+   - 完成标准：用户在练习仓库完成至少一次"feature 分支开发 → 发起合并请求"全流程，期间无直接提交 main 的操作
 
 4. **避免常见陷阱**
    - 不要直接在 main 分支上开发新功能
    - 不要忽视代码审查反馈
    - 不要害怕寻求帮助或讨论技术方案
+   - 完成标准：用户给出的后续开发计划中不含"直接改 main/忽略审查反馈"类行为，且对三条陷阱各列出一条对应的规避动作
 
 ## B (Boundary) - 什么时候不适用
 

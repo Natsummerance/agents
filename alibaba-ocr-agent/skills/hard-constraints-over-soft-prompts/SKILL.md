@@ -3,6 +3,7 @@ name: hard-constraints-over-soft-prompts
 description: |
   当需要在代码审查中建立硬约束而非软提示时使用此 skill。适用于：文件选择、规则匹配、位置定位等不能出错的场景。不适用于：需要灵活性和创造力的场景。关键 trigger 信号：用户提到"硬约束"、"工程逻辑"、"稳定性"等问题。
 source_book: alibaba/open-code-review
+source_project: alibaba/open-code-review
 source_chapter: Core Value: Hard Constraints > Soft Prompts
 tags: [hard-constraints, engineering-logic, stability]
 related_skills: [deterministic-engineering-hard-constraints, template-engine-over-language-driven]
@@ -56,10 +57,15 @@ related_skills: [deterministic-engineering-hard-constraints, template-engine-ove
 ## E (Execution) — 可执行步骤
 
 1. **识别硬约束步骤**: 列出审查过程中不能出错的步骤
+   - 完成标准: 硬约束步骤清单定稿，每项附"不能出错"的影响说明
 2. **设计确定性算法**: 为每个硬约束步骤设计不依赖 LLM 的确定性算法
+   - 完成标准: 每个步骤都有算法设计文档，明确输入、输出与判定规则，零 LLM 依赖
 3. **实现外部模块**: 将硬约束步骤实现为独立的外部模块
+   - 完成标准: 模块代码合入并通过独立运行冒烟测试
 4. **编写测试用例**: 为每个硬约束步骤编写严格的测试用例
+   - 完成标准: 每个步骤至少有正常路径与异常路径两类用例且全部通过
 5. **集成验证**: 在完整审查流程中验证硬约束步骤的正确性
+   - 完成标准: 端到端试跑中硬约束步骤零错误，结果与单测预期一致
 
 **完成标准**: 所有硬约束步骤通过单元测试，无位置漂移，无文件遗漏
 

@@ -3,6 +3,7 @@ name: no-systematic-methodology
 description: |
   当用户完成多个项目但仍感到迷茫、不知道下一步该做什么，或随机选择项目缺乏连贯学习路径时调用此 skill。不适用于：已有明确学习计划的用户、只需要单个项目建议的场景。关键 trigger 信号：迷茫、不知道下一步、随机选择、缺乏系统性、完成项目但没进步。
 source_book: App Ideas Collection Florin Pop
+source_project: florinpop17/app-ideas
 source_chapter: Introduction / problem statement
 tags: [anti-pattern, systematic-learning, methodology-gap]
 related_skills: ["tiered-learning-path", "no-progress-tracking", "no-testing-guidance", "no-collaboration-guidance"]
@@ -52,21 +53,25 @@ App Ideas Collection 本身就是一个典型案例：它列出了 89 个项目�
    - 询问用户是否随机选择项目
    - 检查用户是否有明确的学习目标
    - 评估用户是否能清晰描述自己的技能成长
+   - 完成标准：三个问题均有明确回答，且能得出"存在/不存在随机选项目+无学习目标"的反模式判定结论
 
 2. **引入系统性方法论**
    - 应用 `tiered-learning-path` 建立分级学习路径
    - 为每个层级设定明确的技能目标（如 Tier 1 完成后应能独立完成 UI 应用）
    - 建立项目之间的依赖关系（如先做 Calculator 再做 Currency Converter）
+   - 完成标准：用户拥有一份书面学习路径，其中每个项目都标注了所属层级、技能目标和前置项目
 
 3. **建立反馈循环**
    - 定期回顾已完成的项目
    - 评估是否真正掌握了该层级的技能
    - 根据反馈调整下一个项目的选择
+   - 完成标准：约定了固定的回顾周期，且每次回顾产出"继续当前层级/进入下一层级"的二选一结论及依据
 
 4. **避免随机选择**
    - 不要仅凭兴趣选择项目
    - 确保每个项目都有明确的学习目标
    - 将项目串联成连贯的学习路径
+   - 完成标准：用户给出的候选项目中每一个都能对应到路径上的具体位置与学习目标，无法对应的已被剔除或说明理由
 
 ## B (Boundary) - 什么时候不适用
 

@@ -3,6 +3,7 @@ name: show-your-work
 description: |
   当用户询问"如何理解去痕的逻辑"、"能否看到中间结果"或"去痕过程是否透明"时调用此 skill。不适用于：一次性快速去痕、不需要透明化的场景、只关心最终结果的用户。关键 trigger 信号：显示工作过程、中间结果、透明化、first rewrite、critique、可解释性。
 source_book: Humanizer Blader
+source_project: blader/humanizer
 source_chapter: Introduction / workflow description
 tags: [transparency, show-work, intermediate-results, explainability]
 related_skills: ["two-pass-rewriting", "no-fabrication"]
@@ -53,25 +54,30 @@ Humanizer 的工作流程就是典型的显示工作过程：
 1. **请求显示工作过程**
    - 在使用 `/humanizer` 时，明确要求显示中间结果
    - 或者使用默认流程（Humanizer 会自动显示）
+   - 完成标准: 已确认本次流程会展示中间结果（显式要求或默认开启）
 
 2. **查看第一次重写**
    - 仔细阅读第一次重写结果
    - 对比原始文本，理解哪些部分被修改
    - 注意修改的原因和逻辑
+   - 完成标准: 能指出至少一处修改及其对应的模式或原因
 
 3. **阅读批评内容**
    - 查看对仍听起来人工的内容的简短批评
    - 理解哪些部分仍需改进
    - 评估批评是否合理
+   - 完成标准: 对每条批评均有接受或异议的明确态度
 
 4. **提供反馈**
    - 如果对中间结果不满意，提供具体反馈
    - 指出哪些修改不符合期望
    - 说明希望保持的风格或表达方式
+   - 完成标准: 反馈具体到句子级并注明期望保留项；无异议时明确记录"无"
 
 5. **确认最终版本**
    - 在理解工作过程后，确认最终版本
    - 确保最终结果符合期望
+   - 完成标准: 用户已明确确认接受最终版本
 
 ## B (Boundary) - 什么时候不适用
 

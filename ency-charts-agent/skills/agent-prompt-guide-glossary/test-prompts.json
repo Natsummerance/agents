@@ -1,41 +1,57 @@
 {
   "skill": "agent-prompt-guide-glossary",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "ENCY-charts 设计规范",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "Agent Prompt Guide 里提到的术语是什么意思？",
-      "expected_skill": "agent-prompt-guide-glossary",
-      "category": "should-trigger",
-      "reason": "直接询问 Agent Prompt Guide 术语定义"
+      "id": "tc-01",
+      "prompt": "Agent Prompt Guide 里提到的术语都是什么意思？",
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，解析 Quick Reference / Component Prompts / Iteration Guide 三件套的定义与组织",
+      "notes": "直接询问 Agent Prompt Guide 术语定义是核心触发场景"
     },
     {
-      "id": "test-2",
-      "prompt": "规范文档中的 Quick Reference 是什么概念？",
-      "expected_skill": "agent-prompt-guide-glossary",
-      "category": "should-trigger",
-      "reason": "Quick Reference 是 Agent Prompt Guide 的核心术语"
+      "id": "tc-02",
+      "prompt": "我想让 AI 生成代码时能自动遵守设计规范，文档应该怎么组织？",
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，介绍三件套结构（压缩版 Quick Reference + 场景化 Component Prompts + 10 条 Iteration Guide）及其在文档中的落位方式",
+      "notes": "对应 A2 场景'如何让 AI 理解我的设计规范'，关注文档方法论而非具体图表"
     },
     {
-      "id": "test-3",
-      "prompt": "如何选择柱状图的宽度？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "这是配置问题不是术语查询"
+      "id": "tc-03",
+      "prompt": "帮我检查 AI 刚生成的这段图表代码有没有违规的地方",
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；对已生成代码的逐项检查应转交 ai-iteration-check-principles 做 10 条必检项",
+      "notes": "诱饵兄弟 skill：ai-iteration-check-principles。术语 glossary 只管'怎么写规范'，不管'查已生成代码'"
     },
     {
-      "id": "test-4",
-      "prompt": "什么是 ECharts？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "ECharts 基础知识不属于本 glossary 范围"
+      "id": "tc-04",
+      "prompt": "柱状图的 barWidth 应该设成多少？",
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；具体样式参数属于图表样式速查内容而非 prompt guide 术语查询",
+      "notes": "配置问题不是术语问题"
     },
     {
-      "id": "test-5",
-      "prompt": "帮我设计一个 KPI 卡片的颜色方案",
-      "expected_skill": "kpi-card-glossary",
-      "category": "cross-skill-confusion",
-      "reason": "KPI 卡片设计应触发 kpi-card-glossary 而非 prompt guide 术语"
+      "id": "tc-05",
+      "prompt": "什么是 CSS 变量的层叠覆盖？",
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；通用前端基础知识不在设计规范术语表范围内",
+      "notes": "ECharts/CSS 基础知识不属于本 glossary 范围"
+    },
+    {
+      "id": "tc-06",
+      "prompt": "我们的规范只有人类设计师看，需要做 Quick Reference 压缩吗？",
+      "type": "edge_case",
+      "expected_behavior": "命中 B 段不适用场景（纯人工阅读的规范），应回答无需 AI 友好化三件套并说明边界",
+      "notes": "检验边界判断：面向人的规范不需要面向 AI 的压缩结构"
+    },
+    {
+      "id": "tc-07",
+      "prompt": "Quick Reference 和 Component Prompts 有什么区别？分别放在文档什么位置？",
+      "type": "edge_case",
+      "expected_behavior": "触发该 skill，区分两者的定位（压缩版知识 vs 完整场景上下文）并给出 E 段步骤 4 的落位规则（顶部/中部/末尾）",
+      "notes": "概念对比 + 文档组织属于 glossary 的知识边界内"
     }
   ]
 }

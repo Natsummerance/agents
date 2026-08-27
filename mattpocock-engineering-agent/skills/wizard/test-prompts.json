@@ -1,20 +1,57 @@
 {
   "skill": "wizard",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "mattpocock/skills",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "帮我在 AWS 上部署这个应用一步步教我",
-      "expected_skill": "wizard",
-      "category": "should-trigger",
-      "reason": "需要人工操作的向导"
+      "id": "wizard-01",
+      "prompt": "I need to set up API keys through the Stripe dashboard. Generate a wizard for this.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes wizard skill to generate interactive bash script that walks human through Stripe dashboard steps.",
+      "notes": "Credential setup is a key trigger."
     },
     {
-      "id": "test-2",
-      "prompt": "自动部署这个应用",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "自动化部署不需要向导"
+      "id": "wizard-02",
+      "prompt": "Provision infrastructure through the AWS console. Script the steps.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes wizard skill to generate bash script for AWS console navigation and value capture.",
+      "notes": "Infrastructure provisioning is a valid trigger."
+    },
+    {
+      "id": "wizard-03",
+      "prompt": "This one-off migration needs manual steps. Make it repeatable.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes wizard skill to generate bash script for manual migration steps, saved to scripts/ for repetition.",
+      "notes": "One-off migration is a valid trigger."
+    },
+    {
+      "id": "wizard-04",
+      "prompt": "Implement the payment integration feature.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes implement skill instead. Implement builds code; wizard generates scripts for human steps.",
+      "notes": "implement is the sibling skill for building code."
+    },
+    {
+      "id": "wizard-05",
+      "prompt": "Configure the issue tracker for this project.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes setup-matt-pocock-skills skill instead. Setup configures skill environment; wizard configures infrastructure/services.",
+      "notes": "setup-matt-pocock-skills is the sibling skill for skill environment configuration."
+    },
+    {
+      "id": "wizard-06",
+      "prompt": "Research the best way to deploy this application.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes research skill instead. Research reads documentation; wizard generates scripts for execution.",
+      "notes": "research is the sibling skill for reading documentation."
+    },
+    {
+      "id": "wizard-07",
+      "prompt": "Create a bash script to walk through the CI/CD setup process.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes wizard skill to generate bash script for CI/CD setup with step-by-step guidance.",
+      "notes": "Explicit bash script request for manual process is a valid trigger."
     }
   ]
 }

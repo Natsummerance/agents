@@ -1,48 +1,50 @@
 {
   "skill": "divide-and-conquer-strategy",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "alibaba/open-code-review",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "我有一个包含 500 个文件的大型 PR，如何高效审查？",
-      "expected_skill": "divide-and-conquer-strategy",
-      "category": "should-trigger",
-      "reason": "大变更集需要分治策略和智能文件捆绑"
+      "id": "tc-01",
+      "prompt": "这个 PR 改了 500 个文件，怎么审查才能既快又不漏？",
+      "type": "should_trigger",
+      "expected_behavior": "触发本 skill，按 E 段给出变更集分析、智能捆绑、子 Agent 并发与汇总的完整方案",
+      "notes": "大型变更集是本 skill 的标志性触发场景"
     },
     {
-      "id": "test-2",
-      "prompt": "如何将相关文件分组进行并发审查？",
-      "expected_skill": "divide-and-conquer-strategy",
-      "category": "should-trigger",
-      "reason": "智能文件捆绑和并发审查是分治策略的核心"
+      "id": "tc-02",
+      "prompt": "把多语言 properties 文件捆绑成一个审查单元，并行跑子 Agent 审查",
+      "type": "should_trigger",
+      "expected_behavior": "触发本 skill，给出 Smart file bundling 分组依据与并发执行安排",
+      "notes": "多语言文件捆绑是书中原文示例场景"
     },
     {
-      "id": "test-3",
-      "prompt": "多语言 properties 文件应该如何一起审查？",
-      "expected_skill": "divide-and-conquer-strategy",
-      "category": "should-trigger",
-      "reason": "相关文件捆绑是分治策略的典型应用场景"
+      "id": "tc-03",
+      "prompt": "只有一个文件的小改动，直接看下 diff 就行了吧？",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，单文件小修改明确列为不适用场景",
+      "notes": "小变更集无需分治"
     },
     {
-      "id": "test-4",
-      "prompt": "帮我确保文件选择不出错",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "文件选择是硬约束场景，应由确定性工程处理"
+      "id": "tc-04",
+      "prompt": "文件选择和规则匹配不能出错这件事，请走 template-engine-over-language-driven 的模板匹配方案",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，路由到 template-engine-over-language-driven",
+      "notes": "跨技能诱饵：点名兄弟 skill，规则稳定性属模板引擎职责"
     },
     {
-      "id": "test-5",
-      "prompt": "这个单一文件的代码有什么问题？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "小型单一文件修改不需要分治策略"
+      "id": "tc-05",
+      "prompt": "工具集不稳定的问题应该用 specialized-toolset-over-generic 从生产数据里重新提炼",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，路由到 specialized-toolset-over-generic",
+      "notes": "跨技能诱饵：点名兄弟 skill，工具集优化与其无关"
     },
     {
-      "id": "test-6",
-      "prompt": "如何确保审查不漏掉重要文件？",
-      "expected_skill": "incomplete-coverage-anti-pattern",
-      "category": "cross-skill-confusion",
-      "reason": "这应该触发不完整覆盖反模式 skill，虽然与分治相关但更关注覆盖率"
+      "id": "tc-06",
+      "prompt": "两个捆绑包之间有一个跨文件的接口变更，该归哪个包审？",
+      "type": "edge_case",
+      "expected_behavior": "触发本 skill 给出归属判定规则（如按接口定义方归属或在两包中显式标注关联），结论可执行",
+      "notes": "边界题：考察捆绑粒度与跨界文件的处置策略"
     }
   ]
 }

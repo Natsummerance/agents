@@ -3,6 +3,7 @@ name: no-systematic-methodology
 description: |
   当用户安装了 humanizer 技能但仍感到迷茫、不知道如何系统提升识别 AI 痕迹的能力，或随机应用模式缺乏连贯的去痕策略时调用此 skill。不适用于：已有明确去痕计划的用户、只需要单个模式建议的场景。关键 trigger 信号：迷茫、不知道下一步、随机应用模式、缺乏系统性、完成去痕但没进步。
 source_book: Humanizer Blader
+source_project: blader/humanizer
 source_chapter: Introduction / problem statement
 tags: [anti-pattern, systematic-learning, methodology-gap]
 related_skills: ["no-progress-tracking", "pattern-based-detection"]
@@ -52,21 +53,25 @@ Humanizer 本身就是一个典型案例：它列出了 35 个模式，按类别
    - 询问用户是否随机应用模式
    - 检查用户是否有明确的去痕目标
    - 评估用户是否能清晰描述自己的识别能力提升
+   - 完成标准: 三项问询均有答案，能明确判断用户是否随机选模式、有无去痕目标
 
 2. **引入系统性方法论**
    - 基于 6 个模式类别建立学习路径（夸大重要性 → AI 词汇 → 格式问题 → 结构逻辑 → Chatbot 特征 → 填充词）
    - 为每个类别设定明确的模式学习目标
    - 建立模式之间的依赖关系
+   - 完成标准: 输出覆盖 6 个类别的学习路径，类别间依赖关系已成文
 
 3. **建立反馈循环**
    - 定期回顾已完成的模式练习
    - 评估是否真正掌握了该类别的模式
    - 根据反馈调整下一个模式的选择
+   - 完成标准: 每个类别有掌握度评估结论，下一个模式的选择有明确依据
 
 4. **避免随机选择**
    - 不要仅凭兴趣选择模式
    - 确保每个模式都有明确的学习目标
    - 将模式串联成连贯的学习路径
+   - 完成标准: 当前及后续至少 3 个模式的选取理由均可追溯到学习路径
 
 ## B (Boundary) - 什么时候不适用
 

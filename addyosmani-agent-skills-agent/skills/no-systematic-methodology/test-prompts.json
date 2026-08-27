@@ -1,41 +1,50 @@
 {
   "skill": "no-systematic-methodology",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "addyosmani/agent-skills",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
+      "id": "tc-01",
       "prompt": "我完成了几个技能但仍感到迷茫",
-      "expected_skill": "no-systematic-methodology",
-      "category": "should-trigger",
-      "reason": "用户缺乏系统性方法论，适合 no-systematic-methodology"
+      "type": "should_trigger",
+      "expected_behavior": "用户缺乏系统性方法论，适合 no-systematic-methodology",
+      "notes": "用户缺乏系统性方法论，适合 no-systematic-methodology"
     },
     {
-      "id": "test-2",
+      "id": "tc-02",
       "prompt": "不知道下一步该做什么",
-      "expected_skill": "no-systematic-methodology",
-      "category": "should-trigger",
-      "reason": "用户缺乏连贯学习路径，适合 no-systematic-methodology"
+      "type": "should_trigger",
+      "expected_behavior": "用户缺乏连贯学习路径，适合 no-systematic-methodology",
+      "notes": "用户缺乏连贯学习路径，适合 no-systematic-methodology"
     },
     {
-      "id": "test-3",
+      "id": "tc-03",
       "prompt": "我应该先写什么？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "应触发 spec-driven-development，不是 no-systematic-methodology"
+      "type": "should_not_trigger",
+      "expected_behavior": "应触发 spec-driven-development，不是 no-systematic-methodology",
+      "notes": "应触发 spec-driven-development，不是 no-systematic-methodology"
     },
     {
-      "id": "test-4",
+      "id": "tc-04",
       "prompt": "如何证明代码正确？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "应触发 test-driven-development，不是 no-systematic-methodology"
+      "type": "should_not_trigger",
+      "expected_behavior": "应触发 test-driven-development，不是 no-systematic-methodology",
+      "notes": "应触发 test-driven-development，不是 no-systematic-methodology"
     },
     {
-      "id": "test-5",
+      "id": "tc-05",
       "prompt": "这个技能怎么用？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "具体技能使用问题，不应调用"
+      "type": "should_not_trigger",
+      "expected_behavior": "具体技能使用问题，不应调用",
+      "notes": "具体技能使用问题，不应调用"
+    },
+    {
+      "id": "tc-06",
+      "prompt": "已有课程大纲但完全没有实践反馈环节的自学者，还需要系统性方法论吗？",
+      "type": "edge_case",
+      "expected_behavior": "触发本 skill 给出判定：大纲提供内容基准但缺掌握度反馈，仍需轻量自评+外部反馈补充，结论落到具体机制",
+      "notes": "边界题：考察部分覆盖评估职能时的取舍"
     }
   ]
 }

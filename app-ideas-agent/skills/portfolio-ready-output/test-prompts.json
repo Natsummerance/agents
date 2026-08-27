@@ -1,48 +1,57 @@
 {
   "skill": "portfolio-ready-output",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "florinpop17/app-ideas",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "这个项目值得做吗？能帮我找到工作吗？",
-      "expected_skill": "portfolio-ready-output",
-      "category": "should-trigger",
-      "reason": "评估项目职业价值是 portfolio-ready-output 的核心应用场景"
+      "id": "portfolio-ready-output-t1",
+      "prompt": "这个项目值不值得写进简历作品集？我想用它打动面试官",
+      "type": "should_trigger",
+      "expected_behavior": "按 E 段第 1 步评估作品集价值（UI/UX、核心功能完整性、技术栈市场价值），给出三选一结论及依据",
+      "notes": "核心触发：description 原句'这个项目值得做吗'场景"
     },
     {
-      "id": "test-2",
-      "prompt": "如何构建有吸引力的作品集？",
-      "expected_skill": "portfolio-ready-output",
-      "category": "should-trigger",
-      "reason": "作品集构建是 portfolio-ready-output 的核心价值"
+      "id": "portfolio-ready-output-t2",
+      "prompt": "怎么把我的 Weather App 包装得更有职业价值，让雇主眼前一亮？",
+      "type": "should_trigger",
+      "expected_behavior": "进入优化项目展示步骤：补齐 README 四要素、在线演示或截图、突出技术难点",
+      "notes": "关键信号：雇主、展示、职业价值"
     },
     {
-      "id": "test-3",
-      "prompt": "哪些项目能帮我吸引雇主？",
-      "expected_skill": "portfolio-ready-output",
-      "category": "should-trigger",
-      "reason": "职业导向项目选择是 portfolio-ready-output 的应用场景"
+      "id": "portfolio-ready-output-t3",
+      "prompt": "我做了七八个项目，不知道挑哪几个放作品集，帮我筛一下",
+      "type": "should_trigger",
+      "expected_behavior": "按多样化原则筛选组合（技术栈覆盖/难度成长轨迹/业务价值），剔除同质化重复项",
+      "notes": "对应构建多样化作品集步骤"
     },
     {
-      "id": "test-4",
-      "prompt": "我是编程初学者，应该从哪个项目开始？",
-      "expected_skill": "portfolio-ready-output",
-      "category": "should-not-trigger",
-      "reason": "这应该触发 tiered-learning-path skill，虽然与项目选择相关但更关注难度分级"
+      "id": "portfolio-ready-output-n1",
+      "prompt": "我想再找个新项目练手提升水平，有什么难度合适的推荐吗？",
+      "type": "should_not_trigger",
+      "expected_behavior": "选新项目的诉求转交 tiered-learning-path 按层级推荐；本 skill 只评已有项目的职业价值",
+      "notes": "跨技能诱饵：分级选项目归兄弟 skill tiered-learning-path"
     },
     {
-      "id": "test-5",
-      "prompt": "纯个人练习需要放入作品集吗？",
-      "expected_skill": "portfolio-ready-output",
-      "category": "should-not-trigger",
-      "reason": "纯个人练习不需要职业价值，属于边界场景"
+      "id": "portfolio-ready-output-n2",
+      "prompt": "面试官可能会现场抠细节，帮我确认一下项目代码本身写得对不对",
+      "type": "should_not_trigger",
+      "expected_behavior": "代码正确性的核验转交 no-testing-guidance；本 skill 只负责展示层面，不替代码质量背书",
+      "notes": "跨技能诱饵：代码质量验证归兄弟 skill no-testing-guidance"
     },
     {
-      "id": "test-6",
-      "prompt": "我完成项目后不确定是否真正进步",
-      "expected_skill": "no-progress-tracking",
-      "category": "cross-skill-confusion",
-      "reason": "这应该触发 no-progress-tracking skill，虽然与项目相关但更关注进度追踪"
+      "id": "portfolio-ready-output-e1",
+      "prompt": "我做项目纯粹为了自嗨，不发出去也不找工作，还用优化 README 吗？",
+      "type": "edge_case",
+      "expected_behavior": "命中 B 段边界：纯兴趣项目不启动展示优化流程，尊重用户目的并收尾",
+      "notes": "边界用例：非求职导向场景不适用"
+    },
+    {
+      "id": "portfolio-ready-output-e2",
+      "prompt": "项目还没写完一行代码呢，你先帮我把作品集文案吹起来",
+      "type": "edge_case",
+      "expected_behavior": "拒绝过度包装：未实现的功能不得写入展示材料，先完成核心功能与可运行演示，再谈文案包装",
+      "notes": "红线用例：虚构未实现内容违背作品集真实性"
     }
   ]
 }

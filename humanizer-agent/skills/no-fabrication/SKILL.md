@@ -3,6 +3,7 @@ name: no-fabrication
 description: |
   当用户询问"去痕后是否会改变事实"、"如何确保真实性"或"AI 是否会编造内容"时调用此 skill。不适用于：创意写作、虚构内容生成、不需要事实准确性的场景。关键 trigger 信号：不编造、事实准确性、name/number/date/quote、来自源或作者、真实性。
 source_book: Humanizer Blader
+source_project: blader/humanizer
 source_chapter: Introduction / no fabrication section
 tags: [no-fabrication, factual-accuracy, truthfulness, source-verification]
 related_skills: ["show-your-work", "preserve-style"]
@@ -52,21 +53,25 @@ README 中明确强调了不编造事实的原则，并在里斯本旅行文本�
    - 标记文本中的所有名称、数字、日期、引用、引文
    - 确认这些细节是否来自源或作者
    - 检查是否有缺失的细节
+   - 完成标准: 全部事实细节已汇成清单，缺失项单独标出
 
 2. **验证事实来源**
    - 对于每个事实细节，确认其来源
    - 如果来源不明，标记为需要验证
    - 如果细节缺失，准备询问用户
+   - 完成标准: 每条事实细节均已标注来源（源文本/作者/待询问）三类之一
 
 3. **去痕时保持事实**
    - 在应用 35 个模式时，确保不改变事实细节
    - 只修改表达方式，不修改内容
    - 如果模式应用可能导致事实变化，跳过该模式
+   - 完成标准: 重写前后逐条比对事实清单零篡改，被跳过的模式已记录
 
 4. **询问缺失细节**
    - 如果发现缺失的细节（如具体月份、地点）
    - 向用户询问这些信息
    - 不要自行编造或猜测
+   - 完成标准: 已就缺失细节向用户发出明确提问，回答中未引入任何新事实
 
 ## B (Boundary) - 什么时候不适用
 

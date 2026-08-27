@@ -3,6 +3,7 @@ name: pattern-based-detection
 description: |
   当用户询问"如何识别 AI 痕迹"、"有哪些 AI 写作特征"或"如何系统化检测 AI 生成文本"时调用此 skill。不适用于：纯创意写作评估、非文本类内容分析。关键 trigger 信号：AI 痕迹、AI 写作特征、35 patterns、Wikipedia Signs of AI writing、模式检测。
 source_book: Humanizer Blader
+source_project: blader/humanizer
 source_chapter: Introduction / pattern list section
 tags: [ai-detection, pattern-matching, wikipedia-patterns]
 related_skills: ["two-pass-rewriting", "voice-matching"]
@@ -51,21 +52,25 @@ Humanizer 的核心就是基于这 35 个模式进行 AI 痕迹检测。README �
    - 阅读 Wikipedia 的"Signs of AI writing"页面
    - 理解每个模式的含义和示例
    - 掌握模式的分类（6 个类别）
+   - 完成标准: 能复述 6 个类别名称，并为每个类别举出至少一个具体模式
 
 2. **应用模式检测**
    - 逐段检查文本是否包含 AI 痕迹
    - 标记出符合模式的段落
    - 记录检测到的模式类型
+   - 完成标准: 输出检测报告，含命中模式编号、原文引用与所在位置
 
 3. **评估检测结果**
    - 统计检测到的模式数量
    - 分析哪些类别的模式最频繁
    - 确定需要重点改进的方面
+   - 完成标准: 有各类别命中次数统计与优先改进项排序
 
 4. **制定去痕策略**
    - 根据检测结果确定优先级
    - 选择适合的去痕方法
    - 准备进入两遍重写流程
+   - 完成标准: 形成书面去痕优先级清单，并确认转入 two-pass-rewriting 阶段
 
 ## B (Boundary) - 什么时候不适用
 

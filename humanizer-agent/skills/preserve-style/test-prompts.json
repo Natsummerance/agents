@@ -1,41 +1,50 @@
 {
   "skill": "preserve-style",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "blader/humanizer",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "去痕后是否还会像自己写的？",
-      "expected_skill": "preserve-style",
-      "category": "should-trigger",
-      "reason": "保持作者风格的原则 是 preserve-style 的核心应用场景"
+      "id": "prs-t1",
+      "prompt": "去痕之后还会像我写的吗？我不想丢掉自己的风格。",
+      "type": "should_trigger",
+      "expected_behavior": "触发本技能：说明个人写作保持作者风格的默认行为，并在验证环节逐项核对用词/句式/标点。",
+      "notes": "核心触发：个人写作的风格保持担忧。"
     },
     {
-      "id": "test-2",
-      "prompt": "技术文档如何处理？",
-      "expected_skill": "preserve-style",
-      "category": "should-trigger",
-      "reason": "保持作者风格的原则 是 preserve-style 的核心应用场景"
+      "id": "prs-t2",
+      "prompt": "API 参考文档去痕的时候要保持中立平淡吧？",
+      "type": "should_trigger",
+      "expected_behavior": "触发本技能：确认技术参考文本走 neutral and plain 策略，不添加个人色彩。",
+      "notes": "技术文本分支的策略确认。"
     },
     {
-      "id": "test-3",
-      "prompt": "如何让去痕后的文本更像自己写的？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "该场景不属于 保持作者风格的原则 的触发条件"
+      "id": "prs-nt1",
+      "prompt": "这是我自己写的三段随笔，让改完的文字完全照着这个味道来。",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本技能；主动提供样本做匹配是 voice-matching 的场景。",
+      "notes": "互设诱饵（A）：点名兄弟 skill voice-matching，被动保持 vs 主动样本匹配。"
     },
     {
-      "id": "test-4",
-      "prompt": "去痕流程是什么？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "该场景不属于 保持作者风格的原则 的触发条件"
+      "id": "prs-nt2",
+      "prompt": "改写的时候别动我引用的那个发布日期。",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本技能；事实细节保护归 no-fabrication。",
+      "notes": "诱饵：点名兄弟 skill no-fabrication，风格层面与事实层面区分。"
     },
     {
-      "id": "test-5",
-      "prompt": "这个格式怎么调？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "该场景不属于 保持作者风格的原则 的触发条件"
+      "id": "prs-e1",
+      "prompt": "这是一篇带个人吐槽的开发者教程，到底算个人写作还是技术文本？",
+      "type": "edge_case",
+      "expected_behavior": "承认混合类型，说明主从判定（正文技术规范为主、吐槽段落按个人写作处理），分别应用策略。",
+      "notes": "作者盲点：二分法无法覆盖混合类型。"
+    },
+    {
+      "id": "prs-e2",
+      "prompt": "帮我把这篇正式报告整个改成轻松吐槽风。",
+      "type": "edge_case",
+      "expected_behavior": "超出保持风格的职责范围（完全重写风格属 B 段排除场景），明确告知后再决定是否协助。",
+      "notes": "风格改造诉求与风格保持目标相反。"
     }
   ]
 }

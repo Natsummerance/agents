@@ -1,20 +1,57 @@
 {
   "skill": "diagnosing-bugs",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "mattpocock/skills",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "这个报错我看不懂帮我查查",
-      "expected_skill": "diagnosing-bugs",
-      "category": "should-trigger",
-      "reason": "Bug 调查场景"
+      "id": "diagnosing-01",
+      "prompt": "This test is flaky on CI. Help me debug it.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes diagnosing-bugs skill to build feedback loop, reproduce, minimize, hypothesize, instrument, fix.",
+      "notes": "Flaky test is a key trigger for hard bugs."
     },
     {
-      "id": "test-2",
-      "prompt": "帮我加个新功能",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "功能开发不属于 Bug 调查"
+      "id": "diagnosing-02",
+      "prompt": "The API is 3x slower after the deploy. Diagnose the regression.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes diagnosing-bugs skill with perf branch: establish baseline, then bisect.",
+      "notes": "Performance regression is a valid trigger."
+    },
+    {
+      "id": "diagnosing-03",
+      "prompt": "This bug works locally but fails in production. What's going on?",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes diagnosing-bugs skill to replay captured trace or HITL script for environment-specific bug.",
+      "notes": "Heisenbug is a valid trigger."
+    },
+    {
+      "id": "diagnosing-04",
+      "prompt": "Implement the user authentication feature.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes implement skill instead. Implement builds features; diagnosing-bugs finds root cause of bugs.",
+      "notes": "implement is the sibling skill for building code."
+    },
+    {
+      "id": "diagnosing-05",
+      "prompt": "Review this PR for code quality issues.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes code-review skill instead. Code-review checks static diff; diagnosing-bugs needs dynamic loop.",
+      "notes": "code-review is the sibling skill for evaluating diffs."
+    },
+    {
+      "id": "diagnosing-06",
+      "prompt": "Design a new module interface.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes codebase-design skill instead. Codebase-design shapes future modules; diagnosing-bugs finds why something is broken.",
+      "notes": "codebase-design is the sibling skill for module design."
+    },
+    {
+      "id": "diagnosing-07",
+      "prompt": "Nobody knows this legacy code. It throws errors randomly.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes diagnosing-bugs skill with throwaway harness to isolate code path for unknown codebase bug.",
+      "notes": "Legacy codebug is a valid trigger."
     }
   ]
 }

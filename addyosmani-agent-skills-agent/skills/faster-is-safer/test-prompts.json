@@ -1,41 +1,50 @@
 {
   "skill": "faster-is-safer",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "addyosmani/agent-skills",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "应该频繁部署还是批量部署？",
-      "expected_skill": "faster-is-safer",
-      "category": "should-trigger",
-      "reason": "用户想了解部署策略，适合 faster-is-safer"
+      "id": "tc-01",
+      "prompt": "应该频繁发布小版本，还是攒一个大版本一起上线？",
+      "type": "should_trigger",
+      "expected_behavior": "触发本 skill，阐述 Faster is safer 原则并给出部署频率建议",
+      "notes": "频繁部署 vs 批量部署是本 skill 的标志性问题"
     },
     {
-      "id": "test-2",
-      "prompt": "如何降低部署风险？",
-      "expected_skill": "faster-is-safer",
-      "category": "should-trigger",
-      "reason": "用户想降低风险，适合 faster-is-safer"
+      "id": "tc-02",
+      "prompt": "怎么降低每次部署的风险？听说小步快跑更安全",
+      "type": "should_trigger",
+      "expected_behavior": "触发本 skill，给出小步快跑与回滚机制的落地步骤",
+      "notes": "\"降低部署风险+快速迭代\"命中关键 trigger 信号"
     },
     {
-      "id": "test-3",
-      "prompt": "如何证明代码正确？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "应触发 test-driven-development，不是 faster-is-safer"
+      "id": "tc-03",
+      "prompt": "开发阶段的自主执行交给 auto-build-mode 处理，部署策略以后再说",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，路由到 auto-build-mode",
+      "notes": "跨技能诱饵：点名兄弟 skill，实现阶段与发布阶段分工明确"
     },
     {
-      "id": "test-4",
-      "prompt": "如何在团队中协作？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "应触发 no-team-collaboration-guidance，不是 faster-is-safer"
+      "id": "tc-04",
+      "prompt": "金融核心系统有严格的合规变更管理要求，不适合讨论频繁部署",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，严格变更管理场景列为不适用",
+      "notes": "强合规环境是本 skill 明确的边界外场景"
     },
     {
-      "id": "test-5",
-      "prompt": "这个部署脚本怎么写？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "具体实现问题，不应调用"
+      "id": "tc-05",
+      "prompt": "上线前想证明代码是对的，用 test-driven-development 跑全量测试来验证",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，路由到 test-driven-development",
+      "notes": "跨技能诱饵：点名兄弟 skill，代码正确性验证属 VERIFY 而非 SHIP"
+    },
+    {
+      "id": "tc-06",
+      "prompt": "蓝绿部署、金丝雀发布这类渐进式发布策略算不算更快更安全的范畴？",
+      "type": "edge_case",
+      "expected_behavior": "触发本 skill 给出界定：原则兼容且可作为降低单次风险的手段，但需指出 agent-skills 未展开的具体差异，结论可操作",
+      "notes": "边界题：考察原则与具体发布技术的适用边界"
     }
   ]
 }

@@ -1,41 +1,64 @@
 {
   "skill": "voice-matching",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "blader/humanizer",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
+      "id": "vm-t1",
       "prompt": "如何让去痕后的文本更像自己写的？",
-      "expected_skill": "voice-matching",
-      "category": "should-trigger",
-      "reason": "声音匹配技术 是 voice-matching 的核心应用场景"
+      "type": "should_trigger",
+      "expected_behavior": "触发本技能：说明提供写作样本即可激活声音匹配，Humanizer 会跟随样本的节奏、用词、标点、怪癖而非默认规则。",
+      "notes": "核心触发：声音匹配需求。"
     },
     {
-      "id": "test-2",
-      "prompt": "如何保持个人写作特色？",
-      "expected_skill": "voice-matching",
-      "category": "should-trigger",
-      "reason": "声音匹配技术 是 voice-matching 的核心应用场景"
+      "id": "vm-t2",
+      "prompt": "我有三段自己的随笔，能不能让改写全程照着这个味道来？",
+      "type": "should_trigger",
+      "expected_behavior": "触发本技能：确认样本充足（≥2 段），引导按四要素（节奏/用词/标点/怪癖）逐项核验终稿。",
+      "notes": "主动提供样本的典型场景。"
     },
     {
-      "id": "test-3",
-      "prompt": "去痕流程是什么？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "该场景不属于 声音匹配技术 的触发条件"
+      "id": "vm-t3",
+      "prompt": "去痕时能不能参考我的用词习惯和句子长度？",
+      "type": "should_trigger",
+      "expected_behavior": "触发本技能：指出这正是 voice-matching 覆盖的 rhythm 与 word choice，需样本驱动。",
+      "notes": "用户直接点名 rhythm/word choice 关键字。"
     },
     {
-      "id": "test-4",
-      "prompt": "技术文档如何处理？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "该场景不属于 声音匹配技术 的触发条件"
+      "id": "vm-nt1",
+      "prompt": "技术文档去痕要保持中立平淡吧？",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本技能；技术文本走 neutral and plain 策略归 preserve-style。",
+      "notes": "诱饵：点名兄弟 skill preserve-style，主动样本匹配 vs 被动类型判定。"
     },
     {
-      "id": "test-5",
-      "prompt": "这个句子怎么写？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "该场景不属于 声音匹配技术 的触发条件"
+      "id": "vm-nt2",
+      "prompt": "怎么保证去痕流程透明、能看到中间稿？",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本技能；透明化流程诉求归 show-your-work / two-pass-rewriting。",
+      "notes": "诱饵：流程层面非风格层面。"
+    },
+    {
+      "id": "vm-nt3",
+      "prompt": "改写的时候别动我的日期和引用。",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本技能；事实细节保护归 no-fabrication。",
+      "notes": "诱饵：点名兄弟 skill no-fabrication，风格层面与事实层面区分。"
+    },
+    {
+      "id": "vm-e1",
+      "prompt": "我只有半段微博文案当样本，这够吗？",
+      "type": "edge_case",
+      "expected_behavior": "说明样本过短（<2 段）会导致四要素提取不可靠，建议补充或退回默认规则，并记录该限制。",
+      "notes": "样本不足的边界情况，对应作者盲点：样本质量无评估机制。"
+    },
+    {
+      "id": "vm-e2",
+      "prompt": "我的样本是学术论文风格，但要改的 AI 文本是轻松游记，风格差异太大怎么办？",
+      "type": "edge_case",
+      "expected_behavior": "指出样本与目标文本体裁冲突，建议：①另找同体裁样本；②若坚持用原样本，明确告知会产生风格撕裂并记录对比结论。",
+      "notes": "作者盲点：样本与 AI 文本风格差异过大无处理方案。"
     }
   ]
 }

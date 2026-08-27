@@ -1,41 +1,57 @@
 {
   "skill": "chart-type-selection-framework",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "ENCY-charts 设计规范",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
+      "id": "tc-01",
       "prompt": "我各产品线的销售额数据用什么图表对比？",
-      "expected_skill": "chart-type-selection-framework",
-      "category": "should-trigger",
-      "reason": "离散类别对比是柱状图的典型选型场景"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，识别数据关系为比较，推荐柱状图并给出 barWidth/borderRadius 参数",
+      "notes": "离散类别对比是柱状图典型选型场景"
     },
     {
-      "id": "test-2",
+      "id": "tc-02",
       "prompt": "时间序列数据用什么图表展示？",
-      "expected_skill": "chart-type-selection-framework",
-      "category": "should-trigger",
-      "reason": "趋势感知是折线图的选型场景"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，识别数据关系为趋势，推荐折线图/面积图并给出 lineWidth/symbol 参数",
+      "notes": "趋势感知是折线图选型场景"
     },
     {
-      "id": "test-3",
+      "id": "tc-03",
       "prompt": "帮我调整这个柱状图的颜色",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "颜色调整属于配色相关 skill"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；颜色调整属于配色相关 skill",
+      "notes": "颜色调整非选型决策范围"
     },
     {
-      "id": "test-4",
+      "id": "tc-04",
       "prompt": "什么是散点图？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "基础概念查询不属于选型决策"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；基础概念查询不属于选型决策",
+      "notes": "基础概念查询非本 skill 范围"
     },
     {
-      "id": "test-5",
+      "id": "tc-05",
       "prompt": "Y 轴不从 0 开始会不会有问题？",
-      "expected_skill": "y-axis-non-zero-trap",
-      "category": "cross-skill-confusion",
-      "reason": "Y 轴起点问题属于具体陷阱而非图表选型"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；Y 轴起点问题属于 y-axis-non-zero-trap",
+      "notes": "诱饵兄弟 skill：y-axis-non-zero-trap。具体陷阱非选型决策"
+    },
+    {
+      "id": "tc-06",
+      "prompt": "我有 10 个类别的销售数据，饼图还是柱状图？",
+      "type": "edge_case",
+      "expected_behavior": "触发该 skill 走步骤 2：饼图扇区>6 需合并为'其他'，推荐改用柱状图对比",
+      "notes": "扇区过多触发约束规则，推荐改用柱状图"
+    },
+    {
+      "id": "tc-07",
+      "prompt": "组合图表（柱状图+折线图双轴）怎么选？",
+      "type": "edge_case",
+      "expected_behavior": "触发该 skill 走 B 段不适用：数据关系复杂需组合图表，属于更高级组合策略，超出本框架范围",
+      "notes": "检验 B 段不适用场景边界"
     }
   ]
 }

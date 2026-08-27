@@ -3,6 +3,7 @@ name: incomplete-coverage-anti-pattern
 description: |
   当需要识别和避免不完整覆盖反模式时使用此 skill。适用于：大变更集审查、多文件 PR 审查等场景。不适用于：小型单一文件修改。关键 trigger 信号：用户提到"遗漏文件"、"偷工减料"、"覆盖不全"等问题。
 source_book: alibaba/open-code-review
+source_project: alibaba/open-code-review
 source_chapter: The Problem with General-Purpose Agents — Incomplete Coverage
 tags: [anti-pattern, incomplete-coverage, code-review]
 related_skills: [deterministic-engineering-hard-constraints, divide-and-conquer-strategy]
@@ -59,10 +60,15 @@ related_skills: [deterministic-engineering-hard-constraints, divide-and-conquer-
 ## E (Execution) — 可执行步骤
 
 1. **识别风险**: 检查是否存在大变更集或多文件 PR
+   - 完成标准: 给出明确判定结论（是/否属于大变更集场景），附变更文件数量依据
 2. **分析原因**: 确认是否是纯语言驱动架构导致的不完整覆盖
+   - 完成标准: 归因结论成文，指明覆盖缺陷是否源于缺乏硬约束
 3. **应用硬约束**: 引入 Precise file selection 确保所有文件都被考虑
+   - 完成标准: 生成文件选择清单，diff 中所有文件均被纳入审查或显式说明排除理由
 4. **智能捆绑**: 使用 Smart file bundling 将相关文件分组为审查单元
+   - 完成标准: 全部待审文件均归属某个审查单元，无遗漏无重复
 5. **验证覆盖**: 检查所有重要文件是否都被审查
+   - 完成标准: 覆盖核对表显示重要文件 100% 被审查并留有勾稽记录
 
 **完成标准**: 所有重要文件都被审查，无遗漏
 

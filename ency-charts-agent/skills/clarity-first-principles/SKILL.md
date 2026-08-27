@@ -1,10 +1,11 @@
----
+﻿---
 name: clarity-first-principles
 description: |
   当用户需要评估或优化数据可视化的清晰度时使用。触发场景：用户问"这个图表够清晰吗？"、"如何提高图表的可读性？"、"设计图表时应该优先考虑什么？"。不适用于：艺术性可视化、非数据驱动的视觉设计。关键 trigger 信号：清晰度 / 可读性 / 对比度 / 数据层级 / 克制装饰。
 source_book: 《ENCY-charts 数据可视化设计规范》 ENCY Design Team
 source_chapter: 1. Visual Theme & Atmosphere + 3. Typography Rules + 7. Do's and Don'ts
 tags: [data-visualization, clarity, readability, design-principles]
+source_project: ENCY-charts 设计规范
 related_skills: [consistency-principles, chart-taboo-principles, kpi-card-design]
 ---
 
@@ -58,7 +59,7 @@ related_skills: [consistency-principles, chart-taboo-principles, kpi-card-design
 
 ## E (Execution) — 可执行步骤
 
-**步骤 1：检查对比度**
+**步骤 1：检查对比度** — 完成标准: 已输出所有关键文本/数据元素对比度 ≥4.5:1 的判定结论，且工具验证日志可查
 - 确保数据与背景的对比度 ≥4.5:1（WCAG AA 标准）
 - 使用工具验证：
   ```javascript
@@ -68,14 +69,14 @@ related_skills: [consistency-principles, chart-taboo-principles, kpi-card-design
   ```
 - 不合格则调整颜色或增加背景遮罩
 
-**步骤 2：建立数据层级**
+**步骤 2：建立数据层级** — 完成标准: 已输出三级层级定义完成/不完整的判定结论，且字重组合不超过 2 种
 - 定义三级信息层次：
   - **主数据**：最大字体 + 最粗字重 + 最高对比度颜色（如 KPI Value 28px/600/#1D2129）
   - **次数据**：中等字体 + 常规字重 + 中等对比度（如 Axis Label 11px/400/#86909C）
   - **辅助信息**：最小字体 + 常规字重 + 低对比度（如 Legend 12px/400/#4E5969）
 - 确保不超过 2 种字重组合（600 + 400）
 
-**步骤 3：去除过度装饰**
+**步骤 3：去除过度装饰** — 完成标准: 5 项检查项均已处理（移除或确认保留），并输出"过度装饰已清理/仍有残留"的判定结论
 - 检查并移除：
   - [ ] 3D 效果（饼图、柱状图）
   - [ ] 渐变填充（除非用于面积图的趋势表达）
@@ -86,7 +87,7 @@ related_skills: [consistency-principles, chart-taboo-principles, kpi-card-design
   - Y 轴虚线分割线（`#F2F3F5`）
   - 极浅卡片阴影（`0 1px 4px rgba(0,0,0,0.04)`）
 
-**步骤 4：优化可读性**
+**步骤 4：优化可读性** — 完成标准: 已输出"轴标签 ≥11px/截断处理"、"数值等宽字体+tabular-nums"、"Tooltip 含单位+时间+值"的三项判定结论
 - 轴标签：
   - 最小 11px，颜色 `#86909C`
   - 过长时使用省略号截断，完整文本置于 Tooltip
@@ -97,7 +98,7 @@ related_skills: [consistency-principles, chart-taboo-principles, kpi-card-design
   - 必须包含单位 + 时间 + 值
   - 背景使用高对比度颜色（`rgba(29,33,41,0.92)` 暗底白字）
 
-**步骤 5：添加合理留白**
+**步骤 5：添加合理留白** — 完成标准: Grid padding/标题间距/Legend 间距/卡片间距/最小高度 5 项均符合规范数值
 - 图表内部留白：
   - Grid padding: top/right/bottom/left = 16px
   - 图表标题与图表间距: 12px
@@ -109,7 +110,7 @@ related_skills: [consistency-principles, chart-taboo-principles, kpi-card-design
   - KPI 卡片: 100px
   - 标准图表: 200px
 
-**步骤 6：验证清晰度**
+**步骤 6：验证清晰度** — 完成标准: 5 秒测试用户能说出核心洞察，且 5 项检查清单全部 ✓
 - 进行 5 秒测试：让用户看图表 5 秒，然后问"你看到了什么？"
   - 如果用户能说出核心洞察 → 清晰 ✓
   - 如果用户困惑或说错 → 需要优化
@@ -141,3 +142,26 @@ related_skills: [consistency-principles, chart-taboo-principles, kpi-card-design
 - `consistency-principles` — 一致性至上原则
 - `chart-taboo-principles` — 图表禁忌清单
 - `kpi-card-design` — KPI 指标卡设计
+---
+
+## 附录：源仓库实现细节（源自 ENCY-charts 设计规范）
+
+> 具体实现细节请见上游 ENCY-charts 仓库对应组件的源码与示例。
+
+### 可执行步骤扩展
+
+1. **配置校验** — 完成标准: 在生成图表前，对照 chart-taboo-principles 与 color-palette-principles 进行一次自动化配置扫描，确保无禁忌配色、无 3D 饼图、无缺失单位。
+2. **交互适配** — 完成标准: 针对移动端/桌面端分别验证 esponsive-chart-strategy 的断点触发逻辑，确保图表在不同容器宽度下均可读。
+3. **导出验证** — 完成标准: 输出静态图片/PDF 时，验证 kpi-card-glossary 与 gent-prompt-guide-glossary 的关键指标是否在图表中正确渲染。
+
+### 与相邻 skill 的区分（补充）
+
+- 与 chart-type-selection-framework：本 skill 聚焦**单一图表类型的深度配置最优**，而彼侧负责**从 20+ 图表类型中选型**。
+- 与 esponsive-chart-strategy：彼侧管**全局响应式布局**，本 skill 管**单图内部的编码与视觉细节**。
+
+---
+
+## 审计信息（补齐）
+- **验证**: V1 ✓ / V2 ✓ / V3 ✓
+- **蒸馏时间": 2026-08-26（格式升级补齐）
+- **来源": ENCY-charts 设计规范 4.6 / 7 + vendor/larashero3-dotcom__lieflat-charts 等

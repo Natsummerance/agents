@@ -1,41 +1,57 @@
 {
   "skill": "ai-friendly-spec-framework",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "ENCY-charts 设计规范",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
+      "id": "tc-01",
       "prompt": "如何编写 AI 友好的图表规范文档？",
-      "expected_skill": "ai-friendly-spec-framework",
-      "category": "should-trigger",
-      "reason": "直接询问 AI 友好规范的编写方法"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，介绍三件套框架与五步执行流程",
+      "notes": "直接询问 AI 友好规范编写方法"
     },
     {
-      "id": "test-2",
+      "id": "tc-02",
       "prompt": "AI 生成的图表代码怎么保证符合设计规范？",
-      "expected_skill": "ai-friendly-spec-framework",
-      "category": "should-trigger",
-      "reason": "需要建立 AI 友好的规范框架来约束生成质量"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，建立 AI 友好的规范框架来约束生成质量",
+      "notes": "需要建立 AI 友好规范框架来约束生成质量"
     },
     {
-      "id": "test-3",
+      "id": "tc-03",
       "prompt": "帮我修一个 CSS 布局 bug",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "CSS 布局修复不属于 AI 友好规范框架范围"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；CSS 布局修复不属于 AI 友好规范框架范围",
+      "notes": "CSS bug 修复与规范编写无关"
     },
     {
-      "id": "test-4",
+      "id": "tc-04",
       "prompt": "什么是响应式设计？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "基础概念查询应使用通用知识而非此框架"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；基础概念查询应使用通用知识而非此框架",
+      "notes": "基础概念查询不在范围内"
     },
     {
-      "id": "test-5",
+      "id": "tc-05",
       "prompt": "如何检查 AI 生成的代码是否合规？",
-      "expected_skill": "ai-iteration-check-principles",
-      "category": "cross-skill-confusion",
-      "reason": "检查已有代码合规性属于迭代检查原则而非规范编写框架"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；检查已有代码合规性属于 ai-iteration-check-principles",
+      "notes": "诱饵兄弟 skill：ai-iteration-check-principles。代码合规检查非本 skill 职责"
+    },
+    {
+      "id": "tc-06",
+      "prompt": "我们只需要人类可读的规范，不需要 AI 友好化，这样可以吗？",
+      "type": "edge_case",
+      "expected_behavior": "命中 B 段不适用场景（纯人工阅读），应说明无需三件套并给出边界建议",
+      "notes": "检验纯人工场景的边界判断"
+    },
+    {
+      "id": "tc-07",
+      "prompt": "Quick Reference 压缩会不会丢失关键信息导致 AI 误解？",
+      "type": "edge_case",
+      "expected_behavior": "触发该 skill 走 B 段失败模式警示：过度压缩丢失关键信息，给出平衡建议",
+      "notes": "对应 B 段'Quick Reference 过度压缩'失败模式"
     }
   ]
 }

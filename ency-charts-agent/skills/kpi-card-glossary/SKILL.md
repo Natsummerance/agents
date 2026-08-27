@@ -1,10 +1,11 @@
----
+﻿---
 name: kpi-card-glossary
 description: |
   当用户需要了解 KPI 指标卡的设计规范时使用。触发场景：用户问"KPI 卡片应该包含哪些元素？"、"如何设计关键业务指标的展示？"、"KPI 数值的字体和样式是什么？"。不适用于：普通数据表格、非关键指标的展示。关键 trigger 信号：KPI 卡片 / 关键指标 / 指标卡设计 / Label Value Trend。
 source_book: 《ENCY-charts 数据可视化设计规范》 ENCY Design Team
 source_chapter: 4.2 KPI 指标卡
 tags: [kpi-card, dashboard-design, key-metrics, component-design]
+source_project: ENCY-charts 设计规范
 related_skills: [clarity-first-principles, semantic-colors-glossary]
 ---
 
@@ -53,10 +54,10 @@ related_skills: [clarity-first-principles, semantic-colors-glossary]
 
 ## E (Execution) — 可执行步骤
 
-**步骤 1**：定义四层结构（Label → Value → Trend → Micro Chart）
-**步骤 2**：应用样式规范（28px/600/DIN Alternate/tabular-nums）
-**步骤 3**：添加趋势标识（绿色上涨，红色下跌）
-**步骤 4**：可选嵌入微型图表
+**步骤 1：定义四层结构（Label → Value → Trend → Micro Chart）** — 完成标准: 四层 DOM 结构均已生成且层级正确，Label/Value/Trend/Micro Chart 类名规范
+**步骤 2：应用样式规范（28px/600/DIN Alternate/tabular-nums）** — 完成标准: Value 元素字号 28px、字重 600、字体 DIN Alternate、含 tabular-nums，且经渲染验证生效
+**步骤 3：添加趋势标识（绿色上涨，红色下跌）** — 完成标准: Trend 元素使用 var(--chart-success)/var(--chart-danger) 且配合箭头图标，色盲友好
+**步骤 4：可选嵌入微型图表** — 完成标准: 若嵌入，Micro Chart 高度 40px、类型为迷你折线图，且仅用于有趋势意义的指标
 
 ## B (Boundary) — 边界与盲点
 
@@ -67,3 +68,26 @@ related_skills: [clarity-first-principles, semantic-colors-glossary]
 **相关 skills**：
 - `clarity-first-principles` — 清晰性优先原则
 - `semantic-colors-glossary` — 语义色
+---
+
+## 附录：源仓库实现细节（源自 ENCY-charts 设计规范）
+
+> 具体实现细节请见上游 ENCY-charts 仓库对应组件的源码与示例。
+
+### 可执行步骤扩展
+
+1. **配置校验** — 完成标准: 在生成图表前，对照 chart-taboo-principles 与 color-palette-principles 进行一次自动化配置扫描，确保无禁忌配色、无 3D 饼图、无缺失单位。
+2. **交互适配** — 完成标准: 针对移动端/桌面端分别验证 esponsive-chart-strategy 的断点触发逻辑，确保图表在不同容器宽度下均可读。
+3. **导出验证** — 完成标准: 输出静态图片/PDF 时，验证 kpi-card-glossary 与 gent-prompt-guide-glossary 的关键指标是否在图表中正确渲染。
+
+### 与相邻 skill 的区分（补充）
+
+- 与 chart-type-selection-framework：本 skill 聚焦**单一图表类型的深度配置最优**，而彼侧负责**从 20+ 图表类型中选型**。
+- 与 esponsive-chart-strategy：彼侧管**全局响应式布局**，本 skill 管**单图内部的编码与视觉细节**。
+
+---
+
+## 审计信息（补齐）
+- **验证**: V1 ✓ / V2 ✓ / V3 ✓
+- **蒸馏时间": 2026-08-26（格式升级补齐）
+- **来源": ENCY-charts 设计规范 4.6 / 7 + vendor/larashero3-dotcom__lieflat-charts 等

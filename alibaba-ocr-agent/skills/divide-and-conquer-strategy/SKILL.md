@@ -3,6 +3,7 @@ name: divide-and-conquer-strategy
 description: |
   当需要处理大型代码变更集时使用此 skill。适用于：大 PR 审查、多文件重构、跨目录代码变更等场景。不适用于：小型单一文件修改。关键 trigger 信号：用户提到"大变更集"、"并发审查"、"文件捆绑"等问题。
 source_book: alibaba/open-code-review
+source_project: alibaba/open-code-review
 source_chapter: Core Design: Deterministic Engineering × Agent Hybrid — Smart File Bundling
 tags: [divide-and-conquer, smart-bundling, concurrent-review]
 related_skills: [deterministic-engineering-hard-constraints]
@@ -53,10 +54,15 @@ related_skills: [deterministic-engineering-hard-constraints]
 ## E (Execution) — 可执行步骤
 
 1. **分析变更集**: 识别所有需要审查的文件及其关联性
+   - 完成标准: 产出完整的变更文件清单及关联性分组说明，无未分类文件
 2. **智能捆绑**: 将相关文件分组为审查单元（如多语言文件、同一模块的文件）
+   - 完成标准: 每个捆绑包内文件的关联依据明确（同模块/多语言对应等），无游离文件
 3. **分配子 Agent**: 为每个捆绑包分配独立的子 Agent，隔离上下文
+   - 完成标准: 每个捆绑包对应一个独立子 Agent，各子 Agent 上下文互不共享
 4. **并发执行**: 并行运行所有子 Agent 进行审查
+   - 完成标准: 所有子 Agent 并行启动，且各自产出独立的审查结果
 5. **汇总结果**: 合并所有子 Agent 的审查结果，生成统一报告
+   - 完成标准: 统一报告覆盖全部捆绑包的审查结果，与子 Agent 数量核对一致
 
 **完成标准**: 所有文件都被审查，无遗漏，审查时间显著缩短
 

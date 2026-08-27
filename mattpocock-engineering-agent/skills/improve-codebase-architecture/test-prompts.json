@@ -1,20 +1,57 @@
 {
   "skill": "improve-codebase-architecture",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "mattpocock/skills",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "我们的代码库越来越乱帮我扫描一下",
-      "expected_skill": "improve-codebase-architecture",
-      "category": "should-trigger",
-      "reason": "架构债务扫描请求"
+      "id": "improve-01",
+      "prompt": "Scan the codebase for architecture issues and refactoring opportunities.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes improve-codebase-architecture skill to scan for deepening opportunities and present HTML report.",
+      "notes": "User explicitly requests architecture scan."
     },
     {
-      "id": "test-2",
-      "prompt": "帮我修这个编译错误",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "编译修复不属于架构扫描"
+      "id": "improve-02",
+      "prompt": "This module feels too shallow — too many public methods, little logic.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes improve-codebase-architecture skill to identify shallow modules and propose deepening candidates.",
+      "notes": "Module shallowness is a key signal for this skill."
+    },
+    {
+      "id": "improve-03",
+      "prompt": "Let's do a codebase health check while we have time.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes improve-codebase-architecture skill during spare moments for codebase health maintenance.",
+      "notes": "Pre-emptive improvement is a valid trigger."
+    },
+    {
+      "id": "improve-04",
+      "prompt": "Review this PR for code quality issues.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes code-review skill instead. Code-review audits specific diffs; improve-codebase-architecture scans entire codebase.",
+      "notes": "code-review is the sibling skill for diff auditing."
+    },
+    {
+      "id": "improve-05",
+      "prompt": "This test is flaky on CI. Help me debug it.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes diagnosing-bugs skill instead. Diagnosing-bugs finds root cause; improve-codebase-architecture fixes architectural gaps.",
+      "notes": "diagnosing-bugs is the sibling skill for hard bugs."
+    },
+    {
+      "id": "improve-06",
+      "prompt": "Design a new payment module with a clean interface.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes codebase-design skill instead. Codebase-design shapes interfaces; improve-codebase-architecture surveys existing code for opportunities.",
+      "notes": "codebase-design is the sibling skill for new module design."
+    },
+    {
+      "id": "improve-07",
+      "prompt": "The understanding one feature requires bouncing between four modules.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes improve-codebase-architecture skill. Coupling detection (bouncing between modules) is a key friction signal.",
+      "notes": "Coupling across modules is a deepening opportunity signal."
     }
   ]
 }

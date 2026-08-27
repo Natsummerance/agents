@@ -1,48 +1,64 @@
 ﻿{
   "skill": "tiered-learning-path",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "florinpop17/app-ideas",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "我是编程初学者，应该从哪个项目开始学习？",
-      "expected_skill": "tiered-learning-path",
-      "category": "should-trigger",
-      "reason": "初学者选择项目是 tiered-learning-path 的核心应用场景"
+      "id": "tiered-learning-path-t1",
+      "prompt": "我是编程小白，第一个项目应该从哪里开始？",
+      "type": "should_trigger",
+      "expected_behavior": "先评估当前水平定层级，再从 Tier 1 的 35 个 Beginner 项目中推荐 2-3 个并附知识点说明",
+      "notes": "核心触发：初学者起点询问"
     },
     {
-      "id": "test-2",
-      "prompt": "如何系统化提升编码技能，而不是随机选择项目？",
-      "expected_skill": "tiered-learning-path",
-      "category": "should-trigger",
-      "reason": "系统化学习路径是 tiered-learning-path 的核心价值"
+      "id": "tiered-learning-path-t2",
+      "prompt": "我已经会做 Todo List 了，下一步该挑战什么难度的项目？",
+      "type": "should_trigger",
+      "expected_behavior": "根据已完成项目判断所处层级，给出相邻层级的 1-2 个进阶项目，不做跨级跳跃",
+      "notes": "对应渐进式建议步骤"
     },
     {
-      "id": "test-3",
-      "prompt": "我完成了几个简单项目，想知道下一步该做什么",
-      "expected_skill": "tiered-learning-path",
-      "category": "should-trigger",
-      "reason": "确定下一个项目是 tiered-learning-path 的应用场景"
+      "id": "tiered-learning-path-t3",
+      "prompt": "给我按初级中级高级分个类的项目路线图吧，我要系统升级",
+      "type": "should_trigger",
+      "expected_behavior": "输出 Tier 1/2/3 三层路线图，标注各层开发者画像与代表项目，并说明层间递进条件",
+      "notes": "关键信号：分级、难度级别"
     },
     {
-      "id": "test-4",
-      "prompt": "这个项目值得做吗？能帮我找到工作吗？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "这应该触发 portfolio-ready-output skill，虽然与项目选择相关但更关注职业价值"
+      "id": "tiered-learning-path-n1",
+      "prompt": "我做了很多项目却越做越迷茫，感觉缺的不是清单而是学习方法",
+      "type": "should_not_trigger",
+      "expected_behavior": "整体方法论缺失的诊断转交 no-systematic-methodology；本 skill 提供的是分级方案而非框架反思",
+      "notes": "跨技能诱饵：宏观方法论诊断归兄弟 skill no-systematic-methodology"
     },
     {
-      "id": "test-5",
-      "prompt": "纯理论讨论需要分级吗？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "纯理论讨论不涉及项目选择，属于边界场景"
+      "id": "tiered-learning-path-n2",
+      "prompt": "这些项目里哪几个最适合放进我的求职作品集？",
+      "type": "should_not_trigger",
+      "expected_behavior": "作品集价值筛选转交 portfolio-ready-output；本 skill 按学习难度组织项目，不评职业展示价值",
+      "notes": "跨技能诱饵：职业价值评估归兄弟 skill portfolio-ready-output"
     },
     {
-      "id": "test-6",
-      "prompt": "我完成项目后不确定是否真正进步",
-      "expected_skill": "no-progress-tracking",
-      "category": "cross-skill-confusion",
-      "reason": "这应该触发 no-progress-tracking skill，虽然与学习相关但更关注进度追踪"
+      "id": "tiered-learning-path-e1",
+      "prompt": "Calculator 这个项目的具体代码怎么写？",
+      "type": "edge_case",
+      "expected_behavior": "命中 B 段排除项：纯信息查询不启动分级推荐，直接回答或说明范围外",
+      "notes": "边界用例：单个项目的技术咨询不属于路径规划"
+    },
+    {
+      "id": "tiered-learning-path-e2",
+      "prompt": "我是刚学一个月的新手，但想直接挑战 Instagram Clone 全栈项目",
+      "type": "edge_case",
+      "expected_behavior": "如实告知 Tier 1 到 Tier 3 的能力跨度风险，给出中间台阶（先完成指定 Tier 1/2 前置项）的建议方案，不盲目满足也不武断拒绝",
+      "notes": "红线场景：跳级诉求需风险提示加补偿路径"
+    },
+    {
+      "id": "tiered-learning-path-e3",
+      "prompt": "用户要求一次性输出所有 89 个项目的完整清单",
+      "type": "edge_case",
+      "expected_behavior": "拒绝倾倒式输出：仅给出用户当前层级的 2-3 个推荐及进阶指引，完整清单建议用户查阅原始 App Ideas 仓库",
+      "notes": "边界用例：避免信息过载，聚焦当前可行动范围"
     }
   ]
 }

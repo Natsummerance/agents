@@ -1,20 +1,57 @@
 {
   "skill": "tdd",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "mattpocock/skills",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "我需要给这个函数添加单元测试",
-      "expected_skill": "tdd",
-      "category": "should-trigger",
-      "reason": "测试相关任务触发 TDD"
+      "id": "tdd-01",
+      "prompt": "Let's use test-driven development for this feature.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes tdd skill to drive red-green loop: write failing test first, then minimal implementation.",
+      "notes": "Explicit TDD request is a key trigger."
     },
     {
-      "id": "test-2",
-      "prompt": "帮我写个 README",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "文档编写不需要 TDD"
+      "id": "tdd-02",
+      "prompt": "Write integration tests for this API endpoint.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes tdd skill to write tests at agreed seams, verifying behavior through public interfaces.",
+      "notes": "Integration test request is a valid trigger."
+    },
+    {
+      "id": "tdd-03",
+      "prompt": "What should we test for this new module?",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes tdd skill to identify and agree on seams before writing tests.",
+      "notes": "Seam definition is a valid trigger."
+    },
+    {
+      "id": "tdd-04",
+      "prompt": "Build the complete authentication feature.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes implement skill instead. Implement is the pipeline; tdd is the technique implement uses internally.",
+      "notes": "implement is the sibling skill for building features."
+    },
+    {
+      "id": "tdd-05",
+      "prompt": "Review this code for quality issues.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes code-review skill instead. Code-review evaluates existing code; tdd drives new code.",
+      "notes": "code-review is the sibling skill for evaluating code."
+    },
+    {
+      "id": "tdd-06",
+      "prompt": "This test is failing. Help me find the root cause.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes diagnosing-bugs skill instead. Diagnosing-bugs finds root cause; tdd drives test-first development.",
+      "notes": "diagnosing-bugs is the sibling skill for debugging."
+    },
+    {
+      "id": "tdd-07",
+      "prompt": "First write a failing test for the login flow, then implement it.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes tdd skill with explicit red-green instruction for login flow.",
+      "notes": "Explicit red-green-refactor instruction is a valid trigger."
     }
   ]
 }

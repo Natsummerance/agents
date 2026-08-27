@@ -3,6 +3,7 @@ name: skipping-tests-anti-pattern
 description: |
   当用户遇到跳过测试或先写代码后写测试导致的问题时调用此 skill。适用于代码质量下降、回归 bug 频发、测试覆盖率低的场景。不适用于：探索性编程、原型开发、一次性脚本。关键 trigger 信号："skip tests"、"code before tests"、"no tests"、"regression"、"test coverage low"、"bugs after deploy"。
 source_book: 《Superpowers》 obra
+source_project: obra/superpowers
 source_chapter: The Basic Workflow / What's Inside
 tags: [anti-pattern, testing, tdd, quality]
 related_skills: ["test-first-philosophy"]
@@ -50,11 +51,22 @@ Skipping Tests Anti-Pattern 是 Superpowers 明确警示的反模式之一，指
 ## E (Execution) - 可执行步骤
 
 1. **识别问题**：确认是否存在跳过测试或先写代码后写测试的行为
+   - 完成标准：已用提交历史或代码现状举证确认反模式存在与否，结论为二值判定
+
 2. **评估影响**：分析这种行为对代码质量、回归 bug、测试覆盖率的影响
+   - 完成标准：影响报告至少含覆盖率数字与回归 bug 个例各一项，均为可核查的数据
+
 3. **删除违规代码**：如果先写了代码后写测试，删除代码重新按 TDD 流程执行
+   - 完成标准：违规部分已从代码库移除（git 记录可查），仅保留测试文件作为行为规格
+
 4. **重写测试**：按 RED-GREEN-REFACTOR 循环重新编写测试和代码
+   - 完成标准：每个功能点都有"先红后绿"的提交顺序记录，重构后测试保持绿色
+
 5. **验证修复**：运行测试套件，确认所有测试通过
+   - 完成标准：全量测试套件一次通过，输出日志已留存
+
 6. **预防措施**：建立自动化检查机制，防止再次出现跳过测试的行为
+   - 完成标准：CI 或钩子中已配置覆盖率/测试门禁，且门禁在无测试提交时确实会拒绝合并
 
 **判停条件**：所有违规代码已删除并重新按 TDD 流程执行，测试全部通过。
 

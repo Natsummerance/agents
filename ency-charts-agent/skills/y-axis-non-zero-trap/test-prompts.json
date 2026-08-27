@@ -1,41 +1,57 @@
 {
   "skill": "y-axis-non-zero-trap",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "ENCY-charts 设计规范",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
+      "id": "tc-01",
       "prompt": "Y 轴一定要从 0 开始吗？",
-      "expected_skill": "y-axis-non-zero-trap",
-      "category": "should-trigger",
-      "reason": "Y 轴零点问题是该 trap 的核心"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，执行 E 段四步骤：检查配置、修复起点、提供替代、验证比例",
+      "notes": "Y 轴零点问题是该 trap 的核心"
     },
     {
-      "id": "test-2",
+      "id": "tc-02",
       "prompt": "柱状图的 Y 轴不从 0 开始会怎样？",
-      "expected_skill": "y-axis-non-zero-trap",
-      "category": "should-trigger",
-      "reason": "非零起点导致的视觉误导是该 trap 的典型场景"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，走步骤 1 检测 min≠0 报错、步骤 2 强制设为 0、步骤 3 给出折线图/标注数值/表格三个替代方案",
+      "notes": "非零起点导致视觉误导是该 trap 的典型场景"
     },
     {
-      "id": "test-3",
+      "id": "tc-03",
       "prompt": "X 轴的刻度怎么设置？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "X 轴刻度设置不属于 Y 轴陷阱范畴"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；X 轴刻度设置不属于 Y 轴陷阱范围",
+      "notes": "X 轴配置非 Y 轴陷阱范围"
     },
     {
-      "id": "test-4",
+      "id": "tc-04",
       "prompt": "怎么隐藏 Y 轴？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "轴显隐控制属于通用配置"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；轴显隐控制属于通用配置",
+      "notes": "轴显隐控制非陷阱范围"
     },
     {
-      "id": "test-5",
+      "id": "tc-05",
       "prompt": "折线图的 Y 轴可以不从 0 开始吗？",
-      "expected_skill": "y-axis-non-zero-trap",
-      "category": "should-trigger",
-      "reason": "折线图 Y 轴非零起点的规则是该 trap 的知识点"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill 走 B 段例外：折线图可截断 Y 轴（强调趋势非绝对长度），但需说明边界并建议标注具体数值",
+      "notes": "折线图 Y 轴非零起点是该 trap 的知识点"
+    },
+    {
+      "id": "tc-06",
+      "prompt": "对数坐标轴的 Y 轴从 0 开始吗？",
+      "type": "edge_case",
+      "expected_behavior": "命中 B 段例外：对数坐标轴用于跨数量级数据，不从 0 开始，应说明边界区别",
+      "notes": "检验对数坐标轴的例外边界"
+    },
+    {
+      "id": "tc-07",
+      "prompt": "面积图的 Y 轴可以截断吗？",
+      "type": "edge_case",
+      "expected_behavior": "触发该 skill：面积图类似折线图强调趋势+总量感知，Y 轴可截断但需谨慎，建议参考折线图规则并标注数值",
+      "notes": "面积图 Y 轴规则参照折线图但需更谨慎"
     }
   ]
 }

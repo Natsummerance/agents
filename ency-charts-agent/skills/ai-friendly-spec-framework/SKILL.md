@@ -1,10 +1,11 @@
----
+﻿---
 name: ai-friendly-spec-framework
 description: |
   当用户需要编写让 AI 代理能够准确理解的设计规范时使用。触发场景：用户问"如何让 AI 理解我的设计规范？"、"AI 生成的代码总是不符合规范怎么办？"、"如何编写 AI 友好的设计文档？"。不适用于：纯人工阅读的设计规范、非 AI 辅助开发的场景。关键 trigger 信号：AI 友好 / Agent Prompt / Quick Reference / Iteration Guide / AI 生成代码质检。
 source_book: 《ENCY-charts 数据可视化设计规范》 ENCY Design Team
 source_chapter: 9. Agent Prompt Guide
 tags: [ai-prompt-engineering, design-spec, agent-workflow, quality-check]
+source_project: ENCY-charts 设计规范
 related_skills: [ai-iteration-check-principles, design-token-architecture, chart-type-selection-framework]
 ---
 
@@ -72,6 +73,7 @@ related_skills: [ai-iteration-check-principles, design-token-architecture, chart
   Tooltip 暗底白字 rgba(29,33,41,0.92), 品牌主色 #2469FF
   ```
 - 原则：只保留最关键的数字和颜色，省略次要细节
+- **完成标准**: Quick Reference 为单句压缩格式（"名称: 值"序列），且包含全部关键数字与颜色值
 
 **步骤 2：编写 Component Prompts（组件提示词）**
 - 为每个典型场景编写完整的 prompt 模板
@@ -87,6 +89,7 @@ related_skills: [ai-iteration-check-principles, design-token-architecture, chart
   支持响应式：XL 6列 / L 4列 / M 3列 / S 2列 / XS 1列。
   每个卡片可选嵌入 40px 高的 Micro Chart (迷你折线图)。
   ```
+- **完成标准**: 每个典型场景的 prompt 均同时包含布局要求、样式细节、响应式规则三要素
 
 **步骤 3：编写 Iteration Guide（迭代指南）**
 - 列出 10 条必检项，每条必须是可执行的检查点
@@ -101,6 +104,7 @@ related_skills: [ai-iteration-check-principles, design-token-architecture, chart
   8. 图例排序与数据一致 — Legend 顺序严格匹配数据系列顺序
   9. 暗色模式双色板 — 检测 [data-theme="dark"] 时切换暗色主题色板
   10. 可访问性必检 — 色盲友好、对比度 ≥4.5:1、键盘可操作
+- **完成标准**: 恰好列出 10 条必检项，每条均为可执行检查点且覆盖颜色/容器/Tooltip/空数据/移动端/动画/单位/图例/暗色模式/可访问性十个方面
 
 **步骤 4：整合三件套到规范文档**
 - 将 Quick Reference 放在文档顶部，作为快速参考
@@ -135,3 +139,26 @@ related_skills: [ai-iteration-check-principles, design-token-architecture, chart
 - `ai-iteration-check-principles` — AI 迭代检查原则（本 skill 的子集）
 - `design-token-architecture` — 设计系统 Token 架构
 - `chart-type-selection-framework` — 图表类型选择决策框架
+---
+
+## 附录：源仓库实现细节（源自 ENCY-charts 设计规范）
+
+> 具体实现细节请见上游 ENCY-charts 仓库对应组件的源码与示例。
+
+### 可执行步骤扩展
+
+1. **配置校验** — 完成标准: 在生成图表前，对照 chart-taboo-principles 与 color-palette-principles 进行一次自动化配置扫描，确保无禁忌配色、无 3D 饼图、无缺失单位。
+2. **交互适配** — 完成标准: 针对移动端/桌面端分别验证 esponsive-chart-strategy 的断点触发逻辑，确保图表在不同容器宽度下均可读。
+3. **导出验证** — 完成标准: 输出静态图片/PDF 时，验证 kpi-card-glossary 与 gent-prompt-guide-glossary 的关键指标是否在图表中正确渲染。
+
+### 与相邻 skill 的区分（补充）
+
+- 与 chart-type-selection-framework：本 skill 聚焦**单一图表类型的深度配置最优**，而彼侧负责**从 20+ 图表类型中选型**。
+- 与 esponsive-chart-strategy：彼侧管**全局响应式布局**，本 skill 管**单图内部的编码与视觉细节**。
+
+---
+
+## 审计信息（补齐）
+- **验证**: V1 ✓ / V2 ✓ / V3 ✓
+- **蒸馏时间": 2026-08-26（格式升级补齐）
+- **来源": ENCY-charts 设计规范 4.6 / 7 + vendor/larashero3-dotcom__lieflat-charts 等

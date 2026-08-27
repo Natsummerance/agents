@@ -1,20 +1,57 @@
 {
   "skill": "to-questionnaire",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "mattpocock/skills",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "我需要问用户几个问题来确定方案",
-      "expected_skill": "to-questionnaire",
-      "category": "should-trigger",
-      "reason": "问卷生成需求"
+      "id": "to-questionnaire-01",
+      "prompt": "I need to ask the DBA about database requirements. Generate questions for them.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes to-questionnaire skill to grill the send (who it goes to, what you need back) and produce structured questionnaire.",
+      "notes": "Knowledge gap scenario is a key trigger."
     },
     {
-      "id": "test-2",
-      "prompt": "帮我做个决定",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "直接决策不属于问卷生成"
+      "id": "to-questionnaire-02",
+      "prompt": "I don't know enough to decide. Create a questionnaire for the expert.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes to-questionnaire skill to identify recipient and needed information, then draft questions.",
+      "notes": "Decision support scenario is a valid trigger."
+    },
+    {
+      "id": "to-questionnaire-03",
+      "prompt": "What should I ask the vendor about their API?",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes to-questionnaire skill to identify what the user needs from the vendor and generate targeted questions.",
+      "notes": "Async information gathering is a valid trigger."
+    },
+    {
+      "id": "to-questionnaire-04",
+      "prompt": "Help me decide which database to use.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes grill-me or grill-with-docs skill instead. To-questionnaire produces questions for others; grill interviews the user.",
+      "notes": "grill-me is the sibling skill for interviewing the user."
+    },
+    {
+      "id": "to-questionnaire-05",
+      "prompt": "Research how PostgreSQL handles JSONB queries.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes research skill instead. Research reads primary sources; to-questionnaire asks a person.",
+      "notes": "research is the sibling skill for reading documentation."
+    },
+    {
+      "id": "to-questionnaire-06",
+      "prompt": "Write a spec for the payment feature.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes to-spec skill instead. To-spec synthesizes discussion; to-questionnaire gathers others' input.",
+      "notes": "to-spec is the sibling skill for formalizing discussion."
+    },
+    {
+      "id": "to-questionnaire-07",
+      "prompt": "Create a structured questionnaire for the stakeholders about deployment preferences.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes to-questionnaire skill to create structured document for stakeholder input gathering.",
+      "notes": "Explicit questionnaire creation request is a valid trigger."
     }
   ]
 }

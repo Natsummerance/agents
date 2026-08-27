@@ -3,6 +3,7 @@ name: spec-driven-development
 description: |
   当用户询问"我应该先写什么"、"如何明确需求"或"如何避免盲目编码"时调用此 skill。不适用于：纯信息查询、已有明确规格说明的场景、快速原型验证。关键 trigger 信号：规格说明、spec、需求明确化、先写什么、避免盲目编码。
 source_book: Agent Skills Addy Osmani
+source_project: addyosmani/agent-skills
 source_chapter: Commands table / DEFINE phase
 tags: [spec-driven, requirements, define-before-code]
 related_skills: ["test-driven-development", "auto-build-mode"]
@@ -49,21 +50,25 @@ Agent Skills 的 6 阶段开发生命周期中，DEFINE 是第一个阶段，对
    - 询问用户的核心需求和目标
    - 识别关键功能和边界条件
    - 明确验收标准
+   - 完成标准: 核心需求、边界条件、验收标准三项全部记录且无缺项
 
 2. **编写规格说明**
    - 描述功能需求
    - 定义接口和数据结构
    - 列出约束条件和非功能性需求
+   - 完成标准: 规格说明文档含功能需求、接口/数据结构、约束与非功能需求四部分
 
 3. **验证规格说明**
    - 与用户确认规格是否准确
    - 检查是否有遗漏或歧义
    - 确保规格可测试
+   - 完成标准: 用户明确确认规格准确，每条需求均可映射为至少一个测试用例
 
 4. **进入下一阶段**
    - 规格确认后进入 PLAN 阶段
    - 将规格分解为小且原子的任务
    - 开始测试驱动实现
+   - 完成标准: 任务分解完成且每个任务可追溯到规格条目，首个失败测试就绪
 
 ## B (Boundary) - 什么时候不适用
 

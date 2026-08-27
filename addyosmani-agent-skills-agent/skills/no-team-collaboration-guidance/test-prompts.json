@@ -1,41 +1,50 @@
 {
   "skill": "no-team-collaboration-guidance",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "addyosmani/agent-skills",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
+      "id": "tc-01",
       "prompt": "完成个人技能后不知道如何在团队中协作",
-      "expected_skill": "no-team-collaboration-guidance",
-      "category": "should-trigger",
-      "reason": "用户缺乏团队协作指导，适合 no-team-collaboration-guidance"
+      "type": "should_trigger",
+      "expected_behavior": "用户缺乏团队协作指导，适合 no-team-collaboration-guidance",
+      "notes": "用户缺乏团队协作指导，适合 no-team-collaboration-guidance"
     },
     {
-      "id": "test-2",
+      "id": "tc-02",
       "prompt": "缺乏 Git 工作流知识",
-      "expected_skill": "no-team-collaboration-guidance",
-      "category": "should-trigger",
-      "reason": "用户想了解版本控制，适合 no-team-collaboration-guidance"
+      "type": "should_trigger",
+      "expected_behavior": "用户想了解版本控制，适合 no-team-collaboration-guidance",
+      "notes": "用户想了解版本控制，适合 no-team-collaboration-guidance"
     },
     {
-      "id": "test-3",
+      "id": "tc-03",
       "prompt": "应该频繁部署还是批量部署？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "应触发 faster-is-safer，不是 no-team-collaboration-guidance"
+      "type": "should_not_trigger",
+      "expected_behavior": "应触发 faster-is-safer，不是 no-team-collaboration-guidance",
+      "notes": "应触发 faster-is-safer，不是 no-team-collaboration-guidance"
     },
     {
-      "id": "test-4",
+      "id": "tc-04",
       "prompt": "我完成了几个技能但仍感到迷茫",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "应触发 no-systematic-methodology，不是 no-team-collaboration-guidance"
+      "type": "should_not_trigger",
+      "expected_behavior": "应触发 no-systematic-methodology，不是 no-team-collaboration-guidance",
+      "notes": "应触发 no-systematic-methodology，不是 no-team-collaboration-guidance"
     },
     {
-      "id": "test-5",
+      "id": "tc-05",
       "prompt": "这个 Git 命令怎么用？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "具体命令使用问题，不应调用"
+      "type": "should_not_trigger",
+      "expected_behavior": "具体命令使用问题，不应调用",
+      "notes": "具体命令使用问题，不应调用"
+    },
+    {
+      "id": "tc-06",
+      "prompt": "团队已有成熟 Git Flow 但成员从不做 code review，这算协作缺口吗？",
+      "type": "edge_case",
+      "expected_behavior": "触发本 skill 给出判定：流程存在≠执行到位，需补齐 review 机制与反馈闭环，结论可执行",
+      "notes": "边界题：考察流程形式主义与实质协作的区分"
     }
   ]
 }

@@ -1,48 +1,57 @@
 {
   "skill": "no-testing-guidance",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "florinpop17/app-ideas",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "我完成项目后不确定代码是否正确",
-      "expected_skill": "no-testing-guidance",
-      "category": "should-trigger",
-      "reason": "验证代码正确性是 no-testing-guidance 的核心应用场景"
+      "id": "no-testing-guidance-t1",
+      "prompt": "项目功能都写完了，但我心里没底，怎么验证代码是不是真的正确？",
+      "type": "should_trigger",
+      "expected_behavior": "执行症状识别（是否写过测试/回归 bug/质量意识），随后引入测试优先思维并给出最小测试示例",
+      "notes": "核心触发：完成项目但无法验证正确性"
     },
     {
-      "id": "test-2",
-      "prompt": "我养成'先写代码后测试'的坏习惯",
-      "expected_skill": "no-testing-guidance",
-      "category": "should-trigger",
-      "reason": "跳过测试是 no-testing-guidance 的典型表现"
+      "id": "no-testing-guidance-t2",
+      "prompt": "我总是先把功能全写完再随便点一点，听说这样不好，TDD 到底是怎么回事？",
+      "type": "should_trigger",
+      "expected_behavior": "讲解 RED-GREEN 先写失败测试的顺序与理由，纠正'先写代码后测试'习惯",
+      "notes": "关键信号：先写代码后测试、TDD"
     },
     {
-      "id": "test-3",
-      "prompt": "我遇到回归 bug 频发的问题",
-      "expected_skill": "no-testing-guidance",
-      "category": "should-trigger",
-      "reason": "回归 bug 是缺少测试的直接后果"
+      "id": "no-testing-guidance-t3",
+      "prompt": "每次改一点东西就冒出新 bug，修了东边坏西边，怎么办？",
+      "type": "should_trigger",
+      "expected_behavior": "判定为缺少测试保护的回归频发，建立测试套件与定期运行机制以拦截回归",
+      "notes": "关键信号：回归 bug 频发"
     },
     {
-      "id": "test-4",
-      "prompt": "我完成了几个项目但仍感到迷茫",
-      "expected_skill": "no-testing-guidance",
-      "category": "should-not-trigger",
-      "reason": "这应该触发 no-systematic-methodology skill，虽然与方法论相关但更关注整体框架"
+      "id": "no-testing-guidance-n1",
+      "prompt": "我想知道这三个月下来我的编码水平到底进步了多少",
+      "type": "should_not_trigger",
+      "expected_behavior": "学习进度的量化评估转交 no-progress-tracking；本 skill 只关注代码质量的验证",
+      "notes": "跨技能诱饵：学习进度量化归兄弟 skill no-progress-tracking"
     },
     {
-      "id": "test-5",
-      "prompt": "快速原型验证需要写测试吗？",
-      "expected_skill": "no-testing-guidance",
-      "category": "should-not-trigger",
-      "reason": "快速原型不需要长期维护，属于边界场景"
+      "id": "no-testing-guidance-n2",
+      "prompt": "这个 Calculator 项目够不够格放进我的求职作品集？帮我评估一下",
+      "type": "should_not_trigger",
+      "expected_behavior": "作品集价值评估转交 portfolio-ready-output，不在测试话题下展开职业包装",
+      "notes": "跨技能诱饵：作品集职业价值归兄弟 skill portfolio-ready-output"
     },
     {
-      "id": "test-6",
-      "prompt": "我完成项目后不确定是否真正进步",
-      "expected_skill": "no-progress-tracking",
-      "category": "cross-skill-confusion",
-      "reason": "这应该触发 no-progress-tracking skill，虽然与验证相关但更关注学习进度"
+      "id": "no-testing-guidance-e1",
+      "prompt": "写个一次性脚本把 CSV 转成 JSON，跑完就删，也要写测试吗？",
+      "type": "edge_case",
+      "expected_behavior": "命中 B 段边界：一次性脚本不强制 TDD，说明取舍理由后按用户原计划执行",
+      "notes": "边界用例：无长期维护需求的脚本豁免"
+    },
+    {
+      "id": "no-testing-guidance-e2",
+      "prompt": "测试一直红着过不了，我是不是根本不适合写代码？",
+      "type": "edge_case",
+      "expected_behavior": "先安抚并解释 RED 是 TDD 正常环节，再给出最小排查路径（断言/环境/被测代码逐项核对），不对用户能力做评判",
+      "notes": "情绪化场景：解释循环正常性优先于技术排查"
     }
   ]
 }

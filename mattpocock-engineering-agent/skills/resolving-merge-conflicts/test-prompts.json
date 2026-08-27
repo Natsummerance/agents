@@ -1,20 +1,57 @@
 {
   "skill": "resolving-merge-conflicts",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "mattpocock/skills",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "合并的时候冲突了怎么办？",
-      "expected_skill": "resolving-merge-conflicts",
-      "category": "should-trigger",
-      "reason": "合并冲突场景"
+      "id": "resolve-01",
+      "prompt": "I have a merge conflict. Help me resolve it.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes resolving-merge-conflicts skill to resolve by intent, hunk by hunk, never abort.",
+      "notes": "Explicit merge conflict request is a key trigger."
     },
     {
-      "id": "test-2",
-      "prompt": "帮我创建一个新分支",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "分支管理不属于冲突解决"
+      "id": "resolve-02",
+      "prompt": "The rebase is stuck with conflicts.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes resolving-merge-conflicts skill to continue the rebase by resolving conflicts.",
+      "notes": "Rebase conflict is a valid trigger."
+    },
+    {
+      "id": "resolve-03",
+      "prompt": "Two developers modified the same auth module. How do we merge these changes?",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes resolving-merge-conflicts skill to trace each side's intent and preserve both where possible.",
+      "notes": "Feature branch merge with conflicting changes is a valid trigger."
+    },
+    {
+      "id": "resolve-04",
+      "prompt": "Review the merged code for quality issues.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes code-review skill instead. Code-review evaluates completed diffs; resolving-merge-conflicts resolves in-progress conflicts.",
+      "notes": "code-review is the sibling skill for evaluating completed code."
+    },
+    {
+      "id": "resolve-05",
+      "prompt": "The merge broke some tests. Help me debug.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes diagnosing-bugs skill instead. Diagnosing-bugs finds root cause of bugs; resolving-merge-conflicts verifies conflict resolution correctness.",
+      "notes": "diagnosing-bugs is the sibling skill for post-merge bugs."
+    },
+    {
+      "id": "resolve-06",
+      "prompt": "I want to abort this merge and start over.",
+      "type": "should_not_trigger",
+      "expected_behavior": "This skill never aborts. Should escalate or explain that abort is not an option within this skill.",
+      "notes": "Edge case: user wants to abort, but this skill never aborts."
+    },
+    {
+      "id": "resolve-07",
+      "prompt": "The library upgrade conflicts with our local patches.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes resolving-merge-conflicts skill to trace both sides to original reasons and decide which to keep.",
+      "notes": "Dependency update conflict is a valid trigger."
     }
   ]
 }

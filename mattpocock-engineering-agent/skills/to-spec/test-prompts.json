@@ -1,20 +1,57 @@
 {
   "skill": "to-spec",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "mattpocock/skills",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "把我们刚才讨论的内容整理成 spec",
-      "expected_skill": "to-spec",
-      "category": "should-trigger",
-      "reason": "明确要求生成规格说明"
+      "id": "to-spec-01",
+      "prompt": "Write a spec for this feature we've been discussing.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes to-spec skill to synthesize the discussion into a structured spec with Problem Statement, Solution, User Stories, etc.",
+      "notes": "Explicit spec request is a key trigger."
     },
     {
-      "id": "test-2",
-      "prompt": "这个 bug 怎么修？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "Bug 调查不属于规格说明场景"
+      "id": "to-spec-02",
+      "prompt": "Turn this design discussion into a formal specification.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes to-spec skill to formalize the sharpened idea from grill-with-docs into a spec issue.",
+      "notes": "Formalization request is a valid trigger."
+    },
+    {
+      "id": "to-spec-03",
+      "prompt": "Create a spec from the grill-with-docs session output.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes to-spec skill to convert the grill-with-docs output into a published spec.",
+      "notes": "Post-grill formalization is a valid trigger."
+    },
+    {
+      "id": "to-spec-04",
+      "prompt": "Break this spec into individual tickets.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes to-tickets skill instead. To-spec creates the spec; to-tickets breaks it into tickets.",
+      "notes": "to-tickets is the sibling skill for breaking specs into tickets."
+    },
+    {
+      "id": "to-spec-05",
+      "prompt": "Implement this feature using TDD.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes implement skill instead. Implement builds from specs; to-spec creates specs.",
+      "notes": "implement is the sibling skill for building code."
+    },
+    {
+      "id": "to-spec-06",
+      "prompt": "Help me decide on the architecture for this module.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes grill-with-docs skill instead. To-spec is synthesis, not interview. If idea isn't sharp, use grill-with-docs first.",
+      "notes": "grill-with-docs is the sibling skill for sharpening ideas."
+    },
+    {
+      "id": "to-spec-07",
+      "prompt": "Before we code, let's spec out the payment feature properly.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes to-spec skill for pre-implementation specification of the payment feature.",
+      "notes": "Pre-implementation spec is a valid trigger."
     }
   ]
 }

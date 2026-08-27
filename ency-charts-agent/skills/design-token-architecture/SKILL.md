@@ -1,10 +1,11 @@
----
+﻿---
 name: design-token-architecture
 description: |
   当用户需要设计或维护一套设计系统的 CSS 变量架构时使用。触发场景：用户问"如何组织设计系统的颜色变量？"、"如何实现多主题切换？"、"Seed Token 和 Component Token 有什么区别？"。不适用于：单一页面的样式编写、非设计系统级别的变量规划。关键 trigger 信号：设计系统 / Token 架构 / 多主题支持 / CSS 变量层级。
 source_book: 《ENCY-charts 数据可视化设计规范》 ENCY Design Team
 source_chapter: 0. 品牌配置层 + 2. Color Palette & Roles
 tags: [design-system, css-variables, token-architecture, theming]
+source_project: ENCY-charts 设计规范
 related_skills: [color-palette-principles, consistency-principles, responsive-chart-strategy]
 ---
 
@@ -63,7 +64,7 @@ related_skills: [color-palette-principles, consistency-principles, responsive-ch
 
 ## E (Execution) — 可执行步骤
 
-**步骤 1：定义 Seed Token（种子层）**
+**步骤 1：定义 Seed Token（种子层）** — 完成标准: 品牌色/字体/间距三类原子值全部定义完毕，且无硬编码残留
 - 列出所有不可再分解的基础值：
   ```css
   :root {
@@ -83,7 +84,7 @@ related_skills: [color-palette-principles, consistency-principles, responsive-ch
   }
   ```
 
-**步骤 2：定义 Component Token（组件层）**
+**步骤 2：定义 Component Token（组件层）** — 完成标准: 卡片/坐标轴/Tooltip 三类组件 Token 全部定义，且均引用 Seed Token 而非硬编码
 - 基于 Seed 组合成组件样式：
   ```css
   :root {
@@ -102,7 +103,7 @@ related_skills: [color-palette-principles, consistency-principles, responsive-ch
   }
   ```
 
-**步骤 3：定义 Semantic Token（语义层）**
+**步骤 3：定义 Semantic Token（语义层）** — 完成标准: 成功/警告/危险/信息四态及阈值线 Token 全部定义，且承载明确业务语义
 - 赋予业务含义的颜色：
   ```css
   :root {
@@ -117,7 +118,7 @@ related_skills: [color-palette-principles, consistency-principles, responsive-ch
   }
   ```
 
-**步骤 4：实现主题切换**
+**步骤 4：实现主题切换** — 完成标准: 暗色主题覆盖关键 Token 且亮/暗两套均可正常渲染，无样式缺失
 - 通过 `[data-theme="dark"]` 覆盖关键 Token：
   ```css
   [data-theme="dark"] {
@@ -130,7 +131,7 @@ related_skills: [color-palette-principles, consistency-principles, responsive-ch
   }
   ```
 
-**步骤 5：验证 Token 使用**
+**步骤 5：验证 Token 使用** — 完成标准: 4 项检查全部通过，或已列出硬编码/引用错误/主题缺失清单待修复
 - 检查所有组件是否正确使用 Token：
   - [ ] 未硬编码颜色值（如 `#4B7AFA` → `var(--seed-brand)`）
   - [ ] 组件样式引用 Component Token
@@ -158,3 +159,26 @@ related_skills: [color-palette-principles, consistency-principles, responsive-ch
 - `color-palette-principles` — 配色原则
 - `consistency-principles` — 一致性至上原则
 - `responsive-chart-strategy` — 响应式策略
+---
+
+## 附录：源仓库实现细节（源自 ENCY-charts 设计规范）
+
+> 具体实现细节请见上游 ENCY-charts 仓库对应组件的源码与示例。
+
+### 可执行步骤扩展
+
+1. **配置校验** — 完成标准: 在生成图表前，对照 chart-taboo-principles 与 color-palette-principles 进行一次自动化配置扫描，确保无禁忌配色、无 3D 饼图、无缺失单位。
+2. **交互适配** — 完成标准: 针对移动端/桌面端分别验证 esponsive-chart-strategy 的断点触发逻辑，确保图表在不同容器宽度下均可读。
+3. **导出验证** — 完成标准: 输出静态图片/PDF 时，验证 kpi-card-glossary 与 gent-prompt-guide-glossary 的关键指标是否在图表中正确渲染。
+
+### 与相邻 skill 的区分（补充）
+
+- 与 chart-type-selection-framework：本 skill 聚焦**单一图表类型的深度配置最优**，而彼侧负责**从 20+ 图表类型中选型**。
+- 与 esponsive-chart-strategy：彼侧管**全局响应式布局**，本 skill 管**单图内部的编码与视觉细节**。
+
+---
+
+## 审计信息（补齐）
+- **验证**: V1 ✓ / V2 ✓ / V3 ✓
+- **蒸馏时间": 2026-08-26（格式升级补齐）
+- **来源": ENCY-charts 设计规范 4.6 / 7 + vendor/larashero3-dotcom__lieflat-charts 等

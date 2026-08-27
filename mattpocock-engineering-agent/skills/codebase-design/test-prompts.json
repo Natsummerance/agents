@@ -1,20 +1,57 @@
 {
   "skill": "codebase-design",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "mattpocock/skills",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "这个模块应该怎么划分职责？",
-      "expected_skill": "codebase-design",
-      "category": "should-trigger",
-      "reason": "模块设计问题"
+      "id": "codebase-design-01",
+      "prompt": "Design the interface for this new payment module.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes codebase-design skill to shape module interface using deep/shallow assessment and vocabulary.",
+      "notes": "Module interface design is a key trigger."
     },
     {
-      "id": "test-2",
-      "prompt": "帮我跑一下测试",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "测试运行不属于设计决策"
+      "id": "codebase-design-02",
+      "prompt": "This class has 20 public methods. How should we refactor it?",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes codebase-design skill to apply deletion test and extract deep interface from shallow module.",
+      "notes": "Refactoring for testability is a valid trigger."
+    },
+    {
+      "id": "codebase-design-03",
+      "prompt": "Where should we put the database boundary?",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes codebase-design skill to identify what varies and place seam accordingly.",
+      "notes": "Seam placement is a valid trigger."
+    },
+    {
+      "id": "codebase-design-04",
+      "prompt": "Implement the user authentication feature.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes implement skill instead. Implement fills implementation; codebase-design shapes the interface.",
+      "notes": "implement is the sibling skill for building code."
+    },
+    {
+      "id": "codebase-design-05",
+      "prompt": "What does 'account' mean in our codebase?",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes domain-modeling skill instead. Domain-modeling sharpens domain terms; codebase-design shapes module boundaries.",
+      "notes": "domain-modeling is the sibling skill for domain vocabulary."
+    },
+    {
+      "id": "codebase-design-06",
+      "prompt": "This test is failing. Help me debug it.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes diagnosing-bugs skill instead. Diagnosing-bugs finds root cause; codebase-design shapes future modules.",
+      "notes": "diagnosing-bugs is the sibling skill for debugging."
+    },
+    {
+      "id": "codebase-design-07",
+      "prompt": "Make this module more testable by injecting dependencies.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes codebase-design skill to design testable interface with dependencies injected, not created.",
+      "notes": "Testability improvement is a valid trigger."
     }
   ]
 }

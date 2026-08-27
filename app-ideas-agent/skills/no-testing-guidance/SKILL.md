@@ -3,6 +3,7 @@ name: no-testing-guidance
 description: |
   当用户完成项目后不确定代码是否正确、养成"先写代码后测试"的坏习惯，或遇到回归 bug 频发时调用此 skill。不适用于：纯理论讨论、不需要验证的场景。关键 trigger 信号：测试、TDD、回归 bug、代码质量、验证正确性、先写代码。
 source_book: App Ideas Collection Florin Pop
+source_project: florinpop17/app-ideas
 source_chapter: N/A (absence of content)
 tags: [anti-pattern, testing-gap, tdd-absence, code-quality]
 related_skills: ["no-systematic-methodology", "no-progress-tracking"]
@@ -54,21 +55,25 @@ App Ideas Collection 的 89 个项目都没有提供任何测试相关的指导�
    - 询问用户是否写了测试
    - 检查用户是否有回归 bug 的问题
    - 评估用户的代码质量意识
+   - 完成标准：三项检查均有明确回答，并判定用户处于"无测试/事后补测/有测试但不覆盖边缘"中的哪一档
 
 2. **引入测试优先思维**
    - 解释 TDD 的核心价值：先写失败测试，再写最少代码让它通过
    - 强调测试不是"额外工作"，而是开发流程的必要部分
    - 提供简单的测试示例（如 Calculator 的加法测试）
+   - 完成标准：用户能复述 RED-GREEN 的先后顺序及其理由，并亲手跑通一个最小测试示例
 
 3. **建立测试习惯**
    - 为每个新功能先写测试用例
    - 使用测试框架自动化验证
    - 定期运行测试套件确保没有回归
+   - 完成标准：用户当前项目已接入测试框架，新功能均有先行的测试用例，且测试套件可在本地一键运行并通过
 
 4. **避免常见陷阱**
    - 不要等到项目完成才写测试
    - 不要只测试"快乐路径"，要测试边缘情况
    - 不要因为测试失败而沮丧，这是正常的 RED-GREEN 循环
+   - 完成标准：用户的测试用例中至少包含一个边缘情况（如空输入/非法输入），且对失败测试能按循环流程处理而非放弃
 
 ## B (Boundary) - 什么时候不适用
 

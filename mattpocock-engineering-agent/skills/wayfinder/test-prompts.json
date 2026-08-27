@@ -1,20 +1,57 @@
 {
   "skill": "wayfinder",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "mattpocock/skills",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "这个项目要做三个月怎么安排？",
-      "expected_skill": "wayfinder",
-      "category": "should-trigger",
-      "reason": "长期规划场景"
+      "id": "wayfinder-01",
+      "prompt": "This is too big for one session. Help me map out the approach.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes wayfinder skill to chart a shared map of decision tickets on the issue tracker.",
+      "notes": "Huge foggy effort is a key trigger."
     },
     {
-      "id": "test-2",
-      "prompt": "帮我改一行代码",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "小改动不需要规划"
+      "id": "wayfinder-02",
+      "prompt": "We're starting a greenfield project. Where do we begin?",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes wayfinder skill to map decisions (tech stack, architecture, data model) for the greenfield project.",
+      "notes": "Greenfield project is a valid trigger."
+    },
+    {
+      "id": "wayfinder-03",
+      "prompt": "We don't know enough yet. Resolve the unknowns first.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes wayfinder skill to create research tickets for resolving unknowns in the fog of war.",
+      "notes": "Fog clearing is a valid trigger."
+    },
+    {
+      "id": "wayfinder-04",
+      "prompt": "Break this spec into tickets for implementation.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes to-tickets skill instead. To-tickets breaks specs into work items; wayfinder maps decisions until the spec emerges.",
+      "notes": "to-tickets is the sibling skill for breaking specs into tickets."
+    },
+    {
+      "id": "wayfinder-05",
+      "prompt": "Sharpen my design ideas through an interview.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes grill-with-docs skill instead. Grill-with-docs sharpens an idea you can hold; wayfinder maps an idea you can't hold.",
+      "notes": "grill-with-docs is the sibling skill for idea sharpening."
+    },
+    {
+      "id": "wayfinder-06",
+      "prompt": "Read the official documentation for this library.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes research skill instead. Research reads primary sources; wayfinder manages a map of decisions.",
+      "notes": "research is the sibling skill for reading documentation."
+    },
+    {
+      "id": "wayfinder-07",
+      "prompt": "This migration will take weeks. Map out the decisions we need to make.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes wayfinder skill to map migration decisions over multiple sessions.",
+      "notes": "Migration project is a valid trigger."
     }
   ]
 }

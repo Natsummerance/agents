@@ -1,41 +1,57 @@
 {
   "skill": "tooltip-missing-unit-trap",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "ENCY-charts 设计规范",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
+      "id": "tc-01",
       "prompt": "Tooltip 里要不要加单位？",
-      "expected_skill": "tooltip-missing-unit-trap",
-      "category": "should-trigger",
-      "reason": "Tooltip 单位缺失是该 trap 的核心"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，执行 E 段四步骤：检查配置、添加上下文、自动化检查、验证理解",
+      "notes": "Tooltip 单位缺失是该 trap 的核心"
     },
     {
-      "id": "test-2",
+      "id": "tc-02",
       "prompt": "悬浮提示只显示数字没有单位是不是不好？",
-      "expected_skill": "tooltip-missing-unit-trap",
-      "category": "should-trigger",
-      "reason": "单位缺失导致歧义是该 trap 的典型场景"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，走步骤 1 检查 formatter 缺单位、步骤 2 添加名称+数值+单位+时间、步骤 3 自动化扫描",
+      "notes": "单位缺失导致歧义是该 trap 的典型场景"
     },
     {
-      "id": "test-3",
+      "id": "tc-03",
       "prompt": "Tooltip 的位置怎么调整？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "位置调整属于通用 Tooltip 配置"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；位置调整属于通用 Tooltip 配置",
+      "notes": "位置调整非单位缺失陷阱范围"
     },
     {
-      "id": "test-4",
+      "id": "tc-04",
       "prompt": "Tooltip 样式怎么自定义？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "样式定制不属于单位缺失陷阱范畴"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；样式定制不属于单位缺失陷阱范围",
+      "notes": "样式定制非单位缺失范围"
     },
     {
-      "id": "test-5",
+      "id": "tc-05",
       "prompt": "Y 轴标签要不要加单位？",
-      "expected_skill": "tooltip-missing-unit-trap",
-      "category": "should-trigger",
-      "reason": "轴标签单位缺失与 Tooltip 单位缺失同类"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，同类单位缺失问题，走步骤 1/2/3 检查轴标签单位",
+      "notes": "轴标签单位缺失与 Tooltip 单位缺失同类"
+    },
+    {
+      "id": "tc-06",
+      "prompt": "纯计数指标（如用户数 1234）Tooltip 要加'人'吗？",
+      "type": "edge_case",
+      "expected_behavior": "命中 B 段例外：无单位纯计数数据语境明确可省略，但建议仍加单位避免歧义",
+      "notes": "检验纯计数数据的例外边界判断"
+    },
+    {
+      "id": "tc-07",
+      "prompt": "百分比数据 Tooltip 要加 % 号吗？",
+      "type": "edge_case",
+      "expected_behavior": "命中 B 段例外：% 符号通常已包含在数值中，但需验证 formatter 输出确实含 %",
+      "notes": "检验百分比数据的例外边界判断"
     }
   ]
 }

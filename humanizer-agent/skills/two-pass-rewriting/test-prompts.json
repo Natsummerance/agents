@@ -1,41 +1,64 @@
 {
   "skill": "two-pass-rewriting",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "blader/humanizer",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
+      "id": "tpr-t1",
       "prompt": "去痕流程是什么？",
-      "expected_skill": "two-pass-rewriting",
-      "category": "should-trigger",
-      "reason": "两遍重写流程 是 two-pass-rewriting 的核心应用场景"
+      "type": "should_trigger",
+      "expected_behavior": "触发本技能：概述 First Rewrite → Check Against Patterns → Critique → Final Rewrite 四阶段流程，强调不拘泥原结构与事实核查。",
+      "notes": "核心触发：完整流程咨询。"
     },
     {
-      "id": "test-2",
-      "prompt": "如何确保去痕质量？",
-      "expected_skill": "two-pass-rewriting",
-      "category": "should-trigger",
-      "reason": "两遍重写流程 是 two-pass-rewriting 的核心应用场景"
+      "id": "tpr-t2",
+      "prompt": "如何确保去痕质量？我想看到中间的批评意见。",
+      "type": "should_trigger",
+      "expected_behavior": "触发本技能：说明两遍机制内置质量闸，Critique 阶段会列出仍显人工之处并展示给用户，用户可反馈后再定稿。",
+      "notes": "质量保障 + 透明化双诉求。"
     },
     {
-      "id": "test-3",
-      "prompt": "如何识别 AI 痕迹？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "该场景不属于 两遍重写流程 的触发条件"
+      "id": "tpr-t3",
+      "prompt": "两遍重写具体怎么操作？第一遍不固定结构是什么意思？",
+      "type": "should_trigger",
+      "expected_behavior": "触发本技能：解释第一遍可自由重组段落/句式，第二遍对照 35 模式与原声明核查，给出可落地的执行步骤。",
+      "notes": "细节执行层面的追问。"
     },
     {
-      "id": "test-4",
-      "prompt": "去痕后是否会改变事实？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "该场景不属于 两遍重写流程 的触发条件"
+      "id": "tpr-nt1",
+      "prompt": "35 个模式里'破折号滥用'那条具体指什么？",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本技能；单模式含义解释归 pattern-based-detection。",
+      "notes": "互设诱饵（A）：点名兄弟 skill pattern-based-detection，流程技能不管模式细节。"
     },
     {
-      "id": "test-5",
-      "prompt": "这个配置怎么改？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "该场景不属于 两遍重写流程 的触发条件"
+      "id": "tpr-nt2",
+      "prompt": "我想让改完的文字完全照着我自己的写作样本来。",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本技能；主动样本匹配归 voice-matching。",
+      "notes": "互设诱饵（B）：点名兄弟 skill voice-matching，流程执行 vs 风格定制。"
+    },
+    {
+      "id": "tpr-nt3",
+      "prompt": "去痕后会不会把我的数据和代码改坏？",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本技能；文件结构安全归 prose-only-changes。",
+      "notes": "诱饵：安全约束层面非流程层面。"
+    },
+    {
+      "id": "tpr-e1",
+      "prompt": "我只要最终版，不想看中间稿和批评，能不能跳过？",
+      "type": "edge_case",
+      "expected_behavior": "承认 B 段排除场景（快速去痕），说明可仅执行最终重写但丧失质量闸与透明化收益，建议至少保留 Critique 内部自检。",
+      "notes": "作者盲点：缺少跳过选项，需给出降级方案而非生硬拒绝。"
+    },
+    {
+      "id": "tpr-e2",
+      "prompt": "Critique 太简略了，能不能给每处问题标上对应的模式编号？",
+      "type": "edge_case",
+      "expected_behavior": "支持增强：在步骤 3 生成批评时，要求每条批评回溯模式编号与原文位置，输出结构化 Critique 表，作为步骤 4 最终重写的逐项任务单。",
+      "notes": "作者盲点：批评详细程度无配置，考察是否能扩展而非拒绝。"
     }
   ]
 }

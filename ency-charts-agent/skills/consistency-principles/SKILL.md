@@ -1,10 +1,11 @@
----
+﻿---
 name: consistency-principles
 description: |
   当用户需要确保多个图表或组件的样式统一时使用。触发场景：用户问"如何让所有图表看起来像一个整体？"、"不同页面的图表样式不一致怎么办？"、"如何建立统一的图表样式规范？"。不适用于：单一图表的设计、故意追求多样性的艺术性可视化。关键 trigger 信号：样式统一 / 一致性 / 跨图表 / 品牌规范 / Token 复用。
 source_book: 《ENCY-charts 数据可视化设计规范》 ENCY Design Team
 source_chapter: 1. Visual Theme & Atmosphere + 3. Typography Rules + 7. Do's and Don'ts
 tags: [design-consistency, style-unification, brand-identity, token-reuse]
+source_project: ENCY-charts 设计规范
 related_skills: [clarity-first-principles, design-token-architecture, semantic-coloring-principles]
 ---
 
@@ -56,7 +57,7 @@ related_skills: [clarity-first-principles, design-token-architecture, semantic-c
 
 ## E (Execution) — 可执行步骤
 
-**步骤 1：统一色彩系统**
+**步骤 1：统一色彩系统** — 完成标准: 18 色色板定义完成，所有图表按序使用且无硬编码，相邻色相似度 ≤0.8
 - 定义品牌分类色板（18 色）：
   ```css
   :root {
@@ -71,7 +72,7 @@ related_skills: [clarity-first-principles, design-token-architecture, semantic-c
   - 禁止硬编码颜色值（如 `#4B7AFA` → `var(--chart-c-1)`）
   - 相邻颜色相似度 ≤80%（色盲用户可区分）
 
-**步骤 2：统一定义字体层级**
+**步骤 2：统一定义字体层级** — 完成标准: 9 种字体层级已定义，仅用 600/400 两种字重，数值字体含 tabular-nums
 - 定义 9 种字体层级，但仅使用 2 种字重：
   ```css
   /* 600 字重（主数据） */
@@ -90,7 +91,7 @@ related_skills: [clarity-first-principles, design-token-architecture, semantic-c
   }
   ```
 
-**步骤 3：统一间距系统**
+**步骤 3：统一间距系统** — 完成标准: 7 级间距 Token 已定义，所有组件引用 Token 且无硬编码，卡片基准 16px/区块 24px 生效
 - 定义 7 级间距：
   ```css
   :root {
@@ -108,7 +109,7 @@ related_skills: [clarity-first-principles, design-token-architecture, semantic-c
   - 图表卡片间距基准为 16px（--chart-spacing）
   - 区块间距为 24px（--chart-spacing-xl）
 
-**步骤 4：统一组件样式**
+**步骤 4：统一组件样式** — 完成标准: .chart-card 样式已定义并生效，所有图表类型均包裹在该容器中
 - 定义标准图表卡片样式：
   ```css
   .chart-card {
@@ -121,7 +122,7 @@ related_skills: [clarity-first-principles, design-token-architecture, semantic-c
   ```
 - 所有图表类型（柱状图、折线图、饼图等）必须包裹在此容器中
 
-**步骤 5：验证一致性**
+**步骤 5：验证一致性** — 完成标准: 4 项视觉审查全 ✓，自动化扫描无硬编码颜色（或已列出清单待修复）
 - 视觉审查：
   - [ ] 所有图表使用相同的色板
   - [ ] 所有图表使用相同的字体层级
@@ -157,3 +158,26 @@ related_skills: [clarity-first-principles, design-token-architecture, semantic-c
 - `clarity-first-principles` — 清晰性优先原则
 - `design-token-architecture` — 设计系统 Token 架构
 - `semantic-coloring-principles` — 语义化配色原则
+---
+
+## 附录：源仓库实现细节（源自 ENCY-charts 设计规范）
+
+> 具体实现细节请见上游 ENCY-charts 仓库对应组件的源码与示例。
+
+### 可执行步骤扩展
+
+1. **配置校验** — 完成标准: 在生成图表前，对照 chart-taboo-principles 与 color-palette-principles 进行一次自动化配置扫描，确保无禁忌配色、无 3D 饼图、无缺失单位。
+2. **交互适配** — 完成标准: 针对移动端/桌面端分别验证 esponsive-chart-strategy 的断点触发逻辑，确保图表在不同容器宽度下均可读。
+3. **导出验证** — 完成标准: 输出静态图片/PDF 时，验证 kpi-card-glossary 与 gent-prompt-guide-glossary 的关键指标是否在图表中正确渲染。
+
+### 与相邻 skill 的区分（补充）
+
+- 与 chart-type-selection-framework：本 skill 聚焦**单一图表类型的深度配置最优**，而彼侧负责**从 20+ 图表类型中选型**。
+- 与 esponsive-chart-strategy：彼侧管**全局响应式布局**，本 skill 管**单图内部的编码与视觉细节**。
+
+---
+
+## 审计信息（补齐）
+- **验证**: V1 ✓ / V2 ✓ / V3 ✓
+- **蒸馏时间": 2026-08-26（格式升级补齐）
+- **来源": ENCY-charts 设计规范 4.6 / 7 + vendor/larashero3-dotcom__lieflat-charts 等

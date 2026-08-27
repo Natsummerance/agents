@@ -3,6 +3,7 @@ name: agent-dynamic-decision-making
 description: |
   当需要 Agent 进行动态决策和动态上下文检索时使用此 skill。适用于：场景化提示模板生成、专用工具集选择等需要灵活性的场景。不适用于：文件选择、规则匹配、位置定位等需要硬约束的场景。关键 trigger 信号：用户提到"动态决策"、"上下文检索"、"提示优化"、"工具选择"等问题。
 source_book: alibaba/open-code-review
+source_project: alibaba/open-code-review
 source_chapter: Core Design: Deterministic Engineering × Agent Hybrid — Agent Section
 tags: [agent-hybrid, dynamic-decision, scenario-tuned]
 related_skills: [specialized-toolset-over-generic]
@@ -54,10 +55,15 @@ related_skills: [specialized-toolset-over-generic]
 ## E (Execution) — 可执行步骤
 
 1. **分析生产数据**: 收集工具调用轨迹数据，统计调用频率、重复率、影响因子
+   - 完成标准: 产出覆盖全部工具的调用统计表，含频率、重复率、影响因子三项数值
 2. **提炼专用工具集**: 基于数据分析结果，选择最适合代码审查的工具组合
+   - 完成标准: 工具集清单定稿，每个入选或剔除的工具都有对应的数据依据记录
 3. **优化提示模板**: 为不同审查场景设计深度优化的提示模板
+   - 完成标准: 每个目标审查场景至少有一份对应提示模板并通过试运行验证
 4. **集成测试**: 验证专用工具集和提示模板的有效性
+   - 完成标准: A/B 对比报告显示效率与准确性两项指标均不低于通用方案基线
 5. **持续迭代**: 根据新的生产数据持续优化工具集和提示模板
+   - 完成标准: 有固定复盘周期，且每轮迭代留存前后指标对比记录
 
 **完成标准**: 专用工具集和提示模板通过 A/B 测试，效率和准确性显著优于通用方案
 

@@ -1,20 +1,57 @@
 {
   "skill": "domain-modeling",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "mattpocock/skills",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "我们团队对\"用户\"的定义不一致怎么办？",
-      "expected_skill": "domain-modeling",
-      "category": "should-trigger",
-      "reason": "术语不一致需要领域建模"
+      "id": "domain-modeling-01",
+      "prompt": "What does 'account' mean in our codebase? It seems overloaded.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes domain-modeling skill to challenge the fuzzy term and propose canonical definition.",
+      "notes": "Term confusion is a key trigger."
     },
     {
-      "id": "test-2",
-      "prompt": "这个函数怎么写？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "具体实现问题不属于建模"
+      "id": "domain-modeling-02",
+      "prompt": "Record this architectural decision as an ADR.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes domain-modeling skill to evaluate ADR criteria (hard to reverse, surprising, genuine trade-off) and create if met.",
+      "notes": "ADR creation is a valid trigger."
+    },
+    {
+      "id": "domain-modeling-03",
+      "prompt": "The code does X but we say Y. Which is right?",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes domain-modeling skill to cross-reference code with glossary and surface contradiction.",
+      "notes": "Code/language mismatch is a valid trigger."
+    },
+    {
+      "id": "domain-modeling-04",
+      "prompt": "Implement the user authentication feature.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes implement skill instead. Implement builds code; domain-modeling sharpens domain terms.",
+      "notes": "implement is the sibling skill for building code."
+    },
+    {
+      "id": "domain-modeling-05",
+      "prompt": "Design the interface for this new module.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes codebase-design skill instead. Codebase-design shapes module interfaces; domain-modeling owns domain terms.",
+      "notes": "codebase-design is the sibling skill for module design."
+    },
+    {
+      "id": "domain-modeling-06",
+      "prompt": "This test is failing. Help me debug it.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes diagnosing-bugs skill instead. Diagnosing-bugs finds root cause; domain-modeling aligns code with glossary.",
+      "notes": "diagnosing-bugs is the sibling skill for debugging."
+    },
+    {
+      "id": "domain-modeling-07",
+      "prompt": "Build our project's glossary of domain terms.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes domain-modeling skill to create/update CONTEXT.md with canonical term definitions.",
+      "notes": "Glossary building is a valid trigger."
     }
   ]
 }

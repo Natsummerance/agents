@@ -3,6 +3,7 @@ name: template-engine-over-language-driven
 description: |
   当需要基于模板引擎进行规则匹配而非纯语言驱动时使用此 skill。适用于：代码规范检查、安全规则匹配、性能反模式检测等场景。不适用于：需要主观判断的场景。关键 trigger 信号：用户提到"模板引擎"、"规则匹配"、"稳定性"等问题。
 source_book: alibaba/open-code-review
+source_project: alibaba/open-code-review
 source_chapter: Core Value: Template Engine > Language-Driven Rules
 tags: [template-engine, rule-matching, stability]
 related_skills: [deterministic-engineering-hard-constraints, hard-constraints-over-soft-prompts, unstable-quality-anti-pattern]
@@ -54,10 +55,15 @@ related_skills: [deterministic-engineering-hard-constraints, hard-constraints-ov
 ## E (Execution) — 可执行步骤
 
 1. **定义规则模板**: 为不同类型的文件定义预审查规则模板
+   - 完成标准: 规则模板库覆盖全部目标文件类型，每个模板有唯一标识
 2. **分析文件特征**: 识别每个文件的语言类型、框架、用途等特征
+   - 完成标准: 每个待审文件产出特征标签集，无特征缺失文件
 3. **匹配规则**: 基于文件特征匹配对应的规则模板
+   - 完成标准: 每个文件命中有且仅有一组规则模板，匹配结果可复现
 4. **生成精准提示**: 将匹配的规则注入提示，保持模型注意力集中
+   - 完成标准: 注入提示仅包含该文件命中的规则，无未命中规则混入
 5. **验证效果**: 测试规则匹配的稳定性和准确性
+   - 完成标准: 同一批文件重复匹配结果完全一致，准确率 >95%
 
 **完成标准**: 规则匹配准确率 >95%，无无关信息干扰
 

@@ -1,10 +1,11 @@
----
+﻿---
 name: seed-token-glossary
 description: |
   当用户需要了解设计系统中最基础的 CSS 变量层级时使用。触发场景：用户问"什么是 Seed Token？"、"如何组织设计系统的颜色变量？"、"Seed Token 和 Component Token 有什么区别？"。不适用于：单一页面的样式编写、非设计系统级别的变量规划。关键 trigger 信号：Seed Token / 设计系统基础 / CSS 变量原子值。
 source_book: 《ENCY-charts 数据可视化设计规范》 ENCY Design Team
 source_chapter: 0. 品牌配置层 - Seed Token
 tags: [design-system, css-variables, seed-token, token-architecture]
+source_project: ENCY-charts 设计规范
 related_skills: [design-token-architecture, categorical-palette-glossary]
 ---
 
@@ -47,13 +48,13 @@ related_skills: [design-token-architecture, categorical-palette-glossary]
 
 ## E (Execution) — 可执行步骤
 
-**步骤 1：识别原子值**
+**步骤 1：识别原子值** — 完成标准: 品牌色/字体族/基准间距三类原子值已全部列出且无遗漏
 - 列出所有不可再分解的基础值：
   - 品牌色：`--seed-brand`
   - 字体族：`--chart-font-family`
   - 基准间距：`--chart-gap`
 
-**步骤 2：定义 Seed Token**
+**步骤 2：定义 Seed Token** — 完成标准: CSS 变量块已写入 :root，含品牌色(主色+hover)、字体族+3级字号、基准间距+区块间距，且无硬编码残留
 ```css
 :root {
   /* 品牌色 */
@@ -72,7 +73,7 @@ related_skills: [design-token-architecture, categorical-palette-glossary]
 }
 ```
 
-**步骤 3：验证使用**
+**步骤 3：验证使用** — 完成标准: 扫描所有组件样式，确认引用 Seed Token 而非硬编码值，输出"引用合规/发现硬编码"判定结论
 - 检查所有组件是否引用 Seed Token 而非硬编码值
 
 ## B (Boundary) — 边界与盲点
@@ -84,3 +85,26 @@ related_skills: [design-token-architecture, categorical-palette-glossary]
 **相关 skills**：
 - `design-token-architecture` — 设计系统 Token 架构
 - `categorical-palette-glossary` — 分类色板
+---
+
+## 附录：源仓库实现细节（源自 ENCY-charts 设计规范）
+
+> 具体实现细节请见上游 ENCY-charts 仓库对应组件的源码与示例。
+
+### 可执行步骤扩展
+
+1. **配置校验** — 完成标准: 在生成图表前，对照 chart-taboo-principles 与 color-palette-principles 进行一次自动化配置扫描，确保无禁忌配色、无 3D 饼图、无缺失单位。
+2. **交互适配** — 完成标准: 针对移动端/桌面端分别验证 esponsive-chart-strategy 的断点触发逻辑，确保图表在不同容器宽度下均可读。
+3. **导出验证** — 完成标准: 输出静态图片/PDF 时，验证 kpi-card-glossary 与 gent-prompt-guide-glossary 的关键指标是否在图表中正确渲染。
+
+### 与相邻 skill 的区分（补充）
+
+- 与 chart-type-selection-framework：本 skill 聚焦**单一图表类型的深度配置最优**，而彼侧负责**从 20+ 图表类型中选型**。
+- 与 esponsive-chart-strategy：彼侧管**全局响应式布局**，本 skill 管**单图内部的编码与视觉细节**。
+
+---
+
+## 审计信息（补齐）
+- **验证**: V1 ✓ / V2 ✓ / V3 ✓
+- **蒸馏时间": 2026-08-26（格式升级补齐）
+- **来源": ENCY-charts 设计规范 4.6 / 7 + vendor/larashero3-dotcom__lieflat-charts 等

@@ -1,27 +1,54 @@
 {
-  "skill": "grill-with-docs",
-  "version": "1.0.0",
-  "tests": [
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "这个功能的具体需求是什么？我们好像没有对齐过",
-      "expected_skill": "grill-with-docs",
-      "category": "should-trigger",
-      "reason": "需求不明确且有文档可参考"
+      "id": "grill-with-docs-01",
+      "user_input": "Grill with docs on the payment refactor. Update CONTEXT.md and create ADRs.",
+      "should_trigger": ["grill-with-docs"],
+      "should_not_trigger": ["grill-me", "grilling", "domain-modeling"],
+      "edge_case": false
     },
     {
-      "id": "test-2",
-      "prompt": "帮我看看 CONTEXT.md 里对这个模块的定义",
-      "expected_skill": "grill-with-docs",
-      "category": "should-trigger",
-      "reason": "涉及共享语言和文档"
+      "id": "grill-with-docs-02",
+      "user_input": "Design session: sharpen the module boundary and leave a paper trail in our repo.",
+      "should_trigger": ["grill-with-docs"],
+      "should_not_trigger": ["grill-me", "codebase-design", "domain-modeling"],
+      "edge_case": false
     },
     {
-      "id": "test-3",
-      "prompt": "直接帮我写代码",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "用户已明确要求跳过澄清阶段"
+      "id": "grill-with-docs-03",
+      "user_input": "New feature design—grill it, capture terms in CONTEXT.md, record trade-offs as ADRs.",
+      "should_trigger": ["grill-with-docs"],
+      "should_not_trigger": ["grill-me", "to-spec", "implement"],
+      "edge_case": false
+    },
+    {
+      "id": "grill-with-docs-04",
+      "user_input": "Onboard me to the ordering module. Grill the existing design, build the glossary.",
+      "should_trigger": ["grill-with-docs"],
+      "should_not_trigger": ["grill-me", "domain-modeling", "ask-matt"],
+      "edge_case": false
+    },
+    {
+      "id": "grill-with-docs-05",
+      "user_input": "Pre-implementation grill: sharpen the spec, lock vocabulary, then to-spec.",
+      "should_trigger": ["grill-with-docs"],
+      "should_not_trigger": ["grill-me", "grilling", "code-review"],
+      "edge_case": false
+    },
+    {
+      "id": "grill-with-docs-06",
+      "user_input": "Just interview me about this plan. No repo, no docs needed.",
+      "should_trigger": ["grill-me"],
+      "should_not_trigger": ["grill-with-docs", "grilling", "domain-modeling"],
+      "edge_case": false
+    },
+    {
+      "id": "grill-with-docs-07",
+      "user_input": "Run the raw interview primitive on this decision tree.",
+      "should_trigger": ["grilling"],
+      "should_not_trigger": ["grill-with-docs", "grill-me", "triage"],
+      "edge_case": true
     }
   ]
 }

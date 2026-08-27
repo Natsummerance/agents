@@ -1,20 +1,57 @@
 {
   "skill": "teach",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "mattpocock/skills",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "教我 React 的核心概念",
-      "expected_skill": "teach",
-      "category": "should-trigger",
-      "reason": "系统化教学请求"
+      "id": "teach-01",
+      "prompt": "Teach me about Rust programming over multiple sessions.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes teach skill to create multi-session learning workspace with MISSION.md, lessons, reference docs.",
+      "notes": "Multi-session learning request is a key trigger."
     },
     {
-      "id": "test-2",
-      "prompt": "这个变量名怎么起？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "命名建议不属于教学场景"
+      "id": "teach-02",
+      "prompt": "I want to learn yoga. Help me get better at it.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes teach skill for skill acquisition through interactive lessons with feedback loops.",
+      "notes": "Physical skill learning is a valid trigger."
+    },
+    {
+      "id": "teach-03",
+      "prompt": "Create a cheat sheet for JavaScript array methods.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes teach skill to create reference document (quick-reference cheat sheet) for array methods.",
+      "notes": "Reference document creation is a valid trigger."
+    },
+    {
+      "id": "teach-04",
+      "prompt": "Research how React hooks work internally.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes research skill instead. Research gathers facts; teach builds skills through practice.",
+      "notes": "research is the sibling skill for fact gathering."
+    },
+    {
+      "id": "teach-05",
+      "prompt": "Help me think through this design decision.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes grill-me or grill-with-docs skill instead. Grilling sharpens thinking; teach builds skills over sessions.",
+      "notes": "grill-me is the sibling skill for thinking through decisions."
+    },
+    {
+      "id": "teach-06",
+      "prompt": "Write documentation for this API.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes writing-for-agents or doc-coauthoring skill instead. Teaching writes for learners; documentation writes for users/agents.",
+      "notes": "writing-for-agents is the sibling skill for agent documentation."
+    },
+    {
+      "id": "teach-07",
+      "prompt": "I want to understand quantum computing concepts step by step.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes teach skill for theoretical topic learning with zone of proximal development driving lesson selection.",
+      "notes": "Theoretical topic learning is a valid trigger."
     }
   ]
 }

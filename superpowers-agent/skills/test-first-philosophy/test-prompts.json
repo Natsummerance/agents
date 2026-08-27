@@ -1,48 +1,57 @@
 {
   "skill": "test-first-philosophy",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "obra/superpowers",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "我需要实现新功能但不确定如何开始，应该先写测试吗？",
-      "expected_skill": "test-first-philosophy",
-      "category": "should-trigger",
-      "reason": "TDD 是 test-first-philosophy 的核心内容"
+      "id": "test-first-philosophy-t1",
+      "prompt": "TDD 的 RED-GREEN-REFACTOR 循环到底怎么转起来？为什么测试必须先行？",
+      "type": "should_trigger",
+      "expected_behavior": "讲解三阶段顺序与各自判据（先红后绿再重构），说明 TDD 作为强制原则而非可选建议的理由",
+      "notes": "核心触发：RED-GREEN-REFACTOR 方法询问"
     },
     {
-      "id": "test-2",
-      "prompt": "什么是 RED-GREEN-REFACTOR 循环？",
-      "expected_skill": "test-first-philosophy",
-      "category": "should-trigger",
-      "reason": "RED-GREEN-REFACTOR 是 TDD 的核心循环"
+      "id": "test-first-philosophy-t2",
+      "prompt": "我已经先把功能代码全写完了才想起测试，是不是得删掉代码重来？",
+      "type": "should_trigger",
+      "expected_behavior": "确认违反 write tests first 原则，按规则删除在测试之前写的代码并以既有测试为规格重新走 TDD 流程",
+      "notes": "关键信号：delete code before tests 规则适用场景"
     },
     {
-      "id": "test-3",
-      "prompt": "为什么 TDD 应该是强制性的而不是可选的？",
-      "expected_skill": "test-first-philosophy",
-      "category": "should-trigger",
-      "reason": "TDD 强制性是 test-first-philosophy 的核心哲学"
+      "id": "test-first-philosophy-t3",
+      "prompt": "新功能需求说得模模糊糊，我想先用写失败测试的方式把行为期望澄清出来",
+      "type": "should_trigger",
+      "expected_behavior": "肯定测试即规格的做法：把模糊需求转写为可观察行为的失败测试，从 RED 开始循环",
+      "notes": "对应 E 段步骤 1-2 的需求澄清用法"
     },
     {
-      "id": "test-4",
-      "prompt": "如何验证 Bug 是否真的被修复了？",
-      "expected_skill": "test-first-philosophy",
-      "category": "should-not-trigger",
-      "reason": "这应该触发 evidence-over-claims skill，虽然与测试相关但更关注验证"
+      "id": "test-first-philosophy-n1",
+      "prompt": "我们组长期不写测试，质量已经崩了，这种行为有哪些后果和典型案例？",
+      "type": "should_not_trigger",
+      "expected_behavior": "反面警示与后果分析转交 skipping-tests-anti-pattern；本 skill 提供正面方法论而非批判档案",
+      "notes": "跨技能诱饵：反模式警示归兄弟 skill skipping-tests-anti-pattern"
     },
     {
-      "id": "test-5",
-      "prompt": "探索性编程需要先尝试不同方案，TDD 合适吗？",
-      "expected_skill": "test-first-philosophy",
-      "category": "should-not-trigger",
-      "reason": "探索性编程不适用 TDD，属于边界场景"
+      "id": "test-first-philosophy-n2",
+      "prompt": "实现已经完成了，给我看证据确认它真的修好了再宣布完成",
+      "type": "should_not_trigger",
+      "expected_behavior": "完成后举证与成功声明核验转交 evidence-over-claims；TDD 循环止于测试通过加提交",
+      "notes": "跨技能诱饵：完成验证归兄弟 skill evidence-over-claims"
     },
     {
-      "id": "test-6",
-      "prompt": "我跳过了测试直接写代码，会有什么问题？",
-      "expected_skill": "skipping-tests-anti-pattern",
-      "category": "cross-skill-confusion",
-      "reason": "这应该触发 skipping-tests-anti-pattern skill，虽然与 TDD 相关但更关注反模式"
+      "id": "test-first-philosophy-e1",
+      "prompt": "头脑风暴阶段我只想快速写几个算法原型比一比性能，也要先写失败测试吗？",
+      "type": "edge_case",
+      "expected_behavior": "命中 B 段边界：探索性原型豁免 TDD，说明选定方案进入正式实现时再启用强制循环",
+      "notes": "边界用例：原型比较不属于正式实现"
+    },
+    {
+      "id": "test-first-philosophy-e2",
+      "prompt": "这个失败测试我调了二十遍还是红的，要不放弃 TDD 直接手写实现糊上去算了？",
+      "type": "edge_case",
+      "expected_behavior": "不弃守流程也不死磕：先区分测试自身缺陷与实现缺口（断言/环境/被测代码三方核对），必要时回到需求澄清，再决定走向",
+      "notes": "红线场景：卡壳时的判停与回退路径"
     }
   ]
 }

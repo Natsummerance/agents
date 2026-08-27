@@ -1,31 +1,50 @@
 {
   "skill": "spec-driven-development",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "addyosmani/agent-skills",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
+      "id": "tc-01",
       "prompt": "我应该先写什么？需求很模糊",
-      "expected_call": true,
-      "reason": "用户需要明确需求，适合 spec-driven-development"
+      "type": "should_trigger",
+      "expected_behavior": "用户需要明确需求，适合 spec-driven-development",
+      "notes": "用户需要明确需求，适合 spec-driven-development"
     },
     {
+      "id": "tc-02",
       "prompt": "如何避免盲目编码和需求蔓延？",
-      "expected_call": true,
-      "reason": "用户想避免盲目编码，适合 spec-driven-development"
+      "type": "should_trigger",
+      "expected_behavior": "用户想避免盲目编码，适合 spec-driven-development",
+      "notes": "用户想避免盲目编码，适合 spec-driven-development"
     },
     {
+      "id": "tc-03",
       "prompt": "这个 API 怎么用？",
-      "expected_call": false,
-      "reason": "纯信息查询，不应调用"
+      "type": "should_trigger",
+      "expected_behavior": "纯信息查询，不应调用",
+      "notes": "纯信息查询，不应调用"
     },
     {
+      "id": "tc-04",
       "prompt": "如何证明代码正确？",
-      "expected_call": false,
-      "reason": "应触发 test-driven-development，不是 spec-driven-development"
+      "type": "should_trigger",
+      "expected_behavior": "应触发 test-driven-development，不是 spec-driven-development",
+      "notes": "应触发 test-driven-development，不是 spec-driven-development"
     },
     {
+      "id": "tc-05",
       "prompt": "能否一次性实现所有任务？",
-      "expected_call": false,
-      "reason": "应触发 auto-build-mode，不是 spec-driven-development"
+      "type": "should_trigger",
+      "expected_behavior": "应触发 auto-build-mode，不是 spec-driven-development",
+      "notes": "应触发 auto-build-mode，不是 spec-driven-development"
+    },
+    {
+      "id": "tc-06",
+      "prompt": "需求频繁变更的探索性项目，还要写完整规格说明吗？",
+      "type": "edge_case",
+      "expected_behavior": "触发本 skill 给出判定：探索期可用轻量规格+短迭代验证，但核心接口与数据结构仍需落笔，结论可操作",
+      "notes": "边界题：考察规格说明在不确定性场景下的最小必要度"
     }
   ]
 }

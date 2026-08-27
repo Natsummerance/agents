@@ -1,20 +1,57 @@
 {
   "skill": "wait-what",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "mattpocock/skills",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "你说的我没太明白换个方式解释一下",
-      "expected_skill": "wait-what",
-      "category": "should-trigger",
-      "reason": "重述需求"
+      "id": "wait-what-01",
+      "prompt": "Wait, what? I don't understand that last message.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes wait-what skill to re-pitch the last message with more context, simpler language, and domain vocabulary.",
+      "notes": "Explicit confusion is a key trigger."
     },
     {
-      "id": "test-2",
-      "prompt": "好的我知道了",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "确认理解无需重述"
+      "id": "wait-what-02",
+      "prompt": "You're using jargon I don't know. Explain that again.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes wait-what skill to re-pitch using ASD-STE100 Simplified Technical English.",
+      "notes": "Jargon correction is a valid trigger."
+    },
+    {
+      "id": "wait-what-03",
+      "prompt": "You assumed I knew that. Give me more context.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes wait-what skill to re-pitch with the missing context supplied.",
+      "notes": "Context gap is a valid trigger."
+    },
+    {
+      "id": "wait-what-04",
+      "prompt": "Help me decide on the architecture for this module.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes grill-me or grill-with-docs skill instead. Wait-what re-pitches the last message; grill interviews about a topic.",
+      "notes": "grill-me is the sibling skill for topic discussion."
+    },
+    {
+      "id": "wait-what-05",
+      "prompt": "Update the project's glossary with new terms.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes domain-modeling skill instead. Domain-modeling updates CONTEXT.md; wait-what uses existing CONTEXT.md.",
+      "notes": "domain-modeling is the sibling skill for vocabulary maintenance."
+    },
+    {
+      "id": "wait-what-06",
+      "prompt": "Design a shared language for the team.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes grill-with-docs skill instead. Grill-with-docs builds shared language upfront; wait-what fixes miscommunication after the fact.",
+      "notes": "grill-with-docs is the sibling skill for building shared language."
+    },
+    {
+      "id": "wait-what-07",
+      "prompt": "Explain that again, but simpler.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes wait-what skill to re-pitch with simplified language using ASD-STE100 principles.",
+      "notes": "Simplification request is a valid trigger."
     }
   ]
 }

@@ -1,48 +1,57 @@
 {
   "skill": "subagent-driven-development",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "obra/superpowers",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "我需要让编码 Agent 自主处理多个工程任务，并行工作数小时而不偏离计划",
-      "expected_skill": "subagent-driven-development",
-      "category": "should-trigger",
-      "reason": "场景化子 Agent 分派是 SDD 的核心能力"
+      "id": "subagent-driven-development-t1",
+      "prompt": "我有 5 个独立的 bug 要修、3 个功能要做，能不能让 agent 自己并行干几个小时不用我盯着？",
+      "type": "should_trigger",
+      "expected_behavior": "确认计划前提后启动 SDD：每任务一个新鲜 subagent 自主推进，长时段无需人工干预",
+      "notes": "核心触发：autonomous work 多任务并行"
     },
     {
-      "id": "test-2",
-      "prompt": "如何分派新鲜子 Agent 处理每个任务并进行两阶段审查？",
-      "expected_skill": "subagent-driven-development",
-      "category": "should-trigger",
-      "reason": "两阶段审查是 SDD 的独特设计"
+      "id": "subagent-driven-development-t2",
+      "prompt": "subagent 干完活之后，spec compliance 和 code quality 这两道审查具体怎么执行？",
+      "type": "should_trigger",
+      "expected_behavior": "按 E 段执行两阶段审查：先对照验收标准查规范合规，再按最佳实践查代码质量，分级输出问题列表",
+      "notes": "关键信号：two-stage review"
     },
     {
-      "id": "test-3",
-      "prompt": "如何让 Agent 自主工作数小时而不需要频繁干预？",
-      "expected_skill": "subagent-driven-development",
-      "category": "should-trigger",
-      "reason": "自主工作是 SDD 的核心优势"
+      "id": "subagent-driven-development-t3",
+      "prompt": "担心 agent 干着干着就偏离计划，或者上下文互相污染，有没有更可靠的工作模式？",
+      "type": "should_trigger",
+      "expected_behavior": "引入 SDD 的隔离与计划锚定机制：新鲜子 Agent 避免污染、以批准计划约束方向偏离",
+      "notes": "对应 A2 上下文污染担忧场景"
     },
     {
-      "id": "test-4",
-      "prompt": "帮我理解 Superpowers 的 7 步强制工作流",
-      "expected_skill": "subagent-driven-development",
-      "category": "should-not-trigger",
-      "reason": "这应该触发 mandatory-workflow skill，虽然与 SDD 相关但更关注整体流程"
+      "id": "subagent-driven-development-n1",
+      "prompt": "并行开工之前，先帮每个任务开好独立的 git worktree 工作区",
+      "type": "should_not_trigger",
+      "expected_behavior": "工作区隔离的创建转交 git-worktree-isolation；SDD 管任务分派与审查，不管 Git 工作区操作",
+      "notes": "跨技能诱饵：工作区隔离归兄弟 skill git-worktree-isolation"
     },
     {
-      "id": "test-5",
-      "prompt": "这个单一文件的代码有什么问题？",
-      "expected_skill": "subagent-driven-development",
-      "category": "should-not-trigger",
-      "reason": "单一小任务不需要分派子 Agent"
+      "id": "subagent-driven-development-n2",
+      "prompt": "这套多 agent 干活模式在整个 7 步流程里排在第几位？前面还差什么前置？",
+      "type": "should_not_trigger",
+      "expected_behavior": "流程定位与前置检查转交 mandatory-workflow；SDD 是第 4 步的实现细节而非流程定义者",
+      "notes": "跨技能诱饵：流程框架归兄弟 skill mandatory-workflow"
     },
     {
-      "id": "test-6",
-      "prompt": "如何在不影响主分支的情况下并行开发多个功能？",
-      "expected_skill": "git-worktree-isolation",
-      "category": "cross-skill-confusion",
-      "reason": "这应该触发 git-worktree-isolation skill，虽然与并行开发相关但更关注 Git 隔离"
+      "id": "subagent-driven-development-e1",
+      "prompt": "就一个小小的样式调整，也要 dispatch 一个新鲜 subagent 再过两道审查吗？",
+      "type": "edge_case",
+      "expected_behavior": "命中 B 段边界：单一小任务直接执行，不付出子 Agent 分派与双重审查的成本",
+      "notes": "边界用例：任务粒度低于流程开销"
+    },
+    {
+      "id": "subagent-driven-development-e2",
+      "prompt": "第一阶段审查发现子任务偏离了规格，打个补丁糊弄过去就算了吧？",
+      "type": "edge_case",
+      "expected_behavior": "拒绝表面修补：按约定回炉重做该子任务（重新分派新鲜 subagent），偏离项清零后才进入第二阶段",
+      "notes": "红线用例：审查不合格必须重做而非打补丁"
     }
   ]
 }

@@ -1,48 +1,50 @@
 {
   "skill": "incomplete-coverage-anti-pattern",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "alibaba/open-code-review",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "我们的代码审查工具经常遗漏重要文件，怎么解决？",
-      "expected_skill": "incomplete-coverage-anti-pattern",
-      "category": "should-trigger",
-      "reason": "不完整覆盖是通用 Agent 的核心痛点之一"
+      "id": "tc-01",
+      "prompt": "上次审查漏掉了两个重要的配置文件，Agent 是不是在偷工减料？",
+      "type": "should_trigger",
+      "expected_behavior": "触发本 skill，按反模式特征确认症状并应用 Precise file selection 等对策",
+      "notes": "\"遗漏文件/偷工减料\"是本 skill 关键 trigger 词"
     },
     {
-      "id": "test-2",
-      "prompt": "为什么通用 Agent 在大变更集上会偷工减料？",
-      "expected_skill": "incomplete-coverage-anti-pattern",
-      "category": "should-trigger",
-      "reason": "选择性审查是不完整覆盖的典型表现"
+      "id": "tc-02",
+      "prompt": "这个大 PR 我担心覆盖不全，怎么确保所有重要文件都被审到？",
+      "type": "should_trigger",
+      "expected_behavior": "触发本 skill，给出风险识别、原因分析与覆盖验证的完整流程",
+      "notes": "大变更集下的覆盖担忧是典型触发场景"
     },
     {
-      "id": "test-3",
-      "prompt": "如何确保所有重要文件都被审查？",
-      "expected_skill": "incomplete-coverage-anti-pattern",
-      "category": "should-trigger",
-      "reason": "确保全覆盖是解决不完整覆盖的关键"
+      "id": "tc-03",
+      "prompt": "报告行号和实际代码对不上，这是 position-drift-anti-pattern 描述的位置漂移问题吧",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，路由到 position-drift-anti-pattern",
+      "notes": "跨技能诱饵：点名兄弟 skill，位置漂移与覆盖缺失互为区分项"
     },
     {
-      "id": "test-4",
-      "prompt": "报告的问题位置不准确，行号对不上",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "这是位置漂移问题，应由 position-drift-anti-pattern 处理"
+      "id": "tc-04",
+      "prompt": "这次只改了一个文件的小修复，应该不存在覆盖问题吧？",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，小型单一文件修改列为不适用场景",
+      "notes": "覆盖反模式主要出现在大变更集上"
     },
     {
-      "id": "test-5",
-      "prompt": "这个单一文件的代码有什么问题？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "小型单一文件修改不涉及不完整覆盖问题"
+      "id": "tc-05",
+      "prompt": "审查结果忽好忽坏、难以调试，请按 unstable-quality-anti-pattern 排查一下",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，路由到 unstable-quality-anti-pattern",
+      "notes": "跨技能诱饵：点名兄弟 skill，质量波动关注稳定性而非覆盖率"
     },
     {
-      "id": "test-6",
-      "prompt": "如何处理大型 PR 的审查？",
-      "expected_skill": "divide-and-conquer-strategy",
-      "category": "cross-skill-confusion",
-      "reason": "这应该触发分治策略 skill，虽然与大变更集相关但更关注并发审查"
+      "id": "tc-06",
+      "prompt": "被过滤规则显式排除的文件，算不算覆盖缺口？",
+      "type": "edge_case",
+      "expected_behavior": "触发本 skill 给出判定标准：有记录的显式排除不算缺口，无依据的选择性跳过才算，结论落到核对表",
+      "notes": "边界题：考察\"重要文件\"与\"显式排除\"的界定"
     }
   ]
 }

@@ -1,41 +1,57 @@
 {
   "skill": "sequential-palette-glossary",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "ENCY-charts 设计规范",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
+      "id": "tc-01",
       "prompt": "表示数量大小的渐变色板怎么选？",
-      "expected_skill": "sequential-palette-glossary",
-      "category": "should-trigger",
-      "reason": "顺序色板用于表示数值大小梯度"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，解析顺序色板定义、核心特征与适用场景",
+      "notes": "顺序色板用于表示数值大小梯度"
     },
     {
-      "id": "test-2",
+      "id": "tc-02",
       "prompt": "热力图的颜色梯度有什么规范？",
-      "expected_skill": "sequential-palette-glossary",
-      "category": "should-trigger",
-      "reason": "热力图是顺序色板的典型应用"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，执行 E 段三步骤：映射 7 级色板、确保渐变平滑、验证 perceptual uniformity",
+      "notes": "热力图是顺序色板的典型应用"
     },
     {
-      "id": "test-3",
+      "id": "tc-03",
       "prompt": "不同类别用什么颜色区分？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "类别区分属于 categorical-palette-glossary"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；类别区分属于 categorical-palette-glossary",
+      "notes": "类别区分非顺序色板范围"
     },
     {
-      "id": "test-4",
+      "id": "tc-04",
       "prompt": "成功/警告/危险的颜色怎么定？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "语义状态色属于 semantic-colors-glossary"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；语义状态色属于 semantic-colors-glossary",
+      "notes": "语义状态色非顺序色板范围"
     },
     {
-      "id": "test-5",
+      "id": "tc-05",
       "prompt": "地图上人口密度用什么色系？",
-      "expected_skill": "sequential-palette-glossary",
-      "category": "should-trigger",
-      "reason": "人口密度是连续数据适合顺序色板"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，推荐顺序色板（如 --chart-seq-1 到 --chart-seq-7）并说明连续数据适用性",
+      "notes": "人口密度是连续数据适合顺序色板"
+    },
+    {
+      "id": "tc-06",
+      "prompt": "顺序色板只有 7 级不够用怎么办？",
+      "type": "edge_case",
+      "expected_behavior": "触发该 skill 走 E 段步骤 1 扩展：可插值生成更多级数，但需验证 perceptual uniformity 仍通过",
+      "notes": "色板级数扩展场景"
+    },
+    {
+      "id": "tc-07",
+      "prompt": "分类数据也能用顺序色板吗？",
+      "type": "edge_case",
+      "expected_behavior": "命中 B 段不适用：离散类别区分应用分类色板，顺序色板会误导用户认为类别间有大小序关系",
+      "notes": "检验离散类别误用顺序色板的边界判断"
     }
   ]
 }

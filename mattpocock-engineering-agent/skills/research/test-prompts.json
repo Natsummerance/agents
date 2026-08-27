@@ -1,20 +1,57 @@
 {
   "skill": "research",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "mattpocock/skills",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "React 18 的并发特性具体是怎么工作的？",
-      "expected_skill": "research",
-      "category": "should-trigger",
-      "reason": "技术细节需查阅官方文档"
+      "id": "research-01",
+      "prompt": "Research how Stripe's webhook verification works.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes research skill to investigate against primary sources (Stripe docs) and produce cited Markdown file.",
+      "notes": "External documentation research is a key trigger."
     },
     {
-      "id": "test-2",
-      "prompt": "帮我写个登录页面",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "功能开发不属于研究场景"
+      "id": "research-02",
+      "prompt": "Look up the official documentation for React 18 migration.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes research skill to read official React docs and produce migration guide file.",
+      "notes": "Framework migration research is a valid trigger."
+    },
+    {
+      "id": "research-03",
+      "prompt": "Delegate the reading to a background agent while I keep working.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes research skill to spawn background agent for non-blocking fact gathering.",
+      "notes": "Delegation scenario is a valid trigger."
+    },
+    {
+      "id": "research-04",
+      "prompt": "Make a decision about which database to use.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes grill-with-docs skill instead. Research gathers facts; grill-with-docs makes decisions.",
+      "notes": "grill-with-docs is the sibling skill for decision-making."
+    },
+    {
+      "id": "research-05",
+      "prompt": "This test is failing intermittently. Help me find the root cause.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes diagnosing-bugs skill instead. Diagnosing-bugs finds why something is broken; research finds how something works.",
+      "notes": "diagnosing-bugs is the sibling skill for bug diagnosis."
+    },
+    {
+      "id": "research-06",
+      "prompt": "Implement the payment integration feature.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes implement skill instead. Implement builds code; research reads documentation.",
+      "notes": "implement is the sibling skill for building code."
+    },
+    {
+      "id": "research-07",
+      "prompt": "Investigate how the authentication module is currently implemented.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes research skill to investigate internal codebase implementation and produce architecture notes.",
+      "notes": "Internal codebase investigation is a valid trigger."
     }
   ]
 }

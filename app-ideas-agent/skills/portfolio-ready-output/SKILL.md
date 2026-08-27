@@ -3,6 +3,7 @@ name: portfolio-ready-output
 description: |
   当用户询问"这个项目值得做吗"、"如何构建有吸引力的作品集"或"哪些项目能帮我找到工作"时调用此 skill。不适用于：纯学习练习、内部工具开发、不需要展示给雇主的项目。关键 trigger 信号：作品集、雇主、客户、职业价值、展示项目。
 source_book: App Ideas Collection Florin Pop
+source_project: florinpop17/app-ideas
 source_chapter: Introduction / application benefits
 tags: [portfolio, career-value, employer-impression]
 related_skills: ["tiered-learning-path", "no-systematic-methodology"]
@@ -51,21 +52,25 @@ App Ideas Collection 明确将"添加到作品集以吸引雇主/客户"列为�
    - 检查项目是否有清晰的 UI/UX
    - 确认项目实现了核心功能
    - 评估技术栈是否具有市场价值
+   - 完成标准：已产出"值得放入作品集/需改进后再放/不建议放"三选一的结论，且每项依据均可指向具体的检查结果
 
 2. **优化项目展示**
    - 添加 README.md，说明项目目标、技术栈和实现细节
    - 提供在线演示链接或清晰的截图
    - 突出项目的独特之处和技术难点
+   - 完成标准：README 包含目标/技术栈/实现细节/亮点四部分，且有可访问的在线演示链接或不少于一张可读截图
 
 3. **构建多样化作品集**
    - 包含不同技术栈的项目（前端、后端、全栈）
    - 包含不同难度的项目（展示成长轨迹）
    - 确保每个项目都有明确的业务价值
+   - 完成标准：最终清单中每个入选项目都能说清其覆盖的技术栈与难度层级，且整体组合无完全同质化的重复项
 
 4. **定期更新作品集**
    - 移除过时或简单的项目
    - 添加新的、更有挑战性的项目
    - 保持作品集的最新状态
+   - 完成标准：约定了下一次复审时间点，且届时完成一轮"移除/新增/保持"三清单的更新记录
 
 ## B (Boundary) - 什么时候不适用
 

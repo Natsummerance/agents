@@ -3,6 +3,7 @@ name: preserve-style
 description: |
   当用户询问"去痕后是否还会像自己写的"、"如何保持个人写作特色"或"技术文档如何处理"时调用此 skill。不适用于：不需要风格保持的场景、用户希望完全重写风格的场景。关键 trigger 信号：保持风格、作者风格、personal writing、technical prose、neutral and plain、style preservation。
 source_book: Humanizer Blader
+source_project: blader/humanizer
 source_chapter: Introduction / style preservation section
 tags: [style-preservation, personal-writing, technical-prose, neutral-style]
 related_skills: ["voice-matching", "no-fabrication"]
@@ -18,7 +19,7 @@ related_skills: ["voice-matching", "no-fabrication"]
 
 ## I (Interpretation) - 方法论骨架
 
-**核心思想**：对于个人写作，Humanizer 保持作者的风格；技术参考文本保持中立和平淡。如果提供写作样本，遵循该样本而不是默认样式规则。这种"风格保留"原则确保去痕后的文本仍然个性化或符合文本类型的要求。
+**核心思想**：对于个人写作，Humanizer 保持作者的风格；技术参考文本保持中立和平淡。如果提供写作样本，遵循该样本而不是默认样式规则。这种"风格保留"原则确保去痕后的文本既移除了 AI 痕迹，又保持了适当的风格。
 
 **关键要素**：
 1. **Personal Writing**: 个人写作保持作者的风格
@@ -51,19 +52,23 @@ README 中明确区分了个人写作和技术文本的不同处理方式：
    - 判断文本是个人写作还是技术参考文本
    - 个人写作：博客、游记、个人随笔等
    - 技术文本：API 文档、技术教程、参考手册等
+   - 完成标准: 已给出"个人写作/技术文本"二选一判定及依据；混合类型需说明主从关系
 
 2. **应用相应的风格策略**
    - **个人写作**：保持作者的风格，包括用词偏好、句式结构、标点习惯等
    - **技术文本**：保持中立和平淡，避免个人色彩
+   - 完成标准: 重写稿实际采用的风格策略与第 1 步的类型判定一致
 
 3. **提供写作样本（可选）**
    - 如果希望更精确的风格匹配，提供 2-3 段自己的写作作为样本
    - Humanizer 会遵循样本而不是默认规则
+   - 完成标准: 若提供样本则不少于 2 段且被采用；若不提供则明确记录沿用默认规则
 
 4. **验证风格保持效果**
    - 检查去痕后的文本是否保持了期望的风格
    - 如果不满意，提供更详细的样本或反馈
    - 确认最终版本符合自己的期望
+   - 完成标准: 最终版与原作在用词偏好、句式结构、标点习惯上逐项比对通过
 
 ## B (Boundary) - 什么时候不适用
 

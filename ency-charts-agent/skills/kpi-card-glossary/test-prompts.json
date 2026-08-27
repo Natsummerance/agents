@@ -1,41 +1,57 @@
 {
   "skill": "kpi-card-glossary",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "ENCY-charts 设计规范",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
+      "id": "tc-01",
       "prompt": "KPI 指标卡应该怎么设计？",
-      "expected_skill": "kpi-card-glossary",
-      "category": "should-trigger",
-      "reason": "KPI 卡片设计是该 glossary 的核心内容"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，输出四层结构定义与样式规范",
+      "notes": "KPI 卡片设计是该 glossary 的核心内容"
     },
     {
-      "id": "test-2",
+      "id": "tc-02",
       "prompt": "Dashboard 上方的数字指标卡有什么规范？",
-      "expected_skill": "kpi-card-glossary",
-      "category": "should-trigger",
-      "reason": "数字指标卡即 KPI 卡的设计场景"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，执行 E 段四步骤：定义结构、应用样式、添加趋势、可选嵌入微图",
+      "notes": "数字指标卡即 KPI 卡的设计场景"
     },
     {
-      "id": "test-3",
+      "id": "tc-03",
       "prompt": "帮我做一个折线图",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "折线图制作属于 chart-type-selection-framework"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；折线图制作属于 chart-type-selection-framework",
+      "notes": "折线图制作非 KPI 卡片范围"
     },
     {
-      "id": "test-4",
+      "id": "tc-04",
       "prompt": "表格怎么设计？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "表格设计不在 KPI 卡片 glossary 范围内"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；表格设计不在 KPI 卡片 glossary 范围内",
+      "notes": "表格设计非本 glossary 范围"
     },
     {
-      "id": "test-5",
+      "id": "tc-05",
       "prompt": "KPI 卡片上的趋势线颜色怎么配？",
-      "expected_skill": "semantic-coloring-principles",
-      "category": "cross-skill-confusion",
-      "reason": "趋势线配色属于语义化配色原则"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；趋势线配色属于 semantic-coloring-principles",
+      "notes": "诱饵兄弟 skill：semantic-coloring-principles。趋势配色属语义化配色"
+    },
+    {
+      "id": "tc-06",
+      "prompt": "KPI 卡片里的 Micro Chart 是必须的吗？",
+      "type": "edge_case",
+      "expected_behavior": "触发该 skill 走 E 段步骤 4：Micro Chart 可选，仅用于有趋势意义的指标，纯装饰性不放",
+      "notes": "对应 E 段步骤 4 '可选嵌入'与 B 段规范"
+    },
+    {
+      "id": "tc-07",
+      "prompt": "非核心指标也用 KPI 卡片展示可以吗？",
+      "type": "edge_case",
+      "expected_behavior": "命中 B 段不适用：非关键指标展示不适用，应建议用普通数值组件而非 KPI 卡片",
+      "notes": "检验非关键指标场景的边界判断"
     }
   ]
 }

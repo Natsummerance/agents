@@ -1,41 +1,57 @@
 {
   "skill": "3d-pie-chart-trap",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "ENCY-charts 设计规范",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
+      "id": "tc-01",
       "prompt": "这个饼图要不要加 3D 效果让它更好看？",
-      "expected_skill": "3d-pie-chart-trap",
-      "category": "should-trigger",
-      "reason": "3D 饼图是明确的图表禁忌场景"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，指出 3D 效果会扭曲数据比例感知（透视变形/光照误导/角度失真），给出纯扁平化替代方案",
+      "notes": "核心触发信号：3D 饼图 + 好看"
     },
     {
-      "id": "test-2",
-      "prompt": "为什么不能用 3D 饼图？",
-      "expected_skill": "3d-pie-chart-trap",
-      "category": "should-trigger",
-      "reason": "用户在询问 3D 饼图陷阱的原因"
+      "id": "tc-02",
+      "prompt": "竞品的饼图用了渐变填充显得很高级，我们要不要跟进？",
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，警告渐变填充使扇区显得更突出、暗示虚假的重要性，建议保持纯色填充并仅按占比区分扇区",
+      "notes": "关键 trigger：渐变填充"
     },
     {
-      "id": "test-3",
-      "prompt": "帮我写一个排序算法",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "与数据可视化无关"
+      "id": "tc-03",
+      "prompt": "帮我检查一下这个 Dashboard 的整体设计有哪些不规范的地方",
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；应转交 chart-taboo-principles 做 8 条禁忌的综合逐项检查",
+      "notes": "诱饵兄弟 skill：chart-taboo-principles。综合性设计评审涉及多种禁忌，不属于单一陷阱场景"
     },
     {
-      "id": "test-4",
-      "prompt": "这个折线图怎么优化？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "折线图不涉及 3D 饼图陷阱，应触发其他 skill"
+      "id": "tc-04",
+      "prompt": "柱状图的 Y 轴从 50 开始可以吗？",
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；应转交 y-axis-non-zero-trap 处理柱状图 Y 轴非零起点的误导问题",
+      "notes": "诱饵兄弟 skill：y-axis-non-zero-trap。同为数据真实性类陷阱但对象是 Y 轴而非饼图"
     },
     {
-      "id": "test-5",
-      "prompt": "我的仪表盘有多个饼图和柱状图，整体设计有什么注意事项？",
-      "expected_skill": "chart-taboo-principles",
-      "category": "cross-skill-confusion",
-      "reason": "涉及多种禁忌应触发综合禁忌清单而非单一陷阱"
+      "id": "tc-05",
+      "prompt": "折线图怎么加阴影效果更好看？",
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；本 skill 仅约束饼图类型，折线图样式美化不在其边界内",
+      "notes": "非饼图类型的图表明确不适用"
+    },
+    {
+      "id": "tc-06",
+      "prompt": "我们在做一个面向儿童的数据艺术展品，想给饼图加立体感吸引注意力，规范允许吗？",
+      "type": "edge_case",
+      "expected_behavior": "触发该 skill 但走 B 段例外分支：教育场景/艺术性可视化属于例外情况，说明边界后仍建议正式业务图表遵循扁平化",
+      "notes": "对应 SKILL.md B 段例外条款，检验边界判断而非机械禁止"
+    },
+    {
+      "id": "tc-07",
+      "prompt": "这是我们的环形图配置 { type: 'pie', radius: ['50%','70%'] }，帮我确认有没有 3D 属性残留？",
+      "type": "edge_case",
+      "expected_behavior": "触发该 skill 执行 E 段步骤 1：扫描 series 中 shading/light/postEffect 属性并输出'未发现 3D 属性'的判定结论",
+      "notes": "已有合规配置的复核场景，验证完成标准'输出存在/不存在 3D 属性的结论'可判定"
     }
   ]
 }

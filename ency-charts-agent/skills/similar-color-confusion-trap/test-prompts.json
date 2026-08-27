@@ -1,41 +1,57 @@
 {
   "skill": "similar-color-confusion-trap",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "ENCY-charts 设计规范",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
+      "id": "tc-01",
       "prompt": "两个系列的颜色太接近了分不清怎么办？",
-      "expected_skill": "similar-color-confusion-trap",
-      "category": "should-trigger",
-      "reason": "相邻色混淆是该 trap 的核心场景"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，执行 E 段四步骤：计算相似度、色盲模拟验证、替换相似色、添加辅助编码",
+      "notes": "相邻色混淆是该 trap 的核心场景"
     },
     {
-      "id": "test-2",
+      "id": "tc-02",
       "prompt": "怎么确保图表中的颜色足够区分？",
-      "expected_skill": "similar-color-confusion-trap",
-      "category": "should-trigger",
-      "reason": "颜色可区分性是该 trap 的检查要点"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，走步骤 1 计算相似度（≤0.8）、步骤 2 Coblis 验证、步骤 4 辅助编码",
+      "notes": "颜色可区分性是该 trap 的检查要点"
     },
     {
-      "id": "test-3",
+      "id": "tc-03",
       "prompt": "帮我推荐一组分类色板",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "色板推荐属于 categorical-palette-glossary"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；色板推荐属于 categorical-palette-glossary",
+      "notes": "色板推荐非 trap 范围"
     },
     {
-      "id": "test-4",
+      "id": "tc-04",
       "prompt": "深色模式下颜色怎么适配？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "深色模式适配不属于相似色混淆范畴"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；深色模式适配不属于相似色混淆范畴",
+      "notes": "深色模式适配非相似色问题"
     },
     {
-      "id": "test-5",
+      "id": "tc-05",
       "prompt": "红绿色盲用户怎么看这个图表？",
-      "expected_skill": "similar-color-confusion-trap",
-      "category": "should-trigger",
-      "reason": "色盲友好性是颜色区分度问题的延伸"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，走步骤 2 Coblis 选 Deuteranopia/Protanopia 模式验证，输出可区分性结论",
+      "notes": "色盲友好性是颜色区分度问题的延伸"
+    },
+    {
+      "id": "tc-06",
+      "prompt": "单系列柱状图颜色相似度要检查吗？",
+      "type": "edge_case",
+      "expected_behavior": "命中 B 段例外：单色图表仅一个数据系列，无相邻色问题，应说明无需检查",
+      "notes": "检验单系列场景的例外边界"
+    },
+    {
+      "id": "tc-07",
+      "prompt": "语义色（成功绿/危险红）相似度要检查吗？",
+      "type": "edge_case",
+      "expected_behavior": "命中 B 段例外：语义色已有固定配色，不适用相似度检查，但仍需验证色盲友好性（辅助编码）",
+      "notes": "检验语义色场景的例外边界"
     }
   ]
 }

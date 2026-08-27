@@ -3,6 +3,7 @@ name: no-systematic-methodology
 description: |
   当用户安装了多个技能但仍感到迷茫、不知道如何系统提升工程能力，或随机选择技能缺乏连贯学习路径时调用此 skill。不适用于：已有明确学习计划的用户、只需要单个技能建议的场景。关键 trigger 信号：迷茫、不知道下一步、随机选择、缺乏系统性、完成技能但没进步。
 source_book: Agent Skills Addy Osmani
+source_project: addyosmani/agent-skills
 source_chapter: Introduction / problem statement
 tags: [anti-pattern, systematic-learning, methodology-gap]
 related_skills: ["no-progress-tracking", "spec-driven-development"]
@@ -52,21 +53,25 @@ Agent Skills 本身就是一个典型案例：它列出了 24+ 个技能，按�
    - 询问用户是否随机选择技能
    - 检查用户是否有明确的学习目标
    - 评估用户是否能清晰描述自己的技能成长
+   - 完成标准: 三项症状核查完成并给出命中/未命中的明确结论
 
 2. **引入系统性方法论**
    - 基于开发生命周期建立学习路径（DEFINE → PLAN → BUILD → VERIFY → REVIEW → SHIP）
    - 为每个阶段设定明确的技能目标
    - 建立技能之间的依赖关系
+   - 完成标准: 学习路径覆盖六个阶段，每阶段有技能目标和前置依赖说明
 
 3. **建立反馈循环**
    - 定期回顾已完成的技能
    - 评估是否真正掌握了该阶段的技能
    - 根据反馈调整下一个技能的选择
+   - 完成标准: 回顾按固定周期执行且每次留有掌握度评估记录
 
 4. **避免随机选择**
    - 不要仅凭兴趣选择技能
    - 确保每个技能都有明确的学习目标
    - 将技能串联成连贯的学习路径
+   - 完成标准: 下一个技能的选择理由与既定学习路径一致，可追溯
 
 ## B (Boundary) - 什么时候不适用
 

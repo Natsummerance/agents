@@ -3,6 +3,7 @@ name: mandatory-workflow
 description: |
   当用户需要了解或使用 Superpowers 的 7 步强制工作流时调用此 skill。适用于所有软件开发任务，包括新功能开发、Bug 修复、重构任务。不适用于：一次性脚本、纯艺术性代码、紧急 hotfix。关键 trigger 信号："7 steps"、"mandatory workflow"、"brainstorming"、"writing-plans"、"subagent-driven-development"、"test-driven-development"、"requesting-code-review"、"finishing-branch"。
 source_book: 《Superpowers》 obra
+source_project: obra/superpowers
 source_chapter: The Basic Workflow / How it works
 tags: [framework, workflow, mandatory]
 related_skills: []
@@ -56,11 +57,22 @@ Mandatory 7-Step Workflow 是 Superpowers 的核心框架，定义了从需求�
 ## E (Execution) - 可执行步骤
 
 1. **确认当前所处步骤**：识别用户当前处于 7 步工作流的哪一步
+   - 完成标准：已对照 7 步定义给出唯一的当前步骤编号，并列出判定依据
+
 2. **检查前置条件**：确认上一步骤已完成且通过验证
+   - 完成标准：前置步骤均有完成证据（产物或验证记录）；任一缺失则回到该步骤补齐，不允许跳过
+
 3. **激活对应 skill**：根据当前步骤激活相应的 skill（如 brainstorming、writing-plans 等）
+   - 完成标准：目标 skill 的名称与激活时机均已写明，且与步骤编号一一对应
+
 4. **执行该步骤的核心逻辑**：按照该 skill 的定义执行
+   - 完成标准：按被激活 skill 自身的完成标准逐条核验通过
+
 5. **验证完成标准**：确认该步骤已完成，可以进入下一步
+   - 完成标准：本步骤的完成标准全部满足并留有核对记录，得到进入下一步的放行结论
+
 6. **记录进度**：更新 PIPELINE_STATE.md 或类似状态文件
+   - 完成标准：状态文件中当前步骤已标记完成、下一步骤已标记待办，时间戳为本次更新时间
 
 **判停条件**：当前步骤完成且通过验证，或用户明确要求停止/跳过。
 

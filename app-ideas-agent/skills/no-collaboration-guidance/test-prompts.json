@@ -1,48 +1,57 @@
 {
   "skill": "no-collaboration-guidance",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "florinpop17/app-ideas",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "我完成个人项目后不知道如何在团队中协作",
-      "expected_skill": "no-collaboration-guidance",
-      "category": "should-trigger",
-      "reason": "团队协作困惑是 no-collaboration-guidance 的核心应用场景"
+      "id": "no-collaboration-guidance-t1",
+      "prompt": "我完成了几个个人项目，马上要进团队了，完全不知道大家是怎么协作开发的",
+      "type": "should_trigger",
+      "expected_behavior": "按 E 段流程先做症状识别（协作经验/Git 工作流/团队角色三问），再引入协作思维并给出工作流讲解",
+      "notes": "核心触发：个人项目到团队环境的转化困境"
     },
     {
-      "id": "test-2",
-      "prompt": "我缺乏 Git 工作流知识，不知道如何管理分支",
-      "expected_skill": "no-collaboration-guidance",
-      "category": "should-trigger",
-      "reason": "Git 工作流是 no-collaboration-guidance 的核心内容"
+      "id": "no-collaboration-guidance-t2",
+      "prompt": "入职第一天就让我用 feature 分支提合并请求，我连 Git 分支都没用过怎么办？",
+      "type": "should_trigger",
+      "expected_behavior": "识别为 Git 工作流知识缺失，讲解分支策略与合并请求，并布置可练习的最小协作流程",
+      "notes": "关键信号：feature 分支、合并请求"
     },
     {
-      "id": "test-3",
-      "prompt": "我在真实团队环境中不知所措",
-      "expected_skill": "no-collaboration-guidance",
-      "category": "should-trigger",
-      "reason": "团队环境适应是 no-collaboration-guidance 的典型表现"
+      "id": "no-collaboration-guidance-t3",
+      "prompt": "听说用 git worktree 可以隔离开发，我想练一下多人并行开发的习惯",
+      "type": "should_trigger",
+      "expected_behavior": "进入建立协作习惯步骤：安排 worktree 隔离开发实践与分支策略练习",
+      "notes": "A2 适用场景第 1 条明确覆盖 Git worktrees 隔离开发"
     },
     {
-      "id": "test-4",
-      "prompt": "我完成项目后不确定代码是否正确",
-      "expected_skill": "no-collaboration-guidance",
-      "category": "should-not-trigger",
-      "reason": "这应该触发 no-testing-guidance skill，虽然与质量相关但更关注代码验证"
+      "id": "no-collaboration-guidance-n1",
+      "prompt": "我做完 Calculator 项目了，但不确定代码逻辑写得对不对，怎么验证？",
+      "type": "should_not_trigger",
+      "expected_behavior": "不启动协作指导；代码正确性验证问题转交 no-testing-guidance 处理",
+      "notes": "跨技能诱饵：代码质量验证归兄弟 skill no-testing-guidance"
     },
     {
-      "id": "test-5",
-      "prompt": "纯个人练习需要协作指导吗？",
-      "expected_skill": "no-collaboration-guidance",
-      "category": "should-not-trigger",
-      "reason": "纯个人练习不需要团队协作，属于边界场景"
+      "id": "no-collaboration-guidance-n2",
+      "prompt": "我是编程初学者，帮我推荐一个适合入门练手的项目吧",
+      "type": "should_not_trigger",
+      "expected_behavior": "不做协作盲点诊断；按难度分级推荐入门项目，转交 tiered-learning-path",
+      "notes": "跨技能诱饵：分级选项目归兄弟 skill tiered-learning-path"
     },
     {
-      "id": "test-6",
-      "prompt": "我完成了几个项目但仍感到迷茫",
-      "expected_skill": "no-systematic-methodology",
-      "category": "cross-skill-confusion",
-      "reason": "这应该触发 no-systematic-methodology skill，虽然与方法论相关但更关注整体框架"
+      "id": "no-collaboration-guidance-e1",
+      "prompt": "我就一个人写代码自娱自乐，永远不会进团队，是不是就不用管什么 Git 协作了？",
+      "type": "edge_case",
+      "expected_behavior": "命中 B 段边界：确认纯个人练习后不强行展开协作训练，仅简要说明未来开源或求职时可再补的价值，尊重用户选择",
+      "notes": "边界用例：纯个人兴趣场景不得硬推协作内容"
+    },
+    {
+      "id": "no-collaboration-guidance-e2",
+      "prompt": "教我用 git worktree 隔离开发——对了这个文件夹还没 git init 过",
+      "type": "edge_case",
+      "expected_behavior": "如实指出当前目录不是 Git 仓库、worktree 无法创建，先引导完成 git init 与首次提交，再继续协作练习，不虚构命令输出",
+      "notes": "错误处理：前置条件缺失必须报告而非跳过"
     }
   ]
 }

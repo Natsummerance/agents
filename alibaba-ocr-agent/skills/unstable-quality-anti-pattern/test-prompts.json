@@ -1,48 +1,50 @@
 {
   "skill": "unstable-quality-anti-pattern",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "alibaba/open-code-review",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "审查质量随提示微小变化而波动，怎么解决？",
-      "expected_skill": "unstable-quality-anti-pattern",
-      "category": "should-trigger",
-      "reason": "质量不稳定是通用 Agent 的核心痛点之一"
+      "id": "tc-01",
+      "prompt": "稍微改了几个字的提示词，审查结果就完全不一样了",
+      "type": "should_trigger",
+      "expected_behavior": "触发本 skill，确认质量波动症状并应用 Fine-grained rule matching 等稳定化对策",
+      "notes": "\"提示微调导致结果剧变\"是本 skill 的标志性症状"
     },
     {
-      "id": "test-2",
-      "prompt": "自然语言驱动的 Skills 难以调试，有什么替代方案？",
-      "expected_skill": "unstable-quality-anti-pattern",
-      "category": "should-trigger",
-      "reason": "难以调试是质量不稳定的典型表现"
+      "id": "tc-02",
+      "prompt": "自然语言驱动的 Skill 太难调试了，审查质量忽好忽坏",
+      "type": "should_trigger",
+      "expected_behavior": "触发本 skill，按 E 段完成波动识别、归因与稳定化验证流程",
+      "notes": "\"难以调试+质量波动\"双重信号命中关键 trigger 词"
     },
     {
-      "id": "test-3",
-      "prompt": "如何确保审查质量稳定可预测？",
-      "expected_skill": "unstable-quality-anti-pattern",
-      "category": "should-trigger",
-      "reason": "稳定性是解决质量波动的关键"
+      "id": "tc-03",
+      "prompt": "报告行号漂移的问题属于 position-drift-anti-pattern 的范畴吧",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，路由到 position-drift-anti-pattern",
+      "notes": "跨技能诱饵：点名兄弟 skill，位置精度与质量稳定性互为区分项"
     },
     {
-      "id": "test-4",
-      "prompt": "报告的问题位置不准确，行号对不上",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "这是位置漂移问题，应由 position-drift-anti-pattern 处理"
+      "id": "tc-04",
+      "prompt": "我们的审查流程已经连续三个月结果稳定，不需要再排查什么了",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，质量稳定的场景列为不适用",
+      "notes": "无波动即无此反模式"
     },
     {
-      "id": "test-5",
-      "prompt": "这个单一文件的代码有什么问题？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "小型单一文件修改不涉及质量波动问题"
+      "id": "tc-05",
+      "prompt": "大 PR 审查总漏文件的覆盖问题，请走 incomplete-coverage-anti-pattern 流程",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本 skill，路由到 incomplete-coverage-anti-pattern",
+      "notes": "跨技能诱饵：点名兄弟 skill，覆盖率与稳定性互为区分项"
     },
     {
-      "id": "test-6",
-      "prompt": "如何基于模板引擎进行规则匹配？",
-      "expected_skill": "template-engine-over-language-driven",
-      "category": "cross-skill-confusion",
-      "reason": "这应该触发模板引擎 skill，虽然与质量稳定相关但更关注规则匹配"
+      "id": "tc-06",
+      "prompt": "升级了模型版本之后审查结果变了，这算不算质量不稳定反模式？",
+      "type": "edge_case",
+      "expected_behavior": "触发本 skill 给出判定标准：同版本内的提示微扰波动才算本反模式；跨版本变化需先做基线重测再判定，结论可核查",
+      "notes": "边界题：区分环境变化与提示敏感导致的波动"
     }
   ]
 }

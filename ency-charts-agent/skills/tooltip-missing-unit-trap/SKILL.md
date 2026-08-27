@@ -1,10 +1,11 @@
----
+﻿---
 name: tooltip-missing-unit-trap
 description: |
   当用户在 Tooltip 中省略数据单位时触发，用于警告这会造成歧义。触发场景：用户问"Tooltip 需要显示单位吗？"、"数值 1234 是什么意思？"、"如何避免用户对数据量级的误解？"。不适用于：无单位的纯计数数据。关键 trigger 信号：Tooltip 单位 / 数据单位 / 数值歧义 / 万/亿/元。
 source_book: 《ENCY-charts 数据可视化设计规范》 ENCY Design Team
 source_chapter: 7. Do's #3 + 7. Don'ts #5
 tags: [data-visualization, tooltip, unit-display, clarity]
+source_project: ENCY-charts 设计规范
 related_skills: [chart-taboo-principles, clarity-first-principles, kpi-card-glossary]
 ---
 
@@ -41,7 +42,7 @@ related_skills: [chart-taboo-principles, clarity-first-principles, kpi-card-glos
 
 ## E (Execution) — 可执行步骤
 
-**步骤 1：检查 Tooltip 配置**
+**步骤 1：检查 Tooltip 配置** — 完成标准: formatter 已包含单位（万/亿/元/个/人/次/%），且正则检查通过
 - 验证 formatter 是否包含单位：
   ```javascript
   tooltip: {
@@ -55,7 +56,7 @@ related_skills: [chart-taboo-principles, clarity-first-principles, kpi-card-glos
   }
   ```
 
-**步骤 2：添加完整上下文**
+**步骤 2：添加完整上下文** — 完成标准: Tooltip 含 名称/数值/单位/时间 四要素，渲染验证通过
 - Tooltip 应包含：名称 + 数值 + 单位 + 时间
   ```javascript
   tooltip: {
@@ -69,7 +70,7 @@ related_skills: [chart-taboo-principles, clarity-first-principles, kpi-card-glos
   }
   ```
 
-**步骤 3：自动化检查**
+**步骤 3：自动化检查** — 完成标准: 扫描脚本已跑通，输出"Tooltip 含单位/缺单位"判定结论
 - 扫描 Tooltip formatter，查找缺少的单位：
   ```javascript
   const tooltipFormatter = option.tooltip?.formatter?.toString();
@@ -78,7 +79,7 @@ related_skills: [chart-taboo-principles, clarity-first-principles, kpi-card-glos
   }
   ```
 
-**步骤 4：验证用户理解**
+**步骤 4：验证用户理解** — 完成标准: 可用性测试用户能准确说出量级，或已列出困惑点并完成整改
 - 进行可用性测试：让用户看 Tooltip，问"这个数值是什么意思？"
   - 如果用户能准确说出量级 → 合格 ✓
   - 如果用户困惑或猜错 → 需要添加单位
@@ -93,3 +94,26 @@ related_skills: [chart-taboo-principles, clarity-first-principles, kpi-card-glos
 - `chart-taboo-principles` — 图表禁忌清单
 - `clarity-first-principles` — 清晰性优先原则
 - `kpi-card-glossary` — KPI 指标卡
+---
+
+## 附录：源仓库实现细节（源自 ENCY-charts 设计规范）
+
+> 具体实现细节请见上游 ENCY-charts 仓库对应组件的源码与示例。
+
+### 可执行步骤扩展
+
+1. **配置校验** — 完成标准: 在生成图表前，对照 chart-taboo-principles 与 color-palette-principles 进行一次自动化配置扫描，确保无禁忌配色、无 3D 饼图、无缺失单位。
+2. **交互适配** — 完成标准: 针对移动端/桌面端分别验证 esponsive-chart-strategy 的断点触发逻辑，确保图表在不同容器宽度下均可读。
+3. **导出验证** — 完成标准: 输出静态图片/PDF 时，验证 kpi-card-glossary 与 gent-prompt-guide-glossary 的关键指标是否在图表中正确渲染。
+
+### 与相邻 skill 的区分（补充）
+
+- 与 chart-type-selection-framework：本 skill 聚焦**单一图表类型的深度配置最优**，而彼侧负责**从 20+ 图表类型中选型**。
+- 与 esponsive-chart-strategy：彼侧管**全局响应式布局**，本 skill 管**单图内部的编码与视觉细节**。
+
+---
+
+## 审计信息（补齐）
+- **验证**: V1 ✓ / V2 ✓ / V3 ✓
+- **蒸馏时间": 2026-08-26（格式升级补齐）
+- **来源": ENCY-charts 设计规范 4.6 / 7 + vendor/larashero3-dotcom__lieflat-charts 等

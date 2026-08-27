@@ -3,6 +3,7 @@ name: deterministic-engineering-hard-constraints
 description: |
   当需要确保代码审查中关键步骤的正确性时使用此 skill。适用于：文件选择、规则匹配、位置定位等不能出错的场景。不适用于：动态决策、上下文检索等需要灵活性的场景。关键 trigger 信号：用户提到"必须精确"、"不能遗漏"、"位置不准"、"规则不稳定"等问题。
 source_book: alibaba/open-code-review
+source_project: alibaba/open-code-review
 source_chapter: Core Design: Deterministic Engineering × Agent Hybrid
 tags: [deterministic-engineering, hard-constraints, code-review]
 related_skills: [divide-and-conquer-strategy, hard-constraints-over-soft-prompts, template-engine-over-language-driven]
@@ -56,13 +57,18 @@ related_skills: [divide-and-conquer-strategy, hard-constraints-over-soft-prompts
 ## E (Execution) — 可执行步骤
 
 1. **识别硬约束步骤**: 列出审查过程中不能出错的步骤（文件选择、规则匹配、位置定位）
+   - 完成标准: 得到明确的硬约束步骤清单，每一项都标注"不能出错"的理由
 2. **设计工程逻辑**: 为每个硬约束步骤设计确定性算法（而非依赖 LLM）
+   - 完成标准: 每个硬约束步骤都有对应的确定性算法设计说明，且不依赖 LLM 输出
    - 文件选择：基于 git diff 和文件类型过滤规则
    - 规则匹配：基于模板引擎的文件特征匹配
    - 位置定位：独立的 AST 解析和行号计算模块
 3. **实现外部模块**: 将硬约束步骤实现为独立的外部模块，与 Agent 解耦
+   - 完成标准: 硬约束模块代码合入，可脱离 Agent 主流程独立运行
 4. **集成测试**: 编写测试用例验证每个硬约束步骤的正确性
+   - 完成标准: 每个硬约束步骤的单元测试全部通过，用例覆盖正常与异常路径
 5. **监控和反馈**: 记录硬约束步骤的执行日志，用于持续改进
+   - 完成标准: 执行日志落盘可查询，能定位到具体失败的步骤与原因
 
 **完成标准**: 所有硬约束步骤通过单元测试，无位置漂移，无文件遗漏
 

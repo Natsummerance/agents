@@ -3,6 +3,7 @@ name: specialized-toolset-over-generic
 description: |
   当需要使用专用工具集而非通用工具集时使用此 skill。适用于：代码审查场景、静态分析场景、动态上下文检索等场景。不适用于：通用编程任务。关键 trigger 信号：用户提到"专用工具"、"生产数据"、"工具优化"等问题。
 source_book: alibaba/open-code-review
+source_project: alibaba/open-code-review
 source_chapter: Core Value: Specialized Toolset > Generic Toolkit
 tags: [specialized-toolset, production-data, tool-optimization]
 related_skills: [agent-dynamic-decision-making]
@@ -54,10 +55,15 @@ related_skills: [agent-dynamic-decision-making]
 ## E (Execution) — 可执行步骤
 
 1. **收集生产数据**: 记录工具调用轨迹数据（调用频率、重复率、影响因子等）
+   - 完成标准: 轨迹数据集落盘，字段含调用频率、重复率、影响因子且样本量满足统计要求
 2. **统计分析**: 分析调用频率分布、每工具重复率、新工具对调用链的影响
+   - 完成标准: 输出三份统计结论：频率分布、逐工具重复率、新工具影响评估
 3. **提炼专用工具集**: 基于数据分析结果，选择最适合代码审查的工具组合
+   - 完成标准: 专用工具集清单定稿，每个取舍决定附数据依据
 4. **集成测试**: 验证专用工具集的稳定性和可预测性
+   - 完成标准: A/B 对比显示稳定性与可预测性指标优于通用工具集基线
 5. **持续迭代**: 根据新的生产数据持续优化工具集
+   - 完成标准: 建立数据回流机制，每次调整留存前后对比记录
 
 **完成标准**: 专用工具集通过 A/B 测试，稳定性和可预测性显著优于通用方案
 

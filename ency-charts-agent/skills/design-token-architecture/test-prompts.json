@@ -1,41 +1,57 @@
 {
   "skill": "design-token-architecture",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "ENCY-charts 设计规范",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
+      "id": "tc-01",
       "prompt": "设计系统的 Token 应该怎么组织？",
-      "expected_skill": "design-token-architecture",
-      "category": "should-trigger",
-      "reason": "Token 架构组织是该 skill 的核心"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，输出三层架构与五步执行流程",
+      "notes": "Token 架构组织是该 skill 的核心"
     },
     {
-      "id": "test-2",
+      "id": "tc-02",
       "prompt": "Seed Token、Component Token 和 Semantic Token 的关系是什么？",
-      "expected_skill": "design-token-architecture",
-      "category": "should-trigger",
-      "reason": "三层架构的关系是该 skill 的关键知识点"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，解析三层架构的层级关系与数据流向",
+      "notes": "三层架构关系是该 skill 的关键知识点"
     },
     {
-      "id": "test-3",
+      "id": "tc-03",
       "prompt": "帮我调一下这个按钮的颜色",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "单元素样式调整不属于 Token 架构咨询"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；单元素样式调整不属于 Token 架构咨询",
+      "notes": "单元素调整非架构层面问题"
     },
     {
-      "id": "test-4",
+      "id": "tc-04",
       "prompt": "什么是 CSS 变量？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "CSS 基础知识不在范围内"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；CSS 基础知识不在范围内",
+      "notes": "基础概念查询非本 skill 范围"
     },
     {
-      "id": "test-5",
+      "id": "tc-05",
       "prompt": "品牌主色用什么值比较好？",
-      "expected_skill": "seed-token-glossary",
-      "category": "cross-skill-confusion",
-      "reason": "品牌色的具体值属于 Seed Token 定义层"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；品牌色具体值属于 seed-token-glossary",
+      "notes": "诱饵兄弟 skill：seed-token-glossary。具体值定义非架构设计"
+    },
+    {
+      "id": "tc-06",
+      "prompt": "需要支持亮色/暗色/高对比度三套主题，Token 架构怎么改？",
+      "type": "edge_case",
+      "expected_behavior": "触发该 skill 走 B 段不适用：3+ 主题需更复杂 Token 管理工具，应说明边界并建议引入专用工具",
+      "notes": "检验多主题场景的边界判断"
+    },
+    {
+      "id": "tc-07",
+      "prompt": "团队协作时 Token 变更怎么同步？",
+      "type": "edge_case",
+      "expected_behavior": "触发该 skill 走 B 段作者盲点：未说明大型团队同步机制，应给出版本管理+变更通知+自动化测试的建议方案",
+      "notes": "对应 B 段盲点'未说明如何在大型团队中同步 Token 变更'"
     }
   ]
 }

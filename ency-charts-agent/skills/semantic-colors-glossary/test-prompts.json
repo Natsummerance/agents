@@ -1,41 +1,57 @@
 {
   "skill": "semantic-colors-glossary",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "ENCY-charts 设计规范",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
+      "id": "tc-01",
       "prompt": "成功、警告、危险状态分别用什么颜色？",
-      "expected_skill": "semantic-colors-glossary",
-      "category": "should-trigger",
-      "reason": "语义色定义是该 glossary 的核心"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，输出四态语义色定义与典型示例",
+      "notes": "语义色定义是该 glossary 的核心"
     },
     {
-      "id": "test-2",
+      "id": "tc-02",
       "prompt": "信息提示的蓝色应该用什么值？",
-      "expected_skill": "semantic-colors-glossary",
-      "category": "should-trigger",
-      "reason": "信息色属于语义色的四类之一"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，给出 --chart-info: #2469FF 及适用场景",
+      "notes": "信息色属于语义色四类之一"
     },
     {
-      "id": "test-3",
+      "id": "tc-03",
       "prompt": "品牌主色推荐什么？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "品牌色属于 seed-token-glossary"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；品牌色属于 seed-token-glossary",
+      "notes": "品牌色非语义色范围"
     },
     {
-      "id": "test-4",
+      "id": "tc-04",
       "prompt": "分类数据的颜色怎么选？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "分类色属于 categorical-palette-glossary"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；分类色属于 categorical-palette-glossary",
+      "notes": "分类色非语义色范围"
     },
     {
-      "id": "test-5",
+      "id": "tc-05",
       "prompt": "图表中正增长和负增长的颜色含义？",
-      "expected_skill": "semantic-coloring-principles",
-      "category": "cross-skill-confusion",
-      "reason": "增长/下降的配色原则属于 semantic-coloring-principles 而非色值定义"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；增长/下降配色原则属于 semantic-coloring-principles 而非色值定义",
+      "notes": "诱饵兄弟 skill：semantic-coloring-principles。原则非色值定义"
+    },
+    {
+      "id": "tc-06",
+      "prompt": "暗色模式下四态语义色的具体值是多少？",
+      "type": "edge_case",
+      "expected_behavior": "触发该 skill 走 E 段步骤 3 验证对比度：暗色背景下四态色需重新校验 ≥4.5:1，若不达标给出调整建议",
+      "notes": "暗色模式对比度验证是 glossary 的扩展职责"
+    },
+    {
+      "id": "tc-07",
+      "prompt": "医疗行业有专用颜色标准，语义色还适用吗？",
+      "type": "edge_case",
+      "expected_behavior": "命中 B 段不适用：特殊行业规范（医疗/航空）有专用标准，应说明边界并建议遵循行业规范",
+      "notes": "检验特殊行业场景的边界判断"
     }
   ]
 }

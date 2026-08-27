@@ -1,41 +1,57 @@
 {
   "skill": "clarity-first-principles",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "ENCY-charts 设计规范",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
+      "id": "tc-01",
       "prompt": "图表设计如何做到清晰易读？",
-      "expected_skill": "clarity-first-principles",
-      "category": "should-trigger",
-      "reason": "清晰性优先是该 skill 的核心原则"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，输出五条子原则与六步执行流程",
+      "notes": "清晰性优先是该 skill 的核心原则"
     },
     {
-      "id": "test-2",
+      "id": "tc-02",
       "prompt": "这个图表信息太杂了怎么简化？",
-      "expected_skill": "clarity-first-principles",
-      "category": "should-trigger",
-      "reason": "信息简化对应清晰性优先的设计哲学"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，执行 E 段步骤 3 去除过度装饰、步骤 4 优化可读性、步骤 5 添加留白",
+      "notes": "信息简化对应清晰性优先的设计哲学"
     },
     {
-      "id": "test-3",
+      "id": "tc-03",
       "prompt": "帮我统一所有页面的字体大小",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "一致性属于 consistency-principles"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；一致性属于 consistency-principles",
+      "notes": "字体统一属于一致性原则"
     },
     {
-      "id": "test-4",
+      "id": "tc-04",
       "prompt": "Tooltip 怎么自定义内容？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "Tooltip 配置属于具体陷阱或功能实现"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；Tooltip 配置属于具体陷阱或功能实现",
+      "notes": "Tooltip 配置非清晰性原则核心范围"
     },
     {
-      "id": "test-5",
+      "id": "tc-05",
       "prompt": "如何确保多个图表风格一致？",
-      "expected_skill": "consistency-principles",
-      "category": "cross-skill-confusion",
-      "reason": "风格一致属于一致性原则而非清晰性原则"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；风格一致属于 consistency-principles",
+      "notes": "诱饵兄弟 skill：consistency-principles。跨图表一致性非本 skill"
+    },
+    {
+      "id": "tc-06",
+      "prompt": "暗色模式下对比度不够怎么办？",
+      "type": "edge_case",
+      "expected_behavior": "触发该 skill 走步骤 1：检查对比度 ≥4.5:1，若不合格调整颜色或增加背景遮罩，并验证暗色主题 Token 覆盖",
+      "notes": "暗色模式对比度是清晰性原则的具体应用"
+    },
+    {
+      "id": "tc-07",
+      "prompt": "数据艺术作品也要遵循清晰性优先吗？",
+      "type": "edge_case",
+      "expected_behavior": "命中 B 段不适用：艺术性可视化不适用，应说明边界并建议功能性图表遵循",
+      "notes": "检验艺术性可视化的边界判断"
     }
   ]
 }

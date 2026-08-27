@@ -1,20 +1,57 @@
 {
   "skill": "implement",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "mattpocock/skills",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "开始实现 ticket #1",
-      "expected_skill": "implement",
-      "category": "should-trigger",
-      "reason": "明确的工单实现指令"
+      "id": "implement-01",
+      "prompt": "Implement this spec. Here's the detailed feature specification.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes implement skill to build from the spec, driving TDD internally, then code-review before commit.",
+      "notes": "User provides spec as source of truth."
     },
     {
-      "id": "test-2",
-      "prompt": "帮我审查这段代码",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "代码审查属于 code-review"
+      "id": "implement-02",
+      "prompt": "Code this up. The tickets are ready in the issue tracker.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes implement skill to execute tickets from to-tickets, working through them in dependency order.",
+      "notes": "Tickets already exist from to-tickets output."
+    },
+    {
+      "id": "implement-03",
+      "prompt": "Build the user authentication feature using test-driven development.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes implement skill which internally drives TDD (red-green loop) for each vertical slice.",
+      "notes": "User explicitly mentions TDD, which implement uses internally."
+    },
+    {
+      "id": "implement-04",
+      "prompt": "Write tests for this existing code.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes tdd skill directly instead of implement. Implement builds features; tdd drives test-first development.",
+      "notes": "tdd is the sibling skill for writing tests."
+    },
+    {
+      "id": "implement-05",
+      "prompt": "Review the code changes since the last commit.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes code-review skill instead of implement. Code review evaluates existing diffs; implement builds new code.",
+      "notes": "code-review is the sibling skill for evaluating diffs."
+    },
+    {
+      "id": "implement-06",
+      "prompt": "What's the best way to design this module's interface?",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes codebase-design skill instead of implement. Codebase-design shapes interfaces; implement fills implementations.",
+      "notes": "codebase-design is the sibling skill for module design."
+    },
+    {
+      "id": "implement-07",
+      "prompt": "Fix the review findings from the last code review.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes implement skill to address code-review findings, re-implementing with fixes.",
+      "notes": "Post-review iteration is a valid implement scenario."
     }
   ]
 }

@@ -1,48 +1,57 @@
 {
   "skill": "evidence-over-claims",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "obra/superpowers",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "如何验证 Bug 是否真的被修复了？",
-      "expected_skill": "evidence-over-claims",
-      "category": "should-trigger",
-      "reason": "验证 Bug 修复是 evidence-over-claims 的核心应用场景"
+      "id": "evidence-over-claims-t1",
+      "prompt": "你怎么确认这个 bug 是真的修好了，而不是看起来好了？",
+      "type": "should_trigger",
+      "expected_behavior": "启动验证流程：明确验证目标→设计验证手段→实际运行收集证据→展示可复核的结论",
+      "notes": "核心触发：ensure fixed 场景"
     },
     {
-      "id": "test-2",
-      "prompt": "如何确认功能是否真正完成？",
-      "expected_skill": "evidence-over-claims",
-      "category": "should-trigger",
-      "reason": "验证功能完成是 evidence-over-claims 的应用场景"
+      "id": "evidence-over-claims-t2",
+      "prompt": "重构完成后给我看看测试证据，我要 proof 不是口头保证",
+      "type": "should_trigger",
+      "expected_behavior": "运行测试套件并展示原始输出作为证据，未获证据前不宣布完成",
+      "notes": "关键信号：proof、evidence"
     },
     {
-      "id": "test-3",
-      "prompt": "如何验证性能优化是否有效？",
-      "expected_skill": "evidence-over-claims",
-      "category": "should-trigger",
-      "reason": "验证性能优化是 evidence-over-claims 的应用场景"
+      "id": "evidence-over-claims-t3",
+      "prompt": "你说优化让接口快了一倍，benchmark 数据在哪？",
+      "type": "should_trigger",
+      "expected_behavior": "补跑基准测试给出前后对照数据及测量条件，无数据则撤回'快了一倍'的声明",
+      "notes": "关键信号：benchmark、性能优化验证"
     },
     {
-      "id": "test-4",
-      "prompt": "什么是 RED-GREEN-REFACTOR 循环？",
-      "expected_skill": "evidence-over-claims",
-      "category": "should-not-trigger",
-      "reason": "这应该触发 test-first-philosophy skill，虽然与验证相关但更关注 TDD"
+      "id": "evidence-over-claims-n1",
+      "prompt": "功能还没开始写呢，我想先了解怎么按 TDD 的方式写失败测试",
+      "type": "should_not_trigger",
+      "expected_behavior": "实现前的测试先行方法转交 test-first-philosophy；本 skill 只做完成后的结果验证",
+      "notes": "跨技能诱饵：测试先行归兄弟 skill test-first-philosophy"
     },
     {
-      "id": "test-5",
-      "prompt": "纯理论讨论需要验证吗？",
-      "expected_skill": "evidence-over-claims",
-      "category": "should-not-trigger",
-      "reason": "纯理论讨论无法验证，属于边界场景"
+      "id": "evidence-over-claims-n2",
+      "prompt": "这个问题反复出现，我怀疑之前的修法只是治标没找到病根，帮我追一下根因",
+      "type": "should_not_trigger",
+      "expected_behavior": "根因追踪过程转交 ad-hoc-debugging-anti-pattern；追到根因后的修复验证才回到本 skill",
+      "notes": "跨技能诱饵：根因追踪归兄弟 skill ad-hoc-debugging-anti-pattern"
     },
     {
-      "id": "test-6",
-      "prompt": "我凭猜测调试 Bug，有什么问题？",
-      "expected_skill": "ad-hoc-debugging-anti-pattern",
-      "category": "cross-skill-confusion",
-      "reason": "这应该触发 ad-hoc-debugging-anti-pattern skill，虽然与验证相关但更关注调试方法"
+      "id": "evidence-over-claims-e1",
+      "prompt": "我觉得新代码读起来更优雅了，这个怎么验证？",
+      "type": "edge_case",
+      "expected_behavior": "命中 B 段边界：无法量化的主观审美判断不启动验证流程，说明可量化的替代指标（圈复杂度、重复率）供用户选择",
+      "notes": "边界用例：主观评价超出证据可覆盖范围"
+    },
+    {
+      "id": "evidence-over-claims-e2",
+      "prompt": "全量测试套件太慢了要跑四十分钟，这次就跳过直接宣布完成行不行？",
+      "type": "edge_case",
+      "expected_behavior": "拒绝零证据声明成功：提供缩小验证范围的替代方案（只跑受影响模块的测试子集），并记录欠下的验证债",
+      "notes": "红线用例：成本压力不得豁免证据要求"
     }
   ]
 }

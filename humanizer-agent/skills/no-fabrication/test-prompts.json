@@ -1,41 +1,50 @@
 {
   "skill": "no-fabrication",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "blader/humanizer",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "去痕后是否会改变事实？",
-      "expected_skill": "no-fabrication",
-      "category": "should-trigger",
-      "reason": "不编造事实的硬约束 是 no-fabrication 的核心应用场景"
+      "id": "nof-t1",
+      "prompt": "去痕之后会不会把我的日期、数字和引用改掉？",
+      "type": "should_trigger",
+      "expected_behavior": "触发本技能：声明事实细节（name/number/date/quote）只来自源文本或作者，去痕前后零篡改并逐条核对。",
+      "notes": "用户直接担心事实准确性。"
     },
     {
-      "id": "test-2",
-      "prompt": "AI 是否会编造内容？",
-      "expected_skill": "no-fabrication",
-      "category": "should-trigger",
-      "reason": "不编造事实的硬约束 是 no-fabrication 的核心应用场景"
+      "id": "nof-t2",
+      "prompt": "原文里没写具体月份，重写的时候可以帮我补一个吗？",
+      "type": "should_trigger",
+      "expected_behavior": "触发本技能：拒绝编造，改为向用户询问缺失细节。",
+      "notes": "对应 ask instead of making up 原则。"
     },
     {
-      "id": "test-3",
-      "prompt": "去痕流程是什么？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "该场景不属于 不编造事实的硬约束 的触发条件"
+      "id": "nof-nt1",
+      "prompt": "改完后怎么保证读起来还是我原来的写作风格？",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本技能；风格保持问题归 preserve-style。",
+      "notes": "诱饵：点名兄弟 skill preserve-style，真实性保障与个性化保障需区分。"
     },
     {
-      "id": "test-4",
-      "prompt": "去痕是否会破坏文件结构？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "该场景不属于 不编造事实的硬约束 的触发条件"
+      "id": "nof-nt2",
+      "prompt": "我想先看到你的第一版改稿和批评意见再定稿。",
+      "type": "should_not_trigger",
+      "expected_behavior": "不触发本技能；透明化流程诉求归 show-your-work。",
+      "notes": "诱饵：点名兄弟 skill show-your-work，过程透明不是内容保障。"
     },
     {
-      "id": "test-5",
-      "prompt": "这个 API 怎么用？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "该场景不属于 不编造事实的硬约束 的触发条件"
+      "id": "nof-e1",
+      "prompt": "原文写的是'大约三月'，去痕时把'大约'删掉让它更果断可以吗？",
+      "type": "edge_case",
+      "expected_behavior": "保守处理：模糊限定词属于作者的事实表述，删除前必须询问用户而非默认删改。",
+      "notes": "作者盲点提到的模糊/不确定事实处理，考察是否擅自改变限定语义。"
+    },
+    {
+      "id": "nof-e2",
+      "prompt": "帮我加一个里斯本的酒店名字，让文章显得更真实。",
+      "type": "edge_case",
+      "expected_behavior": "不直接编造酒店名；说明任何新增事实细节须由用户提供来源，否则留白。",
+      "notes": "用户明确要求添加细节属 B 段边界，但红线仍是不编造。"
     }
   ]
 }

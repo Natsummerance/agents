@@ -1,41 +1,57 @@
 {
   "skill": "ai-iteration-check-principles",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "ENCY-charts 设计规范",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
+      "id": "tc-01",
       "prompt": "AI 迭代生成的图表代码应该检查哪些项？",
-      "expected_skill": "ai-iteration-check-principles",
-      "category": "should-trigger",
-      "reason": "直接询问 AI 迭代检查的必检项"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，输出 10 条必检项分类与执行步骤",
+      "notes": "直接询问 AI 迭代检查必检项"
     },
     {
-      "id": "test-2",
+      "id": "tc-02",
       "prompt": "帮我审查这段 ECharts 代码有没有问题",
-      "expected_skill": "ai-iteration-check-principles",
-      "category": "should-trigger",
-      "reason": "代码审查对应迭代检查的 10 条必检项"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，对照 10 条检查项逐项审查并生成报告",
+      "notes": "代码审查对应迭代检查的 10 条必检项"
     },
     {
-      "id": "test-3",
+      "id": "tc-03",
       "prompt": "帮我从零开始设计一个 Dashboard",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "从零设计不是迭代检查场景"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；从零设计不是迭代检查场景",
+      "notes": "从零设计不属于迭代检查范围"
     },
     {
-      "id": "test-4",
+      "id": "tc-04",
       "prompt": "什么是设计 Token？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "Token 概念解释应使用 design-token-architecture"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；Token 概念解释应使用 design-token-architecture",
+      "notes": "Token 概念解释不在本 skill 范围"
     },
     {
-      "id": "test-5",
+      "id": "tc-05",
       "prompt": "如何让 AI 理解我的图表需求？",
-      "expected_skill": "ai-friendly-spec-framework",
-      "category": "cross-skill-confusion",
-      "reason": "需求表达属于 AI 友好规范框架而非迭代检查"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；需求表达属于 ai-friendly-spec-framework 而非迭代检查",
+      "notes": "诱饵兄弟 skill：ai-friendly-spec-framework。需求表达非本 skill 职责"
+    },
+    {
+      "id": "tc-06",
+      "prompt": "这段代码通过了 9/10 检查项，只有动画时长超标，要不要放行？",
+      "type": "edge_case",
+      "expected_behavior": "触发该 skill 走 E 段步骤 7：通过率<100%应返回 AI 重新生成并指定失败项，不可放行",
+      "notes": "验证通过率红线：<100%必须返工"
+    },
+    {
+      "id": "tc-07",
+      "prompt": "人工写的图表代码也要用这 10 条检查吗？",
+      "type": "edge_case",
+      "expected_behavior": "命中 B 段不适用场景（人工编写代码审查），应说明需要更全面清单并给出边界",
+      "notes": "检验人工代码审查的边界判断"
     }
   ]
 }

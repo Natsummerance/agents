@@ -1,41 +1,57 @@
 {
   "skill": "chart-taboo-principles",
-  "version": "1.0.0",
-  "tests": [
+  "version": "1.1.0",
+  "source_project": "ENCY-charts 设计规范",
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
+      "id": "tc-01",
       "prompt": "图表设计有哪些常见的禁忌？",
-      "expected_skill": "chart-taboo-principles",
-      "category": "should-trigger",
-      "reason": "直接询问图表禁忌清单"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，输出 8 条 Don'ts 清单与分类说明",
+      "notes": "直接询问图表禁忌清单"
     },
     {
-      "id": "test-2",
+      "id": "tc-02",
       "prompt": "帮我检查一下这个 Dashboard 有没有违反设计规范的地方",
-      "expected_skill": "chart-taboo-principles",
-      "category": "should-trigger",
-      "reason": "设计评审对应禁忌清单逐项检查"
+      "type": "should_trigger",
+      "expected_behavior": "触发该 skill，执行 E 段 9 步骤逐项检查并生成报告",
+      "notes": "设计评审对应禁忌清单逐项检查"
     },
     {
-      "id": "test-3",
+      "id": "tc-03",
       "prompt": "帮我选一个适合展示销售趋势的图表",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "图表选型属于 chart-type-selection-framework"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；图表选型属于 chart-type-selection-framework",
+      "notes": "图表选型非禁忌清单范围"
     },
     {
-      "id": "test-4",
+      "id": "tc-04",
       "prompt": "如何设置 ECharts 的动画效果？",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "动画配置不属于禁忌清单范围"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；动画配置不属于禁忌清单范围",
+      "notes": "动画配置非禁忌范围"
     },
     {
-      "id": "test-5",
+      "id": "tc-05",
       "prompt": "饼图超过 6 个扇区怎么办？",
-      "expected_skill": "chart-type-selection-framework",
-      "category": "cross-skill-confusion",
-      "reason": "扇区合并策略属于图表选型决策而非禁忌清单"
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；扇区合并策略属于 chart-type-selection-framework",
+      "notes": "诱饵兄弟 skill：chart-type-selection-framework。扇区合并属选型决策"
+    },
+    {
+      "id": "tc-06",
+      "prompt": "这个图表用了 3D 效果和渐变填充，是不是违规？",
+      "type": "edge_case",
+      "expected_behavior": "触发该 skill 走 E 段步骤 4：检测到 3D 效果输出错误，并联动 3d-pie-chart-trap 给出扁平化替代方案",
+      "notes": "诱饵兄弟 skill：3d-pie-chart-trap。具体陷阱由专门 trap 处理"
+    },
+    {
+      "id": "tc-07",
+      "prompt": "艺术性数据可视化作品能用 3D 效果吗？",
+      "type": "edge_case",
+      "expected_behavior": "触发该 skill 走 B 段例外：艺术性可视化属于例外情况，说明边界后仍建议功能性图表遵循禁忌",
+      "notes": "检验 B 段例外条款的边界判断"
     }
   ]
 }

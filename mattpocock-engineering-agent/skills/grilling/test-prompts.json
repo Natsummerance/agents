@@ -1,20 +1,54 @@
 {
-  "skill": "grilling",
-  "version": "1.0.0",
-  "tests": [
+  "minimum_pass_rate": 0.95,
+  "test_cases": [
     {
-      "id": "test-1",
-      "prompt": "（由 grill-me 内部调用）追问更多细节",
-      "expected_skill": "grilling",
-      "category": "should-trigger",
-      "reason": "内部调用触发"
+      "id": "grilling-01",
+      "user_input": "Run grilling on this API design decision tree. Bare primitive, no wrapper.",
+      "should_trigger": ["grilling"],
+      "should_not_trigger": ["grill-me", "grill-with-docs", "triage"],
+      "edge_case": false
     },
     {
-      "id": "test-2",
-      "prompt": "用户直接说 grill",
-      "expected_skill": null,
-      "category": "should-not-trigger",
-      "reason": "用户应使用 grill-me 而非内部原语"
+      "id": "grilling-02",
+      "user_input": "Deep dive on this one decision: sync vs async for the webhook handler.",
+      "should_trigger": ["grilling"],
+      "should_not_trigger": ["grill-me", "grill-with-docs", "codebase-design"],
+      "edge_case": false
+    },
+    {
+      "id": "grilling-03",
+      "user_input": "Use the interview primitive to stress-test my database migration strategy.",
+      "should_trigger": ["grilling"],
+      "should_not_trigger": ["grill-me", "grill-with-docs", "diagnosing-bugs"],
+      "edge_case": false
+    },
+    {
+      "id": "grilling-04",
+      "user_input": "Triage is using grilling internally to sharpen this incoming issue.",
+      "should_trigger": ["triage"],
+      "should_not_trigger": ["grilling", "grill-me", "grill-with-docs"],
+      "edge_case": false
+    },
+    {
+      "id": "grilling-05",
+      "user_input": "Wayfinder uses grilling to resolve each decision ticket on the map.",
+      "should_trigger": ["wayfinder"],
+      "should_not_trigger": ["grilling", "grill-me", "grill-with-docs"],
+      "edge_case": false
+    },
+    {
+      "id": "grilling-06",
+      "user_input": "Grill me on my talk outline. No repo, stateless.",
+      "should_trigger": ["grill-me"],
+      "should_not_trigger": ["grilling", "grill-with-docs", "domain-modeling"],
+      "edge_case": false
+    },
+    {
+      "id": "grilling-07",
+      "user_input": "Grill this design with docs in our repo.",
+      "should_trigger": ["grill-with-docs"],
+      "should_not_trigger": ["grilling", "grill-me", "domain-modeling"],
+      "edge_case": true
     }
   ]
 }
