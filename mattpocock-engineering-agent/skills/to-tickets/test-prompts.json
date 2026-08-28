@@ -49,9 +49,9 @@
     {
       "id": "to-tickets-07",
       "prompt": "This refactoring needs to be done in expand-contract pattern. Break it down.",
-      "type": "should_trigger",
-      "expected_behavior": "Invokes to-tickets skill to create expand-contract sequence for wide refactoring.",
-      "notes": "Expand-contract pattern breakdown is a valid trigger."
+      "type": "edge_case",
+      "expected_behavior": "Invokes to-tickets skill to create expand-contract sequence. Edge case: wide refactoring uses expand-contract pattern instead of vertical slices — tests to-tickets' exception handling.",
+      "notes": "Edge case: expand-contract is the exception to vertical-slice ticketing."
     }
   ]
 }

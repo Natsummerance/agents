@@ -49,9 +49,9 @@
     {
       "id": "writing-07",
       "prompt": "How should I structure this skill's SKILL.md file?",
-      "type": "should_trigger",
-      "expected_behavior": "Invokes writing-for-agents skill to provide best practices for skill document structure.",
-      "notes": "Skill structure question is a valid trigger."
+      "type": "edge_case",
+      "expected_behavior": "Invokes writing-for-agents skill. Edge case: SKILL.md structure question tests whether writing-for-agents handles skill authoring or defers to the skill-creator skill.",
+      "notes": "Edge case: SKILL.md authoring tests writing-for-agents vs skill-creator boundary."
     }
   ]
 }

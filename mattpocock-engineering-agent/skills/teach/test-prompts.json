@@ -49,9 +49,9 @@
     {
       "id": "teach-07",
       "prompt": "I want to understand quantum computing concepts step by step.",
-      "type": "should_trigger",
-      "expected_behavior": "Invokes teach skill for theoretical topic learning with zone of proximal development driving lesson selection.",
-      "notes": "Theoretical topic learning is a valid trigger."
+      "type": "edge_case",
+      "expected_behavior": "Invokes teach skill for theoretical topic learning. Edge case: non-engineering theoretical topic tests teach's applicability beyond software skills.",
+      "notes": "Edge case: theoretical physics topic tests whether teach handles non-software learning domains."
     }
   ]
 }

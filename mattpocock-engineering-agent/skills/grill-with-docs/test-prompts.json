@@ -1,54 +1,57 @@
 {
+  "skill": "grill-with-docs",
+  "version": "1.1.0",
+  "source_project": "mattpocock/skills",
   "minimum_pass_rate": 0.95,
   "test_cases": [
     {
       "id": "grill-with-docs-01",
-      "user_input": "Grill with docs on the payment refactor. Update CONTEXT.md and create ADRs.",
-      "should_trigger": ["grill-with-docs"],
-      "should_not_trigger": ["grill-me", "grilling", "domain-modeling"],
-      "edge_case": false
+      "prompt": "Grill with docs on the payment refactor. Update CONTEXT.md and create ADRs.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes grill-with-docs skill (stateful) to stress-test design and produce CONTEXT.md + ADRs.",
+      "notes": "Explicit stateful grill with docs output is a key trigger."
     },
     {
       "id": "grill-with-docs-02",
-      "user_input": "Design session: sharpen the module boundary and leave a paper trail in our repo.",
-      "should_trigger": ["grill-with-docs"],
-      "should_not_trigger": ["grill-me", "codebase-design", "domain-modeling"],
-      "edge_case": false
+      "prompt": "Design session: sharpen the module boundary and leave a paper trail in our repo.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes grill-with-docs skill to run grilling primitive with persistent doc output in working directory.",
+      "notes": "Paper trail request distinguishes from stateless grill-me."
     },
     {
       "id": "grill-with-docs-03",
-      "user_input": "New feature design—grill it, capture terms in CONTEXT.md, record trade-offs as ADRs.",
-      "should_trigger": ["grill-with-docs"],
-      "should_not_trigger": ["grill-me", "to-spec", "implement"],
-      "edge_case": false
+      "prompt": "New feature design—grill it, capture terms in CONTEXT.md, record trade-offs as ADRs.",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes grill-with-docs skill for pre-implementation grill with vocabulary and decision capture.",
+      "notes": "Pre-implementation grill with docs is a valid trigger."
     },
     {
       "id": "grill-with-docs-04",
-      "user_input": "Onboard me to the ordering module. Grill the existing design, build the glossary.",
-      "should_trigger": ["grill-with-docs"],
-      "should_not_trigger": ["grill-me", "domain-modeling", "ask-matt"],
-      "edge_case": false
+      "prompt": "Grill me on my talk outline. No repo, stateless.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes grill-me skill instead. Grill-me is stateless; grill-with-docs requires working directory for doc output.",
+      "notes": "grill-me is the sibling skill for stateless grilling."
     },
     {
       "id": "grill-with-docs-05",
-      "user_input": "Pre-implementation grill: sharpen the spec, lock vocabulary, then to-spec.",
-      "should_trigger": ["grill-with-docs"],
-      "should_not_trigger": ["grill-me", "grilling", "code-review"],
-      "edge_case": false
+      "prompt": "Review this PR for code quality issues.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes code-review skill instead. Code-review evaluates existing diffs; grill-with-docs sharpens ideas.",
+      "notes": "code-review is the sibling skill for evaluating diffs."
     },
     {
       "id": "grill-with-docs-06",
-      "user_input": "Just interview me about this plan. No repo, no docs needed.",
-      "should_trigger": ["grill-me"],
-      "should_not_trigger": ["grill-with-docs", "grilling", "domain-modeling"],
-      "edge_case": false
+      "prompt": "Design a new module interface.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes codebase-design skill instead. Codebase-design shapes interfaces; grill-with-docs sharpens ideas through interview.",
+      "notes": "codebase-design is the sibling skill for module interface design."
     },
     {
       "id": "grill-with-docs-07",
-      "user_input": "Run the raw interview primitive on this decision tree.",
-      "should_trigger": ["grilling"],
-      "should_not_trigger": ["grill-with-docs", "grill-me", "triage"],
-      "edge_case": true
+      "prompt": "Onboard me to the ordering module. Grill the existing design, build the glossary.",
+      "type": "edge_case",
+      "expected_behavior": "Invokes grill-with-docs skill. Edge case: combines onboarding with domain modeling; grill-with-docs handles the grill portion while domain-modeling handles glossary.",
+      "notes": "Cross-skill overlap with domain-modeling for glossary building."
     }
   ]
 }

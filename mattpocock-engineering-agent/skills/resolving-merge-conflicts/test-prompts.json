@@ -49,9 +49,9 @@
     {
       "id": "resolve-07",
       "prompt": "The library upgrade conflicts with our local patches.",
-      "type": "should_trigger",
-      "expected_behavior": "Invokes resolving-merge-conflicts skill to trace both sides to original reasons and decide which to keep.",
-      "notes": "Dependency update conflict is a valid trigger."
+      "type": "edge_case",
+      "expected_behavior": "Invokes resolving-merge-conflicts skill to trace both sides to original reasons. Edge case: dependency upgrade conflict requires understanding both upstream intent and local patches.",
+      "notes": "Edge case: dependency conflicts test whether the skill handles third-party code intent correctly."
     }
   ]
 }

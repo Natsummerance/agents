@@ -49,9 +49,9 @@
     {
       "id": "to-questionnaire-07",
       "prompt": "Create a structured questionnaire for the stakeholders about deployment preferences.",
-      "type": "should_trigger",
-      "expected_behavior": "Invokes to-questionnaire skill to create structured document for stakeholder input gathering.",
-      "notes": "Explicit questionnaire creation request is a valid trigger."
+      "type": "edge_case",
+      "expected_behavior": "Invokes to-questionnaire skill. Edge case: multi-stakeholder questionnaire tests whether to-questionnaire handles group recipients or defaults to single-recipient model.",
+      "notes": "Edge case: multiple recipients tests to-questionnaire's single-recipient assumption."
     }
   ]
 }

@@ -49,9 +49,9 @@
     {
       "id": "tdd-07",
       "prompt": "First write a failing test for the login flow, then implement it.",
-      "type": "should_trigger",
-      "expected_behavior": "Invokes tdd skill with explicit red-green instruction for login flow.",
-      "notes": "Explicit red-green-refactor instruction is a valid trigger."
+      "type": "edge_case",
+      "expected_behavior": "Invokes tdd skill with explicit red-green instruction. Edge case: user specifies the exact sequence, testing whether tdd follows the prescribed order or adds its own methodology.",
+      "notes": "Edge case: explicit red-green instruction tests tdd's adherence to user-specified sequence."
     }
   ]
 }

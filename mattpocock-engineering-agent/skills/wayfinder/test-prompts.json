@@ -49,9 +49,9 @@
     {
       "id": "wayfinder-07",
       "prompt": "This migration will take weeks. Map out the decisions we need to make.",
-      "type": "should_trigger",
-      "expected_behavior": "Invokes wayfinder skill to map migration decisions over multiple sessions.",
-      "notes": "Migration project is a valid trigger."
+      "type": "edge_case",
+      "expected_behavior": "Invokes wayfinder skill to map migration decisions. Edge case: migration is large but concrete — tests whether wayfinder maps decisions or if to-tickets should break it into work items.",
+      "notes": "Edge case: large but concrete migration tests wayfinder vs to-tickets boundary."
     }
   ]
 }

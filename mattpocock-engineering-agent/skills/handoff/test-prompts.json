@@ -49,9 +49,9 @@
     {
       "id": "handoff-07",
       "prompt": "I want to continue working in the same session, just compress the context.",
-      "type": "should_not_trigger",
-      "expected_behavior": "Should suggest compact instead of handoff. Compact compresses within a session; handoff exports across sessions.",
-      "notes": "Edge case: user wants same-session compression, not cross-session transfer."
+      "type": "edge_case",
+      "expected_behavior": "Should suggest compact instead of handoff. Edge case: user wants same-session compression, not cross-session transfer — tests handoff vs compact boundary.",
+      "notes": "Edge case: same-session compression vs cross-session transfer is the key distinction."
     }
   ]
 }

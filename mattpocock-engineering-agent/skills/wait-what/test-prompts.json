@@ -49,9 +49,9 @@
     {
       "id": "wait-what-07",
       "prompt": "Explain that again, but simpler.",
-      "type": "should_trigger",
-      "expected_behavior": "Invokes wait-what skill to re-pitch with simplified language using ASD-STE100 principles.",
-      "notes": "Simplification request is a valid trigger."
+      "type": "edge_case",
+      "expected_behavior": "Invokes wait-what skill to re-pitch with simplified language. Edge case: user asks for simplification without explicit confusion — tests whether wait-what triggers on mild confusion.",
+      "notes": "Edge case: simplification request without explicit 'I don't understand' tests wait-what's trigger threshold."
     }
   ]
 }

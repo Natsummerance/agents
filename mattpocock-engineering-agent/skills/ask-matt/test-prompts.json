@@ -1,54 +1,57 @@
 {
+  "skill": "ask-matt",
+  "version": "1.1.0",
+  "source_project": "mattpocock/skills",
   "minimum_pass_rate": 0.95,
   "test_cases": [
     {
       "id": "ask-matt-01",
-      "user_input": "I have a new feature idea and a git repo. Which skill should I start with?",
-      "should_trigger": ["ask-matt"],
-      "should_not_trigger": ["grill-me", "grill-with-docs", "triage", "diagnosing-bugs"],
-      "edge_case": false
+      "prompt": "I have a new feature idea and a git repo. Which skill should I start with?",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes ask-matt skill to route the user to the correct skill in the engineering pipeline.",
+      "notes": "Skill routing request is a key trigger."
     },
     {
       "id": "ask-matt-02",
-      "user_input": "We have 50 untriaged GitHub issues piling up. What flow handles this?",
-      "should_trigger": ["ask-matt"],
-      "should_not_trigger": ["grill-with-docs", "implement", "code-review"],
-      "edge_case": false
+      "prompt": "We have 50 untriaged GitHub issues piling up. What flow handles this?",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes ask-matt skill to identify triage as the correct entry point for issue backlogs.",
+      "notes": "Issue backlog routing is a valid trigger."
     },
     {
       "id": "ask-matt-03",
-      "user_input": "A test flakes 1 in 20 runs on CI. How do I debug this properly?",
-      "should_trigger": ["ask-matt"],
-      "should_not_trigger": ["code-review", "grill-me", "prototype"],
-      "edge_case": false
+      "prompt": "A test flakes 1 in 20 runs on CI. How do I debug this properly?",
+      "type": "should_trigger",
+      "expected_behavior": "Invokes ask-matt skill to route to diagnosing-bugs skill for flaky test investigation.",
+      "notes": "Debugging routing is a valid trigger."
     },
     {
       "id": "ask-matt-04",
-      "user_input": "We're starting a greenfield project, too big for one session. Where do we begin?",
-      "should_trigger": ["ask-matt"],
-      "should_not_trigger": ["grill-with-docs", "implement", "to-spec"],
-      "edge_case": false
+      "prompt": "Build the payment integration feature.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes implement skill directly. Ask-matt is for routing questions, not building features.",
+      "notes": "implement is the sibling skill for building code."
     },
     {
       "id": "ask-matt-05",
-      "user_input": "This module feels shallow—too many public methods, little logic. How to improve?",
-      "should_trigger": ["ask-matt"],
-      "should_not_trigger": ["diagnosing-bugs", "triage", "grill-me"],
-      "edge_case": false
+      "prompt": "Review this PR for code quality issues.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Invokes code-review skill directly. Ask-matt routes; code-review evaluates diffs.",
+      "notes": "code-review is the sibling skill for evaluating diffs."
     },
     {
       "id": "ask-matt-06",
-      "user_input": "I want to review my branch against main before merging. Which skill?",
-      "should_trigger": ["ask-matt"],
-      "should_not_trigger": ["diagnosing-bugs", "triage", "wayfinder"],
-      "edge_case": false
+      "prompt": "Help me decide on the architecture for this module.",
+      "type": "should_not_trigger",
+      "expected_behavior": "Could be grill-me or grill-with-docs. Ask-matt routes; grill makes decisions.",
+      "notes": "grill-me is the sibling skill for decision-making interviews."
     },
     {
       "id": "ask-matt-07",
-      "user_input": "Just writing a blog post, no repo. Help me think through the outline.",
-      "should_trigger": ["ask-matt"],
-      "should_not_trigger": ["grill-with-docs", "domain-modeling", "codebase-design"],
-      "edge_case": true
+      "prompt": "I want to review my branch against main before merging. Which skill?",
+      "type": "edge_case",
+      "expected_behavior": "Invokes ask-matt skill to route to code-review. Edge case: user almost knows the answer but asks for confirmation.",
+      "notes": "Near-answer routing; user names the action but asks which skill. Tests ask-matt's value when user is close."
     }
   ]
 }

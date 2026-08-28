@@ -49,9 +49,9 @@
     {
       "id": "diagnosing-07",
       "prompt": "Nobody knows this legacy code. It throws errors randomly.",
-      "type": "should_trigger",
+      "type": "edge_case",
       "expected_behavior": "Invokes diagnosing-bugs skill with throwaway harness to isolate code path for unknown codebase bug.",
-      "notes": "Legacy codebug is a valid trigger."
+      "notes": "Edge case: legacy code with no domain knowledge requires diagnosing-bugs' minimization and hypothesis cycle."
     }
   ]
 }

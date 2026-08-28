@@ -48,10 +48,10 @@
     },
     {
       "id": "codebase-design-07",
-      "prompt": "Make this module more testable by injecting dependencies.",
-      "type": "should_trigger",
-      "expected_behavior": "Invokes codebase-design skill to design testable interface with dependencies injected, not created.",
-      "notes": "Testability improvement is a valid trigger."
+      "prompt": "This module has depth but no seam. How do we test it?",
+      "type": "edge_case",
+      "expected_behavior": "Invokes codebase-design skill to identify where to introduce a seam for testability. Edge case: module has good depth but lacks testable boundaries — tests seam placement logic.",
+      "notes": "Edge case: depth without seam is a valid but non-obvious trigger for codebase-design."
     }
   ]
 }

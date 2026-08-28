@@ -49,9 +49,9 @@
     {
       "id": "grill-me-07",
       "prompt": "I'm not in a repo. Help me think through this business strategy.",
-      "type": "should_trigger",
-      "expected_behavior": "Invokes grill-me skill for stateless thinking when no working directory exists.",
-      "notes": "No-repo scenario is a valid trigger for stateless grilling."
+      "type": "edge_case",
+      "expected_behavior": "Invokes grill-me skill for stateless thinking when no working directory exists. Edge case: business strategy is outside typical engineering scope but valid for stateless grilling.",
+      "notes": "Edge case: no-repo non-engineering topic tests grill-me's applicability beyond code."
     }
   ]
 }

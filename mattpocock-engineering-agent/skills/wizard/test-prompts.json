@@ -49,9 +49,9 @@
     {
       "id": "wizard-07",
       "prompt": "Create a bash script to walk through the CI/CD setup process.",
-      "type": "should_trigger",
-      "expected_behavior": "Invokes wizard skill to generate bash script for CI/CD setup with step-by-step guidance.",
-      "notes": "Explicit bash script request for manual process is a valid trigger."
+      "type": "edge_case",
+      "expected_behavior": "Invokes wizard skill. Edge case: CI/CD setup might be partially automatable by the agent — tests whether wizard limits itself to human-in-the-loop steps only.",
+      "notes": "Edge case: CI/CD setup tests wizard's boundary between agent-automatable and human-required steps."
     }
   ]
 }

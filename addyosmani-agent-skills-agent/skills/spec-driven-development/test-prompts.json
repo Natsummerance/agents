@@ -21,23 +21,23 @@
     {
       "id": "tc-03",
       "prompt": "这个 API 怎么用？",
-      "type": "should_trigger",
-      "expected_behavior": "纯信息查询，不应调用",
-      "notes": "纯信息查询，不应调用"
+      "type": "should_not_trigger",
+      "expected_behavior": "纯信息查询，不应调用 spec-driven-development",
+      "notes": "纯信息查询不属于需求明确化范围"
     },
     {
       "id": "tc-04",
       "prompt": "如何证明代码正确？",
-      "type": "should_trigger",
+      "type": "should_not_trigger",
       "expected_behavior": "应触发 test-driven-development，不是 spec-driven-development",
-      "notes": "应触发 test-driven-development，不是 spec-driven-development"
+      "notes": "cross-skill-confusion-bait: test-driven-development 是兄弟 skill"
     },
     {
       "id": "tc-05",
       "prompt": "能否一次性实现所有任务？",
-      "type": "should_trigger",
+      "type": "should_not_trigger",
       "expected_behavior": "应触发 auto-build-mode，不是 spec-driven-development",
-      "notes": "应触发 auto-build-mode，不是 spec-driven-development"
+      "notes": "cross-skill-confusion-bait: auto-build-mode 是兄弟 skill"
     },
     {
       "id": "tc-06",
@@ -45,6 +45,13 @@
       "type": "edge_case",
       "expected_behavior": "触发本 skill 给出判定：探索期可用轻量规格+短迭代验证，但核心接口与数据结构仍需落笔，结论可操作",
       "notes": "边界题：考察规格说明在不确定性场景下的最小必要度"
+    },
+    {
+      "id": "tc-07",
+      "prompt": "如何证明代码的正确性？",
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；代码正确性验证属于 test-driven-development 范围，本 skill 只负责需求明确化",
+      "notes": "cross-skill-confusion-bait: test-driven-development 是兄弟 skill，负责测试驱动开发与代码验证"
     }
   ]
 }

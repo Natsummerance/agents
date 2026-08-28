@@ -49,9 +49,9 @@
     {
       "id": "setup-07",
       "prompt": "Switch from GitHub to GitLab for issue tracking.",
-      "type": "should_trigger",
-      "expected_behavior": "Invokes setup-matt-pocock-skills skill to reconfigure the issue tracker from GitHub to GitLab.",
-      "notes": "Tracker migration is a valid trigger for re-running setup."
+      "type": "edge_case",
+      "expected_behavior": "Invokes setup-matt-pocock-skills skill to reconfigure the issue tracker. Edge case: tracker migration requires re-running setup with different provider, testing idempotency.",
+      "notes": "Edge case: tracker migration tests whether setup is idempotent and handles provider switching."
     }
   ]
 }

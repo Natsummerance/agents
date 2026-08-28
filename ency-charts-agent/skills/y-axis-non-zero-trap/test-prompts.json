@@ -52,6 +52,13 @@
       "type": "edge_case",
       "expected_behavior": "触发该 skill：面积图类似折线图强调趋势+总量感知，Y 轴可截断但需谨慎，建议参考折线图规则并标注数值",
       "notes": "面积图 Y 轴规则参照折线图但需更谨慎"
+    },
+    {
+      "id": "tc-08",
+      "prompt": "这个柱状图的 Tooltip 显示正确吗？",
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；Tooltip 检查属于 tooltip-missing-unit-trap 范围，本 skill 只负责 Y 轴零点问题",
+      "notes": "cross-skill-confusion-bait: tooltip-missing-unit-trap 是兄弟 skill，负责 Tooltip 内容检查"
     }
   ]
 }

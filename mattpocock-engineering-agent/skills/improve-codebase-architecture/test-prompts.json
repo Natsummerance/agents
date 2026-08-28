@@ -49,9 +49,9 @@
     {
       "id": "improve-07",
       "prompt": "The understanding one feature requires bouncing between four modules.",
-      "type": "should_trigger",
-      "expected_behavior": "Invokes improve-codebase-architecture skill. Coupling detection (bouncing between modules) is a key friction signal.",
-      "notes": "Coupling across modules is a deepening opportunity signal."
+      "type": "edge_case",
+      "expected_behavior": "Invokes improve-codebase-architecture skill. Edge case: coupling across modules is a friction signal, but the solution might require codebase-design (interface redesign) rather than just scanning.",
+      "notes": "Edge case: coupling detection bridges scanning (improve) and redesign (codebase-design)."
     }
   ]
 }

@@ -49,9 +49,9 @@
     {
       "id": "research-07",
       "prompt": "Investigate how the authentication module is currently implemented.",
-      "type": "should_trigger",
-      "expected_behavior": "Invokes research skill to investigate internal codebase implementation and produce architecture notes.",
-      "notes": "Internal codebase investigation is a valid trigger."
+      "type": "edge_case",
+      "expected_behavior": "Invokes research skill to investigate internal codebase implementation. Edge case: internal code investigation overlaps with improve-codebase-architecture (scanning for issues) and domain-modeling (understanding terms).",
+      "notes": "Edge case: internal investigation bridges research (read), improve (scan), and domain-modeling (terminology)."
     }
   ]
 }

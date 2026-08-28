@@ -49,9 +49,9 @@
     {
       "id": "to-spec-07",
       "prompt": "Before we code, let's spec out the payment feature properly.",
-      "type": "should_trigger",
-      "expected_behavior": "Invokes to-spec skill for pre-implementation specification of the payment feature.",
-      "notes": "Pre-implementation spec is a valid trigger."
+      "type": "edge_case",
+      "expected_behavior": "Invokes to-spec skill for pre-implementation specification. Edge case: user implies the idea is already sharp enough to spec — tests whether to-spec checks sharpness or trusts user judgment.",
+      "notes": "Edge case: pre-implementation spec tests to-spec's sharpness check vs user autonomy."
     }
   ]
 }

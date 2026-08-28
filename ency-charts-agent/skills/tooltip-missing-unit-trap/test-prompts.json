@@ -52,6 +52,13 @@
       "type": "edge_case",
       "expected_behavior": "命中 B 段例外：% 符号通常已包含在数值中，但需验证 formatter 输出确实含 %",
       "notes": "检验百分比数据的例外边界判断"
+    },
+    {
+      "id": "tc-08",
+      "prompt": "这个图表的颜色搭配合理吗？",
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；颜色搭配属于 similar-color-confusion-trap 或 semantic-coloring-principles 范围，本 skill 只负责 Tooltip 单位缺失",
+      "notes": "cross-skill-confusion-bait: similar-color-confusion-trap 是兄弟 skill，负责颜色区分度"
     }
   ]
 }

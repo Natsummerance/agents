@@ -48,10 +48,10 @@
     },
     {
       "id": "code-review-07",
-      "prompt": "Review since the v1.0.0 tag.",
-      "type": "should_trigger",
-      "expected_behavior": "Invokes code-review skill with tag as fixed point for historical diff review.",
-      "notes": "Tag-based review is a valid trigger."
+      "prompt": "Review this PR, but also check if it matches the original issue requirements.",
+      "type": "edge_case",
+      "expected_behavior": "Invokes code-review skill with both Standards and Spec axes. Edge case: user wants both axes simultaneously, which is the default behavior but tests whether Spec axis is applied.",
+      "notes": "Dual-axis review is the standard behavior; tests that Spec axis is not skipped."
     }
   ]
 }

@@ -49,9 +49,9 @@
     {
       "id": "prototype-07",
       "prompt": "Should we use events or direct calls for this communication?",
-      "type": "should_trigger",
-      "expected_behavior": "Invokes prototype skill with LOGIC branch to simulate both approaches for comparison.",
-      "notes": "API contract testing is a valid prototype scenario."
+      "type": "edge_case",
+      "expected_behavior": "Invokes prototype skill with LOGIC branch to simulate both approaches. Edge case: API design question could also use grill-me for interview or codebase-design for interface shaping.",
+      "notes": "Edge case: architectural decision could use prototype (simulate), grill-me (interview), or codebase-design (shape)."
     }
   ]
 }

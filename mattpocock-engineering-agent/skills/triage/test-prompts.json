@@ -49,9 +49,9 @@
     {
       "id": "triage-07",
       "prompt": "This issue is already implemented. Close it as wontfix.",
-      "type": "should_trigger",
-      "expected_behavior": "Invokes triage skill to close as wontfix with reason (already implemented) and pointer to implementation.",
-      "notes": "Wontfix decision is a valid triage outcome."
+      "type": "edge_case",
+      "expected_behavior": "Invokes triage skill to close as wontfix. Edge case: user provides the decision directly — tests whether triage applies it or asks for justification.",
+      "notes": "Edge case: direct wontfix decision tests triage's autonomy vs user authority."
     }
   ]
 }

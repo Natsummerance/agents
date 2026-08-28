@@ -49,9 +49,9 @@
     {
       "id": "domain-modeling-07",
       "prompt": "Build our project's glossary of domain terms.",
-      "type": "should_trigger",
-      "expected_behavior": "Invokes domain-modeling skill to create/update CONTEXT.md with canonical term definitions.",
-      "notes": "Glossary building is a valid trigger."
+      "type": "edge_case",
+      "expected_behavior": "Invokes domain-modeling skill to create/update CONTEXT.md with canonical term definitions. Edge case: glossary building overlaps with grill-with-docs which also maintains shared vocabulary.",
+      "notes": "Edge case: glossary creation tests boundary between domain-modeling (terminology) and grill-with-docs (idea sharpening with doc output)."
     }
   ]
 }

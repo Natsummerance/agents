@@ -52,6 +52,13 @@
       "type": "edge_case",
       "expected_behavior": "触发该 skill 走 B 段作者盲点：未讨论 ≥3840px 适配，应建议扩展 XL 断点或新增 XXL 断点",
       "notes": "对应 B 段盲点'未讨论超大屏幕（≥3840px 4K）的适配策略'"
+    },
+    {
+      "id": "tc-08",
+      "prompt": "应该用什么图表类型展示这组数据？",
+      "type": "should_not_trigger",
+      "expected_behavior": "该 skill 不应触发；图表选型属于 chart-type-selection-framework 范围，本 skill 只负责响应式布局策略",
+      "notes": "cross-skill-confusion-bait: chart-type-selection-framework 是兄弟 skill，负责图表类型选择"
     }
   ]
 }

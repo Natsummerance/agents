@@ -49,9 +49,9 @@
     {
       "id": "implement-07",
       "prompt": "Fix the review findings from the last code review.",
-      "type": "should_trigger",
-      "expected_behavior": "Invokes implement skill to address code-review findings, re-implementing with fixes.",
-      "notes": "Post-review iteration is a valid implement scenario."
+      "type": "edge_case",
+      "expected_behavior": "Invokes implement skill to address code-review findings. Edge case: post-review iteration blurs the line between implement (build) and code-review (evaluate) — tests implement's scope.",
+      "notes": "Edge case: fixing review findings tests whether implement handles iterative fixes or defers back to code-review."
     }
   ]
 }
